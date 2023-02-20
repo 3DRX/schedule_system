@@ -14,12 +14,12 @@ public class Login {
     final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     Login() {
+        // 初始化Login模块时，先从resources/users.json读取所有的用户存入数组中
         // addUsers();
-        for (theUser user : readUsers()) {
-            System.out.println(user.id);
-        }
+        theUser[] inputUsers = readUsers();
     }
 
+    // 从resources/users.json中读取users，返回users[]
     private theUser[] readUsers() {
         theUser[] read_users = {};
         try {
@@ -31,6 +31,7 @@ public class Login {
         return read_users;
     }
 
+    // 将一组特定的users写入resources/users.json中
     private void addUsers() {
         ArrayList<theUser> users = new ArrayList<>();
         users.add(new theUser(true, "001", "password"));
