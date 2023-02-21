@@ -24,7 +24,9 @@ public class Login {
         initWindow();
     }
 
-    // 创建登陆界面
+    /**
+     * 创建登陆界面
+     */
     private void initWindow() {
         JFrame loginWindow = new JFrame("Login");
         Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -75,7 +77,10 @@ public class Login {
         loginWindow.setVisible(true);
     }
 
-    // 从resources/users.json中读取users，返回users[]
+    /**
+     * 从resources/users.json中读取users，返回users[]
+     * @return theUser[]
+     */
     private theUser[] readUsers() {
         theUser[] read_users = {};
         try {
@@ -87,7 +92,9 @@ public class Login {
         return read_users;
     }
 
-    // 将一组特定的users写入resources/users.json中
+    /**
+     * 将一组特定的users写入resources/users.json中
+     */
     private void addUsers() {
         ArrayList<theUser> users = new ArrayList<>();
         users.add(new theUser(true, "001", "password"));
