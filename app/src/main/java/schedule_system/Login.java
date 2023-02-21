@@ -13,14 +13,14 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 
 public class Login {
+    // 用于读写json
     final private String path = "src/main/resources/users.json";
     final private Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    Login() {
-        // 初始化Login模块时，先从resources/users.json读取所有的用户存入数组中
-        // addUsers();
-        theUser[] inputUsers = readUsers();
+    // 从resources/users.json读取所有的用户存入数组中
+    final private theUser[] inputUsers = readUsers();
 
+    Login() {
         initWindow();
     }
 
@@ -54,10 +54,19 @@ public class Login {
         bt.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
-                if (idInput.getText().equals("admin") && pswdInput.getText().equals("admin")) {
-                    jl.setText("登录成功");
+                boolean loginSuccess = false;
+                for (int i = 0; i < inputUsers.length; i++) {
+                    theUser theuser = inputUsers[i];
+                    if (idInput.getText().equals(theuser.id) && pswdInput.getText().equals(theuser.password)) {
+                        System.out.println("asd");
+                        loginSuccess = true;
+                        break;
+                    }
+                }
+                if (loginSuccess) {
+                    jl.setText("登陆成功");
                 } else {
-                    jl.setText("登录失败");
+                    jl.setText("登陆失败");
                 }
             }
         });

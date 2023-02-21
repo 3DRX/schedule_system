@@ -2,11 +2,11 @@
   {
     "isAdmin": true,
     "id": "001",
-    "pswd": "password"
+    "password": "password"
   },
   {
     "isAdmin": false,
     "id": "002",
-    "pswd": "69420"
+    "password": "69420"
   }
 ]
