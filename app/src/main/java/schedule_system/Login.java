@@ -35,10 +35,10 @@ public class Login {
         loginWindow.setResizable(false);
         loginWindow.setLayout(new GridLayout(2, 1, 5, 5));
         JPanel jp = new JPanel();
-        jp.setLayout(new FlowLayout());
+        jp.setLayout(new GridLayout(2, 2, 5, 5));
         jp.setSize(100, 50);
-        JLabel jl1 = new JLabel("账号");
-        JLabel jl2 = new JLabel("密码");
+        JLabel jl1 = new JLabel("\u8d26\u53f7");            //账号
+        JLabel jl2 = new JLabel("\u5bc6\u7801");            //密码
         JTextField idInput = new JTextField("", 20);
         JPasswordField pswdInput = new JPasswordField("", 20);
         jp.add(jl1);
@@ -52,7 +52,7 @@ public class Login {
         JLabel jl = new JLabel();
         jl.setHorizontalAlignment(SwingConstants.CENTER);
         jpl.add(jl);
-        JButton bt = new JButton("登录");
+        JButton bt = new JButton("\u767b\u5f55");       //登录
         bt.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
