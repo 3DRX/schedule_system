@@ -1,17 +1,12 @@
 package schedule_system;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import java.awt.*;
+import javax.swing.*;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -26,30 +21,49 @@ public class Login {
         // addUsers();
         theUser[] inputUsers = readUsers();
 
-        // 创建居中的420*420登陆窗口
+        initWindow();
+    }
 
-        // 1. 创建登陆提示文字Label
-        JLabel title = new JLabel("Login");
-        title.setHorizontalAlignment(JLabel.CENTER);
-        title.setVerticalAlignment(JLabel.CENTER);
-        title.setFont(new Font("Arial", Font.BOLD, 20));
-
-        // 2. 创建用户名输入框
-        JTextField idInput = new JTextField(16);
-
-        // 
-        JFrame frame = new JFrame();
-        frame.setLayout(new BorderLayout());
-        frame.setTitle("");
-        frame.setResizable(false);
-        frame.setSize(420, 420);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        frame.setLocation(screen.width / 2 - 210, screen.height / 2 - 210);
-        frame.add(title, BorderLayout.NORTH);
-        frame.add(idInput, BorderLayout.CENTER);
-        frame.setVisible(true);
-
+    // 创建登陆界面
+    private void initWindow() {
+        JFrame loginWindow = new JFrame("Login");
+        Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
+        loginWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        loginWindow.setBounds(screensize.width / 2 - 150, screensize.height / 2 - 80, 300, 160);
+        loginWindow.setResizable(false);
+        loginWindow.setLayout(new GridLayout(2, 1, 5, 5));
+        JPanel jp = new JPanel();
+        jp.setLayout(new FlowLayout());
+        jp.setSize(100, 50);
+        JLabel jl1 = new JLabel("账号");
+        JLabel jl2 = new JLabel("密码");
+        JTextField idInput = new JTextField("", 20);
+        JPasswordField pswdInput = new JPasswordField("", 20);
+        jp.add(jl1);
+        jp.add(idInput);
+        jp.add(jl2);
+        jp.add(pswdInput);
+        jp.setVisible(true);
+        loginWindow.add(jp);
+        JPanel jpl = new JPanel();
+        jpl.setLayout(new GridLayout(2, 1));
+        JLabel jl = new JLabel();
+        jl.setHorizontalAlignment(SwingConstants.CENTER);
+        jpl.add(jl);
+        JButton bt = new JButton("登录");
+        bt.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                if (idInput.getText().equals("admin") && pswdInput.getText().equals("admin")) {
+                    jl.setText("登录成功");
+                } else {
+                    jl.setText("登录失败");
+                }
+            }
+        });
+        jpl.add(bt);
+        loginWindow.add(jpl);
+        loginWindow.setVisible(true);
     }
 
     // 从resources/users.json中读取users，返回users[]
