@@ -1,9 +1,13 @@
 package schedule_system;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+
+import javax.swing.JFrame;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -17,6 +21,16 @@ public class Login {
         // 初始化Login模块时，先从resources/users.json读取所有的用户存入数组中
         // addUsers();
         theUser[] inputUsers = readUsers();
+
+        // 创建居中的420*420登陆窗口
+        JFrame frame = new JFrame();
+        frame.setTitle("Log In");
+        frame.setResizable(false);
+        frame.setSize(420, 420);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setLocation(screen.width / 2 - 210, screen.height / 2 - 210);
+        frame.setVisible(true);
     }
 
     // 从resources/users.json中读取users，返回users[]
