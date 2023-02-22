@@ -8,5 +8,10 @@
     "isAdmin": false,
     "id": "002",
     "password": "69420"
+  },
+  {
+    "isAdmin": false,
+    "id": "kangjingyang",
+    "password": "12345"
   }
 ]

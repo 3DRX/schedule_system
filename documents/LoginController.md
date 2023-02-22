@@ -6,7 +6,7 @@
 
 首先新建一个[Login](/documents/Login.md)实例。
 
-对所有来自`/login`的GET请求（具有id和password两个参数，默认值均为空字符串），
+对所有来自`/login`的POST请求（具有id和password两个参数，默认值均为空字符串），
 判断是否是用户。
 
 HTTP Response 是一个 [UserRecord](/documents/UserRecord.md) 实例，包含以下内容：

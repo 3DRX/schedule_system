@@ -1,7 +1,7 @@
 package schedule_system.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import schedule_system.Login;
@@ -13,13 +13,14 @@ import schedule_system.records.UserRecord;
  */
 @RestController
 public class LoginController {
-    @GetMapping("/login")
+    @PostMapping("/login")
     public UserRecord loginValidation(
-            @RequestParam(value = "id", defaultValue = "") String id,
-            @RequestParam(value = "password", defaultValue = "") String password) {
+            @RequestBody theUser iptUser
+            ){
         Login login = new Login();
+        System.out.println(iptUser.isAdmin());
         for (theUser user : login.getInputUsers()) {
-            if (id.equals(user.getId()) && password.equals(user.getPassword())) {
+            if (iptUser.getId().equals(user.getId()) && iptUser.getPassword().equals(user.getPassword())) {
                 return new UserRecord(true, user.isAdmin());
             }
         }
