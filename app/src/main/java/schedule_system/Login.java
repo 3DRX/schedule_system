@@ -3,7 +3,6 @@ package schedule_system;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.ArrayList;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -42,10 +41,7 @@ public class Login {
     /**
      * 将一组特定的users写入resources/users.json中
      */
-    private void addUsers() {
-        ArrayList<theUser> users = new ArrayList<>();
-        users.add(new theUser(true, "001", "password"));
-        users.add(new theUser(false, "002", "69420"));
+    private void addUsers(theUser[] users) {
         File file = new File(path);
         String res = gson.toJson(users);
         try {
