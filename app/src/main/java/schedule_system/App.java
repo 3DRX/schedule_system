@@ -1,8 +1,11 @@
 package schedule_system;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
 public class App {
     public static void main(String[] args) {
-        // 初始化Login模块
-        Login login = new Login();
+        SpringApplication.run(App.class, args);
     }
 }
