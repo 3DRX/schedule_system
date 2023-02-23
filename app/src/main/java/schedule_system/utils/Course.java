@@ -10,6 +10,7 @@ public class Course {
     private String name;
     private int id;
     private Location location;
+    private boolean isPeriodic;
 
     public int getStartTime() {
         return startTime;
@@ -53,5 +54,13 @@ public class Course {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public boolean isPeriodic() {
+        return isPeriodic;
+    }
+
+    public void setPeriodic(boolean isPeriodic) {
+        this.isPeriodic = isPeriodic;
     }
 }
