@@ -16,11 +16,11 @@
     justify-content: center;
     background-color: rgba(214, 214, 214, 0.479);
     backdrop-filter: saturate(100%) blur(3px);
-    height: 45vh;
+    height: 35vh;
     width: 50vw;
     border-radius: 4vh;
     box-shadow: 0px 0px 5vw 1vw rgba(49, 49, 49, 0.623);
-    margin-top: 21vh;
+    margin-top: 31vh;
     padding-bottom: 3vh;
 }
 .userProfilePhotoArea{
@@ -96,6 +96,7 @@
     text-decoration: underline;
 }
 .buttonArea{
+    margin-top: 3rem;
     display: flex;
     justify-content: center;
 }
