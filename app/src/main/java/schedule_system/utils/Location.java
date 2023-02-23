@@ -4,6 +4,7 @@ package schedule_system.utils;
  * Location
  */
 public class Location {
+    // TODO: 未完成
 
     private int x;
     private int y;
