@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import './LoginPage.css';
+import styles from './LoginPage.css';
+import profilePhoto from './image/exampleProfilePhoto.jpg';
+import background from './image/exampleMaterial_1.jpg';
 
 const LoginPage = () => {
     const [resText, setResText] = useState("");
@@ -30,11 +32,11 @@ const LoginPage = () => {
     return (
 
         <div>
-            <view className="AllPage" style="background-image: url(./image/exampleMaterial_1.jpg);">
+            <view className="AllPage" style="background-image: url({background});">
                 <view className="content">
                     <view className="userProfilePhotoArea">
                         <view className="userProfilePhotoBox">
-                            <img className="userProfilePhoto" src="./image/exampleProfilePhoto.jpg"></img>
+                            <img className="userProfilePhoto" src="{profilePhoto}"/>
                         </view>
                     </view>
                     <form onSubmit={handleSubmit}>
