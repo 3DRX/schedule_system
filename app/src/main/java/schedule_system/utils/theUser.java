@@ -1,4 +1,4 @@
-package schedule_system;
+package schedule_system.utils;
 
 // 用户类
 public class theUser {

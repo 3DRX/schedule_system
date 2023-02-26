@@ -4,6 +4,8 @@ package schedule_system.utils;
  * Course
  */
 public class Course {
+    // TODO: 检查输入参数是否符合要求，将函数返回值改为boolean
+    // 若符合，return true，否则return false
 
     private int startWeek; // 课程开始周
     private int endWeek; // 课程结束周
@@ -13,11 +15,28 @@ public class Course {
     private String name; // 课程名称（唯一id）
     private Location location; // 课程地点
 
+    public Course(
+            final int startWeek,
+            final int endWeek,
+            final int testWeek,
+            final ClassTime classTime,
+            final ClassTime examTime,
+            final String name,
+            final Location location) {
+        setStartWeek(startWeek);
+        setEndWeek(endWeek);
+        setTestWeek(testWeek);
+        setClassTime(classTime);
+        setExamTime(examTime);
+        setName(name);
+        setLocation(location);
+    }
+
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    private void setName(final String name) {
         this.name = name;
     }
 
@@ -25,7 +44,7 @@ public class Course {
         return location;
     }
 
-    public void setLocation(Location location) {
+    private void setLocation(final Location location) {
         this.location = location;
     }
 
@@ -37,7 +56,7 @@ public class Course {
         return startWeek;
     }
 
-    public void setStartWeek(int startWeek) {
+    private void setStartWeek(final int startWeek) {
         this.startWeek = startWeek;
     }
 
@@ -45,7 +64,7 @@ public class Course {
         return endWeek;
     }
 
-    public void setEndWeek(int endWeek) {
+    private void setEndWeek(final int endWeek) {
         this.endWeek = endWeek;
     }
 
@@ -53,7 +72,7 @@ public class Course {
         return testWeek;
     }
 
-    public void setTestWeek(int testWeek) {
+    private void setTestWeek(final int testWeek) {
         this.testWeek = testWeek;
     }
 
@@ -61,7 +80,7 @@ public class Course {
         return classTime;
     }
 
-    public void setClassTime(ClassTime classTime) {
+    private void setClassTime(final ClassTime classTime) {
         this.classTime = classTime;
     }
 
@@ -69,7 +88,7 @@ public class Course {
         return examTime;
     }
 
-    public void setExamTime(ClassTime examTime) {
+    private void setExamTime(final ClassTime examTime) {
         this.examTime = examTime;
     }
 }

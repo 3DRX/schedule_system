@@ -8,6 +8,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 
+import schedule_system.utils.theUser;
+
 public class Login {
     // 用于读写json
     final private String path = "src/main/resources/users.json";
