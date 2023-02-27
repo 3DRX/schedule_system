@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from 'axios';
 import './LoginPage.css';
 
@@ -10,13 +10,20 @@ const LoginPage = () => {
         const form = e.target;
         const formData = new FormData(form);
         const jsonData = Object.fromEntries(formData.entries());
-        axios.post('http://localhost:8080/login', jsonData)
+        // 仍然不能在其他设备上登陆
+        axios.post("http://" + window.location.hostname + ":8080/login", jsonData)
             .then(function(response) {
                 // console.log(response);
                 // console.log(response.data.isValid)
                 if (response.data.isValid) {
                     // console.log("登陆成功");
-                    setResText("登陆成功");
+                    const prefix = "http://" + window.location.host;
+                    if (response.data.isAdmin) {
+                        window.open(prefix + "/admin", "_self");
+                    }
+                    else {
+                        window.open(prefix + "/student", "_self");
+                    }
                 }
                 else {
                     // console.log("登陆失败");
@@ -29,7 +36,6 @@ const LoginPage = () => {
     };
 
     return (
-
         <div>
             <view className="AllPage">
                 <view className="content">
