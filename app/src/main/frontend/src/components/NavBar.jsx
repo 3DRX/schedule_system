@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from "react-router-dom";
 import "./NavBar.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function NavBar({ isAdmin }) {
     const prefix = "http://" + window.location.host;
