@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import schedule_system.Login;
-import schedule_system.theUser;
+import schedule_system.UserData;
+import schedule_system.utils.theUser;
 import schedule_system.records.UserRecord;
 
 /**
@@ -17,11 +17,9 @@ import schedule_system.records.UserRecord;
 public class LoginController {
     @PostMapping("/login")
     public UserRecord loginValidation(
-            @RequestBody theUser iptUser
-            ){
-        Login login = new Login();
+            @RequestBody theUser iptUser) {
         System.out.println(iptUser.isAdmin());
-        for (theUser user : login.getInputUsers()) {
+        for (theUser user : UserData.allUsers()) {
             if (iptUser.getId().equals(user.getId()) && iptUser.getPassword().equals(user.getPassword())) {
                 return new UserRecord(true, user.isAdmin());
             }
