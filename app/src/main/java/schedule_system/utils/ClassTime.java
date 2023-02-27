@@ -15,6 +15,10 @@ public class ClassTime {
         // TODO: 检查课程结束时间是否超过20:00
     }
 
+    public boolean covers(int start, int end) {
+        return time <= start && time + duration >= end;
+    }
+
     public boolean setTime(int time) {
         if (time >= 8 && time <= 20) {
             this.time = time;

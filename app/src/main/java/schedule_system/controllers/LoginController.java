@@ -18,7 +18,6 @@ public class LoginController {
     @PostMapping("/login")
     public UserRecord loginValidation(
             @RequestBody theUser iptUser) {
-        System.out.println(iptUser.isAdmin());
         for (theUser user : UserData.allUsers()) {
             if (iptUser.getId().equals(user.getId()) && iptUser.getPassword().equals(user.getPassword())) {
                 return new UserRecord(true, user.isAdmin());
