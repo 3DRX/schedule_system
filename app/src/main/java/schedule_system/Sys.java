@@ -7,28 +7,29 @@ import schedule_system.utils.theUser;
  */
 public class Sys {
     private static Student[] students = null;
+    final private UserData userData = new UserData();
 
-    private static void generateStudents() {
-        students = new Student[UserData.students().length];
+    private void generateStudents() {
+        students = new Student[userData.students().length];
         int i = 0;
-        for (theUser student : UserData.students()) {
+        for (theUser student : userData.students()) {
             students[i] = new Student(student.getId());
             i++;
         }
     }
 
-    public static Student[] getStudents() {
-        generateStudents();
-        return students;
-    }
+    // public static Student[] getStudents() {
+    //     generateStudents();
+    //     return students;
+    // }
 
-    public static Student getStudentByName(String name) {
-        generateStudents();
-        for (Student student : students) {
-            if (student.getName().equals(name)) {
-                return student;
-            }
-        }
-        return null;
-    }
+    // public static Student getStudentByName(String name) {
+    //     generateStudents();
+    //     for (Student student : students) {
+    //         if (student.getName().equals(name)) {
+    //             return student;
+    //         }
+    //     }
+    //     return null;
+    // }
 }

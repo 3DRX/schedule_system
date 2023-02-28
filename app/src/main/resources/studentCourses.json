@@ -1,9 +1,16 @@
 [
-    {
-        "courses": [
-            "a",
-            "b"
-        ],
-        "name": "kangjingyang"
-    },
+  {
+    "courses": [
+      "math",
+      "english"
+    ],
+    "name": "002"
+  },
+  {
+    "courses": [
+      "math",
+      "english"
+    ],
+    "name": "003"
+  }
 ]

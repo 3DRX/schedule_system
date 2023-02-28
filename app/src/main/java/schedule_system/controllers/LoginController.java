@@ -15,10 +15,12 @@ import schedule_system.records.UserRecord;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 public class LoginController {
+    private UserData userData = new UserData();
+
     @PostMapping("/login")
     public UserRecord loginValidation(
             @RequestBody theUser iptUser) {
-        for (theUser user : UserData.allUsers()) {
+        for (theUser user : userData.allUsers()) {
             if (iptUser.getId().equals(user.getId()) && iptUser.getPassword().equals(user.getPassword())) {
                 return new UserRecord(true, user.isAdmin());
             }

@@ -8,36 +8,36 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 
-import schedule_system.utils.TheStudent;
+import schedule_system.utils.Course;
 
 /**
- * StudentData
+ * CourseData
  */
-public class StudentData {
-    final private String path = "src/main/resources/studentCourses.json";
+public class CourseData {
+    final private String path = "src/main/resources/courses.json";
     final private Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    private TheStudent[] students;
+    private Course[] courses;
 
-    public TheStudent[] getStudentClasses() {
-        this.students = readStudentClasses();
-        return this.students;
+    public Course[] allCourses() {
+        this.courses = readCourses();
+        return this.courses;
     }
 
-    private TheStudent[] readStudentClasses() {
-        TheStudent[] readStudent = {};
+    private Course[] readCourses() {
+        Course[] read_users = {};
         try {
             JsonReader reader = new JsonReader(new FileReader(path));
-            readStudent = new Gson().fromJson(reader, TheStudent[].class);
+            read_users = new Gson().fromJson(reader, Course[].class);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return readStudent;
+        return read_users;
     }
 
-    public void writeStudentClasses(TheStudent[] students) {
+    public void writeCourses(Course[] courses) {
         File file = new File(path);
-        String res = gson.toJson(students);
+        String res = gson.toJson(courses);
         try {
             FileWriter writer = new FileWriter(file);
             writer.write(res);
