@@ -23,6 +23,6 @@ public class Admin {
     }
 
     public Student[] getAllStudents(){
-        return System.getStudents();
+        return Sys.getStudents();
     }
 }
