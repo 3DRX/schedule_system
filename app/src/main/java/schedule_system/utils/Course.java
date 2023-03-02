@@ -32,6 +32,10 @@ public class Course {
         setLocation(location);
     }
 
+    public boolean covers(int week) {
+        return this.startWeek <= week && this.endWeek >= week;
+    }
+
     public String getName() {
         return name;
     }

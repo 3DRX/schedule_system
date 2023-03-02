@@ -22,10 +22,10 @@ public class CourseTableController {
     private CourseData courseData = new CourseData();
 
     @GetMapping("/getCourseStatusByTime")
-    public CourseObjectRecord checkCourseTableElement(String time) {
+    public CourseObjectRecord checkCourseTableElement(String time, int week, int day) {
         int start = Integer.parseInt(time.split("-")[0]);
         int end = Integer.parseInt(time.split("-")[1]);
-        Course course = getCourse(start, end);
+        Course course = getCourse(start, end, week, day);
         String courseName;
         String courseLoactionName;
         String[] students;
@@ -41,9 +41,9 @@ public class CourseTableController {
         return new CourseObjectRecord(courseName, students, courseLoactionName);
     }
 
-    private Course getCourse(int start, int end) {
+    private Course getCourse(int start, int end, int week, int day) {
         for (Course course : courseData.allCourses()) {
-            if (course.getClassTime().covers(start, end)) {
+            if (course.covers(week) && course.getClassTime().covers(start, end, day)) {
                 return course;
             }
         }
