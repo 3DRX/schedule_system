@@ -15,6 +15,12 @@ public class Student {
         this.name = name;
     }
 
+    public Course[] getAllCourses() {
+        Course[] res = new Course[this.courses.size()];
+        this.courses.toArray(res);
+        return res;
+    }
+
     public String getName() {
         return this.name;
     }

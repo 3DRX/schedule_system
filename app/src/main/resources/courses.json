@@ -1,0 +1,23 @@
+[
+  {
+    "startWeek": 1,
+    "endWeek": 10,
+    "testWeek": 11,
+    "classTime": {
+      "day": 1,
+      "time": 8,
+      "duration": 2
+    },
+    "examTime": {
+      "day": 1,
+      "time": 8,
+      "duration": 2
+    },
+    "name": "math",
+    "location": {
+      "x": 0,
+      "y": 0,
+      "name": "abc"
+    }
+  }
+]

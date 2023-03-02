@@ -12,28 +12,31 @@ import schedule_system.utils.theUser;
 
 public class UserData {
     // 用于读写json
-    final private static String path = "src/main/resources/users.json";
-    final private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    final private String path = "src/main/resources/users.json";
+    final private Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     // 从resources/users.json读取所有的用户存入数组中
-    final private static theUser[] jsonUsers = readUsers();
-    private static theUser[] students = getStudents();
+    private theUser[] jsonUsers;
+    private theUser[] students;
 
     /**
      * @return theUser[] allUsers
      */
-    public static theUser[] allUsers() {
-        return jsonUsers;
+    public theUser[] allUsers() {
+        this.jsonUsers = readUsers();
+        return this.jsonUsers;
     }
 
     /**
      * @return theUser[] students
      */
-    public static theUser[] students() {
+    public theUser[] students() {
+        this.jsonUsers = readUsers();
+        this.students = getStudents();
         return students;
     }
 
-    private static theUser[] getStudents() {
+    private theUser[] getStudents() {
         theUser[] ret = new theUser[jsonUsers.length - 1];
         int i = 0;
         for (theUser user : jsonUsers) {
@@ -53,7 +56,7 @@ public class UserData {
      * 
      * @return theUser[]
      */
-    private static theUser[] readUsers() {
+    private theUser[] readUsers() {
         theUser[] read_users = {};
         try {
             JsonReader reader = new JsonReader(new FileReader(path));
@@ -67,7 +70,7 @@ public class UserData {
     /**
      * 将一组特定的users写入resources/users.json中
      */
-    private static void addUsers(theUser[] users) {
+    private void addUsers(theUser[] users) {
         File file = new File(path);
         String res = gson.toJson(users);
         try {

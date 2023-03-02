@@ -22,7 +22,7 @@ public class Admin {
         return student.getCourseByName(courseName);
     }
 
-    public Student[] getAllStudents(){
-        return System.getStudents();
-    }
+    // public Student[] getAllStudents(){
+    //     return Sys.getStudents();
+    // }
 }
