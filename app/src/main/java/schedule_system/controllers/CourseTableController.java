@@ -2,6 +2,8 @@ package schedule_system.controllers;
 
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +22,7 @@ import schedule_system.utils.TheStudent;
 public class CourseTableController {
     private StudentData studentData = new StudentData();
     private CourseData courseData = new CourseData();
+    private final Logger logger = LoggerFactory.getLogger(CourseTableController.class);
 
     @GetMapping("/getCourseStatusByTime")
     public CourseObjectRecord checkCourseTableElement(String time, int week, int day) {
@@ -30,6 +33,7 @@ public class CourseTableController {
         String courseLoactionName;
         String[] students;
         if (course == null) {
+            logger.info("单元格中找不到课程");
             courseName = "";
             students = new String[0];
             courseLoactionName = "";
@@ -37,6 +41,7 @@ public class CourseTableController {
             courseName = course.getName();
             courseLoactionName = course.getLocation().getName();
             students = getStudents(courseName);
+            logger.info("单元格中有课程：" + courseName);
         }
         return new CourseObjectRecord(courseName, students, courseLoactionName);
     }
