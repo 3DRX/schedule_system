@@ -1,3 +1,21 @@
 .navBarItem{
     margin-left: 10px;
+    color: white;
+    text-decoration: none;
+}
+.navBarItem:link { 
+    color: white;
+    text-decoration: none; 
+}
+.navBarItem:visited { 
+    color: white;
+    text-decoration: none; 
+}
+.navBarItem:hover {
+    color: white;
+    text-decoration: none;
+}
+.navBarItem:active {
+    color: grey;
+    text-decoration: none;
 }

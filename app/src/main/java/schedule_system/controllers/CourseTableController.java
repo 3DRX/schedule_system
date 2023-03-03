@@ -18,7 +18,7 @@ import schedule_system.utils.TheStudent;
  * CourseTableController
  */
 @RestController
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(maxAge = 3600)
 public class CourseTableController {
     private StudentData studentData = new StudentData();
     private CourseData courseData = new CourseData();

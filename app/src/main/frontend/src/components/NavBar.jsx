@@ -30,10 +30,11 @@ function NavBar({ isAdmin }) {
     }
 
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar collapseOnSelect bg="dark" variant="dark" expand="lg">
             <Container>
                 <Navbar.Brand href={prefix}>退出登录</Navbar.Brand>
-                <Navbar.Collapse id="basic-navbar-nav">
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
                     <Navbar.Text>
                     </Navbar.Text>
                     <Nav className="me-auto">
