@@ -13,10 +13,10 @@ const AdminCourse = () => {
     return (
         <>
             <NavBar isAdmin="true" userName={userName} />
-            <ClassTable isAdmin={true} week={week} />
             <NumberPicker defaultValue={1} step={1} max={20} min={1} onChange={(value) => {
                 setWeek(value);
             }} />
+            <ClassTable isAdmin={true} week={week} />
         </>
     )
 }
