@@ -10,6 +10,7 @@ const LoginPage = () => {
         const form = e.target;
         const formData = new FormData(form);
         const jsonData = Object.fromEntries(formData.entries());
+        const userName = formData.getAll("id")[0];
         // 仍然不能在其他设备上登陆
         axios.post("http://" + window.location.hostname + ":8080/login", jsonData)
             .then(function(response) {
@@ -19,10 +20,10 @@ const LoginPage = () => {
                     // console.log("登陆成功");
                     const prefix = "http://" + window.location.host;
                     if (response.data.isAdmin) {
-                        window.open(prefix + "/admin", "_self");
+                        window.open(prefix + "/admin?" + "userName=" + userName, "_self");
                     }
                     else {
-                        window.open(prefix + "/student", "_self");
+                        window.open(prefix + "/student?" + "userName=" + userName, "_self");
                     }
                 }
                 else {
