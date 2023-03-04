@@ -24,6 +24,16 @@ public class StudentData {
         return this.students;
     }
 
+    public boolean isStudent(String userName) {
+        this.students = readStudentClasses();
+        for (TheStudent theStudent : students) {
+            if (theStudent.getName().equals(userName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private TheStudent[] readStudentClasses() {
         TheStudent[] readStudent = {};
         try {
