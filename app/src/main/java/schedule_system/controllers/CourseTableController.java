@@ -33,14 +33,15 @@ public class CourseTableController {
         String courseLoactionName;
         String[] students;
         if (course == null) {
-            logger.info("单元格中找不到课程");
             courseName = "";
             students = new String[0];
             courseLoactionName = "";
+            logger.info("第" + week + "周，周" + day + "，" + time + "：所有学生均无课程");
+            return new CourseObjectRecord(courseName, students, courseLoactionName);
         } else {
             courseName = course.getName();
             courseLoactionName = course.getLocation().getName();
-            logger.info("单元格中有课程：" + courseName);
+            students = getStudents(courseName);
             if (studentData.isStudent(userName)) {
                 boolean haveClass = false;
                 for (String studentName : getStudents(courseName)) {
@@ -49,16 +50,17 @@ public class CourseTableController {
                         break;
                     }
                 }
-                if (haveClass) {
-                    students = new String[1];
-                    students[0] = userName;
-                } else {
+                if (!haveClass) {
                     courseName = "";
                     students = new String[0];
                     courseLoactionName = "";
+                    logger.info("第" + week + "周，周" + day + "，" + time + "：学生" + userName + "查询，无课程");
+                } else {
+                    logger.info("第" + week + "周，周" + day + "，" + time + "：学生" + userName + "查询，有课程");
                 }
             } else {
-                students = getStudents(courseName);
+                logger.info("第" + week + "周，周" + day + "，" + time + "：管理员查询，有课程");
+                return new CourseObjectRecord(courseName, students, courseLoactionName);
             }
         }
         return new CourseObjectRecord(courseName, students, courseLoactionName);
