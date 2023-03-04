@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./TableCell.css";
+import Button from 'react-bootstrap/Button';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
 
 export default function TableCell({ startTime, week, day, userName, isAdmin }) {
     const [name, setName] = useState("");
@@ -25,64 +28,52 @@ export default function TableCell({ startTime, week, day, userName, isAdmin }) {
             })
     }, [startTime, week, day, userName]);
 
-    const getStudents = () => {
-        if (!isAdmin) {
-            return React.useMemo(() => [], []);
+    let studentsHover;
+    if (isAdmin) {
+        if (students.length === 0) {
+            studentsHover = (
+                <div onClick={() => {
+                    console.log(`在第${week}周，周${day}，${startTime}-${startTime + 1}添加课程`);
+                }}
+                    style={{
+                        backgroundColor: hover ? "lightgrey" : "white",
+                    }}
+                    onMouseEnter={() => { setHover(true) }}
+                    onMouseLeave={() => { setHover(false) }}
+                >+
+                </div>
+            );
         }
         else {
-            return React.useMemo(
-                () => {
-                    let res = [];
-                    for (let index = 0; index < students.length; index++) {
-                        const element = students[index];
-                        index === students.length - 1 ?
-                            res.push(
-                                <a>{element}</a>
-                            ) :
-                            res.push(
-                                <a>{element},</a>
-                            );
-                    }
-                    return res;
-                }
+            let studentList = students.map((item, index) => {
+                return (
+                    <a key={index}>{item}{index === students.length - 1 ? "" : ","}</a>
+                )
+            })
+            const popover = (
+                <Popover id="popover-basic">
+                    <Popover.Header as="h3">Students</Popover.Header>
+                    <Popover.Body>
+                        {studentList}
+                    </Popover.Body>
+                </Popover>
             );
+            studentsHover = (
+                <OverlayTrigger trigger="click" placement="top" overlay={popover}>
+                    <Button className="btn" variant="info" >detail</Button>
+                </OverlayTrigger>
+            )
         }
     }
-
-    const addNewClassByClick = () => {
-        if (!isAdmin || (name !== "" && location !== "" && students !== [])) {
-            return React.useMemo(() => [], []);
-        }
-        else {
-            return React.useMemo(
-                () => {
-                    let res = [];
-                    res.push(
-                        <div
-                            onClick={() => {
-                                console.log(`在第${week}周，周${day}，${startTime}-${startTime + 1}添加课程`);
-                            }}
-                        >+</div>
-                    );
-                    return res;
-                }
-            );
-        }
+    else {
+        studentsHover = <></>
     }
 
     return (
-        <div className="TableCell"
-            style={{
-                backgroundColor: hover ? "lightgrey" : "white",
-                fontWeight: "bold",
-            }}
-            onMouseEnter={() => { setHover(true) }}
-            onMouseLeave={() => { setHover(false) }}
-        >
+        <div className="TableCell" >
             <p>{name}</p>
             <p>{location}</p>
-            {getStudents()}
-            {addNewClassByClick()}
+            {studentsHover}
         </div>
     );
 }

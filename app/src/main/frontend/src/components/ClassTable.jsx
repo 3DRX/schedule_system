@@ -14,7 +14,7 @@ export default function ClassTable({ isAdmin, week }) {
                 let cell = { col0: i + '-' + (i + 1) };
                 for (let j = 1; j <= 5; j++) {
                     let key = "col" + j;
-                    cell[key] = <TabeCell startTime={i} week={week} day={j} userName={userName} isAdmin={isAdmin} />;
+                    cell[key] = <TableCell startTime={i} week={week} day={j} userName={userName} isAdmin={isAdmin} />;
                 }
                 res.push(cell);
             }
