@@ -42,8 +42,21 @@ public class CourseTableController {
             courseLoactionName = course.getLocation().getName();
             logger.info("单元格中有课程：" + courseName);
             if (studentData.isStudent(userName)) {
-                students = new String[1];
-                students[0] = userName;
+                boolean haveClass = false;
+                for (String studentName : getStudents(courseName)) {
+                    if (studentName.equals(userName)) {
+                        haveClass = true;
+                        break;
+                    }
+                }
+                if (haveClass) {
+                    students = new String[1];
+                    students[0] = userName;
+                } else {
+                    courseName = "";
+                    students = new String[0];
+                    courseLoactionName = "";
+                }
             } else {
                 students = getStudents(courseName);
             }
