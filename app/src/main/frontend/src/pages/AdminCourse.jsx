@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import ClassTable from "../components/ClassTable";
 import NavBar from "../components/NavBar";
 
 const AdminCourse = () => {
@@ -9,7 +10,7 @@ const AdminCourse = () => {
     return (
         <>
             <NavBar isAdmin="true" userName={userName} />
-            <h1>Admin Course</h1>
+            <ClassTable isAdmin={true} />
         </>
     )
 }
