@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useTable } from "react-table";
 import TableCell from "../components/TableCell";
 
-export default function ClassTable({ isAdmin }) {
+export default function ClassTable({ isAdmin, week }) {
     const query = new URLSearchParams(useLocation().search);
     const userName = query.get("userName");
 
@@ -14,23 +14,23 @@ export default function ClassTable({ isAdmin }) {
                 let cell = { col0: i + '-' + (i + 1) };
                 for (let j = 1; j <= 5; j++) {
                     let key = "col" + j;
-                    cell[key] = <TableCell startTime={i} week={3} day={j} userName={userName} isAdmin={isAdmin} />;
+                    cell[key] = <TabeCell startTime={i} week={week} day={j} userName={userName} isAdmin={isAdmin} />;
                 }
                 res.push(cell);
             }
             return res;
-        }, []
+        }, [week]
     )
 
     const columns = React.useMemo(
         () => [
             {
                 Header: '',
-                accessor: 'col0', // accessor is the "key" in the data
+                accessor: 'col0',
             },
             {
                 Header: '一',
-                accessor: 'col1', // accessor is the "key" in the data
+                accessor: 'col1',
             },
             {
                 Header: '二',
