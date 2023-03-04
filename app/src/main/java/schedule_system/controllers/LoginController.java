@@ -15,7 +15,7 @@ import schedule_system.records.UserRecord;
  * LoginController
  */
 @RestController
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(maxAge = 3600)
 public class LoginController {
     private UserData userData = new UserData();
     private final Logger logger = LoggerFactory.getLogger(LoginController.class);
