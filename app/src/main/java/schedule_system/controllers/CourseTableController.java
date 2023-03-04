@@ -25,7 +25,7 @@ public class CourseTableController {
     private final Logger logger = LoggerFactory.getLogger(CourseTableController.class);
 
     @GetMapping("/getCourseStatusByTime")
-    public CourseObjectRecord checkCourseTableElement(String time, int week, int day) {
+    public CourseObjectRecord checkCourseTableElement(String time, int week, int day, String userName) {
         int start = Integer.parseInt(time.split("-")[0]);
         int end = Integer.parseInt(time.split("-")[1]);
         Course course = getCourse(start, end, week, day);
@@ -40,8 +40,13 @@ public class CourseTableController {
         } else {
             courseName = course.getName();
             courseLoactionName = course.getLocation().getName();
-            students = getStudents(courseName);
             logger.info("单元格中有课程：" + courseName);
+            if (studentData.isStudent(userName)) {
+                students = new String[1];
+                students[0] = userName;
+            } else {
+                students = getStudents(courseName);
+            }
         }
         return new CourseObjectRecord(courseName, students, courseLoactionName);
     }
