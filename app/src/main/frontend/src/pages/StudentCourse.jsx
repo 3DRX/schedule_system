@@ -2,41 +2,54 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { useTable } from "react-table";
 import NavBar from "../components/NavBar";
+import TableCell from "../components/TableCell";
 
 const StudentCourse = () => {
     const query = new URLSearchParams(useLocation().search);
     const userName = query.get("userName");
 
     const data = React.useMemo(
-        () => [
-            {
-                col1: 'Hello',
-                col2: 'World',
-            },
-            {
-                col1: 'react-table',
-                col2: 'rocks',
-            },
-            {
-                col1: 'whatever',
-                col2: 'you want',
-            },
-        ],
-        []
+        () => {
+            let res = [];
+            for (let i = 8; i <= 19; i++) {
+                let cell = { col0: i + '-' + (i + 1) };
+                for (let j = 1; j <= 5; j++) {
+                    let key = "col" + j;
+                    cell[key] = <TableCell startTime={i} week={3} day={j} userName={userName} />;
+                }
+                res.push(cell);
+            }
+            return res;
+        }, []
     )
 
     const columns = React.useMemo(
         () => [
             {
-                Header: 'Column 1',
+                Header: '',
+                accessor: 'col0', // accessor is the "key" in the data
+            },
+            {
+                Header: '一',
                 accessor: 'col1', // accessor is the "key" in the data
             },
             {
-                Header: 'Column 2',
+                Header: '二',
                 accessor: 'col2',
             },
-        ],
-        []
+            {
+                Header: '三',
+                accessor: 'col3',
+            },
+            {
+                Header: '四',
+                accessor: 'col4',
+            },
+            {
+                Header: '五',
+                accessor: 'col5',
+            },
+        ], []
     )
 
     const {
@@ -82,7 +95,7 @@ const StudentCourse = () => {
                                             style={{
                                                 padding: '10px',
                                                 border: 'solid 1px gray',
-                                                background: 'papayawhip',
+                                                background: 'white',
                                             }}
                                         >
                                             {cell.render('Cell')}

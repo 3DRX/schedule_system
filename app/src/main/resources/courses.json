@@ -19,5 +19,26 @@
       "y": 0,
       "name": "abc"
     }
+  },
+  {
+    "startWeek": 1,
+    "endWeek": 10,
+    "testWeek": 11,
+    "classTime": {
+      "day": 2,
+      "time": 8,
+      "duration": 3
+    },
+    "examTime": {
+      "day": 1,
+      "time": 8,
+      "duration": 2
+    },
+    "name": "english",
+    "location": {
+      "x": 0,
+      "y": 0,
+      "name": "abc"
+    }
   }
 ]
