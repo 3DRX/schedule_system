@@ -70,7 +70,7 @@ public class UserData {
     /**
      * 将一组特定的users写入resources/users.json中
      */
-    private void addUsers(theUser[] users) {
+    private void writeUsers(theUser[] users) {
         File file = new File(path);
         String res = gson.toJson(users);
         try {
