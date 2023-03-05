@@ -24,6 +24,14 @@ public class StudentData {
         return this.students;
     }
 
+    public boolean deleteCourseFromStudents(String courseName) {
+        this.students = readStudentClasses();
+        for (Student student : this.students) {
+            student.deleteCourseIfHave(courseName);
+        }
+        return writeStudentClasses(this.students);
+    }
+
     public boolean addCourseToStudents(String courseName, String[] students) {
         this.students = readStudentClasses();
         for (String studentName : students) {
