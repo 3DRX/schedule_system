@@ -8,7 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 
-import schedule_system.utils.TheStudent;
+import schedule_system.utils.Student;
 
 /**
  * StudentData
@@ -17,9 +17,9 @@ public class StudentData {
     final private String path = "src/main/resources/studentCourses.json";
     final private Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    private TheStudent[] students;
+    private Student[] students;
 
-    public TheStudent[] getStudentClasses() {
+    public Student[] getStudentClasses() {
         this.students = readStudentClasses();
         return this.students;
     }
@@ -27,7 +27,7 @@ public class StudentData {
     public boolean addCourseToStudents(String courseName, String[] students) {
         this.students = readStudentClasses();
         for (String studentName : students) {
-            for (TheStudent student : this.students) {
+            for (Student student : this.students) {
                 if (student.getName().equals(studentName)) {
                     student.addCourse(courseName);
                 }
@@ -38,7 +38,7 @@ public class StudentData {
 
     public boolean isStudent(String userName) {
         this.students = readStudentClasses();
-        for (TheStudent theStudent : students) {
+        for (Student theStudent : students) {
             if (theStudent.getName().equals(userName)) {
                 return true;
             }
@@ -46,18 +46,18 @@ public class StudentData {
         return false;
     }
 
-    private TheStudent[] readStudentClasses() {
-        TheStudent[] readStudent = {};
+    private Student[] readStudentClasses() {
+        Student[] readStudent = {};
         try {
             JsonReader reader = new JsonReader(new FileReader(path));
-            readStudent = new Gson().fromJson(reader, TheStudent[].class);
+            readStudent = new Gson().fromJson(reader, Student[].class);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return readStudent;
     }
 
-    public boolean writeStudentClasses(TheStudent[] students) {
+    public boolean writeStudentClasses(Student[] students) {
         File file = new File(path);
         String res = gson.toJson(students);
         boolean successFlag = true;

@@ -12,7 +12,7 @@ import schedule_system.CourseData;
 import schedule_system.StudentData;
 import schedule_system.records.CourseObjectRecord;
 import schedule_system.utils.Course;
-import schedule_system.utils.TheStudent;
+import schedule_system.utils.Student;
 
 /**
  * CourseTableController
@@ -77,7 +77,7 @@ public class CourseTableController {
 
     private String[] getStudents(String courseName) {
         ArrayList<String> studentsOfCourse = new ArrayList<>();
-        for (TheStudent theStudent : studentData.getStudentClasses()) {
+        for (Student theStudent : studentData.getStudentClasses()) {
             String[] courses = theStudent.getCourses();
             for (String cN : courses) {
                 if (cN.equals(courseName)) {
