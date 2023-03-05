@@ -19,4 +19,13 @@ public class TheStudent {
     public String getName() {
         return name;
     }
+
+    public void addCourse(String courseName) {
+        String[] newCourses = new String[this.courses.length + 1];
+        for (int i = 0; i < this.courses.length; i++) {
+            newCourses[i] = this.courses[i];
+        }
+        newCourses[this.courses.length] = courseName;
+        this.courses = newCourses.clone();
+    }
 }

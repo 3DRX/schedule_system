@@ -35,9 +35,20 @@ public class CourseData {
         return read_users;
     }
 
-    public void writeCourses(Course[] courses) {
+    public boolean addCourse(Course newCourse) {
+        this.courses = readCourses();
+        Course[] newCourses = new Course[this.courses.length + 1];
+        for (int i = 0; i < this.courses.length; i++) {
+            newCourses[i] = this.courses[i];
+        }
+        newCourses[newCourses.length - 1] = newCourse;
+        return writeCourses(newCourses);
+    }
+
+    private boolean writeCourses(Course[] courses) {
         File file = new File(path);
         String res = gson.toJson(courses);
+        boolean successFlag = true;
         try {
             FileWriter writer = new FileWriter(file);
             writer.write(res);
@@ -45,6 +56,8 @@ public class CourseData {
             writer.close();
         } catch (Exception e) {
             e.printStackTrace();
+            successFlag = false;
         }
+        return successFlag;
     }
 }

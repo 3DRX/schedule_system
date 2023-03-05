@@ -24,6 +24,18 @@ public class StudentData {
         return this.students;
     }
 
+    public boolean addCourseToStudents(String courseName, String[] students) {
+        this.students = readStudentClasses();
+        for (String studentName : students) {
+            for (TheStudent student : this.students) {
+                if (student.getName().equals(studentName)) {
+                    student.addCourse(courseName);
+                }
+            }
+        }
+        return writeStudentClasses(this.students);
+    }
+
     public boolean isStudent(String userName) {
         this.students = readStudentClasses();
         for (TheStudent theStudent : students) {
@@ -45,16 +57,19 @@ public class StudentData {
         return readStudent;
     }
 
-    public void writeStudentClasses(TheStudent[] students) {
+    public boolean writeStudentClasses(TheStudent[] students) {
         File file = new File(path);
         String res = gson.toJson(students);
+        boolean successFlag = true;
         try {
             FileWriter writer = new FileWriter(file);
             writer.write(res);
             writer.flush();
             writer.close();
         } catch (Exception e) {
+            successFlag = false;
             e.printStackTrace();
         }
+        return successFlag;
     }
 }
