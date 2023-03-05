@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 
-export default function TableCell({ startTime, week, day, userName, isAdmin }) {
+export default function TableCell({ startTime, week, day, userName, isAdmin, setShowModal, setAddClassInfo }) {
     const [name, setName] = useState("");
     const [location, setLocation] = useState("");
     const [students, setStudents] = useState([]);
@@ -33,7 +33,13 @@ export default function TableCell({ startTime, week, day, userName, isAdmin }) {
         if (students.length === 0) {
             studentsHover = (
                 <div onClick={() => {
-                    console.log(`在第${week}周，周${day}，${startTime}-${startTime + 1}添加课程`);
+                    // console.log(`在第${week}周，周${day}，${startTime}-${startTime + 1}添加课程`);
+                    setAddClassInfo({
+                        week: week,
+                        day: day,
+                        startTime: startTime
+                    })
+                    setShowModal(true);
                 }}
                     style={{
                         backgroundColor: hover ? "lightgrey" : "white",
