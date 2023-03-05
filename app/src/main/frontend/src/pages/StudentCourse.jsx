@@ -14,7 +14,10 @@ const StudentCourse = () => {
         <>
             <NavBar isAdmin="false" userName={userName} />
             <NumberPicker defaultValue={1} step={1} max={20} min={1} onChange={(value) => {
-                setWeek(value);
+                if (value !== null && (value >= 1 && value <= 20)) {
+                    // console.log(`set value to ${value}`)
+                    setWeek(value);
+                }
             }} />
             <ClassTable isAdmin={false} week={week} />
         </>
