@@ -22,8 +22,9 @@ const AdminCourse = () => {
                     }
                 }}
                     style={{
-                        width: "11%",
-                    }} />
+                        width: "10ex",
+                    }}
+                />
             </div>
             <ClassTable isAdmin={true} week={week}
             />
