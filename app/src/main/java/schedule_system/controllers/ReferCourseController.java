@@ -15,14 +15,14 @@ import schedule_system.utils.Course;
 import schedule_system.utils.Student;
 
 /**
- * CourseTableController
+ * ReferCourseController
  */
 @RestController
 @CrossOrigin(maxAge = 3600)
-public class CourseTableController {
+public class ReferCourseController {
     private StudentData studentData = new StudentData();
     private CourseData courseData = new CourseData();
-    private final Logger logger = LoggerFactory.getLogger(CourseTableController.class);
+    private final Logger logger = LoggerFactory.getLogger(ReferCourseController.class);
 
     @GetMapping("/getCourseStatusByTime")
     public CourseObjectRecord checkCourseTableElement(String time, int week, int day, String userName) {

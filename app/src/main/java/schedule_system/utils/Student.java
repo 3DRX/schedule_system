@@ -1,5 +1,7 @@
 package schedule_system.utils;
 
+import java.util.ArrayList;
+
 /**
  * StudentData
  */
@@ -10,6 +12,19 @@ public class Student {
     public Student(String[] courses, String name) {
         this.courses = courses.clone();
         this.name = name;
+    }
+
+    public void deleteCourseIfHave(String courseName) {
+        ArrayList<String> newCourses = new ArrayList<>();
+        for (String course : this.courses) {
+            if (course.equals(courseName)) {
+            } else {
+                newCourses.add(course);
+            }
+        }
+        String[] resCourses = new String[newCourses.size()];
+        newCourses.toArray(resCourses);
+        this.courses = resCourses;
     }
 
     public String[] getCourses() {

@@ -3,6 +3,7 @@ package schedule_system;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -22,6 +23,21 @@ public class CourseData {
     public Course[] allCourses() {
         this.courses = readCourses();
         return this.courses;
+    }
+
+    public boolean deleteCourse(String courseName) {
+        this.courses = readCourses();
+        ArrayList<Course> newCourses = new ArrayList<>();
+        for (Course course : this.courses) {
+            if (course.getName().equals(courseName)) {
+            } else {
+                newCourses.add(course);
+            }
+        }
+        Course[] resCourses = new Course[newCourses.size()];
+        newCourses.toArray(resCourses);
+        this.courses = resCourses;
+        return writeCourses(this.courses);
     }
 
     private Course[] readCourses() {

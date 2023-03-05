@@ -20,7 +20,7 @@ import schedule_system.utils.Course;
 public class AddCourseController {
     private final StudentData studentData = new StudentData();
     private final CourseData courseData = new CourseData();
-    private final Logger logger = LoggerFactory.getLogger(CourseTableController.class);
+    private final Logger logger = LoggerFactory.getLogger(ReferCourseController.class);
 
     @PostMapping("/addCourse")
     public boolean addCourse(
