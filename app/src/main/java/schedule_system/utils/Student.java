@@ -3,11 +3,11 @@ package schedule_system.utils;
 /**
  * StudentData
  */
-public class TheStudent {
+public class Student {
     private String[] courses;
     private String name;
 
-    public TheStudent(String[] courses, String name) {
+    public Student(String[] courses, String name) {
         this.courses = courses.clone();
         this.name = name;
     }
