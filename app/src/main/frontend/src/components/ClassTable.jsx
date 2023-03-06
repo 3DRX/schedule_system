@@ -54,12 +54,13 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                         day={j}
                         userName={userName}
                         isAdmin={isAdmin}
+                        refresh={refresh}
                     />;
                 }
                 res.push(cell);
             }
             return res;
-        }, [refresh, week]
+        }, [week, refresh]
     )
 
     const columns = React.useMemo(
@@ -216,7 +217,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
             <Modal show={showModal} onHide={() => setShowModal(false)} backdrop="static">
                 <Modal.Header closeButton>
                     <Modal.Title>添加课程</Modal.Title>
-                    {`周${addClassInfo.day}，${addClassInfo.startTime}-${addClassInfo.startTime + 1}：`}
+                    // {`周${addClassInfo.day}，${addClassInfo.startTime}-${addClassInfo.startTime + 1}：`}
                 </Modal.Header>
                 <Form onSubmit={handleSubmit}>
                     <Modal.Body>
@@ -229,7 +230,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                         />
                         <p>
                             开始周
-                            <NumberPicker defaultValue={1} step={1} max={20} min={1} onChange={(value) => {
+                            <NumberPicker defaultValue={null} step={1} max={20} min={1} onChange={(value) => {
                                 if (value !== null && value >= 1 && value <= 20) {
                                     setStartWeek(value);
                                     // console.log(`开始周：${value}`);
@@ -271,7 +272,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                         </p>
                         <p>
                             星期
-                            <NumberPicker defaultValue={addClassInfo.day} step={1} max={5} min={1} onChange={(value) => {
+                            <NumberPicker defaultValue={null} step={1} max={5} min={1} onChange={(value) => {
                                 if (value !== null && value >= 1 && value <= 5) {
                                     setClassDay(value);
                                     // console.log(`星期：${value}`);
@@ -283,7 +284,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                             />
                         </p>
                         <p>
-                            <NumberPicker defaultValue={addClassInfo.startTime} step={1} max={20} min={8} onChange={(value) => {
+                            <NumberPicker defaultValue={null} step={1} max={20} min={8} onChange={(value) => {
                                 if (value !== null && value >= 8 && value <= 20) {
                                     setClassTime(value);
                                     // console.log(`${value}点`);

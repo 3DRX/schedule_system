@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 
-export default function TableCell({ startTime, week, day, userName, isAdmin, setShowModal, setAddClassInfo }) {
+export default function TableCell({ startTime, week, day, userName, isAdmin, setShowModal, setAddClassInfo, refresh }) {
     const [name, setName] = useState("");
     const [location, setLocation] = useState("");
     const [students, setStudents] = useState([]);
@@ -26,7 +26,7 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
                 setLocation(response.data.location)
                 setStudents(response.data.students)
             })
-    }, [startTime, week, day, userName]);
+    }, [startTime, week, day, userName, refresh]);
 
     let studentsHover;
     if (isAdmin) {
