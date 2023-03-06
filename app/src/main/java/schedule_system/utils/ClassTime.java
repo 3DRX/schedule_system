@@ -34,10 +34,10 @@ public class ClassTime {
 
     public boolean setDuration(int duration) {
         if (duration <= 0 || duration > 3) {
+            return false;
+        } else {
             this.duration = duration;
             return true;
-        } else {
-            return false;
         }
     }
 
