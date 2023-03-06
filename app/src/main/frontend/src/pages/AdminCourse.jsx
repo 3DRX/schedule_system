@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import ClassTable from "../components/ClassTable";
+import Button from 'react-bootstrap/Button';
 import NavBar from "../components/NavBar";
 import "react-widgets/styles.css";
 import { NumberPicker } from "react-widgets";
@@ -9,6 +10,7 @@ const AdminCourse = () => {
     const query = new URLSearchParams(useLocation().search);
     const userName = query.get("userName");
     const [week, setWeek] = useState(1);
+    const [refresh, setRefresh] = useState(false);
 
     return (
         <>
@@ -26,7 +28,12 @@ const AdminCourse = () => {
                     }}
                 />
             </div>
-            <ClassTable isAdmin={true} week={week}
+            <Button variant="secondary"
+                onClick={() => {
+                    setRefresh(!refresh);
+                }}
+            >刷新</Button>
+            <ClassTable isAdmin={true} week={week} refresh={refresh} setRefresh={setRefresh}
             />
         </>
     )
