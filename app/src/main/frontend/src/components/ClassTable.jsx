@@ -4,6 +4,7 @@ import { useTable } from "react-table";
 import TableCell from "../components/TableCell";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import axios from "axios";
 import Form from 'react-bootstrap/Form';
 import { NumberPicker } from "react-widgets";
 
@@ -21,6 +22,22 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
     const [classTime, setClassTime] = useState(8);
     const [classDuration, setClassDuration] = useState(1);
     const [location, setLocation] = useState("");
+
+    const studentList = [
+        "002",
+        "003"
+    ];
+
+    const [checkedState, setCheckedState] = useState(
+        new Array(studentList.length).fill(false)
+    );
+
+    const handleOnChange = (position) => {
+        const updatedCheckedState = checkedState.map((item, index) =>
+            index === position ? !item : item
+        );
+        setCheckedState(updatedCheckedState);
+    };
 
     const data = React.useMemo(
         () => {
@@ -109,6 +126,12 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        let resStudents = [];
+        for (let i = 0; i < studentList.length; i++) {
+            if (checkedState[i]) {
+                resStudents.push(studentList[i]);
+            }
+        }
         let res = {
             course: {
                 startWeek: startWeek,
@@ -131,10 +154,17 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                     name: location
                 }
             },
+            students: resStudents
         };
         console.log(res);
-        setRefresh(!refresh);
-        setShowModal(false);
+        axios.post("http://" + window.location.hostname + ":8080/addCourse", res)
+            .then((response) => {
+                console.log(response.data)
+            })
+            .finally(() => {
+                setRefresh(!refresh);
+                setShowModal(false);
+            });
     }
 
     return (
@@ -188,8 +218,8 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                     <Modal.Title>添加课程</Modal.Title>
                     {`周${addClassInfo.day}，${addClassInfo.startTime}-${addClassInfo.startTime + 1}：`}
                 </Modal.Header>
-                <Modal.Body>
-                    <Form onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit}>
+                    <Modal.Body>
                         <Form.Control size="sm" type="text" placeholder="课程名称"
                             onChange={({ target: { value } }) => {
                                 if (value !== "") {
@@ -289,16 +319,30 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                                 }}
                             />
                         </p>
+                        <p>
+                            参与学生：
+                            {studentList.map((name, index) => (
+                                <div key={`${name}`} className="mb-3">
+                                    <Form.Check
+                                        type={"checkbox"}
+                                        id={`${index}`}
+                                        label={`${name}`}
+                                        checked={checkedState[index]}
+                                        onChange={() => handleOnChange(index)}
+                                    />
+                                </div>
+                            ))}
+                        </p>
+                    </Modal.Body>
+                    <Modal.Footer>
                         <Button variant="secondary" onClick={() => setShowModal(false)}>
                             Close
                         </Button>
                         <Button variant="primary" type="submit">
                             Save Changes
                         </Button>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                </Modal.Footer>
+                    </Modal.Footer>
+                </Form>
             </Modal>
         </div >
     )
