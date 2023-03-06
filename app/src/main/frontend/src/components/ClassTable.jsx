@@ -271,7 +271,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                         </p>
                         <p>
                             星期
-                            <NumberPicker defaultValue={1} step={1} max={5} min={1} onChange={(value) => {
+                            <NumberPicker defaultValue={addClassInfo.day} step={1} max={5} min={1} onChange={(value) => {
                                 if (value !== null && value >= 1 && value <= 5) {
                                     setClassDay(value);
                                     // console.log(`星期：${value}`);

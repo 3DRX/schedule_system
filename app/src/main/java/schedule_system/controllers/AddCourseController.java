@@ -37,6 +37,8 @@ public class AddCourseController {
         boolean successFlag = courseData.addCourse(course);
         if (!successFlag) {
             logger.warn("创建课程失败");
+        } else {
+            logger.info("成功创建课程：" + course.getName());
         }
         return successFlag;
     }
