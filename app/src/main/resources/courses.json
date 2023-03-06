@@ -40,26 +40,5 @@
       "x": 0,
       "y": 0
     }
-  },
-  {
-    "startWeek": 1,
-    "endWeek": 10,
-    "testWeek": 11,
-    "classTime": {
-      "day": 1,
-      "time": 8,
-      "duration": 0
-    },
-    "examTime": {
-      "day": 1,
-      "time": 8,
-      "duration": 0
-    },
-    "name": "computer science",
-    "location": {
-      "name": "abc",
-      "x": 0,
-      "y": 0
-    }
   }
 ]

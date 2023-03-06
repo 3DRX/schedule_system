@@ -2,8 +2,7 @@
   {
     "courses": [
       "math",
-      "english",
-      "computer science"
+      "english"
     ],
     "name": "002"
   },
@@ -11,7 +10,7 @@
     "courses": [
       "math",
       "english",
-      "computer science"
+      "PE"
     ],
     "name": "003"
   }
