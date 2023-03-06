@@ -20,8 +20,8 @@ import schedule_system.utils.Student;
 @RestController
 @CrossOrigin(maxAge = 3600)
 public class ReferCourseController {
-    private StudentData studentData = new StudentData();
-    private CourseData courseData = new CourseData();
+    private final StudentData studentData = new StudentData();
+    private final CourseData courseData = new CourseData();
     private final Logger logger = LoggerFactory.getLogger(ReferCourseController.class);
 
     @GetMapping("/getCourseStatusByTime")
@@ -30,17 +30,17 @@ public class ReferCourseController {
         int end = Integer.parseInt(time.split("-")[1]);
         Course course = getCourse(start, end, week, day);
         String courseName;
-        String courseLoactionName;
+        String courseLocationName;
         String[] students;
         if (course == null) {
             courseName = "";
             students = new String[0];
-            courseLoactionName = "";
-            logger.info("第" + week + "周，周" + day + "，" + time + "：所有学生均无课程");
-            return new CourseObjectRecord(courseName, students, courseLoactionName);
+            courseLocationName = "";
+            // logger.info("第" + week + "周，周" + day + "，" + time + "：所有学生均无课程");
+            return new CourseObjectRecord(courseName, students, courseLocationName);
         } else {
             courseName = course.getName();
-            courseLoactionName = course.getLocation().getName();
+            courseLocationName = course.getLocation().getName();
             students = getStudents(courseName);
             if (studentData.isStudent(userName)) {
                 boolean haveClass = false;
@@ -53,17 +53,17 @@ public class ReferCourseController {
                 if (!haveClass) {
                     courseName = "";
                     students = new String[0];
-                    courseLoactionName = "";
-                    logger.info("第" + week + "周，周" + day + "，" + time + "：学生" + userName + "查询，无课程");
+                    courseLocationName = "";
+                    // logger.info("第" + week + "周，周" + day + "，" + time + "：学生" + userName + "查询，无课程");
                 } else {
                     logger.info("第" + week + "周，周" + day + "，" + time + "：学生" + userName + "查询，有课程");
                 }
             } else {
                 logger.info("第" + week + "周，周" + day + "，" + time + "：管理员查询，有课程");
-                return new CourseObjectRecord(courseName, students, courseLoactionName);
+                return new CourseObjectRecord(courseName, students, courseLocationName);
             }
         }
-        return new CourseObjectRecord(courseName, students, courseLoactionName);
+        return new CourseObjectRecord(courseName, students, courseLocationName);
     }
 
     private Course getCourse(int start, int end, int week, int day) {
