@@ -157,10 +157,10 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
             },
             students: resStudents
         };
-        console.log(res);
+        // console.log(res);
         axios.post("http://" + window.location.hostname + ":8080/addCourse", res)
             .then((response) => {
-                console.log(response.data)
+                // console.log(response.data)
             })
             .finally(() => {
                 setRefresh(!refresh);
@@ -217,7 +217,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
             <Modal show={showModal} onHide={() => setShowModal(false)} backdrop="static">
                 <Modal.Header closeButton>
                     <Modal.Title>添加课程</Modal.Title>
-                    // {`周${addClassInfo.day}，${addClassInfo.startTime}-${addClassInfo.startTime + 1}：`}
+                    {/* `周${addClassInfo.day}，${addClassInfo.startTime}-${addClassInfo.startTime + 1}：`*/}
                 </Modal.Header>
                 <Form onSubmit={handleSubmit}>
                     <Modal.Body>
