@@ -15,6 +15,29 @@ public class ClassTime {
         // TODO: 检查课程结束时间是否超过20:00
     }
 
+    /**
+     * 判断是否与另一个时间有重叠
+     * 
+     * @param ClassTime
+     * @return boolean
+     */
+    public boolean overlaps(ClassTime classTime) {
+        // TODO: TEST THIS
+        if (this.day == classTime.day) {
+            if (this.time == classTime.time) {
+                return true;
+            } else if (this.time < classTime.time && this.time + this.duration - 1 >= classTime.time) {
+                return false;
+            } else if (classTime.time < this.time && classTime.time + classTime.duration - 1 >= this.time) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+
     public boolean covers(int start, int end, int day) {
         return time <= start && time + duration >= end && this.day == day;
     }

@@ -36,7 +36,7 @@ public class AddCourseController {
     private boolean createCourse(Course course) {
         boolean successFlag = courseData.addCourse(course);
         if (!successFlag) {
-            logger.warn("创建课程失败");
+            logger.warn("添加课程" + course.getName() + "失败：与其他课程有冲突");
         } else {
             logger.info("成功创建课程：" + course.getName());
         }
@@ -44,9 +44,18 @@ public class AddCourseController {
     }
 
     private boolean addCourseToStudent(String courseName, String[] students) {
-        boolean successFlag = studentData.addCourseToStudents(courseName, students);
+        boolean successFlag = studentData.addCourseToStudents(courseName, students, this.courseData);
         if (!successFlag) {
-            logger.warn("将课程添加到学生的课表中时失败");
+            logger.warn("将课程添加到学生的课表中时失败，从课程列表中删除该课程");
+            // 从课程列表中删除创建的课程
+            boolean a = courseData.deleteCourse(courseName);
+            if (!a) {
+                logger.warn("从课程列表中删除课程：" + courseName + "失败");
+            } else {
+                logger.info("从课程列表中删除课程：" + courseName + "成功");
+            }
+        } else {
+            logger.info("成功将课程" + courseName + "添加到学生课表中");
         }
         return successFlag;
     }
