@@ -160,7 +160,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
         // console.log(res);
         axios.post("http://" + window.location.hostname + ":8080/addCourse", res)
             .then((response) => {
-                // console.log(response.data)
+                console.log(response.data)
             })
             .finally(() => {
                 setRefresh(!refresh);
