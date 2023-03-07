@@ -25,6 +25,15 @@ public class CourseData {
         return this.courses;
     }
 
+    public Course getCourseByName(String courseName) {
+        for (Course course : this.courses) {
+            if (course.getName().equals(courseName)) {
+                return course;
+            }
+        }
+        return null;
+    }
+
     public boolean deleteCourse(String courseName) {
         this.courses = readCourses();
         ArrayList<Course> newCourses = new ArrayList<>();
@@ -55,10 +64,15 @@ public class CourseData {
         this.courses = readCourses();
         Course[] newCourses = new Course[this.courses.length + 1];
         for (int i = 0; i < this.courses.length; i++) {
+            if (this.courses[i].conflictsWith(newCourse)) {
+                // 检查课程本身与其他课程有无时空冲突
+                return false;
+            }
             newCourses[i] = this.courses[i];
         }
         newCourses[newCourses.length - 1] = newCourse;
-        return writeCourses(newCourses);
+        this.courses = newCourses;
+        return writeCourses(this.courses);
     }
 
     private boolean writeCourses(Course[] courses) {
