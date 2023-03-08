@@ -36,7 +36,8 @@ public class StudentData {
         return writeStudentClasses(this.students);
     }
 
-    public boolean addCourseToStudents(String newCourseName, String[] students, final CourseData courseData) {
+    public boolean addCourseToStudents(String newCourseName, String[] students) {
+        final CourseData courseData = new CourseData();
         this.students = readStudentClasses();
         for (String studentName : students) {
             for (Student student : this.students) {

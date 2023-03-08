@@ -2,14 +2,16 @@
   {
     "courses": [
       "math",
-      "english"
+      "english",
+      "java"
     ],
     "name": "002"
   },
   {
     "courses": [
       "math",
-      "english"
+      "english",
+      "java"
     ],
     "name": "003"
   }
