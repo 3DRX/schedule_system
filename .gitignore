@@ -6,6 +6,8 @@ build
 
 .settings
 
+.vscode
+app/bin
 .idea
 
 .project
