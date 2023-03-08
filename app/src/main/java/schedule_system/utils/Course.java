@@ -65,7 +65,10 @@ public class Course {
      * @return boolean
      */
     public boolean timeOverlapsWith(Course course) {
-        return this.classTime.overlaps(course.getClassTime()) && weekOverlaps(course);
+        // System.out.println("checking " + this.getName() + " and " +
+        // course.getName());
+        boolean res = this.classTime.overlaps(course.getClassTime()) && weekOverlaps(course);
+        return res;
     }
 
     /**
@@ -84,6 +87,12 @@ public class Course {
         } else {
             res = true;
         }
+        // if (res) {
+        // System.out.println(this.getName() + " week overlaps with " + b.getName());
+        // } else {
+        // System.out.println(this.getName() + " week did not overlap with " +
+        // b.getName());
+        // }
         return res;
     }
 

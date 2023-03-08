@@ -23,19 +23,30 @@ public class ClassTime {
      */
     public boolean overlaps(ClassTime classTime) {
         // TODO: TEST THIS
+        boolean res;
+        // System.out.printf("this: day%d time%d duration%d", this.day, this.time,
+        // this.duration);
+        // System.out.printf("that: day%d time%d duration%d", classTime.day,
+        // classTime.time, classTime.duration);
         if (this.day == classTime.day) {
             if (this.time == classTime.time) {
-                return true;
+                res = true;
             } else if (this.time < classTime.time && this.time + this.duration - 1 >= classTime.time) {
-                return false;
+                res = true;
             } else if (classTime.time < this.time && classTime.time + classTime.duration - 1 >= this.time) {
-                return false;
+                res = true;
             } else {
-                return true;
+                res = false;
             }
         } else {
-            return false;
+            res = false;
         }
+        // if (res) {
+        // System.out.println("class time overlaps");
+        // } else {
+        // System.out.println("class time did not overlap");
+        // }
+        return res;
     }
 
     public boolean covers(int start, int end, int day) {

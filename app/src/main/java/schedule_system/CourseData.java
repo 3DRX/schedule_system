@@ -26,6 +26,7 @@ public class CourseData {
     }
 
     public Course getCourseByName(String courseName) {
+        this.courses = readCourses();
         for (Course course : this.courses) {
             if (course.getName().equals(courseName)) {
                 return course;
@@ -64,6 +65,7 @@ public class CourseData {
         this.courses = readCourses();
         Course[] newCourses = new Course[this.courses.length + 1];
         for (int i = 0; i < this.courses.length; i++) {
+            // System.out.println(this.courses[i].getName());
             if (this.courses[i].conflictsWith(newCourse)) {
                 // 检查课程本身与其他课程有无时空冲突
                 return false;

@@ -40,5 +40,26 @@
       "x": 0,
       "y": 0
     }
+  },
+  {
+    "startWeek": 1,
+    "endWeek": 10,
+    "testWeek": 11,
+    "classTime": {
+      "day": 5,
+      "time": 9,
+      "duration": 3
+    },
+    "examTime": {
+      "day": 5,
+      "time": 9,
+      "duration": 3
+    },
+    "name": "java",
+    "location": {
+      "name": "abc",
+      "x": 0,
+      "y": 0
+    }
   }
 ]
