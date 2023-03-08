@@ -36,7 +36,6 @@ public class ReferCourseController {
             courseName = "";
             students = new String[0];
             courseLocationName = "";
-            // logger.info("第" + week + "周，周" + day + "，" + time + "：所有学生均无课程");
             return new CourseObjectRecord(courseName, students, courseLocationName);
         } else {
             courseName = course.getName();
@@ -54,12 +53,8 @@ public class ReferCourseController {
                     courseName = "";
                     students = new String[0];
                     courseLocationName = "";
-                    // logger.info("第" + week + "周，周" + day + "，" + time + "：学生" + userName + "查询，无课程");
-                } else {
-                    logger.info("第" + week + "周，周" + day + "，" + time + "：学生" + userName + "查询，有课程");
                 }
             } else {
-                logger.info("第" + week + "周，周" + day + "，" + time + "：管理员查询，有课程");
                 return new CourseObjectRecord(courseName, students, courseLocationName);
             }
         }
