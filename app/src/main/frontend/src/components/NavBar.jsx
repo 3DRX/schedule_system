@@ -13,18 +13,18 @@ function NavBar({ isAdmin, userName }) {
     if (isAdmin === "true") {
         links = (
             <>
-                <Link className='navBarItem' to={"/admin/course" + "?userName=" + userName}>课程</Link>
-                <Link className='navBarItem' to={"/admin/activities" + "?userName=" + userName}>课外活动</Link>
-                <Link className='navBarItem' to={"/admin/others" + "?userName=" + userName}>其他</Link>
+                <Link className='navBarItem' to={`/admin/course?userName=${userName}`}>课程</Link>
+                <Link className='navBarItem' to={`/admin/activities?userName=${userName}`}>课外活动</Link>
+                <Link className='navBarItem' to={`/admin/others?userName=${userName}`}>其他</Link>
             </>
         )
     }
     else {
         links = (
             <>
-                <Link className='navBarItem' to={"/student/course" + "?userName=" + userName}>课程</Link>
-                <Link className='navBarItem' to={"/student/activities" + "?userName=" + userName}>课外活动</Link>
-                <Link className='navBarItem' to={"/student/others" + "?userName=" + userName}>其他</Link>
+                <Link className='navBarItem' to={`/student/course?userName=${userName}`}>课程</Link>
+                <Link className='navBarItem' to={`/student/activities?userName=${userName}`}>课外活动</Link>
+                <Link className='navBarItem' to={`/student/others?userName=${userName}`}>其他</Link>
             </>
         )
     }
