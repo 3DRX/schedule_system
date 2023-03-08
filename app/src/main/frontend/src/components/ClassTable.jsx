@@ -101,12 +101,12 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
     } = useTable({ columns, data });
 
     const generateOptions = () => {
-        if (addClassInfo.startTime == 19) {
+        if (addClassInfo.startTime === 19) {
             return (
                 <option>1h</option>
             )
         }
-        else if (addClassInfo.startTime == 18) {
+        else if (addClassInfo.startTime === 18) {
             return (
                 <>
                     <option>1h</option>

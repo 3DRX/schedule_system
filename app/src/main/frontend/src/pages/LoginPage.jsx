@@ -13,17 +13,17 @@ const LoginPage = () => {
         const userName = formData.getAll("id")[0];
         // 仍然不能在其他设备上登陆
         axios.post("http://" + window.location.hostname + ":8080/login", jsonData)
-            .then(function(response) {
+            .then(function (response) {
                 // console.log(response);
                 // console.log(response.data.isValid)
                 if (response.data.isValid) {
                     // console.log("登陆成功");
                     const prefix = "http://" + window.location.host;
                     if (response.data.isAdmin) {
-                        window.open(prefix + "/admin?" + "userName=" + userName, "_self");
+                        window.open(`${prefix}/admin?userName=${userName}`);
                     }
                     else {
-                        window.open(prefix + "/student?" + "userName=" + userName, "_self");
+                        window.open(`${prefix}/student?userName=${userName}`);
                     }
                 }
                 else {
@@ -31,7 +31,7 @@ const LoginPage = () => {
                     setResText("登陆失败");
                 }
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 console.log(error);
             });
     };
