@@ -2,11 +2,14 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "./TableCell.css";
 import Button from 'react-bootstrap/Button';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 import Modal from 'react-bootstrap/Modal';
 import Overlay from 'react-bootstrap/Overlay';
 
+// TableCell组件：
+// 1. 发送http请求，查询当前时段是否有课程。
+// 2. 若有课程，显示课程名称和上课地点，点击按钮打开详细内容浮窗，其中有学生名单和删除课程按钮。
+// 3. 若无课程，显示添加课程按钮。
 export default function TableCell({ startTime, week, day, userName, isAdmin, setShowModal, setAddClassInfo, refresh }) {
     const [name, setName] = useState("");
     const [location, setLocation] = useState("");
@@ -17,6 +20,7 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
     const [refreshOnDel, setRefreshOnDel] = useState(false);
     const target = useRef(null);
 
+    // 在特定条件下重新发送请求，刷新表格内容
     useEffect(() => {
         axios.get("http://" + window.location.hostname + ":8080/getCourseStatusByTime", {
             params: {
@@ -34,6 +38,7 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
             })
     }, [startTime, week, day, userName, refresh, refreshOnDel]);
 
+    // 发送删除课程的请求
     const setDeleteCourseRequest = () => {
         axios.delete(`http://localhost:8080/deleteCourse?courseName=${name}`)
             .then((response) => {
@@ -48,6 +53,7 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
 
     let studentsHover;
     if (isAdmin) {
+        // 若当前格无课程，显示添加课程按钮
         if (name === "") {
             studentsHover = (
                 <div onClick={() => {
@@ -68,6 +74,7 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
                 </div>
             );
         }
+        // 当前格有课程，显示detail按钮
         else {
             let studentList = students.map((item, index) => {
                 return (
@@ -112,20 +119,19 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal title</Modal.Title>
+                    <Modal.Title>删除课程：{name}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    I will not close if you click outside me. Don't even try to press
-                    escape key.
+                    此课程一经删除，无法恢复。
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={() => setShowDeleteConfirm(false)}>
-                        Close
+                        取消
                     </Button>
                     <Button variant="primary" onClick={() => {
                         setDeleteCourseRequest();
                         setShowDeleteConfirm(false);
-                    }}>确认删除课程</Button>
+                    }}>确认删除</Button>
                 </Modal.Footer>
             </Modal>
         </div>

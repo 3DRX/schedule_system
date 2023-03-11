@@ -8,6 +8,9 @@ import axios from "axios";
 import Form from 'react-bootstrap/Form';
 import { NumberPicker } from "react-widgets";
 
+// 课程表组件：
+// 1. 课程表表格（每一个表格内容是一个TableCell组件）
+// 2. 添加新课程的弹窗
 export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
     const query = new URLSearchParams(useLocation().search);
     const userName = query.get("userName");

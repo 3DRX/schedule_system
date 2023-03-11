@@ -17,6 +17,7 @@ import StudentCourse from './pages/StudentCourse';
 import StudentActivities from './pages/StudentActivities';
 import StudentOthers from './pages/StudentOthers';
 
+// 不同URL对应不同的页面
 const router = createBrowserRouter([
     {
         path: "/",
