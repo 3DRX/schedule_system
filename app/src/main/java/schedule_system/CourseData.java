@@ -20,11 +20,22 @@ public class CourseData {
 
     private Course[] courses;
 
+    /**
+     * 获得所有课程数组
+     * 
+     * @return
+     */
     public Course[] allCourses() {
         this.courses = readCourses();
         return this.courses;
     }
 
+    /**
+     * 按名称查找课程
+     * 
+     * @param String
+     * @return Course course
+     */
     public Course getCourseByName(String courseName) {
         this.courses = readCourses();
         for (Course course : this.courses) {
@@ -35,6 +46,12 @@ public class CourseData {
         return null;
     }
 
+    /**
+     * 从内存中删除课程并将更改写入文件
+     * 
+     * @param courseName
+     * @return
+     */
     public boolean deleteCourse(String courseName) {
         this.courses = readCourses();
         ArrayList<Course> newCourses = new ArrayList<>();
@@ -50,6 +67,11 @@ public class CourseData {
         return writeCourses(this.courses);
     }
 
+    /**
+     * 从文件中读取课程列表
+     * 
+     * @return
+     */
     private Course[] readCourses() {
         Course[] read_users = {};
         try {
@@ -61,13 +83,17 @@ public class CourseData {
         return read_users;
     }
 
+    /**
+     * 创建新课程，检查是否与已有课程冲突
+     * 
+     * @param newCourse
+     * @return
+     */
     public boolean addCourse(Course newCourse) {
         this.courses = readCourses();
         Course[] newCourses = new Course[this.courses.length + 1];
         for (int i = 0; i < this.courses.length; i++) {
-            // System.out.println(this.courses[i].getName());
             if (this.courses[i].conflictsWith(newCourse)) {
-                // 检查课程本身与其他课程有无时空冲突
                 return false;
             }
             newCourses[i] = this.courses[i];
@@ -77,6 +103,12 @@ public class CourseData {
         return writeCourses(this.courses);
     }
 
+    /**
+     * 将更新后的课程列表写入文件
+     * 
+     * @param courses
+     * @return
+     */
     private boolean writeCourses(Course[] courses) {
         File file = new File(path);
         String res = gson.toJson(courses);

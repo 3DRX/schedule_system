@@ -36,6 +36,11 @@ public class UserData {
         return students;
     }
 
+    /**
+     * 从所有用户的数组中找出学生并返回一个所有学生的数组
+     * 
+     * @return
+     */
     private theUser[] getStudents() {
         theUser[] ret = new theUser[jsonUsers.length - 1];
         int i = 0;

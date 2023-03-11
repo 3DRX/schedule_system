@@ -18,21 +18,31 @@ import schedule_system.utils.Course;
 @RestController
 @CrossOrigin(maxAge = 3600)
 public class AddCourseController {
-    private final StudentData studentData = new StudentData();
-    private final CourseData courseData = new CourseData();
-    private final Logger logger = LoggerFactory.getLogger(ReferCourseController.class);
+    private final StudentData studentData = new StudentData(); // 学生数据控制器
+    private final CourseData courseData = new CourseData(); // 课程数据控制器
+    private final Logger logger = LoggerFactory.getLogger(ReferCourseController.class); // 日志控制器
 
+    /**
+     * 添加课程，并检测inputCourse是否与现有数据库中信息冲突
+     * 1. 新建课程是否与其他课程冲突
+     * 2. 上新建课程的学生是否在新课程的时间有时间上课
+     * 
+     * @param inputCourse
+     * @return
+     */
     @PostMapping("/addCourse")
     public boolean addCourse(
             @RequestBody CourseInfoRecord inputCourse) {
-        // TODO: 检测inputCourse是否与现有数据库中信息冲突
-        // （上课时间地点是否冲突、课程名称是否冲突）
-        // 时间：同一个人不能同时上两个课
-        // 地点：同一个地点不能在同一时间有两门课
         return createCourse(inputCourse.course()) &&
                 addCourseToStudent(inputCourse.course().getName(), inputCourse.students());
     }
 
+    /**
+     * 添加课程检查课程与其他课程是否冲突
+     * 
+     * @param course
+     * @return
+     */
     private boolean createCourse(Course course) {
         boolean successFlag = courseData.addCourse(course);
         if (!successFlag) {
@@ -43,6 +53,13 @@ public class AddCourseController {
         return successFlag;
     }
 
+    /**
+     * 将新课程添加到学生课表，并检查冲突
+     * 
+     * @param courseName
+     * @param students
+     * @return
+     */
     private boolean addCourseToStudent(String courseName, String[] students) {
         boolean successFlag = studentData.addCourseToStudents(courseName, students);
         if (!successFlag) {
