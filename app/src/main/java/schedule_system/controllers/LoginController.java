@@ -20,6 +20,12 @@ public class LoginController {
     private UserData userData = new UserData();
     private final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
+    /**
+     * 判断用户名和密码是否正确并返回
+     * 
+     * @param iptUser
+     * @return
+     */
     @PostMapping("/login")
     public UserRecord loginValidation(
             @RequestBody theUser iptUser) {
