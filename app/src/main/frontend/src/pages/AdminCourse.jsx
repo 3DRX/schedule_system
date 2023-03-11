@@ -6,6 +6,10 @@ import NavBar from "../components/NavBar";
 import "react-widgets/styles.css";
 import { NumberPicker } from "react-widgets";
 
+// 管理员课程主页
+// 1. 设置周数
+// 2. 刷新按钮
+// 3. 课程表（CourseTable组件）
 const AdminCourse = () => {
     const query = new URLSearchParams(useLocation().search);
     const userName = query.get("userName");

@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import "./NavBar.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// 导航栏：
+// 1. 学生点击和管理员点击跳转到的页面不同
 function NavBar({ isAdmin, userName }) {
     const prefix = "http://" + window.location.host;
 
