@@ -5,11 +5,7 @@ import Button from 'react-bootstrap/Button';
 import NavBar from "../components/NavBar";
 import "react-widgets/styles.css";
 import { NumberPicker } from "react-widgets";
-
-// 管理员课程主页
-// 1. 设置周数
-// 2. 刷新按钮
-// 3. 课程表（CourseTable组件）
+import "./AdminCoure.css";
 const AdminCourse = () => {
     const query = new URLSearchParams(useLocation().search);
     const userName = query.get("userName");
@@ -20,23 +16,23 @@ const AdminCourse = () => {
         <>
             <NavBar isAdmin="true" userName={userName} />
             <div className="setWeekTab">
-                <a>set week</a>
+                <div class="texts">set week</div>
                 <NumberPicker defaultValue={1} step={1} max={20} min={1} onChange={(value) => {
                     if (value !== null && (value >= 1 && value <= 20)) {
                         // console.log(`set value to ${value}`)
                         setWeek(value);
                     }
                 }}
-                    style={{
-                        width: "10ex",
-                    }}
+                    class="input"
                 />
+                <Button variant="secondary"
+                        onClick={() => {
+                            setRefresh(!refresh);
+                        }}
+                        id="refreshButton"
+                >刷新</Button>
             </div>
-            <Button variant="secondary"
-                onClick={() => {
-                    setRefresh(!refresh);
-                }}
-            >刷新</Button>
+
             <ClassTable isAdmin={true} week={week} refresh={refresh} setRefresh={setRefresh}
             />
         </>
