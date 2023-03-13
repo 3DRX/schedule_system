@@ -53,7 +53,7 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
     let studentsHover;
     if (isAdmin) {
         // 若当前格无课程，显示添加课程按钮
-        if (name === "") {
+        if (name === "" && location === "" && students.length === 0) {
             studentsHover = (
                 <div onClick={() => {
                     // console.log(`在第${week}周，周${day}，${startTime}-${startTime + 1}添加课程`);

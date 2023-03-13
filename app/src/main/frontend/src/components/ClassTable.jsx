@@ -247,7 +247,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                         </p>
                         <p>
                             结束周
-                            <NumberPicker defaultValue={null} step={1} max={20} min={startWeek + 1} onChange={(value) => {
+                            <NumberPicker defaultValue={null} step={1} max={20} min={startWeek} onChange={(value) => {
                                 if (value !== null && value >= 1 && value <= 20) {
                                     setEndWeek(value);
                                     // console.log(`结束周：${value}`);
