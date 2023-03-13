@@ -10,14 +10,13 @@ import Overlay from 'react-bootstrap/Overlay';
 // 1. 发送http请求，查询当前时段是否有课程。
 // 2. 若有课程，显示课程名称和上课地点，点击按钮打开详细内容浮窗，其中有学生名单和删除课程按钮。
 // 3. 若无课程，显示添加课程按钮。
-export default function TableCell({ startTime, week, day, userName, isAdmin, setShowModal, setAddClassInfo, refresh }) {
+export default function TableCell({ startTime, week, day, userName, isAdmin, setShowModal, setAddClassInfo, refresh, setRefresh }) {
     const [name, setName] = useState("");
     const [location, setLocation] = useState("");
     const [students, setStudents] = useState([]);
     const [hover, setHover] = useState(false);
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
     const [showOverlay, setShowOverlay] = useState(false);
-    const [refreshOnDel, setRefreshOnDel] = useState(false);
     const target = useRef(null);
 
     // 在特定条件下重新发送请求，刷新表格内容
@@ -36,14 +35,14 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
                 setLocation(response.data.location)
                 setStudents(response.data.students)
             })
-    }, [startTime, week, day, userName, refresh, refreshOnDel]);
+    }, [startTime, week, day, userName, refresh]);
 
     // 发送删除课程的请求
     const setDeleteCourseRequest = () => {
         axios.delete(`http://localhost:8080/deleteCourse?courseName=${name}`)
             .then((response) => {
                 if (response) {
-                    setRefreshOnDel(!refreshOnDel);
+                    setRefresh(!refresh);
                 }
                 else {
                     console.warn(`删除课程${name}失败`);

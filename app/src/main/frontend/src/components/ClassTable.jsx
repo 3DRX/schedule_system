@@ -58,6 +58,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                         userName={userName}
                         isAdmin={isAdmin}
                         refresh={refresh}
+                        setRefresh={setRefresh}
                     />;
                 }
                 res.push(cell);
