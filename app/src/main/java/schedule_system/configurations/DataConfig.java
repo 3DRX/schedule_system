@@ -3,9 +3,9 @@ package schedule_system.configurations;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import schedule_system.CourseData;
-import schedule_system.StudentData;
-import schedule_system.UserData;
+import schedule_system.fakeDB.CourseData;
+import schedule_system.fakeDB.StudentData;
+import schedule_system.fakeDB.UserData;
 
 /**
  * 初始化三个文件读写器

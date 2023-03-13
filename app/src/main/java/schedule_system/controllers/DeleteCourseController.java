@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import schedule_system.CourseData;
-import schedule_system.StudentData;
+import schedule_system.fakeDB.CourseData;
+import schedule_system.fakeDB.StudentData;
 
 /**
  * DeleteCourseController

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import schedule_system.CourseData;
-import schedule_system.StudentData;
+import schedule_system.fakeDB.CourseData;
+import schedule_system.fakeDB.StudentData;
 import schedule_system.records.CourseObjectRecord;
 import schedule_system.utils.Course;
 import schedule_system.utils.Student;

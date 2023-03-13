@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import schedule_system.UserData;
+import schedule_system.fakeDB.UserData;
 import schedule_system.utils.theUser;
 import schedule_system.records.UserRecord;
 

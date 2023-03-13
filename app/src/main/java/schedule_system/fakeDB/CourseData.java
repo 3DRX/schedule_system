@@ -1,4 +1,4 @@
-package schedule_system;
+package schedule_system.fakeDB;
 
 import java.io.File;
 import java.io.FileReader;
