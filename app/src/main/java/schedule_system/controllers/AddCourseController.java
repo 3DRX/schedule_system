@@ -2,6 +2,7 @@ package schedule_system.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,9 +19,11 @@ import schedule_system.utils.Course;
 @RestController
 @CrossOrigin(maxAge = 3600)
 public class AddCourseController {
-    private final StudentData studentData = new StudentData(); // 学生数据控制器
-    private final CourseData courseData = new CourseData(); // 课程数据控制器
     private final Logger logger = LoggerFactory.getLogger(ReferCourseController.class); // 日志控制器
+    @Autowired
+    CourseData courseData; // 课程数据控制器
+    @Autowired
+    StudentData studentData; // 学生数据控制器
 
     /**
      * 添加课程，并检测inputCourse是否与现有数据库中信息冲突

@@ -20,13 +20,16 @@ public class CourseData {
 
     private Course[] courses;
 
+    public CourseData() {
+        this.courses = readCourses();
+    }
+
     /**
      * 获得所有课程数组
      * 
      * @return
      */
     public Course[] allCourses() {
-        this.courses = readCourses();
         return this.courses;
     }
 
@@ -37,7 +40,6 @@ public class CourseData {
      * @return Course course
      */
     public Course getCourseByName(String courseName) {
-        this.courses = readCourses();
         for (Course course : this.courses) {
             if (course.getName().equals(courseName)) {
                 return course;
@@ -53,7 +55,6 @@ public class CourseData {
      * @return
      */
     public boolean deleteCourse(String courseName) {
-        this.courses = readCourses();
         ArrayList<Course> newCourses = new ArrayList<>();
         for (Course course : this.courses) {
             if (course.getName().equals(courseName)) {
@@ -90,7 +91,6 @@ public class CourseData {
      * @return
      */
     public boolean addCourse(Course newCourse) {
-        this.courses = readCourses();
         Course[] newCourses = new Course[this.courses.length + 1];
         for (int i = 0; i < this.courses.length; i++) {
             if (this.courses[i].conflictsWith(newCourse)) {

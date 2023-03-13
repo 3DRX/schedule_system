@@ -23,13 +23,15 @@ public class StudentData {
 
     private Student[] students;
 
-    public Student[] getStudentClasses() {
+    public StudentData() {
         this.students = readStudentClasses();
+    }
+
+    public Student[] getStudentClasses() {
         return this.students;
     }
 
     public boolean deleteCourseFromStudents(String courseName) {
-        this.students = readStudentClasses();
         for (Student student : this.students) {
             student.deleteCourseIfHave(courseName);
         }
@@ -38,7 +40,6 @@ public class StudentData {
 
     public boolean addCourseToStudents(String newCourseName, String[] students) {
         final CourseData courseData = new CourseData();
-        this.students = readStudentClasses();
         for (String studentName : students) {
             for (Student student : this.students) {
                 if (student.getName().equals(studentName)) {
@@ -68,7 +69,6 @@ public class StudentData {
     }
 
     public boolean isStudent(String userName) {
-        this.students = readStudentClasses();
         for (Student theStudent : students) {
             if (theStudent.getName().equals(userName)) {
                 return true;

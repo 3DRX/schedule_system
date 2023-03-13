@@ -19,11 +19,15 @@ public class UserData {
     private theUser[] jsonUsers;
     private theUser[] students;
 
+    public UserData() {
+        this.jsonUsers = readUsers();
+        this.students = getStudents();
+    }
+
     /**
      * @return theUser[] allUsers
      */
     public theUser[] allUsers() {
-        this.jsonUsers = readUsers();
         return this.jsonUsers;
     }
 
@@ -31,9 +35,7 @@ public class UserData {
      * @return theUser[] students
      */
     public theUser[] students() {
-        this.jsonUsers = readUsers();
-        this.students = getStudents();
-        return students;
+        return this.students;
     }
 
     /**

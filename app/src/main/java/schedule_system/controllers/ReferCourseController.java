@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,9 +21,11 @@ import schedule_system.utils.Student;
 @RestController
 @CrossOrigin(maxAge = 3600)
 public class ReferCourseController {
-    private final StudentData studentData = new StudentData(); // 学生数据控制器
-    private final CourseData courseData = new CourseData(); // 课程数据控制器
     private final Logger logger = LoggerFactory.getLogger(ReferCourseController.class); // 日志控制器
+    @Autowired
+    CourseData courseData; // 课程数据控制器
+    @Autowired
+    StudentData studentData; // 学生数据控制器
 
     /**
      * 按照时间查询课程
