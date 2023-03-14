@@ -21,7 +21,7 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
 
     // 在特定条件下重新发送请求，刷新表格内容
     useEffect(() => {
-        axios.get("http://" + window.location.hostname + ":8080/getCourseStatusByTime", {
+        axios.get("http://" + window.location.hostname + ":8888/getCourseStatusByTime", {
             params: {
                 time: startTime + '-' + (startTime + 1),
                 week: week,
@@ -39,7 +39,7 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
 
     // 发送删除课程的请求
     const setDeleteCourseRequest = () => {
-        axios.delete(`http://localhost:8080/deleteCourse?courseName=${name}`)
+        axios.delete(`http://localhost:8888/deleteCourse?courseName=${name}`)
             .then((response) => {
                 if (response) {
                     setRefresh(!refresh);
