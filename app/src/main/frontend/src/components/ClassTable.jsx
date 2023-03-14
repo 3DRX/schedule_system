@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useTable } from "react-table";
 import TableCell from "../components/TableCell";
@@ -25,15 +25,18 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
     const [classTime, setClassTime] = useState(8);
     const [classDuration, setClassDuration] = useState(1);
     const [location, setLocation] = useState("");
-
-    const studentList = [
-        "002",
-        "003"
-    ];
+    const [studentList, setStudentList] = useState([]);
 
     const [checkedState, setCheckedState] = useState(
         new Array(studentList.length).fill(false)
     );
+
+    useEffect(() => {
+        axios.get("http://" + window.location.hostname + ":8080/studentList")
+            .then((response) => {
+                setStudentList(response.data);
+            })
+    }, [refresh]);
 
     const handleOnChange = (position) => {
         const updatedCheckedState = checkedState.map((item, index) =>
