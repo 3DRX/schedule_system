@@ -7,10 +7,8 @@ import Modal from 'react-bootstrap/Modal';
 import axios from "axios";
 import Form from 'react-bootstrap/Form';
 import { NumberPicker } from "react-widgets";
+import "./ClassTable.css";
 
-// 课程表组件：
-// 1. 课程表表格（每一个表格内容是一个TableCell组件）
-// 2. 添加新课程的弹窗
 export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
     const query = new URLSearchParams(useLocation().search);
     const userName = query.get("userName");
@@ -104,12 +102,12 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
     } = useTable({ columns, data });
 
     const generateOptions = () => {
-        if (addClassInfo.startTime === 19) {
+        if (addClassInfo.startTime == 19) {
             return (
                 <option>1h</option>
             )
         }
-        else if (addClassInfo.startTime === 18) {
+        else if (addClassInfo.startTime == 18) {
             return (
                 <>
                     <option>1h</option>
@@ -163,7 +161,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
         // console.log(res);
         axios.post("http://" + window.location.hostname + ":8080/addCourse", res)
             .then((response) => {
-                console.log(response.data)
+                // console.log(response.data)
             })
             .finally(() => {
                 setRefresh(!refresh);
@@ -172,20 +170,15 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
     }
 
     return (
-        <div>
-            <table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
-                <thead>
+        <div className='ClassTableContent'>
+            <table {...getTableProps()}   class="table">
+                <thead class="head">
                     {headerGroups.map(headerGroup => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
+                        <tr {...headerGroup.getHeaderGroupProps()} >
                             {headerGroup.headers.map(column => (
-                                <th
+                                <th class="headBlocks"
                                     {...column.getHeaderProps()}
-                                    style={{
-                                        borderBottom: 'solid 3px red',
-                                        background: 'aliceblue',
-                                        color: 'black',
-                                        fontWeight: 'bold',
-                                    }}
+
                                 >
                                     {column.render('Header')}
                                 </th>
@@ -200,9 +193,10 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                             <tr {...row.getRowProps()}>
                                 {row.cells.map(cell => {
                                     return (
-                                        <td
+                                        <td class="time"
                                             {...cell.getCellProps()}
                                             style={{
+
                                                 padding: '10px',
                                                 border: 'solid 1px gray',
                                                 background: 'white',

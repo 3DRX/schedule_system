@@ -39,7 +39,7 @@ const LoginPage = () => {
     return (
         <div>
             <view className="AllPage">
-                <view className="content">
+                <view className="LoginPageContent">
                     <view className="userProfilePhotoArea">
                     </view>
                     <form onSubmit={handleSubmit}>
