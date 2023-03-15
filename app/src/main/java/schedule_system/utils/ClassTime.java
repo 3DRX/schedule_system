@@ -9,10 +9,18 @@ public class ClassTime {
     private int duration;
 
     public ClassTime(int day, int time, int duration) {
-        setDay(day);
-        setTime(time);
-        setDuration(duration);
-        // TODO: 检查课程结束时间是否超过20:00
+        if(setDay(day)){
+        }
+        else throw new IllegalArgumentException("输入不合法");
+
+        if(setTime(time)){
+        }
+        else throw new IllegalArgumentException("输入不合法");
+
+        if((duration >= 1 && duration <= 3)&& duration+time <=20)
+            setDuration(duration);
+        else throw new IllegalArgumentException("输入不合法");
+
     }
 
     /**
