@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./TableCell.css";
 import CellWithCourse from "./CellWithCourse";
@@ -11,7 +11,6 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
     const [courses, setCourses] = useState([]);
     const [hover, setHover] = useState(false);
 
-    // 在特定条件下重新发送请求，刷新表格内容
     useEffect(() => {
         axios.get("http://" + window.location.hostname + ":8888/getCourseStatusByTime", {
             params: {
@@ -41,6 +40,7 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
                     style={{
                         backgroundColor: hover ? "lightgrey" : "white",
                     }}
+                    id="addButton"
                     onMouseEnter={() => { setHover(true) }}
                     onMouseLeave={() => { setHover(false) }}
                 >+
@@ -56,10 +56,6 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
 
     return (
         <div className="TableCell"
-            style={{
-                width: "20ex",
-                height: "20ex",
-            }}
         >
             {renderContent()}
         </div >
