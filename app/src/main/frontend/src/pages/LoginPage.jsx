@@ -10,19 +10,20 @@ const LoginPage = () => {
         const form = e.target;
         const formData = new FormData(form);
         const jsonData = Object.fromEntries(formData.entries());
+        const userName = formData.getAll("id")[0];
         // 仍然不能在其他设备上登陆
-        axios.post("http://" + window.location.hostname + ":8080/login", jsonData)
-            .then(function(response) {
+        axios.post("http://" + window.location.hostname + ":8888/login", jsonData)
+            .then(function (response) {
                 // console.log(response);
                 // console.log(response.data.isValid)
                 if (response.data.isValid) {
                     // console.log("登陆成功");
                     const prefix = "http://" + window.location.host;
                     if (response.data.isAdmin) {
-                        window.open(prefix + "/admin", "_self");
+                        window.open(`${prefix}/admin?userName=${userName}`);
                     }
                     else {
-                        window.open(prefix + "/student", "_self");
+                        window.open(`${prefix}/student?userName=${userName}`);
                     }
                 }
                 else {
@@ -30,7 +31,7 @@ const LoginPage = () => {
                     setResText("登陆失败");
                 }
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 console.log(error);
             });
     };
@@ -38,7 +39,7 @@ const LoginPage = () => {
     return (
         <div>
             <view className="AllPage">
-                <view className="content">
+                <view className="LoginPageContent">
                     <view className="userProfilePhotoArea">
                     </view>
                     <form onSubmit={handleSubmit}>

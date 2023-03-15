@@ -6,11 +6,14 @@ build
 
 .settings
 
+.vscode
+app/bin
 .idea
 
 .project
 
 # React
+package-lock.json
 
 # dependencies
 node_modules

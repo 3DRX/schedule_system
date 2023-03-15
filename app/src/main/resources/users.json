@@ -1,17 +1,17 @@
 [
-  {
-    "isAdmin": true,
-    "id": "001",
-    "password": "password"
-  },
-  {
-    "isAdmin": false,
-    "id": "002",
-    "password": "1"
-  },
-  {
-    "isAdmin": false,
-    "id": "003",
-    "password": "1"
-  }
+    {
+        "isAdmin": true,
+        "id": "001",
+        "password": "password"
+    },
+    {
+        "isAdmin": false,
+        "id": "002",
+        "password": "1"
+    },
+    {
+        "isAdmin": false,
+        "id": "003",
+        "password": "1"
+    }
 ]

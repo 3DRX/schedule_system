@@ -6,25 +6,27 @@ import { Link } from "react-router-dom";
 import "./NavBar.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function NavBar({ isAdmin }) {
+// 导航栏：
+// 1. 学生点击和管理员点击跳转到的页面不同
+function NavBar({ isAdmin, userName }) {
     const prefix = "http://" + window.location.host;
 
     let links;
     if (isAdmin === "true") {
         links = (
             <>
-                <Link className='navBarItem' to="/admin/course">课程</Link>
-                <Link className='navBarItem' to="/admin/activities">课外活动</Link>
-                <Link className='navBarItem' to="/admin/others">其他</Link>
+                <Link className='navBarItem' to={`/admin/course?userName=${userName}`}>课程</Link>
+                <Link className='navBarItem' to={`/admin/activities?userName=${userName}`}>课外活动</Link>
+                <Link className='navBarItem' to={`/admin/others?userName=${userName}`}>其他</Link>
             </>
         )
     }
     else {
         links = (
             <>
-                <Link className='navBarItem' to="/student/course">课程</Link>
-                <Link className='navBarItem' to="/student/activities">课外活动</Link>
-                <Link className='navBarItem' to="/student/others">其他</Link>
+                <Link className='navBarItem' to={`/student/course?userName=${userName}`}>课程</Link>
+                <Link className='navBarItem' to={`/student/activities?userName=${userName}`}>课外活动</Link>
+                <Link className='navBarItem' to={`/student/others?userName=${userName}`}>其他</Link>
             </>
         )
     }

@@ -1,4 +1,4 @@
-package schedule_system;
+package schedule_system.fakeDB;
 
 import java.io.File;
 import java.io.FileReader;
@@ -19,11 +19,15 @@ public class UserData {
     private theUser[] jsonUsers;
     private theUser[] students;
 
+    public UserData() {
+        this.jsonUsers = readUsers();
+        this.students = getStudents();
+    }
+
     /**
      * @return theUser[] allUsers
      */
     public theUser[] allUsers() {
-        this.jsonUsers = readUsers();
         return this.jsonUsers;
     }
 
@@ -31,11 +35,14 @@ public class UserData {
      * @return theUser[] students
      */
     public theUser[] students() {
-        this.jsonUsers = readUsers();
-        this.students = getStudents();
-        return students;
+        return this.students;
     }
 
+    /**
+     * 从所有用户的数组中找出学生并返回一个所有学生的数组
+     * 
+     * @return
+     */
     private theUser[] getStudents() {
         theUser[] ret = new theUser[jsonUsers.length - 1];
         int i = 0;
@@ -70,7 +77,7 @@ public class UserData {
     /**
      * 将一组特定的users写入resources/users.json中
      */
-    private void addUsers(theUser[] users) {
+    private void writeUsers(theUser[] users) {
         File file = new File(path);
         String res = gson.toJson(users);
         try {

@@ -10,6 +10,10 @@ public class Location {
     private int x;
     private int y;
 
+    public boolean equals(Location location) {
+        return this.name.equals(location.name);
+    }
+
     public int getX() {
         return x;
     }
