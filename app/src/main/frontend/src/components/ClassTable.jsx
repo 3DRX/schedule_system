@@ -29,6 +29,8 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
         new Array(studentList.length).fill(false)
     );
 
+    const [hover, setHover] = useState(false);
+
     useEffect(() => {
         axios.get("http://" + window.location.hostname + ":8888/studentList")
             .then((response) => {
@@ -175,7 +177,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
 
     return (
         <div className='ClassTableContent'>
-            <table {...getTableProps()}   class="table">
+            <table {...getTableProps()} class="table">
                 <thead class="head">
                     {headerGroups.map(headerGroup => (
                         <tr {...headerGroup.getHeaderGroupProps()} >
@@ -231,7 +233,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                         />
                         <p>
                             开始周
-                            <NumberPicker defaultValue={null} step={1} max={20} min={1} onChange={(value) => {
+                            <NumberPicker defaultValue={week} step={1} max={19} min={1} onChange={(value) => {
                                 if (value !== null && value >= 1 && value <= 20) {
                                     setStartWeek(value);
                                     // console.log(`开始周：${value}`);
@@ -273,7 +275,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                         </p>
                         <p>
                             星期
-                            <NumberPicker defaultValue={null} step={1} max={5} min={1} onChange={(value) => {
+                            <NumberPicker defaultValue={addClassInfo.day} step={1} max={5} min={1} onChange={(value) => {
                                 if (value !== null && value >= 1 && value <= 5) {
                                     setClassDay(value);
                                     // console.log(`星期：${value}`);
@@ -285,7 +287,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                             />
                         </p>
                         <p>
-                            <NumberPicker defaultValue={null} step={1} max={20} min={8} onChange={(value) => {
+                            <NumberPicker defaultValue={addClassInfo.startTime} step={1} max={19} min={8} onChange={(value) => {
                                 if (value !== null && value >= 8 && value <= 20) {
                                     setClassTime(value);
                                     // console.log(`${value}点`);
@@ -346,6 +348,18 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                     </Modal.Footer>
                 </Form>
             </Modal>
+            <div onClick={() => {
+                // console.log(`在第${week}周，周${day}，${startTime}-${startTime + 1}添加课程`);
+                setShowModal(true);
+            }}
+                style={{
+                    backgroundColor: hover ? "lightgrey" : "white",
+                }}
+                id="addButton"
+                onMouseEnter={() => { setHover(true) }}
+                onMouseLeave={() => { setHover(false) }}
+            >添加课程
+            </div>
         </div >
     )
 }

@@ -9,14 +9,6 @@ import CellWithCourse from "./CellWithCourse";
 // 3. 若无课程，显示添加课程按钮。
 export default function TableCell({ startTime, week, day, userName, isAdmin, setShowModal, setAddClassInfo, refresh, setRefresh }) {
     const [courses, setCourses] = useState([]);
-    // import Button from 'react-bootstrap/Button';
-    // import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-    // import Popover from 'react-bootstrap/Popover';
-
-    // export default function TableCell({ startTime, week, day, userName, isAdmin, setShowModal, setAddClassInfo, refresh }) {
-    //     const [name, setName] = useState("");
-    //     const [location, setLocation] = useState("");
-    //     const [students, setStudents] = useState([]);
     const [hover, setHover] = useState(false);
 
     useEffect(() => {
