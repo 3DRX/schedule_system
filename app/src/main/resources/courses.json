@@ -61,5 +61,47 @@
       "x": 0,
       "y": 0
     }
+  },
+  {
+    "startWeek": 1,
+    "endWeek": 10,
+    "testWeek": 11,
+    "classTime": {
+      "day": 4,
+      "time": 8,
+      "duration": 3
+    },
+    "examTime": {
+      "day": 4,
+      "time": 8,
+      "duration": 3
+    },
+    "name": "python",
+    "location": {
+      "name": "abc",
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "startWeek": 1,
+    "endWeek": 10,
+    "testWeek": 11,
+    "classTime": {
+      "day": 3,
+      "time": 8,
+      "duration": 3
+    },
+    "examTime": {
+      "day": 3,
+      "time": 8,
+      "duration": 3
+    },
+    "name": "english",
+    "location": {
+      "name": "abc",
+      "x": 0,
+      "y": 0
+    }
   }
 ]
