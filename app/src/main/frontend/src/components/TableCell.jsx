@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./TableCell.css";
 import CellWithCourse from "./CellWithCourse";
@@ -9,9 +9,16 @@ import CellWithCourse from "./CellWithCourse";
 // 3. 若无课程，显示添加课程按钮。
 export default function TableCell({ startTime, week, day, userName, isAdmin, setShowModal, setAddClassInfo, refresh, setRefresh }) {
     const [courses, setCourses] = useState([]);
+    // import Button from 'react-bootstrap/Button';
+    // import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+    // import Popover from 'react-bootstrap/Popover';
+
+    // export default function TableCell({ startTime, week, day, userName, isAdmin, setShowModal, setAddClassInfo, refresh }) {
+    //     const [name, setName] = useState("");
+    //     const [location, setLocation] = useState("");
+    //     const [students, setStudents] = useState([]);
     const [hover, setHover] = useState(false);
 
-    // 在特定条件下重新发送请求，刷新表格内容
     useEffect(() => {
         axios.get("http://" + window.location.hostname + ":8888/getCourseStatusByTime", {
             params: {
@@ -41,6 +48,7 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
                     style={{
                         backgroundColor: hover ? "lightgrey" : "white",
                     }}
+                    id="addButton"
                     onMouseEnter={() => { setHover(true) }}
                     onMouseLeave={() => { setHover(false) }}
                 >+
@@ -56,10 +64,6 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
 
     return (
         <div className="TableCell"
-            style={{
-                width: "20ex",
-                height: "20ex",
-            }}
         >
             {renderContent()}
         </div >
