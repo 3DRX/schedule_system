@@ -4,8 +4,12 @@ package schedule_system.utils;
  * Course
  */
 public class Course {
-    // TODO: 检查输入参数是否符合要求，将函数返回值改为boolean
-    // 若符合，return true，否则return false
+    // TODO: 检查输入参数是否符合要求
+    // 规则如下：
+    // 1. 一学期共有20周（即课程或考试不能>20）
+    // 2. 课程结束周必须大于等于课程开始周
+    // 3. 课程考试周必须大于课程结束周
+    // 4. 课程的上课时间和考试时间须合法
 
     private int startWeek; // 课程开始周
     private int endWeek; // 课程结束周
@@ -23,6 +27,9 @@ public class Course {
             final ClassTime examTime,
             final String name,
             final Location location) {
+        // TODO: 在这里写一下判断的逻辑
+        // 如果发现不合法，直接throw exception
+        // 现在所有下列函数都没有判断是否合法，只是赋值
         setStartWeek(startWeek);
         setEndWeek(endWeek);
         setTestWeek(testWeek);
@@ -38,7 +45,7 @@ public class Course {
      * 1. 名称冲突
      * 2. 同一时间占用同一地点
      * （用于判断新建课程是否与其他课程冲突）
-     * TODO: 现在先不管考试时间，只检查上课时间
+     * 现在先不管考试时间，只检查上课时间
      * 
      * @param Course course
      * @return boolean
