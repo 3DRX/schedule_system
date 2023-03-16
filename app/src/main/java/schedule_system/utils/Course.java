@@ -26,10 +26,16 @@ public class Course {
             final ClassTime classTime,
             final ClassTime examTime,
             final String name,
-            final Location location) {
-        // TODO: 在这里写一下判断的逻辑
-        // 如果发现不合法，直接throw exception
-        // 现在所有下列函数都没有判断是否合法，只是赋值
+            final Location location)
+    {
+
+        if(endWeek-startWeek+testWeek>20)
+            throw new IllegalArgumentException("学期周数要小于等于20！！！！");
+        if(startWeek < endWeek)
+            throw new IllegalArgumentException("课程结束周必须大于等于课程开始周！！！！");
+        if(testWeek<=endWeek)
+            throw new IllegalArgumentException("课程考试周必须大于课程结束周！！！！");
+
         setStartWeek(startWeek);
         setEndWeek(endWeek);
         setTestWeek(testWeek);
