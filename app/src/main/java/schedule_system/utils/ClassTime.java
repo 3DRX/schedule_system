@@ -24,7 +24,7 @@ public class ClassTime {
 
     /**
      * 判断是否与另一个时间有重叠
-     * 
+     *
      * @param ClassTime
      * @return boolean
      */
