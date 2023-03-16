@@ -31,7 +31,7 @@ public class Course {
 
         if(endWeek-startWeek+testWeek>20)
             throw new IllegalArgumentException("学期周数要小于等于20！！！！");
-        if(startWeek < endWeek)
+        if(startWeek > endWeek)
             throw new IllegalArgumentException("课程结束周必须大于等于课程开始周！！！！");
         if(testWeek<=endWeek)
             throw new IllegalArgumentException("课程考试周必须大于课程结束周！！！！");
