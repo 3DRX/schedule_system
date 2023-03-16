@@ -26,14 +26,13 @@ public class Course {
             final ClassTime classTime,
             final ClassTime examTime,
             final String name,
-            final Location location)
-    {
+            final Location location) {
 
-        if(endWeek-startWeek+testWeek>20)
+        if (endWeek > 20 || startWeek > 20 || testWeek > 20)
             throw new IllegalArgumentException("学期周数要小于等于20！！！！");
-        if(startWeek > endWeek)
+        if (startWeek > endWeek)
             throw new IllegalArgumentException("课程结束周必须大于等于课程开始周！！！！");
-        if(testWeek<=endWeek)
+        if (testWeek <= endWeek)
             throw new IllegalArgumentException("课程考试周必须大于课程结束周！！！！");
 
         setStartWeek(startWeek);
@@ -47,12 +46,12 @@ public class Course {
 
     /**
      * 判断本课程是否与另一课程信息冲突
-     *
+     * <p>
      * 1. 名称冲突
      * 2. 同一时间占用同一地点
      * （用于判断新建课程是否与其他课程冲突）
      * 现在先不管考试时间，只检查上课时间
-     * 
+     *
      * @param Course course
      * @return boolean
      */
@@ -73,7 +72,7 @@ public class Course {
     /**
      * 判断是否与另一门课在时间上有冲突
      * （用于判断新课程与某一位学生的已有课程冲突与否）
-     * 
+     *
      * @param Course course
      * @return boolean
      */
@@ -86,7 +85,7 @@ public class Course {
 
     /**
      * 判断是否与另一门课有重叠的上课周
-     * 
+     *
      * @param b
      * @return
      */
