@@ -37,6 +37,13 @@ application {
 }
 
 tasks.named('test') {
-    // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+
+    maxHeapSize = "1G"
+
+    testLogging {
+        events "standardOut", "passed", "failed", "standardError"
+        showExceptions = true
+        showStandardStreams = true
+    }
 }

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import schedule_system.fakeDB.CourseData;
 import schedule_system.fakeDB.StudentData;
 
-import schedule_system.records.CourseInfoRecord;
 import schedule_system.utils.Course;
 
 /**
@@ -80,4 +79,7 @@ public class AddCourseController {
         }
         return successFlag;
     }
+}
+
+record CourseInfoRecord(Course course, String[] students) {
 }

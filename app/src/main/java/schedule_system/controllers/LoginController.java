@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import schedule_system.fakeDB.UserData;
 import schedule_system.utils.theUser;
-import schedule_system.records.UserRecord;
 
 /**
  * LoginController
@@ -40,4 +39,7 @@ public class LoginController {
         logger.info("用户名或密码错误");
         return new UserRecord(false, false);
     }
+}
+
+record UserRecord(boolean isValid, boolean isAdmin) {
 }
