@@ -60,7 +60,7 @@ public class ClassTime {
         return time <= start && time + duration >= end && this.day == day;
     }
 
-    public boolean setTime(int time) {
+    private boolean setTime(int time) {
         if (time >= 8 && time <= 20) {
             this.time = time;
             return true;
@@ -73,7 +73,7 @@ public class ClassTime {
         return duration;
     }
 
-    public boolean setDuration(int duration) {
+    private boolean setDuration(int duration) {
         if (duration <= 0 || duration > 3) {
             return false;
         } else {
@@ -86,7 +86,7 @@ public class ClassTime {
         return day;
     }
 
-    public boolean setDay(int day) {
+    private boolean setDay(int day) {
         if (day >= 1 && day <= 7) {
             this.day = day;
             return true;
