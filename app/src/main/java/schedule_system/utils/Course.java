@@ -34,7 +34,8 @@ public class Course {
             throw new IllegalArgumentException("课程结束周必须大于等于课程开始周！！！！");
         if (testWeek <= endWeek)
             throw new IllegalArgumentException("课程考试周必须大于课程结束周！！！！");
-
+        if(endWeek <= 0 || startWeek <= 0 || testWeek <= 0)
+            throw new IllegalArgumentException("周数不能是负数！！！！");
         setStartWeek(startWeek);
         setEndWeek(endWeek);
         setTestWeek(testWeek);
