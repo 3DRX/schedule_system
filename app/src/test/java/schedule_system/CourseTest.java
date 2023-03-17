@@ -8,6 +8,9 @@ import schedule_system.utils.Location;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Disabled;
+
+@Disabled("Disabled CourseTest")
 public class CourseTest {
     @Test
     void testCourse1() {

@@ -45,6 +45,17 @@ public class Course {
         setLocation(location);
     }
 
+    // TODO for Ali:
+    // 下面三个方法（也就是有TEST ME这个注释的三个方法，注意有序号，按序号进行测试）
+    // 分别是用来检测不同种类的冲突的（如果不清楚这个逻辑微信里直接问就行～）
+    //
+    // 测试用例代码写在/app/src/test/java/schedule_system/ConflictCheckTest.java文件中
+    // 写测试用例的语法可以看这个教程https://tonydeng.github.io/2017/10/09/junit-5-tutorial-introduction/
+    // 这个教程中关于安装环境依赖的部分可以直接跳过
+    // 此外，还可以参考/app/src/test/java/schedule_system/文件夹内其他的测试。
+    // 测试用例尽量多而全，覆盖到所有可能情况。
+    // 写完测试，运行./gradlew test跑一下看看效果。
+
     /**
      * 判断本课程是否与另一课程信息冲突
      * 
@@ -57,7 +68,7 @@ public class Course {
      * @return boolean
      */
     public boolean conflictsWith(Course course) {
-        // TODO: TEST ME
+        // TODO 3 : TEST ME
         boolean haveConflict = false;
         if (this.getName().equals(course.getName())) {
             // 若两门课程名称一样，则冲突
@@ -79,7 +90,7 @@ public class Course {
      * @return boolean
      */
     public boolean timeOverlapsWith(Course course) {
-        // TODO: TEST ME
+        // TODO 2 : TEST ME
         boolean res = this.classTime.overlaps(course.getClassTime()) && weekOverlaps(course);
         return res;
     }
@@ -91,7 +102,7 @@ public class Course {
      * @return
      */
     private boolean weekOverlaps(Course b) {
-        // TODO: TEST ME
+        // TODO 1 : TEST ME
         boolean res = false;
         if (this.startWeek < b.startWeek) {
             res = this.endWeek >= b.startWeek;
