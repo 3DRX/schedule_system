@@ -4,7 +4,7 @@ package schedule_system.utils;
  * Course
  */
 public class Course {
-    // TODO: 检查输入参数是否符合要求
+    // 检查输入参数是否符合要求
     // 规则如下：
     // 1. 一学期共有20周（即课程或考试不能>20）
     // 2. 课程结束周必须大于等于课程开始周
@@ -34,7 +34,7 @@ public class Course {
             throw new IllegalArgumentException("课程结束周必须大于等于课程开始周！！！！");
         if (testWeek <= endWeek)
             throw new IllegalArgumentException("课程考试周必须大于课程结束周！！！！");
-        if(endWeek <= 0 || startWeek <= 0 || testWeek <= 0)
+        if (endWeek <= 0 || startWeek <= 0 || testWeek <= 0)
             throw new IllegalArgumentException("周数不能是负数！！！！");
         setStartWeek(startWeek);
         setEndWeek(endWeek);
@@ -47,16 +47,17 @@ public class Course {
 
     /**
      * 判断本课程是否与另一课程信息冲突
-     * <p>
+     * 
      * 1. 名称冲突
      * 2. 同一时间占用同一地点
      * （用于判断新建课程是否与其他课程冲突）
-     * 现在先不管考试时间，只检查上课时间
+     * TODO: 现在先不管考试时间，只检查上课时间
      *
      * @param Course course
      * @return boolean
      */
     public boolean conflictsWith(Course course) {
+        // TODO: TEST ME
         boolean haveConflict = false;
         if (this.getName().equals(course.getName())) {
             // 若两门课程名称一样，则冲突
@@ -78,8 +79,7 @@ public class Course {
      * @return boolean
      */
     public boolean timeOverlapsWith(Course course) {
-        // System.out.println("checking " + this.getName() + " and " +
-        // course.getName());
+        // TODO: TEST ME
         boolean res = this.classTime.overlaps(course.getClassTime()) && weekOverlaps(course);
         return res;
     }
@@ -100,12 +100,6 @@ public class Course {
         } else {
             res = true;
         }
-        // if (res) {
-        // System.out.println(this.getName() + " week overlaps with " + b.getName());
-        // } else {
-        // System.out.println(this.getName() + " week did not overlap with " +
-        // b.getName());
-        // }
         return res;
     }
 
