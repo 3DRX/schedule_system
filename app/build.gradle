@@ -47,3 +47,7 @@ tasks.named('test') {
         showStandardStreams = true
     }
 }
+
+tasks.named('javadoc') {
+    failOnError false
+}
