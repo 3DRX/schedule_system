@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // 导航栏：
 // 1. 学生点击和管理员点击跳转到的页面不同
-function NavBar({ isAdmin, userName }) {
+function NavBar({ isAdmin, userName, enabled }) {
     const prefix = "http://" + window.location.host;
 
     let links;
@@ -21,7 +21,7 @@ function NavBar({ isAdmin, userName }) {
             </>
         )
     }
-    else {
+    else if (enabled) {
         links = (
             <>
                 <Link className='navBarItem' to={`/student?userName=${userName}`}>学生主页</Link>
@@ -47,6 +47,12 @@ function NavBar({ isAdmin, userName }) {
             </Container>
         </Navbar>
     )
+}
+
+NavBar.defaultProps = {
+    isAdmin: false,
+    username: "",
+    enabled: true,
 }
 
 export default NavBar

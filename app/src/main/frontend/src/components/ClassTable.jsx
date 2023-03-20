@@ -175,6 +175,28 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
             });
     }
 
+    const renderGenericAddClassBtn = () => {
+        if (isAdmin) {
+            return (
+                <div onClick={() => {
+                    // console.log(`在第${week}周，周${day}，${startTime}-${startTime + 1}添加课程`);
+                    setShowModal(true);
+                }}
+                    style={{
+                        backgroundColor: hover ? "lightgrey" : "white",
+                    }}
+                    id="addButton"
+                    onMouseEnter={() => { setHover(true) }}
+                    onMouseLeave={() => { setHover(false) }}
+                >添加课程
+                </div>
+            )
+        }
+        else {
+            return <></>
+        }
+    }
+
     return (
         <div className='ClassTableContent'>
             <table {...getTableProps()} class="table">
@@ -184,7 +206,6 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                             {headerGroup.headers.map(column => (
                                 <th class="headBlocks"
                                     {...column.getHeaderProps()}
-
                                 >
                                     {column.render('Header')}
                                 </th>
@@ -202,7 +223,6 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                                         <td class="time"
                                             {...cell.getCellProps()}
                                             style={{
-
                                                 padding: '10px',
                                                 border: 'solid 1px gray',
                                                 background: 'white',
@@ -348,18 +368,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                     </Modal.Footer>
                 </Form>
             </Modal>
-            <div onClick={() => {
-                // console.log(`在第${week}周，周${day}，${startTime}-${startTime + 1}添加课程`);
-                setShowModal(true);
-            }}
-                style={{
-                    backgroundColor: hover ? "lightgrey" : "white",
-                }}
-                id="addButton"
-                onMouseEnter={() => { setHover(true) }}
-                onMouseLeave={() => { setHover(false) }}
-            >添加课程
-            </div>
+            {renderGenericAddClassBtn()}
         </div >
     )
 }

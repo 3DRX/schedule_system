@@ -39,7 +39,7 @@ function StudentPage() {
 
     return (
         <div>
-            <NavBar isAdmin="false" userName={userName} />
+            <NavBar isAdmin="false" userName={userName} enabled={!start} />
             <h1>welcome, {userName}.</h1>
             <button onClick={handleOnClick}>{start ? "stop" : "start"}</button>
             <h3> Received Data </h3>
