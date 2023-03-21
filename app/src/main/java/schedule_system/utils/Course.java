@@ -46,6 +46,33 @@ public class Course {
     }
 
     /**
+     * 用于模拟时判断与index时是否有本课程
+     * 
+     * @param index
+     * @return
+     */
+    public boolean atIndex(int index) {
+        // TODO: TEST_ME
+        // parse index into week, day, hour
+        int week = (index / 60) + 1;
+        int day = ((index % 60) / 12) + 1;
+        int hour = index % 12 + 7;
+        // System.out.println("week: " + week);
+        // System.out.println("day: " + day);
+        // System.out.println("hour: " + hour);
+        boolean res = false;
+        // at the correct week
+        if (week >= this.startWeek && week <= this.endWeek) {
+            if (this.classTime.getDay() == day &&
+                    this.classTime.getTime() == hour) {
+                // index 正好对应本课程开始的那一个小时
+                res = true;
+            }
+        }
+        return res;
+    }
+
+    /**
      * 判断本课程是否与另一课程信息冲突
      * 
      * 1. 名称冲突

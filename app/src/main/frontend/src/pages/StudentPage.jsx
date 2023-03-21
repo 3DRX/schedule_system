@@ -8,6 +8,7 @@ function StudentPage() {
     const [start, setStart] = useState(false);
     const [data, setData] = useState("");
     const [eventSource, setEventSource] = useState(null);
+    const [index, setIndex] = useState(0);
 
     const handleOnClick = () => {
         setStart(!start);
@@ -17,13 +18,15 @@ function StudentPage() {
             setEventSource(null);
         }
         else {
-            const newEventSource = new EventSource("http://localhost:8888/time/" + userName);
+            const newEventSource = new EventSource("http://localhost:8888/time/" + userName + "/" + index);
             setEventSource(newEventSource);
             newEventSource.onopen = (event) => {
                 console.log("connection opened");
             }
             newEventSource.onmessage = (event) => {
+                // event.data 格式: name,location,x,y,newIndex
                 console.log("result", event.data);
+                setIndex(parseInt(event.data.split(",")[4]));
                 setData(event.data);
             }
             newEventSource.onerror = (event) => {
@@ -42,8 +45,18 @@ function StudentPage() {
             <NavBar isAdmin="false" userName={userName} enabled={!start} />
             <h1>welcome, {userName}.</h1>
             <button onClick={handleOnClick}>{start ? "stop" : "start"}</button>
-            <h3> Received Data </h3>
-            <h4>{data}</h4>
+            <button onClick={() => {
+                setIndex(0);
+                setData("");
+            }}>reset</button>
+            <h4>index = {index}</h4>
+            <ul>
+                Received Data
+                <li>{data.split(",")[0]}</li>
+                <li>{data.split(",")[1]}</li>
+                <li>{data.split(",")[2]}</li>
+                <li>{data.split(",")[3]}</li>
+            </ul>
         </div>
     )
 }
