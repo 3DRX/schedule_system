@@ -11,6 +11,7 @@ app/bin
 .idea
 
 .project
+.classpath
 
 # React
 package-lock.json
