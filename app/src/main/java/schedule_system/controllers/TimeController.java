@@ -18,33 +18,44 @@ import schedule_system.fakeDB.StudentData;
 import schedule_system.utils.Course;
 import schedule_system.utils.Student;
 
+/**
+ * 模拟系统时间控制器
+ */
 @RestController
 public class TimeController {
-    private final Logger logger = LoggerFactory.getLogger(LoginController.class); // 日志控制器
+    private final Logger logger = LoggerFactory.getLogger(TimeController.class); // 日志控制器
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     @Autowired
     StudentData studentData;
     @Autowired
     CourseData courseData;
 
+    /**
+     * 收到GET请求后发送SSE
+     *
+     * id: 人名
+     * start: 开始index（index定义见getSimRes的注释）
+     * 
+     * @param id
+     * @param start
+     * @return
+     */
     @GetMapping("/time/{id}/{start}")
     @CrossOrigin
     public SseEmitter streamDateTime(@PathVariable String id, @PathVariable int start) {
         SseEmitter sseEmitter = new SseEmitter(Long.MAX_VALUE);
         sseEmitter.onCompletion(() -> logger.info("SseEmitter is completed"));
         sseEmitter.onTimeout(() -> logger.info("SseEmitter is timed out"));
-        sseEmitter.onError((ex) -> logger.info("SseEmitter got error:"));
-
+        sseEmitter.onError((ex) -> logger.info("SseEmitter completed with error"));
         executor.execute(() -> {
             int i = start;
-            while (i < 1000) {
+            while (i <= 1200) {
                 i++;
                 ResponseRecord res = getSimRes(id, i);
                 try {
-                    sleep(1, sseEmitter);
+                    sleep(5, sseEmitter);
                     sseEmitter.send(res.toString());
                 } catch (IOException e) {
-                    // e.printStackTrace();
                     sseEmitter.completeWithError(e);
                     break;
                 }
@@ -55,6 +66,15 @@ public class TimeController {
         return sseEmitter;
     }
 
+    /**
+     * 获得指定 id 和指定 index 限定下的通知信息
+     * id: 人名
+     * index: 时间轴索引（第一周周一早上8点的index是1，以此类推）
+     * 
+     * @param id
+     * @param index
+     * @return
+     */
     private ResponseRecord getSimRes(String id, int index) {
         Student theStudent = studentData.getStudentById(id);
         System.out.println(id + ": " + index);
@@ -64,9 +84,7 @@ public class TimeController {
         } else {
             for (String courseName : theStudent.getCourses()) {
                 Course theCourse = courseData.getCourseByName(courseName);
-                // System.out.println("===============" + courseName);
                 if (theCourse.atIndex(index + 1)) {
-                    // System.out.println("find class " + courseName + " at " + index);
                     return new ResponseRecord(
                             courseName,
                             theCourse.getLocation().getName(),
@@ -74,7 +92,6 @@ public class TimeController {
                             theCourse.getLocation().getY(),
                             index++);
                 } else {
-                    // System.out.println("no class at " + index);
                 }
             }
         }
@@ -91,6 +108,9 @@ public class TimeController {
     }
 }
 
+/**
+ * SSE 发送给前端的数据格式
+ */
 record ResponseRecord(
         String courseName,
         String location,
