@@ -18,7 +18,7 @@ public class CourseTest {
         boolean flag = true;
         try {
             ClassTime classTime = new ClassTime(1, 8, 3);
-            courseTest = new Course(1, 10, 11, classTime, classTime, "testCourse", new Location());
+            courseTest = new Course(1, 10, 11, classTime, classTime, "testCourse", new Location("location1",0,0,new Location[0]));
         } catch (IllegalArgumentException e) {
             flag = false;
             System.out.println(e);
@@ -32,7 +32,7 @@ public class CourseTest {
         boolean flag = true;
         try {
             ClassTime classTime = new ClassTime(1, 8, 3);
-            courseTest = new Course(1, 10, 21, classTime, classTime, "testCourse", new Location());
+            courseTest = new Course(1, 10, 21, classTime, classTime, "testCourse", new Location("location1",0,0,new Location[0]));
         } catch (IllegalArgumentException e) {
             flag = false;
             System.out.println(e);
@@ -46,7 +46,7 @@ public class CourseTest {
         boolean flag = true;
         try {
             ClassTime classTime = new ClassTime(1, 8, 3);
-            courseTest = new Course(10, 1, 11, classTime, classTime, "testCourse", new Location());
+            courseTest = new Course(10, 1, 11, classTime, classTime, "testCourse", new Location("location1",0,0,new Location[0]));
         } catch (IllegalArgumentException e) {
             flag = false;
             System.out.println(e);
@@ -60,7 +60,7 @@ public class CourseTest {
         boolean flag = true;
         try {
             ClassTime classTime = new ClassTime(1, 8, 3);
-            courseTest = new Course(-1, 10, 11, classTime, classTime, "testCourse", new Location());
+            courseTest = new Course(-1, 10, 11, classTime, classTime, "testCourse", new Location("location1",0,0,new Location[0]));
         } catch (IllegalArgumentException e) {
             flag = false;
             System.out.println(e);
@@ -74,7 +74,7 @@ public class CourseTest {
         boolean flag = true;
         try {
             ClassTime classTime = new ClassTime(1, 8, 3);
-            courseTest = new Course(-10, -2, 11, classTime, classTime, "testCourse", new Location());
+            courseTest = new Course(-10, -2, 11, classTime, classTime, "testCourse", new Location("location1",0,0,new Location[0]));
         } catch (IllegalArgumentException e) {
             flag = false;
             System.out.println(e);
@@ -88,7 +88,7 @@ public class CourseTest {
         boolean flag = true;
         try {
             ClassTime classTime = new ClassTime(1, 8, 3);
-            courseTest = new Course(1, 10, 9, classTime, classTime, "testCourse", new Location());
+            courseTest = new Course(1, 10, 9, classTime, classTime, "testCourse", new Location("location1",0,0,new Location[0]));
         } catch (IllegalArgumentException e) {
             flag = false;
             System.out.println(e);
