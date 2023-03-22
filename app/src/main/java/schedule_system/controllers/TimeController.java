@@ -47,11 +47,13 @@ public class TimeController {
         sseEmitter.onCompletion(() -> logger.info("SseEmitter is completed"));
         sseEmitter.onTimeout(() -> logger.info("SseEmitter is timed out"));
         sseEmitter.onError((ex) -> logger.info("SseEmitter completed with error"));
+        if (start >= 1200) {
+            logger.error("simulation start index out of range");
+        }
         executor.execute(() -> {
             int i = start;
-            while (i <= 1200) {
-                i++;
-                ResponseRecord res = getSimRes(id, i);
+            while (i < 1200) {
+                ResponseRecord res = getSimRes(id, i + 1);
                 try {
                     sleep(1, sseEmitter);
                     sseEmitter.send(res.toString());
@@ -59,6 +61,7 @@ public class TimeController {
                     sseEmitter.completeWithError(e);
                     break;
                 }
+                i++;
             }
             sseEmitter.complete();
         });

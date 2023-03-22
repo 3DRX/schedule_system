@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import NavBar from '../components/NavBar'
-import { NumberPicker } from "react-widgets";
 import { InputNumber } from 'rsuite';
+import 'rsuite/dist/rsuite.min.css';
 
 function StudentPage() {
     const query = new URLSearchParams(useLocation().search);
@@ -22,7 +22,8 @@ function StudentPage() {
             setEventSource(null);
         }
         else {
-            const index = 60 * (week - 1) + 12 * (day - 1) + time - 7;
+            const index = (60 * (week - 1)) + (12 * (day - 1)) + (time - 8);
+            console.log(`send index=${index}`);
             const newEventSource = new EventSource("http://localhost:8888/time/" + userName + "/" + index);
             setEventSource(newEventSource);
             newEventSource.onopen = (event) => {
@@ -35,7 +36,7 @@ function StudentPage() {
                 console.log(reIndex);
                 setWeek(parseInt(reIndex / 60) + 1);
                 setDay(parseInt((reIndex % 60) / 12) + 1);
-                setTime(parseInt(reIndex % 12) + 7);
+                setTime((reIndex % 12) + 8);
                 setData(event.data);
             }
             newEventSource.onerror = (event) => {
@@ -94,6 +95,9 @@ function StudentPage() {
                     step={1}
                     max={20}
                     min={8}
+                    style={{
+                        width: "10ex",
+                    }}
                 />
                 点
             </p>

@@ -55,7 +55,7 @@ public class Course {
         // parse index into week, day, hour
         int week = (index / 60) + 1;
         int day = ((index % 60) / 12) + 1;
-        int hour = index % 12 + 7;
+        int hour = index % 12 + 8;
         boolean res = false;
         // at the correct week
         if (week >= this.startWeek && week <= this.endWeek) {
