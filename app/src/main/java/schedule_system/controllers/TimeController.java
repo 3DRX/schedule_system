@@ -53,7 +53,7 @@ public class TimeController {
                 i++;
                 ResponseRecord res = getSimRes(id, i);
                 try {
-                    sleep(5, sseEmitter);
+                    sleep(1, sseEmitter);
                     sseEmitter.send(res.toString());
                 } catch (IOException e) {
                     sseEmitter.completeWithError(e);
