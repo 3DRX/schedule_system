@@ -34,7 +34,7 @@ public class TimeController {
      * 收到GET请求后发送SSE
      *
      * id: 人名
-     * start: 开始index（index定义见getSimRes的注释）
+     * start: 开始index（从0开始）
      * 
      * @param id
      * @param start
@@ -49,6 +49,7 @@ public class TimeController {
         sseEmitter.onError((ex) -> logger.info("SseEmitter completed with error"));
         if (start >= 1200) {
             logger.error("simulation start index out of range");
+            throw new IllegalArgumentException("simulation start index out of range");
         }
         executor.execute(() -> {
             int i = start;
@@ -72,7 +73,7 @@ public class TimeController {
     /**
      * 获得指定 id 和指定 index 限定下的通知信息
      * id: 人名
-     * index: 时间轴索引（第一周周一早上8点的index是1，以此类推）
+     * index: 时间轴索引（第一周周一早上8点的index是0，以此类推）
      * 
      * @param id
      * @param index
@@ -80,7 +81,6 @@ public class TimeController {
      */
     private ResponseRecord getSimRes(String id, int index) {
         Student theStudent = studentData.getStudentById(id);
-        System.out.println(id + ": " + index);
         if (theStudent == null) {
             logger.error("can't find student simulating: " + id);
             return new ResponseRecord("", "", 0, 0, index++);
