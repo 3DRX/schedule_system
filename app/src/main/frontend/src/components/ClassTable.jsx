@@ -38,6 +38,12 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
             })
     }, [refresh]);
 
+    useEffect(() => {
+        setClassDay(addClassInfo.day);
+        setClassTime(addClassInfo.startTime);
+        setStartWeek(addClassInfo.week);
+    }, [addClassInfo]);
+
     const handleOnChange = (position) => {
         const updatedCheckedState = checkedState.map((item, index) =>
             index === position ? !item : item

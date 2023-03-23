@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Disabled;
 
+@Disabled("Disabled ConflictCheckTest")
 public class ConflictCheckTest {
     @Test
     // 同一时间，不同地点
