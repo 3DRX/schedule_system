@@ -19,7 +19,7 @@ import schedule_system.utils.Course;
 @RestController
 @CrossOrigin(maxAge = 3600)
 public class AddCourseController {
-    private final Logger logger = LoggerFactory.getLogger(ReferCourseController.class); // 日志控制器
+    private final Logger logger = LoggerFactory.getLogger(AddCourseController.class); // 日志控制器
     @Autowired
     CourseData courseData; // 课程数据控制器
     @Autowired
