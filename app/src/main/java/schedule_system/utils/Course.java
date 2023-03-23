@@ -84,6 +84,8 @@ public class Course {
 
     /**
      * 判断是否与另一门课在时间上有冲突
+     * 1. 开始周、结束周有重叠
+     * 2. 上课时间有重叠
      * （用于判断新课程与某一位学生的已有课程冲突与否）
      *
      * @param Course course
@@ -101,7 +103,8 @@ public class Course {
      * @param b
      * @return
      */
-    private boolean weekOverlaps(Course b) {
+    public boolean weekOverlaps(Course b) {
+        // 为了测试暂时把这个方法public
         // TODO 1 : TEST ME
         boolean res = false;
         if (this.startWeek < b.startWeek) {

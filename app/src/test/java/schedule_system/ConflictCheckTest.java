@@ -13,23 +13,16 @@ import org.junit.jupiter.api.Disabled;
 
 public class ConflictCheckTest {
     @Test
-//
     void testConflictsWith_1() {
-        // TODO
-        // 创建两个新的Course
         Course course1 = new Course(1, 10, 11, new ClassTime(1, 8, 3), new ClassTime(1, 8, 3), "course1",
                 new Location("location1", 0, 0, new Location[0]));
         Course course2 = new Course(1, 10, 11, new ClassTime(1, 8, 3), new ClassTime(1, 8, 3), "course2",
                 new Location("location2", 0, 0, new Location[0]));
-        // 显然，这里两个课程是冲突的，所以有下面这一行代码。
         assertTrue(course1.conflictsWith(course2));
-        // 我们要测试的函数就是这个conflictsWith，
-        // 此处如果这个函数的判断有问题，测试用例就不会通过。
-
     }
 
     @Test
-        //课程名字不同，class Time 相同
+    // 课程名字不同，class Time 相同
     void testConflictsWith_2() {
         Course course1 = new Course(1, 5, 11, new ClassTime(1, 8, 3), new ClassTime(1, 8, 3), "course1",
                 new Location("location1", 0, 0, new Location[0]));
@@ -39,7 +32,7 @@ public class ConflictCheckTest {
     }
 
     @Test
-//clasTime冲突 上课周不同
+    // clasTime冲突 上课周不同
     void testConflictsWith_3() {
         Course course1 = new Course(1, 5, 11, new ClassTime(1, 8, 3), new ClassTime(1, 8, 3), "course1",
                 new Location("location1", 0, 0, new Location[0]));
@@ -49,7 +42,7 @@ public class ConflictCheckTest {
     }
 
     @Test
-//课程名称冲突
+    // 课程名称冲突
     void testConflictsWith_4() {
         Course course1 = new Course(1, 5, 11, new ClassTime(1, 8, 3), new ClassTime(1, 8, 3), "course1",
                 new Location("location1", 0, 0, new Location[0]));
@@ -59,7 +52,7 @@ public class ConflictCheckTest {
     }
 
     @Test
-//时间不相同
+    // 时间不相同
     void testTimeOverlapsWith_1() {
         Course course1 = new Course(1, 5, 11, new ClassTime(1, 8, 3), new ClassTime(1, 8, 3), "course1",
                 new Location("location2", 0, 0, new Location[0]));
@@ -69,7 +62,7 @@ public class ConflictCheckTest {
     }
 
     @Test
-//时间和地点相同
+    // 时间和地点相同
     void testTimeOverlapsWith_2() {
         Course course1 = new Course(6, 10, 11, new ClassTime(1, 8, 3), new ClassTime(1, 8, 3), "course1",
                 new Location("location2", 0, 0, new Location[0]));
@@ -79,7 +72,7 @@ public class ConflictCheckTest {
     }
 
     @Test
-        //时间重叠
+    // 时间重叠
     void testTimeOverlapsWith_3() {
         Course course1 = new Course(6, 10, 11, new ClassTime(1, 8, 3), new ClassTime(1, 8, 3), "course1",
                 new Location("location2", 0, 0, new Location[0]));
@@ -89,7 +82,7 @@ public class ConflictCheckTest {
     }
 
     @Test
-        //上课周是重叠的
+    // 上课周是重叠的
     void testWeekOverlaps_1() {
         Course course1 = new Course(1, 10, 11, new ClassTime(1, 8, 3), new ClassTime(1, 8, 3), "course1",
                 new Location("location2", 0, 0, new Location[0]));
@@ -99,7 +92,7 @@ public class ConflictCheckTest {
     }
 
     @Test
-//上课周是重叠的
+    // 上课周是重叠的
     void testWeekOverlaps_2() {
         Course course1 = new Course(1, 3, 11, new ClassTime(1, 8, 3), new ClassTime(1, 8, 3), "course1",
                 new Location("location2", 0, 0, new Location[0]));
@@ -109,7 +102,7 @@ public class ConflictCheckTest {
     }
 
     @Test
-//上课周是不重叠
+    // 上课周是不重叠
     void testWeekOverlaps_3() {
         Course course1 = new Course(1, 4, 11, new ClassTime(1, 8, 3), new ClassTime(1, 8, 3), "course1",
                 new Location("location2", 0, 0, new Location[0]));
@@ -119,9 +112,8 @@ public class ConflictCheckTest {
     }
 
     @Test
-//上课周数一样的
+    // 上课周数一样的
     void testWeekOverlaps_4() {
-        // TODO
         Course course1 = new Course(1, 10, 11, new ClassTime(1, 8, 3), new ClassTime(1, 8, 3), "course1",
                 new Location("location1", 0, 0, new Location[0]));
         Course course2 = new Course(1, 10, 11, new ClassTime(1, 8, 3), new ClassTime(1, 8, 3), "course1",
