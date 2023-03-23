@@ -16,7 +16,7 @@ import schedule_system.fakeDB.StudentData;
 @RestController
 @CrossOrigin(maxAge = 3600)
 public class DeleteCourseController {
-    private final Logger logger = LoggerFactory.getLogger(LoginController.class); // 日志控制器
+    private final Logger logger = LoggerFactory.getLogger(DeleteCourseController.class); // 日志控制器
     @Autowired
     CourseData courseData; // 课程数据控制器
     @Autowired

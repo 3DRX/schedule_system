@@ -24,6 +24,7 @@ function NavBar({ isAdmin, userName }) {
     else {
         links = (
             <>
+                <Link className='navBarItem' to={`/student?userName=${userName}`}>学生主页</Link>
                 <Link className='navBarItem' to={`/student/course?userName=${userName}`}>课程</Link>
                 <Link className='navBarItem' to={`/student/activities?userName=${userName}`}>课外活动</Link>
                 <Link className='navBarItem' to={`/student/others?userName=${userName}`}>其他</Link>

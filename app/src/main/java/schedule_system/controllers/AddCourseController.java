@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import schedule_system.fakeDB.CourseData;
 import schedule_system.fakeDB.StudentData;
 
-import schedule_system.records.CourseInfoRecord;
 import schedule_system.utils.Course;
 
 /**
@@ -20,7 +19,7 @@ import schedule_system.utils.Course;
 @RestController
 @CrossOrigin(maxAge = 3600)
 public class AddCourseController {
-    private final Logger logger = LoggerFactory.getLogger(ReferCourseController.class); // 日志控制器
+    private final Logger logger = LoggerFactory.getLogger(AddCourseController.class); // 日志控制器
     @Autowired
     CourseData courseData; // 课程数据控制器
     @Autowired
@@ -80,4 +79,7 @@ public class AddCourseController {
         }
         return successFlag;
     }
+}
+
+record CourseInfoRecord(Course course, String[] students) {
 }
