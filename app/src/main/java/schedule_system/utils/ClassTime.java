@@ -29,11 +29,10 @@ public class ClassTime {
      * @return boolean
      */
     public boolean overlaps(ClassTime classTime) {
-        // TODO: TEST THIS
         boolean res;
-        // System.out.printf("this: day%d time%d duration%d", this.day, this.time,
+        // System.out.printf("this: day%d time%d duration%d\n", this.day, this.time,
         // this.duration);
-        // System.out.printf("that: day%d time%d duration%d", classTime.day,
+        // System.out.printf("that: day%d time%d duration%d\n", classTime.day,
         // classTime.time, classTime.duration);
         if (this.day == classTime.day) {
             if (this.time == classTime.time) {

@@ -80,15 +80,16 @@ public class Course {
      * @return boolean
      */
     public boolean conflictsWith(Course course) {
-        // TODO: TEST ME
         boolean haveConflict = false;
         if (this.getName().equals(course.getName())) {
             // 若两门课程名称一样，则冲突
+            // System.out.println("两课程名称一样");
             haveConflict = true;
         }
         if (this.classTime.overlaps(course.getClassTime()) && weekOverlaps(course)
                 && this.location.equals(course.location)) {
             // 若两门课程在同一时间占用同一地点，则冲突
+            // System.out.println("新课程" + course.getName() + "与" + this.getName() + "在同一时间占用同一地点");
             haveConflict = true;
         }
         return haveConflict;
@@ -96,13 +97,14 @@ public class Course {
 
     /**
      * 判断是否与另一门课在时间上有冲突
+     * 1. 开始周、结束周有重叠
+     * 2. 上课时间有重叠
      * （用于判断新课程与某一位学生的已有课程冲突与否）
      *
      * @param Course course
      * @return boolean
      */
     public boolean timeOverlapsWith(Course course) {
-        // TODO: TEST ME
         boolean res = this.classTime.overlaps(course.getClassTime()) && weekOverlaps(course);
         return res;
     }
@@ -114,7 +116,6 @@ public class Course {
      * @return
      */
     private boolean weekOverlaps(Course b) {
-        // TODO: TEST ME
         boolean res = false;
         if (this.startWeek < b.startWeek) {
             res = this.endWeek >= b.startWeek;

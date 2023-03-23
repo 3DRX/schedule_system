@@ -4,11 +4,17 @@ package schedule_system.utils;
  * Location
  */
 public class Location {
-    // TODO: 未完成
 
     private String name;
     private int x;
     private int y;
+
+    public Location(String name, int x, int y) {
+        // TODO: 检查输入合法性
+        this.name = name;
+        this.x = x;
+        this.y = y;
+    }
 
     public boolean equals(Location location) {
         return this.name.equals(location.name);
@@ -18,16 +24,8 @@ public class Location {
         return x;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
     public int getY() {
         return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
     }
 
     public String getName() {
