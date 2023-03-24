@@ -64,27 +64,6 @@
   },
   {
     "startWeek": 1,
-    "endWeek": 1,
-    "testWeek": 1,
-    "classTime": {
-      "day": 1,
-      "time": 8,
-      "duration": 1
-    },
-    "examTime": {
-      "day": 1,
-      "time": 8,
-      "duration": 1
-    },
-    "name": "",
-    "location": {
-      "name": "",
-      "x": 0,
-      "y": 0
-    }
-  },
-  {
-    "startWeek": 1,
     "endWeek": 15,
     "testWeek": 17,
     "classTime": {
@@ -97,9 +76,9 @@
       "time": 8,
       "duration": 1
     },
-    "name": "Ã«Ôó¶«Ë¼ÏëÓëÖĞ¹úÌØÉ«Éç»áÖ÷ÒåÀíÂÛÌåÏµ¸ÅÂÛ",
+    "name": "æ¯›æ³½ä¸œæ€æƒ³ä¸ä¸­å›½ç‰¹è‰²ç¤¾ä¼šä¸»ä¹‰ç†è®ºä½“ç³»æ¦‚è®º",
     "location": {
-      "name": "½ÌÈı 318",
+      "name": "æ•™ä¸‰ 318",
       "x": 0,
       "y": 0
     }
