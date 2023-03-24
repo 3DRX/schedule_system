@@ -244,112 +244,137 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                 </tbody>
             </table>
             <Modal show={showModal} onHide={() => setShowModal(false)} backdrop="static">
-                <Modal.Header closeButton>
+                <Modal.Header id="header" closeButton>
                     <Modal.Title>添加课程</Modal.Title>
                     {/* `周${addClassInfo.day}，${addClassInfo.startTime}-${addClassInfo.startTime + 1}：`*/}
                 </Modal.Header>
-                <Form onSubmit={handleSubmit}>
+                <Form id="formContent" onSubmit={handleSubmit}>
                     <Modal.Body>
-                        <Form.Control size="sm" type="text" placeholder="课程名称"
-                            onChange={({ target: { value } }) => {
-                                if (value !== "") {
-                                    setNewName(value)
-                                }
-                            }}
-                        />
-                        <p>
-                            开始周
-                            <NumberPicker defaultValue={week} step={1} max={19} min={1} onChange={(value) => {
-                                if (value !== null && value >= 1 && value <= 20) {
-                                    setStartWeek(value);
-                                    // console.log(`开始周：${value}`);
-                                }
-                            }}
-                                style={{
-                                    width: "10ex",
-                                }}
-                            />
-                        </p>
-                        <p>
-                            结束周
-                            <NumberPicker defaultValue={null} step={1} max={20} min={startWeek} onChange={(value) => {
-                                if (value !== null && value >= 1 && value <= 20) {
-                                    setEndWeek(value);
-                                    // console.log(`结束周：${value}`);
-                                }
-                            }}
-                                style={{
-                                    width: "10ex",
-                                }}
-                            />
-                        </p>
-                        <p>
-                            考试周
-                            <NumberPicker defaultValue={null} step={1} max={20} min={endWeek + 1} onChange={(value) => {
-                                if (value !== null && value >= 1 && value <= 20) {
-                                    setTestWeek(value);
-                                    // console.log(`考试周：${value}`);
-                                }
-                            }}
-                                style={{
-                                    width: "10ex",
-                                }}
-                            />
-                        </p>
-                        <p>
-                            上课时间
-                        </p>
-                        <p>
-                            星期
-                            <NumberPicker defaultValue={addClassInfo.day} step={1} max={5} min={1} onChange={(value) => {
-                                if (value !== null && value >= 1 && value <= 5) {
-                                    setClassDay(value);
-                                    // console.log(`星期：${value}`);
-                                }
-                            }}
-                                style={{
-                                    width: "10ex",
-                                }}
-                            />
-                        </p>
-                        <p>
-                            <NumberPicker defaultValue={addClassInfo.startTime} step={1} max={19} min={8} onChange={(value) => {
-                                if (value !== null && value >= 8 && value <= 20) {
-                                    setClassTime(value);
-                                    // console.log(`${value}点`);
-                                }
-                            }}
-                                style={{
-                                    width: "10ex",
-                                }}
-                            />
-                            点
-                        </p>
-                        <p>
-                            时长
-                            <Form.Select size="sm"
-                                controlId="exampleForm.duration"
-                                style={{
-                                    width: "10ex",
-                                }}
-                                onChange={({ target: { value } }) => {
-                                    setClassDuration(parseInt(value[0]));
-                                }}
-                            >
-                                {generateOptions()}
-                            </Form.Select>
-                        </p>
-                        <p>
-                            <Form.Control size="sm" type="text" placeholder="上课地点"
-                                controlId="exampleForm.location"
+                        <p id="courseInfo">
+                            <p id="courseName">
+                                课程名称
+                            </p>
+                            <Form.Control id="courseNameInput" size="sm" type="text" placeholder="在此输入课程名称……"
                                 onChange={({ target: { value } }) => {
                                     if (value !== "") {
-                                        setLocation(value)
+                                        setNewName(value)
                                     }
                                 }}
                             />
+                            <p id="duration">
+                                <div className="weeks">
+                                    <text>开始周</text>
+                                    <NumberPicker defaultValue={week} step={1} max={20} min={1} onChange={(value) => {
+                                        if (value !== null && value >= 1 && value <= 20) {
+                                            setStartWeek(value);
+                                            // console.log(`开始周：${value}`);
+                                        }
+                                    }}
+                                        style={{
+                                            width: "10ex",
+                                        }}
+                                    />
+                                </div>
+                                <div className="weeks">
+                                    <text>结束周</text>
+                                    <NumberPicker defaultValue={null} step={1} max={20} min={startWeek}
+                                        onChange={(value) => {
+                                            if (value !== null && value >= 1 && value <= 20) {
+                                                setEndWeek(value);
+                                                // console.log(`结束周：${value}`);
+                                            }
+                                        }}
+                                        style={{
+                                            width: "10ex",
+                                        }}
+                                    />
+                                </div>
+                                <div className="weeks">
+                                    <text>考试周</text>
+                                    <NumberPicker defaultValue={null} step={1} max={20} min={endWeek + 1}
+                                        onChange={(value) => {
+                                            if (value !== null && value >= 1 && value <= 20) {
+                                                setTestWeek(value);
+                                                // console.log(`考试周：${value}`);
+                                            }
+                                        }}
+                                        style={{
+                                            width: "10ex",
+                                        }}
+                                    />
+                                </div>
+                            </p>
                         </p>
-                        <p>
+
+                        <p id="courseTime">
+                            <p>
+                                上课时间
+                            </p>
+                            <p id="classTime">
+                                <div id="week">
+                                    星期
+                                </div>
+                                <div id="weekInput">
+                                    <NumberPicker defaultValue={addClassInfo.day} step={1} max={5} min={1} onChange={(value) => {
+                                        if (value !== null && value >= 1 && value <= 5) {
+                                            setClassDay(value);
+                                            // console.log(`星期：${value}`);
+                                        }
+                                    }}
+                                        style={{
+                                            width: "10ex",
+                                        }}
+                                    />
+                                </div>
+                                <div>
+                                    <NumberPicker defaultValue={addClassInfo.startTime} step={1} max={20} min={8} onChange={(value) => {
+                                        if (value !== null && value >= 8 && value <= 20) {
+                                            setClassTime(value);
+                                            // console.log(`${value}点`);
+                                        }
+                                    }}
+                                        style={{
+                                            width: "10ex",
+                                        }}
+                                    />
+                                </div>
+                                <div id="hour">
+                                    点
+                                </div>
+                                <div id="lasting">
+                                    时长
+                                </div>
+                                <div>
+                                    <Form.Select size="sm"
+                                        controlId="exampleForm.duration"
+                                        style={{
+                                            width: "10ex",
+                                            height: "5.1ex"
+                                        }}
+                                        onChange={({ target: { value } }) => {
+                                            setClassDuration(parseInt(value[0]));
+                                        }}
+                                    >
+                                        {generateOptions()}
+                                    </Form.Select>
+                                </div>
+                            </p>
+                            <p id="location">
+                                上课地点
+                            </p>
+                            <p>
+                                <Form.Control id="locationInput" size="sm" type="text" placeholder="在此输入上课地点……"
+                                    controlId="exampleForm.location"
+                                    onChange={({ target: { value } }) => {
+                                        if (value !== "") {
+                                            setLocation(value)
+                                        }
+                                    }}
+                                />
+                            </p>
+                        </p>
+
+                        <p id="studentInfo">
                             参与学生：
                             {studentList.map((name, index) => (
                                 <div key={`${name}`} className="mb-3">

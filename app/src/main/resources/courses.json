@@ -64,21 +64,21 @@
   },
   {
     "startWeek": 1,
-    "endWeek": 10,
-    "testWeek": 11,
+    "endWeek": 15,
+    "testWeek": 17,
     "classTime": {
       "day": 3,
       "time": 8,
-      "duration": 3
+      "duration": 1
     },
     "examTime": {
       "day": 3,
       "time": 8,
-      "duration": 3
+      "duration": 1
     },
-    "name": "english",
+    "name": "毛泽东思想与中国特色社会主义理论体系概论",
     "location": {
-      "name": "abc",
+      "name": "教三 318",
       "x": 0,
       "y": 0
     }
