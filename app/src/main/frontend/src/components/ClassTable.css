@@ -23,5 +23,95 @@
 }
 .time{
     width: 10vw;
+    vertical-align: middle;
+}
+#header{
+    color: white;
+    background-color: #F2C257;
+    padding-left: 30px ;
+}
+#formContent{
+    color: black;
+    padding: 7px;
+    padding-top: 0px;
+    background-color: #82AAE3;
+}
+#courseInfo{
+    border-radius: 10px;
+    background-color: rgba(214, 214, 214, 0.479);
+    backdrop-filter: saturate(100%) blur(3px);
+    box-shadow: 0px 0px 2vw 0vw rgba(49, 49, 49, 0.623);
+    padding: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: white;
+}
+#courseTime{
+    border-radius: 10px;
+    background-color: rgba(214, 214, 214, 0.479);
+    backdrop-filter: saturate(100%) blur(3px);
+    box-shadow: 0px 0px 2vw 0vw rgba(49, 49, 49, 0.623);
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 8px;
+    color: white;
+}
+#studentInfo{
+    border-radius: 10px;
+    background-color: rgba(214, 214, 214, 0.479);
+    backdrop-filter: saturate(100%) blur(3px);
+    box-shadow: 0px 0px 2vw 0vw rgba(49, 49, 49, 0.623);
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+    color: white;
+}
+#duration{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+
+}
+#classTime{
+    display: flex;
+
+}
+.weeks{
+
+}
+.weeks text{
+    padding-left: 5px;
+
+}
+#courseName{
+    margin-bottom: 4px;
+}
+#courseNameInput{
+    line-height: 32px;
+}
+#week{
+    margin-right: 5px;
+    padding-top: 5px;
+}
+#weekInput{
+    margin-right: 10px;
+}
+#hour{
+    margin-left: 5px;
+    padding-top: 5px;
+    margin-right: 5px;
+}
+#lasting{
+    margin-left: 5px;
+    padding-top: 5px;
+    margin-right: 7px;
+}
+#location{
+    margin-bottom: 4px;
+}
+#locationInput{
+    line-height: 32px;
 }
 
