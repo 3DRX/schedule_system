@@ -9,10 +9,9 @@ import Form from 'react-bootstrap/Form';
 import { NumberPicker } from "react-widgets";
 import "./ClassTable.css";
 
-export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
+export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShowModal, showModal }) {
     const query = new URLSearchParams(useLocation().search);
     const userName = query.get("userName");
-    const [showModal, setShowModal] = useState(false);
     const [addClassInfo, setAddClassInfo] = useState({});
 
     const [newName, setNewName] = useState("");
@@ -28,8 +27,6 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
     const [checkedState, setCheckedState] = useState(
         new Array(studentList.length).fill(false)
     );
-
-    const [hover, setHover] = useState(false);
 
     useEffect(() => {
         axios.get("http://" + window.location.hostname + ":8888/studentList")

@@ -11,6 +11,8 @@ const AdminCourse = () => {
     const userName = query.get("userName");
     const [week, setWeek] = useState(1);
     const [refresh, setRefresh] = useState(false);
+    const [hover, setHover] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
     return (
         <>
@@ -26,26 +28,32 @@ const AdminCourse = () => {
                     class="input"
                 />
                 <Button variant="secondary"
-                        onClick={() => {
-                            setRefresh(!refresh);
-                        }}
-                        id="refreshButton"
+                    onClick={() => {
+                        setRefresh(!refresh);
+                    }}
+                    id="refreshButton"
                 >刷新</Button>
                 <div onClick={() => {
                     // console.log(`在第${week}周，周${day}，${startTime}-${startTime + 1}添加课程`);
                     setShowModal(true);
                 }}
-                     style={{
-                         backgroundColor: hover ? "lightgrey" : "white",
-                     }}
-                     id="addButton"
-                     onMouseEnter={() => { setHover(true) }}
-                     onMouseLeave={() => { setHover(false) }}
+                    style={{
+                        backgroundColor: hover ? "lightgrey" : "white",
+                    }}
+                    id="addButton"
+                    onMouseEnter={() => { setHover(true) }}
+                    onMouseLeave={() => { setHover(false) }}
                 >添加课程
                 </div>
             </div>
 
-            <ClassTable isAdmin={true} week={week} refresh={refresh} setRefresh={setRefresh}
+            <ClassTable
+                isAdmin={true}
+                week={week}
+                refresh={refresh}
+                setRefresh={setRefresh}
+                setShowModal={setShowModal}
+                showModal={showModal}
             />
         </>
     )
