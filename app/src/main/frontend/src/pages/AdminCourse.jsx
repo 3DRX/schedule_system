@@ -18,7 +18,7 @@ const AdminCourse = () => {
         <>
             <NavBar isAdmin="true" userName={userName} />
             <div className="setWeekTab">
-                <div class="texts">set week</div>
+                <div id="texts">set week</div>
                 <NumberPicker defaultValue={1} step={1} max={20} min={1} onChange={(value) => {
                     if (value !== null && (value >= 1 && value <= 20)) {
                         // console.log(`set value to ${value}`)
@@ -37,10 +37,8 @@ const AdminCourse = () => {
                     // console.log(`在第${week}周，周${day}，${startTime}-${startTime + 1}添加课程`);
                     setShowModal(true);
                 }}
-                    style={{
-                        backgroundColor: hover ? "lightgrey" : "white",
-                    }}
-                    id="addButton"
+
+                    id="globalAddButton"
                     onMouseEnter={() => { setHover(true) }}
                     onMouseLeave={() => { setHover(false) }}
                 >添加课程

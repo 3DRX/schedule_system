@@ -180,12 +180,12 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
 
     return (
         <div className='ClassTableContent'>
-            <table {...getTableProps()} class="table">
-                <thead class="head">
+            <table {...getTableProps()} id="table">
+                <thead id="head">
                     {headerGroups.map(headerGroup => (
                         <tr {...headerGroup.getHeaderGroupProps()} >
                             {headerGroup.headers.map(column => (
-                                <th class="headBlocks"
+                                <th id="headBlocks"
                                     {...column.getHeaderProps()}
 
                                 >
@@ -202,7 +202,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
                             <tr {...row.getRowProps()}>
                                 {row.cells.map(cell => {
                                     return (
-                                        <td class="time"
+                                        <td id="time"
                                             {...cell.getCellProps()}
                                             style={{
 
@@ -352,9 +352,18 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
                         </p>
 
                         <p id="studentInfo">
-                            参与学生：
+                            <p id="studentTitle">
+                                <div>参与学生</div>
+                                <div id="allSelected">
+                                    <Form.Check
+                                    type={"checkbox"}
+                                    id="allSelectedBox"
+                                    />  全选
+                                </div>
+                            </p>
+
                             {studentList.map((name, index) => (
-                                <div key={`${name}`} className="mb-3">
+                                <div key={`${name}`} id="mb-3">
                                     <Form.Check
                                         type={"checkbox"}
                                         id={`${index}`}

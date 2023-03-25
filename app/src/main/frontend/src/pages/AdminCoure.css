@@ -1,6 +1,6 @@
-.texts{
-    margin-right: 2vw;
-    margin-top: 0.6vw;
+#texts{
+    margin-right: 1vw;
+    margin-top: 0.5vw;
 }
 .setWeekTab{
     width: 100vw;
@@ -10,6 +10,15 @@
     background-color: papayawhip;
 }
 #refreshButton{
-    margin-left: 2vw;
+    margin-left: 1vw;
     background-color: #3F497F;
+}
+#globalAddButton{
+    width: 6.5vw;
+    margin-left: 1vw;
+    background-color: #3F497F;
+    color: white;
+    text-align: center;
+    padding: 6px;
+    border-radius: 5px;
 }
