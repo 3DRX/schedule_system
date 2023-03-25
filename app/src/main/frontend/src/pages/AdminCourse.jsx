@@ -31,6 +31,18 @@ const AdminCourse = () => {
                         }}
                         id="refreshButton"
                 >刷新</Button>
+                <div onClick={() => {
+                    // console.log(`在第${week}周，周${day}，${startTime}-${startTime + 1}添加课程`);
+                    setShowModal(true);
+                }}
+                     style={{
+                         backgroundColor: hover ? "lightgrey" : "white",
+                     }}
+                     id="addButton"
+                     onMouseEnter={() => { setHover(true) }}
+                     onMouseLeave={() => { setHover(false) }}
+                >添加课程
+                </div>
             </div>
 
             <ClassTable isAdmin={true} week={week} refresh={refresh} setRefresh={setRefresh}
