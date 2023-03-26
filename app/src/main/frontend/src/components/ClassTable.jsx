@@ -13,7 +13,6 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
     const query = new URLSearchParams(useLocation().search);
     const userName = query.get("userName");
     const [addClassInfo, setAddClassInfo] = useState({});
-
     const [newName, setNewName] = useState("");
     const [startWeek, setStartWeek] = useState(1);
     const [endWeek, setEndWeek] = useState(1);
@@ -220,7 +219,14 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
                     })}
                 </tbody>
             </table>
-            <Modal show={showModal} onHide={() => setShowModal(false)} backdrop="static">
+            <Modal
+                show={showModal}
+                onHide={() => {
+                    setShowModal(false);
+                    setAddClassInfo({});
+                }}
+                backdrop="static"
+            >
                 <Modal.Header id="header" closeButton>
                     <Modal.Title>添加课程</Modal.Title>
                     {/* `周${addClassInfo.day}，${addClassInfo.startTime}-${addClassInfo.startTime + 1}：`*/}
@@ -356,8 +362,8 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
                                 <div>参与学生</div>
                                 <div id="allSelected">
                                     <Form.Check
-                                    type={"checkbox"}
-                                    id="allSelectedBox"
+                                        type={"checkbox"}
+                                        id="allSelectedBox"
                                     />  全选
                                 </div>
                             </p>

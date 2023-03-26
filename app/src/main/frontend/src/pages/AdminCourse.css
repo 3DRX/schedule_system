@@ -14,11 +14,11 @@
     background-color: #3F497F;
 }
 #globalAddButton{
-    width: 6.5vw;
+    /* width: 6.5vw; */
     margin-left: 1vw;
     background-color: #3F497F;
-    color: white;
-    text-align: center;
-    padding: 6px;
-    border-radius: 5px;
+    /* color: white; */
+    /* text-align: center; */
+    /* padding: 6px; */
+    /* border-radius: 5px; */
 }
