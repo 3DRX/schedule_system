@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import NavBar from '../components/NavBar'
 import { InputNumber } from 'rsuite';
-import 'rsuite/dist/rsuite.min.css';
+// import 'rsuite/dist/rsuite.min.css';
 
 function StudentPage() {
     const query = new URLSearchParams(useLocation().search);
@@ -23,7 +23,7 @@ function StudentPage() {
         }
         else {
             const index = (60 * (week - 1)) + (12 * (day - 1)) + (time - 8);
-            console.log(`send index=${index}`);
+            console.log("http://localhost:8888/time/" + userName + "/" + index);
             const newEventSource = new EventSource("http://localhost:8888/time/" + userName + "/" + index);
             setEventSource(newEventSource);
             newEventSource.onopen = (event) => {
