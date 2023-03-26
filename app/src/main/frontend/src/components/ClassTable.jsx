@@ -28,6 +28,10 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
         new Array(studentList.length).fill(false)
     );
 
+    // useEffect(() => {
+    //     console.log(checkedState);
+    // }, [checkedState]);
+
     useEffect(() => {
         setCheckedState(new Array(studentList.length).fill(selectAllStudents));
     }, [selectAllStudents]);
@@ -50,6 +54,12 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
             index === position ? !item : item
         );
         setCheckedState(updatedCheckedState);
+    };
+
+    const modalOnShow = () => {
+        // console.log(`studentList: ${studentList}`);
+        setCheckedState(new Array(studentList.length).fill(false));
+        setSelectAllStudents(false);
     };
 
     const data = React.useMemo(
@@ -230,6 +240,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
                     setShowModal(false);
                     setAddClassInfo({});
                 }}
+                onShow={modalOnShow}
                 backdrop="static"
             >
                 <Modal.Header id="header" closeButton>
@@ -370,7 +381,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
                                         type={"checkbox"}
                                         id="allSelectedBox"
                                         checked={selectAllStudents}
-                                        onChange={() => {
+                                        onClick={() => {
                                             setSelectAllStudents(!selectAllStudents);
                                         }}
                                     />  全选
