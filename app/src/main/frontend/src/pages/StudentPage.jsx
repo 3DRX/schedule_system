@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import NavBar from '../components/NavBar'
 import { InputNumber } from 'rsuite';
 import { notification } from 'antd';
-// import 'rsuite/dist/rsuite.min.css';
+import Button from 'react-bootstrap/Button';
 
 function StudentPage() {
     const query = new URLSearchParams(useLocation().search);
@@ -17,29 +17,31 @@ function StudentPage() {
 
     const [api, contextHolder] = notification.useNotification();
 
-
     useEffect(() => {
         if (data.split(",")[0].length !== 0) {
             openNotification();
         }
     }, [data]);
 
+    const openNav = () => {
+        console.log("open navigation");
+        // TODO
+        api.destroy();
+    }
+
     const openNotification = () => {
         const key = `open${Date.now()}`;
         const btn = (
             <>
-                <button onClick={() => api.destroy()}>
-                    Destroy All
-                </button>
-                <button onClick={() => api.destroy(key)}>
-                    Confirm
-                </button>
+                <Button size='sm' variant='primary' onClick={openNav} >
+                    导航
+                </Button>
             </>
         );
         api.open({
-            message: 'Notification Title',
+            message: '上课提醒：' + data.split(",")[0],
             description:
-                'A function will be be called after the notification is closed (automatically after the "duration" time of manually).',
+                `地点：${data.split(",")[1]}`,
             btn,
             key,
             onClose: () => { },
@@ -86,13 +88,13 @@ function StudentPage() {
         <div>
             <NavBar isAdmin="false" userName={userName} enabled={!start} />
             <h1>welcome, {userName}.</h1>
-            <button onClick={handleOnClick}>{start ? "stop" : "start"}</button>
-            <button onClick={() => {
+            <Button size='sm' variant='outline-primary' onClick={handleOnClick}>{start ? "stop" : "start"}</Button>
+            <Button size='sm' variant='outline-secondary' onClick={() => {
                 setWeek(1);
                 setDay(1);
                 setTime(8);
                 setData("");
-            }}>reset</button>
+            }}>reset</Button>
             <p>
                 第
                 <InputNumber
@@ -133,6 +135,7 @@ function StudentPage() {
                 />
                 点
             </p>
+            {contextHolder}
             <ul>
                 Received Data
                 <li>{data.split(",")[0]}</li>
