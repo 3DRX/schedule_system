@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import NavBar from '../components/NavBar'
 import { InputNumber } from 'rsuite';
+import { notification } from 'antd';
 // import 'rsuite/dist/rsuite.min.css';
 
 function StudentPage() {
@@ -13,6 +14,37 @@ function StudentPage() {
     const [week, setWeek] = useState(1);
     const [day, setDay] = useState(1);
     const [time, setTime] = useState(8);
+
+    const [api, contextHolder] = notification.useNotification();
+
+
+    useEffect(() => {
+        if (data.split(",")[0].length !== 0) {
+            openNotification();
+        }
+    }, [data]);
+
+    const openNotification = () => {
+        const key = `open${Date.now()}`;
+        const btn = (
+            <>
+                <button onClick={() => api.destroy()}>
+                    Destroy All
+                </button>
+                <button onClick={() => api.destroy(key)}>
+                    Confirm
+                </button>
+            </>
+        );
+        api.open({
+            message: 'Notification Title',
+            description:
+                'A function will be be called after the notification is closed (automatically after the "duration" time of manually).',
+            btn,
+            key,
+            onClose: () => { },
+        });
+    };
 
     const handleOnClick = () => {
         setStart(!start);
