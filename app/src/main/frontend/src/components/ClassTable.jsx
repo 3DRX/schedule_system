@@ -23,9 +23,14 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
     const [location, setLocation] = useState("");
     const [studentList, setStudentList] = useState([]);
 
+    const [selectAllStudents, setSelectAllStudents] = useState(false);
     const [checkedState, setCheckedState] = useState(
         new Array(studentList.length).fill(false)
     );
+
+    useEffect(() => {
+        setCheckedState(new Array(studentList.length).fill(selectAllStudents));
+    }, [selectAllStudents]);
 
     useEffect(() => {
         axios.get("http://" + window.location.hostname + ":8888/studentList")
@@ -364,6 +369,10 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
                                     <Form.Check
                                         type={"checkbox"}
                                         id="allSelectedBox"
+                                        checked={selectAllStudents}
+                                        onChange={() => {
+                                            setSelectAllStudents(!selectAllStudents);
+                                        }}
                                     />  全选
                                 </div>
                             </p>
