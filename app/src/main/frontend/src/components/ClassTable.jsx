@@ -59,6 +59,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
     const modalOnShow = () => {
         // console.log(`studentList: ${studentList}`);
         setCheckedState(new Array(studentList.length).fill(false));
+        setSelectAllStudents(false);
     };
 
     const data = React.useMemo(
@@ -380,7 +381,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
                                         type={"checkbox"}
                                         id="allSelectedBox"
                                         checked={selectAllStudents}
-                                        onChange={() => {
+                                        onClick={() => {
                                             setSelectAllStudents(!selectAllStudents);
                                         }}
                                     />  全选
