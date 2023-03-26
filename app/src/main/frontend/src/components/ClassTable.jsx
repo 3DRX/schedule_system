@@ -9,12 +9,10 @@ import Form from 'react-bootstrap/Form';
 import { NumberPicker } from "react-widgets";
 import "./ClassTable.css";
 
-export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
+export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShowModal, showModal }) {
     const query = new URLSearchParams(useLocation().search);
     const userName = query.get("userName");
-    const [showModal, setShowModal] = useState(false);
     const [addClassInfo, setAddClassInfo] = useState({});
-
     const [newName, setNewName] = useState("");
     const [startWeek, setStartWeek] = useState(1);
     const [endWeek, setEndWeek] = useState(1);
@@ -25,11 +23,14 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
     const [location, setLocation] = useState("");
     const [studentList, setStudentList] = useState([]);
 
+    const [selectAllStudents, setSelectAllStudents] = useState(false);
     const [checkedState, setCheckedState] = useState(
         new Array(studentList.length).fill(false)
     );
 
-    const [hover, setHover] = useState(false);
+    useEffect(() => {
+        setCheckedState(new Array(studentList.length).fill(selectAllStudents));
+    }, [selectAllStudents]);
 
     useEffect(() => {
         axios.get("http://" + window.location.hostname + ":8888/studentList")
@@ -181,37 +182,16 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
             });
     }
 
-    const renderGenericAddClassBtn = () => {
-        if (isAdmin) {
-            return (
-                <div onClick={() => {
-                    // console.log(`在第${week}周，周${day}，${startTime}-${startTime + 1}添加课程`);
-                    setShowModal(true);
-                }}
-                    style={{
-                        backgroundColor: hover ? "lightgrey" : "white",
-                    }}
-                    id="addButton"
-                    onMouseEnter={() => { setHover(true) }}
-                    onMouseLeave={() => { setHover(false) }}
-                >添加课程
-                </div>
-            )
-        }
-        else {
-            return <></>
-        }
-    }
-
     return (
         <div className='ClassTableContent'>
-            <table {...getTableProps()} class="table">
-                <thead class="head">
+            <table {...getTableProps()} id="table">
+                <thead id="head">
                     {headerGroups.map(headerGroup => (
                         <tr {...headerGroup.getHeaderGroupProps()} >
                             {headerGroup.headers.map(column => (
-                                <th class="headBlocks"
+                                <th id="headBlocks"
                                     {...column.getHeaderProps()}
+
                                 >
                                     {column.render('Header')}
                                 </th>
@@ -226,9 +206,10 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                             <tr {...row.getRowProps()}>
                                 {row.cells.map(cell => {
                                     return (
-                                        <td class="time"
+                                        <td id="time"
                                             {...cell.getCellProps()}
                                             style={{
+
                                                 padding: '10px',
                                                 border: 'solid 1px gray',
                                                 background: 'white',
@@ -243,7 +224,14 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                     })}
                 </tbody>
             </table>
-            <Modal show={showModal} onHide={() => setShowModal(false)} backdrop="static">
+            <Modal
+                show={showModal}
+                onHide={() => {
+                    setShowModal(false);
+                    setAddClassInfo({});
+                }}
+                backdrop="static"
+            >
                 <Modal.Header id="header" closeButton>
                     <Modal.Title>添加课程</Modal.Title>
                     {/* `周${addClassInfo.day}，${addClassInfo.startTime}-${addClassInfo.startTime + 1}：`*/}
@@ -375,9 +363,22 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                         </p>
 
                         <p id="studentInfo">
-                            参与学生：
+                            <p id="studentTitle">
+                                <div>参与学生</div>
+                                <div id="allSelected">
+                                    <Form.Check
+                                        type={"checkbox"}
+                                        id="allSelectedBox"
+                                        checked={selectAllStudents}
+                                        onChange={() => {
+                                            setSelectAllStudents(!selectAllStudents);
+                                        }}
+                                    />  全选
+                                </div>
+                            </p>
+
                             {studentList.map((name, index) => (
-                                <div key={`${name}`} className="mb-3">
+                                <div key={`${name}`} id="mb-3">
                                     <Form.Check
                                         type={"checkbox"}
                                         id={`${index}`}
@@ -399,7 +400,6 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh }) {
                     </Modal.Footer>
                 </Form>
             </Modal>
-            {renderGenericAddClassBtn()}
         </div >
     )
 }
