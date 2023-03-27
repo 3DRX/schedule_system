@@ -2,7 +2,8 @@
   {
     "courses": [
       "math",
-      "java"
+      "java",
+      "python"
     ],
     "name": "002"
   },

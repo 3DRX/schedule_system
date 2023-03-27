@@ -24,8 +24,13 @@ function StudentPage() {
     }, [data]);
 
     const openNav = () => {
+        const prefix = "http://" + window.location.host;
+        const courseName = data.split(",")[0];
+        const location = data.split(",")[1];
+        const x = data.split(",")[2];
+        const y = data.split(",")[3];
         console.log("open navigation");
-        // TODO
+        window.open(`${prefix}/student/nav?courseName=${courseName}&location=${location}&x=${x}&y=${y}`);
         api.destroy();
     }
 
