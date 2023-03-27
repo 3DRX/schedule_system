@@ -1,16 +1,21 @@
 .TableCell{
     width: 100%;
-    display: flex;
+    display: block;
     justify-content: center;
+    text-align: center;
     margin: 0;
     padding: 0;
 }
-#detailButton{
-
-}
 #addButton{
+    margin: auto;
     text-align: center;
     border: 1px dashed black;
     border-radius: 1em;
-    width: 5vw;
+    width: 60%;
+    justify-content: center;
+    vertical-align: center;
+}
+.TableCell p{
+    justify-content: center;
+    text-align: center;
 }
