@@ -1,5 +1,8 @@
 package schedule_system.utils;
 
+import java.lang.reflect.Array;
+import java.lang.reflect.ParameterizedType;
+
 public class KMap<K, V> {
     private static final int defautLength = 16;
     private static final double defaultFactor = 0.75;
@@ -73,7 +76,7 @@ public class KMap<K, V> {
         return entry == null ? null : entry.getValue();
     }
 
-    public MyEntry<K, V> getEntry(K key) {
+    private MyEntry<K, V> getEntry(K key) {
         MyEntry<K, V> entry = table[index(key)];
         while (entry != null) {
             if (entry.getKey().hashCode() == key.hashCode()
@@ -126,6 +129,20 @@ public class KMap<K, V> {
             table[i] = null;
         }
         this.size = 0;
+    }
+
+    @SuppressWarnings({ "unchecked" })
+    public K[] getKeyArray(Class<K> c) {
+        K[] res = (K[]) Array.newInstance(c, this.size);
+        int index = 0;
+        for (MyEntry<K, V> entry : this.table) {
+            while (entry != null) {
+                res[index] = entry.getKey();
+                entry = entry.getNext();
+                index++;
+            }
+        }
+        return res;
     }
 
     public final class MyEntry<K, V> {
