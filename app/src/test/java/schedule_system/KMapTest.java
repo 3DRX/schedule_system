@@ -68,4 +68,15 @@ public class KMapTest {
         map.clear();
         assertTrue(map.size() == 0);
     }
+
+    @Test
+    void test6() {
+        // get 不存在的 key，应该返回null
+        CourseData courseData = new CourseData();
+        KMap<String, Course> map = new KMap<>();
+        for (Course course : courseData.allCourses()) {
+            map.put(course.getName(), course);
+        }
+        assertTrue(map.get("a name that dosen't exist") == null);
+    }
 }
