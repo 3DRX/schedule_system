@@ -18,7 +18,7 @@ public class KMap<K, V> {
     }
 
     private int index(K key) {
-        return key.hashCode() % table.length;
+        return Math.abs(key.hashCode()) % table.length;
     }
 
     public void put(K key, V value) {
