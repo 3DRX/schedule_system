@@ -28,6 +28,26 @@ public class MapData {
                 .forEach(x -> nodes.put(x.getLocation().getName(), x));
     }
 
+    /**
+     * 获得从名为 x 的节点到名为 y 的节点的权值（两节点必须相邻）
+     * 
+     * @param x
+     * @param y
+     * @return
+     */
+    private double weightFromXtoY(String x, String y) {
+        if (nodes.get(x) == null || nodes.get(y) == null) {
+            throw new IllegalArgumentException("no node in the name of input");
+        }
+        return nodes.get(x).distenceTo(y);
+    }
+
+    // TODO
+    public KList<Location> pathFromXtoY(String x, String y) {
+        KList<Location> res = new KList<>(Location.class);
+        return res;
+    }
+
     public void add(MapNode node) {
         // TODO: change to private
         this.nodes.put(node.getLocation().getName(), node);
