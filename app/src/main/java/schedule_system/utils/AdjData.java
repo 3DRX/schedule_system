@@ -1,5 +1,6 @@
 package schedule_system.utils;
 
 public record AdjData(
-        String name) {
+        String name,
+        double weight) {
 }
