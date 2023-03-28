@@ -1,7 +1,6 @@
 package schedule_system.utils;
 
 import java.lang.reflect.Array;
-import java.lang.reflect.ParameterizedType;
 
 public class KMap<K, V> {
     private static final int defautLength = 16;
@@ -29,9 +28,7 @@ public class KMap<K, V> {
         int index = index(key);
         MyEntry<K, V> entry = table[index];
         while (entry != null) {
-            if (entry.getKey().hashCode() == key.hashCode()
-                    && (entry.getKey() == key
-                            || entry.getKey().equals(key))) {
+            if ((entry.getKey() == key || entry.getKey().equals(key))) {
                 entry.setValue(value);
                 return;
             }
