@@ -18,20 +18,25 @@ public class MapData {
     final private Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private final Logger logger = LoggerFactory.getLogger(MapData.class);
 
-    private MapNode[] nodes;
+    // private MapNode[] nodes;
+    private KMap<String, MapNode> nodes;
 
     public MapData() {
-        this.nodes = readMap();
+        MapNode[] readNodes = readMap();
+        nodes = new KMap<>();
+        Arrays.stream(readNodes)
+                .forEach(x -> nodes.put(x.getLocation().getName(), x));
     }
 
     public void add(MapNode node) {
         // TODO: change to private
-        this.nodes = Arrays.copyOf(this.nodes, this.nodes.length + 1);
-        this.nodes[this.nodes.length - 1] = node;
+        this.nodes.put(node.getLocation().getName(), node);
     }
 
     public MapNode[] getNodes() {
-        return this.nodes;
+        return Arrays.stream(nodes.getKeyArray(String.class))
+                .map(k -> nodes.get(k))
+                .toArray(size -> new MapNode[size]);
     }
 
     private MapNode[] readMap() {
