@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import NavBar from "../components/NavBar";
 import "react-widgets/styles.css";
 import { NumberPicker } from "react-widgets";
-import "./AdminCoure.css";
+import "./AdminCourse.css";
 
 // 学生课程主页
 // 1. 设置周数
