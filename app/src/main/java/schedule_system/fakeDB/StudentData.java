@@ -103,4 +103,21 @@ public class StudentData {
         }
         return successFlag;
     }
+    public Student [] getStudentsByClass(String courseName){
+        Student []studentByClass= {};
+        int i=0;
+        for (Student theStudent : students) {
+            String []courses=theStudent.getCourses();
+            for (int j = 0; j < courses.length; j++) {
+                if(courses[j].equals(courseName)) {
+                    studentByClass[i] = theStudent;
+                    i++;
+                    break;
+                }
+            }
+        }
+        for (Student student: studentByClass)
+            student.deleteCourseIfHave(courseName);
+        return studentByClass;
+    }
 }

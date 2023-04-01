@@ -17,34 +17,26 @@ public class ChangeCourseController {
     @PostMapping("https://localhost:8888/changeCourse")
     public boolean changeCourse(
             @RequestBody CourseInfoRecord inPutCourse) {
-        return changeCourseInStudents(inPutCourse.courseName, inPutCourse.updatedStudents, inPutCourse.newLocationName)
-                && changeCourseItself(inPutCourse.courseName, inPutCourse.updatedStudents, inPutCourse.newLocationName);
+        return changeCourseInStudents(inPutCourse.courseName, inPutCourse.upDatedStudents, inPutCourse.newLocationName);
     }
 
-    public boolean changeCourseInStudents(String courseName, String[] newStudents, String newLocationName) {
+    public boolean changeCourseInStudents(String courseName, String[] upDatedStudents, String newLocationName) {
         boolean success = false;
-        for(String studentName : newStudents){
-
+        Student[] students = studentData.getStudentsByClass(courseName);//有className 名字的所有学生信息
+        for (Student student : students) {
+            for (String updatedStudent : upDatedStudents) {
+                if(student.getName().equals(updatedStudent)){//如果当前的学生名字跟upDatedStudents 里的某一个学生的名字相同
+                    //不删除该学生，只需修改上课地址信息
+                    success=true;
+                }
+                else {
+                    student.deleteCourseIfHave(courseName);
+                }
+            }
         }
         return success;
     }
-    private boolean deleteCourse(String courseName,String studentName){
-        for(Student student: studentData.getStudentClasses()){
-            if(student.getName().equals(studentName)){
-            //修改该学生的该课程上课地点
-            }
-            else{
-            //删除该学生的该课程
-            }
-        }
-    }
-    public boolean changeCourseItself(String courseName, String[] newStudents, String nweLocationName) {
-        boolean success = false;
-
-        return success;
-    }
-
-    record CourseInfoRecord(String courseName, String[] updatedStudents,
+    record CourseInfoRecord(String courseName, String[] upDatedStudents,
                             String newLocationName) {
     }
 }
