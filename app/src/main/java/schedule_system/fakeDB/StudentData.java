@@ -31,6 +31,15 @@ public class StudentData {
         return this.students;
     }
 
+    public Student getStudentById(String id) {
+        for (Student student : this.students) {
+            if (student.getName().equals(id)) {
+                return student;
+            }
+        }
+        return null;
+    }
+
     public boolean deleteCourseFromStudents(String courseName) {
         for (Student student : this.students) {
             student.deleteCourseIfHave(courseName);
