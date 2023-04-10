@@ -1,0 +1,31 @@
+[
+  {
+    "location": {
+      "name": "北邮锦江酒店",
+      "x": 0,
+      "y": 0
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "1"
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "1",
+      "x": 1,
+      "y": 0
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "北邮锦江酒店"
+      },
+      {
+        "name": "学十一公寓"
+      }
+    ]
+  }
+]

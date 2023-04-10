@@ -2,13 +2,13 @@
   {
     "courses": [
       "math",
-      "java",
-      "python"
+      "java"
     ],
     "name": "002"
   },
   {
     "courses": [
+      "math2",
       "java"
     ],
     "name": "003"

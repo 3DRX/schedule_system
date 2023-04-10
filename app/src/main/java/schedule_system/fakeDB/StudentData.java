@@ -11,6 +11,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 
 import schedule_system.utils.Course;
+import schedule_system.utils.KList;
 import schedule_system.utils.Student;
 
 /**
@@ -111,5 +112,20 @@ public class StudentData {
             e.printStackTrace();
         }
         return successFlag;
+    }
+
+    @Deprecated
+    public KList<Student> getStudentsByClass(String courseName) {
+        KList<Student> studentByClass = new KList(Student.class);
+        for (Student theStudent : students) {
+            String[] courses = theStudent.getCourses();
+            for (int j = 0; j < courses.length; j++) {
+                if (courses[j].equals(courseName)) {// 课程名称相等
+                    studentByClass.add(theStudent);
+                    break;
+                }
+            }
+        }
+        return studentByClass;
     }
 }
