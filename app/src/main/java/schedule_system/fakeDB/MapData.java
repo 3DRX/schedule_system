@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Arrays;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,26 +47,47 @@ public class MapData {
                         distence.put(e, Integer.MAX_VALUE);
                     }
                 });
-        boolean start = true;
         queue.add(this.nodes.get(x));
-        while (queue.size() != 0) {
+        while (queue.size() != 0
+                && visitedNodes.getKeyArray(String.class).length == this.nodes.getKeyArray(String.class).length) {
             MapNode currentNode = queue.popLeft();
             visitedNodes.put(currentNode.getLocation().getName(), 0);
-            Arrays.stream(currentNode.getAdj())
-                    .forEach(e -> {
-                        int weight = distence.get(currentNode.getLocation().getName()) + e.weight();
-                        if (distence.get(e.name()) > weight) {
-                            // 如果通过当前节点访问其邻接节点比原来的距离近，则更新最短距离。
-                            distence.put(e.name(), weight);
-                        }
-                        if (!visitedNodes.containKey(e.name())) {
-                            // 如果邻接节点没有访问过，入队
-                            queue.add(this.nodes.get(e.name()));
-                        }
-                    });
+            for (AdjData e : currentNode.getAdj()) {
+                int weight = distence.get(currentNode.getLocation().getName()) + e.weight();
+                if (distence.get(e.name()) > weight) {
+                    // 如果通过当前节点访问其邻接节点比原来的距离近，则更新最短距离。
+                    distence.put(e.name(), weight);
+                }
+                if (!visitedNodes.containKey(e.name())) {
+                    // 如果邻接节点没有访问过，入队
+                    queue.add(this.nodes.get(e.name()));
+                }
+            }
         }
         // get result
         KList<Location> res = new KList<>(Location.class);
+        MapNode currentNode = this.nodes.get(y);
+        res.add(currentNode.getLocation());
+        while (true) {
+            String theNode = Arrays.stream(currentNode.getAdj())
+                    .filter((adj) -> {
+                        MapNode adjNode = this.nodes.get(adj.name());
+                        int adjDistence = distence.get(adjNode.getLocation().getName());
+                        int adjWeight = Arrays.stream(adjNode.getAdj())
+                                .filter(i -> i.name().equals(currentNode.getLocation().getName()))
+                                .findFirst()
+                                .get()
+                                .weight();
+                        return adjDistence + adjWeight == distence.get(currentNode.getLocation().getName());
+                    })
+                    .findFirst()
+                    .get() // this line throws NoSuchElementException
+                    .name();
+            res.add(0, this.nodes.get(theNode).getLocation());
+            if (theNode.equals(x)) {
+                break;
+            }
+        }
         return res;
     }
 
