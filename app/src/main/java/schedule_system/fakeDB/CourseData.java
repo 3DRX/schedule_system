@@ -3,13 +3,14 @@ package schedule_system.fakeDB;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.ArrayList;
+import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 
 import schedule_system.utils.Course;
+import schedule_system.utils.KMap;
 
 /**
  * CourseData
@@ -18,10 +19,14 @@ public class CourseData {
     final private String path = "src/main/resources/courses.json";
     final private Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    private Course[] courses;
+    private KMap<String, Course> courses;
 
     public CourseData() {
-        this.courses = readCourses();
+        this.courses = new KMap<>();
+        Course[] coursesArray = readCourses();
+        for (Course course : coursesArray) {
+            courses.put(course.getName(), course);
+        }
     }
 
     /**
@@ -30,7 +35,9 @@ public class CourseData {
      * @return
      */
     public Course[] allCourses() {
-        return this.courses;
+        return Arrays.stream(this.courses.getKeyArray(String.class))
+                .map(i -> this.courses.get(i))
+                .toArray(size -> new Course[size]);
     }
 
     /**
@@ -40,12 +47,7 @@ public class CourseData {
      * @return Course course
      */
     public Course getCourseByName(String courseName) {
-        for (Course course : this.courses) {
-            if (course.getName().equals(courseName)) {
-                return course;
-            }
-        }
-        return null;
+        return this.courses.get(courseName);
     }
 
     public void changeCourseLocation(String courseName, String locationName) {
@@ -59,17 +61,8 @@ public class CourseData {
      * @return
      */
     public boolean deleteCourse(String courseName) {
-        ArrayList<Course> newCourses = new ArrayList<>();
-        for (Course course : this.courses) {
-            if (course.getName().equals(courseName)) {
-            } else {
-                newCourses.add(course);
-            }
-        }
-        Course[] resCourses = new Course[newCourses.size()];
-        newCourses.toArray(resCourses);
-        this.courses = resCourses;
-        return writeCourses(this.courses);
+        this.courses.remove(courseName);
+        return writeCourses(this.allCourses());
     }
 
     /**
@@ -95,16 +88,11 @@ public class CourseData {
      * @return
      */
     public boolean addCourse(Course newCourse) {
-        Course[] newCourses = new Course[this.courses.length + 1];
-        for (int i = 0; i < this.courses.length; i++) {
-            if (this.courses[i].conflictsWith(newCourse)) {
-                return false;
-            }
-            newCourses[i] = this.courses[i];
+        if (this.courses.containKey(newCourse.getName())){
+            return false;
         }
-        newCourses[newCourses.length - 1] = newCourse;
-        this.courses = newCourses;
-        return writeCourses(this.courses);
+        this.courses.put(newCourse.getName(), newCourse);
+        return writeCourses(this.allCourses());
     }
 
     /**
