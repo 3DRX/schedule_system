@@ -12,9 +12,9 @@ public class KMap<K, V> {
     private MyEntry<K, V>[] table;
 
     public KMap() {
-        table = new MyEntry[defautLength];
-        threshold = (int) (defautLength * defaultFactor);
-        size = 0;
+        this.table = new MyEntry[defautLength];
+        this.threshold = (int) (defautLength * defaultFactor);
+        this.size = 0;
     }
 
     private int index(K key) {
@@ -61,7 +61,7 @@ public class KMap<K, V> {
             }
         }
         this.table = newTabe;
-        threshold = (int) (table.length * defaultFactor);
+        this.threshold = (int) (this.table.length * this.defaultFactor);
         this.resize++;
     }
 
