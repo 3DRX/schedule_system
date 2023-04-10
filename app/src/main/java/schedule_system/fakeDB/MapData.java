@@ -22,24 +22,11 @@ public class MapData {
     private KMap<String, MapNode> nodes;
 
     public MapData() {
-        MapNode[] readNodes = readMap();
         nodes = new KMap<>();
-        Arrays.stream(readNodes)
+        Arrays.stream(this.readMap())
+                // .forEach(e -> System.out.println(e.toString()));
                 .forEach(x -> nodes.put(x.getLocation().getName(), x));
-    }
-
-    /**
-     * 获得从名为 x 的节点到名为 y 的节点的权值（两节点必须相邻）
-     * 
-     * @param x
-     * @param y
-     * @return
-     */
-    private double weightFromXtoY(String x, String y) {
-        if (nodes.get(x) == null || nodes.get(y) == null) {
-            throw new IllegalArgumentException("no node in the name of input");
-        }
-        return nodes.get(x).distenceTo(y);
+        this.logger.info("Reading map data from " + path);
     }
 
     // TODO
@@ -48,8 +35,8 @@ public class MapData {
         return res;
     }
 
-    public void add(MapNode node) {
-        // TODO: change to private
+    @Deprecated
+    private void add(MapNode node) {
         this.nodes.put(node.getLocation().getName(), node);
     }
 
@@ -70,7 +57,8 @@ public class MapData {
         return readMap;
     }
 
-    public boolean writeMap(MapNode[] nodes) {
+    @Deprecated
+    private boolean writeMap(MapNode[] nodes) {
         File file = new File(path);
         String res = gson.toJson(nodes);
         boolean successFlag = true;
