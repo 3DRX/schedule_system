@@ -104,13 +104,15 @@ public class StudentData {
         }
         return successFlag;
     }
-    public KList<Student> getStudentsByClass(String courseName){
-        KList <Student> studentByClass=new KList (Student.class);
+
+    @Deprecated
+    public KList<Student> getStudentsByClass(String courseName) {
+        KList<Student> studentByClass = new KList(Student.class);
         for (Student theStudent : students) {
-            String []courses=theStudent.getCourses();
+            String[] courses = theStudent.getCourses();
             for (int j = 0; j < courses.length; j++) {
-                if(courses[j].equals(courseName)) {//课程名称相等
-                    studentByClass.add(theStudent) ;
+                if (courses[j].equals(courseName)) {// 课程名称相等
+                    studentByClass.add(theStudent);
                     break;
                 }
             }
