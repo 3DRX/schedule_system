@@ -47,4 +47,9 @@ public class KList<T> extends AbstractList<T> {
     public T peekRight() {
         return list[list.length - 1];
     }
+
+    @Override
+    public T[] toArray() {
+        return Arrays.copyOf(this.list, this.list.length);
+    }
 }
