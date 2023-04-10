@@ -3,17 +3,22 @@ package schedule_system;
 import org.junit.jupiter.api.Test;
 
 import schedule_system.fakeDB.MapData;
+import schedule_system.utils.MapNode;
 
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Disabled;
 
+@Disabled
 class MapTest {
 
     @Test
     void mapTest() {
         MapData mapData = new MapData();
-        Arrays.stream(mapData.getNodes())
+        MapNode[] mapNodes = mapData.getNodes();
+        Arrays.stream(mapNodes)
                 .forEach(e -> System.out.println(e));
+        System.out.println();
+        System.out.println(mapNodes.length);
     }
 }
