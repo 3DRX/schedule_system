@@ -1750,6 +1750,10 @@
     "isBuilding": false,
     "adj": [
       {
+        "name": "77",
+        "weight": 74
+      },
+      {
         "name": "学29公寓",
         "weight": 180
       },
@@ -2310,8 +2314,8 @@
         "weight": 95
       },
       {
-        "name": "教三楼",
-        "weight": 332
+        "name": "103",
+        "weight": 289
       }
     ]
   },
