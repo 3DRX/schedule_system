@@ -1,21 +1,27 @@
 package schedule_system.utils;
 
 import java.lang.reflect.Array;
+import java.util.AbstractList;
 import java.util.Arrays;
 
 /**
  * KList
  */
-public class KList<T> {
+public class KList<T> extends AbstractList<T> {
     private T[] list;
 
     public KList(Class<T> t) {
         this.list = (T[]) Array.newInstance(t, 0);
     }
 
-    public void add(T t) {
+    public int size() {
+        return this.list.length;
+    }
+
+    public boolean add(T t) {
         list = Arrays.copyOf(list, list.length + 1);
         list[list.length - 1] = t;
+        return true;
     }
 
     public T get(int i) {
