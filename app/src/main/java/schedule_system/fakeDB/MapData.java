@@ -30,7 +30,41 @@ public class MapData {
     }
 
     // TODO
+    // Dijkstra's algorithm
     public KList<Location> pathFromXtoY(String x, String y) {
+        // init
+        // x 点到每个点的距离
+        KMap<String, Integer> distence = new KMap<>();
+        distence.put(x, 0);
+        // 未访问的节点（这里value无意义，就是我懒得再写个Set了）
+        KMap<String, Integer> visitedNodes = new KMap<>();
+        // 广度有限遍历的队列
+        KList<MapNode> queue = new KList<>(MapNode.class);
+        Arrays.stream(this.nodes.getKeyArray(String.class))
+                .forEach(e -> {
+                    if (!e.equals(x)) {
+                        distence.put(e, Integer.MAX_VALUE);
+                    }
+                });
+        boolean start = true;
+        queue.add(this.nodes.get(x));
+        while (queue.size() != 0) {
+            MapNode currentNode = queue.popLeft();
+            visitedNodes.put(currentNode.getLocation().getName(), 0);
+            Arrays.stream(currentNode.getAdj())
+                    .forEach(e -> {
+                        int weight = distence.get(currentNode.getLocation().getName()) + e.weight();
+                        if (distence.get(e.name()) > weight) {
+                            // 如果通过当前节点访问其邻接节点比原来的距离近，则更新最短距离。
+                            distence.put(e.name(), weight);
+                        }
+                        if (!visitedNodes.containKey(e.name())) {
+                            // 如果邻接节点没有访问过，入队
+                            queue.add(this.nodes.get(e.name()));
+                        }
+                    });
+        }
+        // get result
         KList<Location> res = new KList<>(Location.class);
         return res;
     }
