@@ -23,10 +23,8 @@ public class CourseData {
 
     public CourseData() {
         this.courses = new KMap<>();
-        Course[] coursesArray = readCourses();
-        for (Course course : coursesArray) {
-            courses.put(course.getName(), course);
-        }
+        Arrays.stream(readCourses())
+                .forEach(e -> this.courses.put(e.getName(), e));
     }
 
     /**
@@ -88,7 +86,7 @@ public class CourseData {
      * @return
      */
     public boolean addCourse(Course newCourse) {
-        if (this.courses.containKey(newCourse.getName())){
+        if (this.courses.containKey(newCourse.getName())) {
             return false;
         }
         this.courses.put(newCourse.getName(), newCourse);
