@@ -11,6 +11,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Disabled;
 
+// @Disabled
 class MapTest {
 
     void mapTest() {
@@ -26,7 +27,7 @@ class MapTest {
     void testShortestPath() {
         MapData mapData = new MapData();
         try {
-            KList<Location> res = mapData.pathFromXtoY("10", "30");
+            KList<Location> res = mapData.pathFromXtoY("57", "70");
         } catch (Exception e) {
             e.printStackTrace();
         }

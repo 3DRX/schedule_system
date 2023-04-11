@@ -41,29 +41,28 @@ public class MapData {
         KMap<String, Integer> visitedNodes = new KMap<>();
         // 广度有限遍历的队列
         KList<MapNode> queue = new KList<>(MapNode.class);
-        Arrays.stream(this.nodes.getKeyArray(String.class))
-                .forEach(e -> {
-                    if (!e.equals(x)) {
-                        distence.put(e, Integer.MAX_VALUE);
-                    }
-                });
         queue.add(this.nodes.get(x));
         while (queue.size() != 0
-                && visitedNodes.getKeyArray(String.class).length == this.nodes.getKeyArray(String.class).length) {
+                && visitedNodes.getKeyArray(String.class).length != this.nodes.getKeyArray(String.class).length) {
             MapNode currentNode = queue.popLeft();
             visitedNodes.put(currentNode.getLocation().getName(), 0);
+            logger.info("visiting: " + currentNode.getLocation().getName());
             for (AdjData e : currentNode.getAdj()) {
                 int weight = distence.get(currentNode.getLocation().getName()) + e.weight();
-                if (distence.get(e.name()) > weight) {
+                if (distence.get(e.name()) == null || distence.get(e.name()) > weight) {
                     // 如果通过当前节点访问其邻接节点比原来的距离近，则更新最短距离。
                     distence.put(e.name(), weight);
+                    logger.info("put " + e.name() + ", of distence " + weight);
                 }
                 if (!visitedNodes.containKey(e.name())) {
+                    logger.info("Never visit " + e.name() + " before, add it into queue.");
                     // 如果邻接节点没有访问过，入队
                     queue.add(this.nodes.get(e.name()));
                 }
             }
         }
+        // BUG: KMap 似乎有问题，会重复访问同一个节点。
+        logger.info("==========" + distence.getKeyArray(String.class).length);
         // get result
         KList<Location> res = new KList<>(Location.class);
         MapNode currentNode = this.nodes.get(y);
@@ -78,11 +77,16 @@ public class MapData {
                                 .findFirst()
                                 .get()
                                 .weight();
+                        logger.info(adj.name());
+                        logger.info("adjDistence: " + adjDistence);
+                        logger.info("adjWeight: " + adjWeight);
+                        logger.info("thisDistence: " + distence.get(currentNode.getLocation().getName()));
                         return adjDistence + adjWeight == distence.get(currentNode.getLocation().getName());
                     })
                     .findFirst()
                     .get() // this line throws NoSuchElementException
                     .name();
+            logger.info("theNode: " + theNode);
             res.add(0, this.nodes.get(theNode).getLocation());
             if (theNode.equals(x)) {
                 break;
