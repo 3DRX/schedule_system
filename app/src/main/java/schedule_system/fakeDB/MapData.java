@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,54 +44,62 @@ public class MapData {
         KList<MapNode> queue = new KList<>(MapNode.class);
         queue.add(this.nodes.get(x));
         while (queue.size() != 0
-                && visitedNodes.size() < this.nodes.getKeyArray(String.class).length) {
+                && visitedNodes.size() < this.nodes.size()) {
             MapNode currentNode = queue.popLeft();
-            logger.info("visiting: " + currentNode.getLocation().getName());
+            // logger.info("visiting: " + currentNode.getLocation().getName());
             for (AdjData e : currentNode.getAdj()) {
                 int weight = distence.get(currentNode.getLocation().getName()) + e.weight();
                 if (distence.get(e.name()) == null || distence.get(e.name()) > weight) {
                     // 如果通过当前节点访问其邻接节点比原来的距离近，则更新最短距离。
                     distence.put(e.name(), weight);
-                    logger.info("put " + e.name() + ", of distence " + weight);
+                    // logger.info("put " + e.name() + ", of distence " + weight);
                 }
                 if (!visitedNodes.contains(e.name())) {
-                    logger.info("Never visit " + e.name() + " before, add it into queue.");
+                    // logger.info("Never visit " + e.name() + " before, add it into queue.");
                     // 如果邻接节点没有访问过，入队
                     queue.add(this.nodes.get(e.name()));
-                    visitedNodes.add(currentNode.getLocation().getName());
+                    visitedNodes.add(e.name());
                 }
             }
         }
         // BUG: KMap 似乎有问题，会重复访问同一个节点。
-        logger.info("==========" + distence.getKeyArray(String.class).length);
+        // logger.info("==========" + distence.getKeyArray(String.class).length);
+        // logger.debug("node number: " + this.nodes.size());
         // get result
         KList<Location> res = new KList<>(Location.class);
         MapNode currentNode = this.nodes.get(y);
+        // logger.debug("add node: " + currentNode.getLocation().getName());
         res.add(currentNode.getLocation());
-        while (true) {
-            String theNode = Arrays.stream(currentNode.getAdj())
-                    .filter((adj) -> {
-                        MapNode adjNode = this.nodes.get(adj.name());
-                        int adjDistence = distence.get(adjNode.getLocation().getName());
-                        int adjWeight = Arrays.stream(adjNode.getAdj())
-                                .filter(i -> i.name().equals(currentNode.getLocation().getName()))
-                                .findFirst()
-                                .get()
-                                .weight();
-                        logger.info(adj.name());
-                        logger.info("adjDistence: " + adjDistence);
-                        logger.info("adjWeight: " + adjWeight);
-                        logger.info("thisDistence: " + distence.get(currentNode.getLocation().getName()));
-                        return adjDistence + adjWeight == distence.get(currentNode.getLocation().getName());
-                    })
-                    .findFirst()
-                    .get() // this line throws NoSuchElementException
-                    .name();
-            logger.info("theNode: " + theNode);
+        int temp = 0;
+        while (temp < 100) {
+            AdjData filtered = null;
+            for (AdjData adj : currentNode.getAdj()) {
+                MapNode adjNode = this.nodes.get(adj.name());
+                int adjDistence = distence.get(adjNode.getLocation().getName());
+                int adjWeight = 0;
+                for (AdjData i : adjNode.getAdj()) {
+                    if (i.name().equals(currentNode.getLocation().getName())) {
+                        adjWeight = i.weight();
+                    }
+                }
+                // logger.info(adj.name());
+                // logger.info("adjDistence: " + adjDistence);
+                // logger.info("adjWeight: " + adjWeight);
+                // logger.info("thisDistence: " + distence.get(currentNode.getLocation().getName()));
+                Boolean flag = adjDistence + adjWeight == distence.get(currentNode.getLocation().getName());
+                if (flag) {
+                    filtered = adj;
+                    break;
+                }
+            }
+            String theNode = filtered.name();
+            temp++;
+            // logger.debug("add node: " + theNode);
             res.add(0, this.nodes.get(theNode).getLocation());
             if (theNode.equals(x)) {
                 break;
             }
+            currentNode = this.nodes.get(theNode);
         }
         return res;
     }

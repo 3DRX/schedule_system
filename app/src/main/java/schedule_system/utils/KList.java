@@ -24,6 +24,14 @@ public class KList<T> extends AbstractList<T> {
         return true;
     }
 
+    public void add(int index, T t) {
+        list = Arrays.copyOf(list, list.length + 1);
+        for (int i = list.length - 1; i > index; i--) {
+            list[i] = list[i - 1];
+        }
+        list[index] = t;
+    }
+
     public T get(int i) {
         return list[i];
     }

@@ -26,10 +26,15 @@ class MapTest {
     @Test
     void testShortestPath() {
         MapData mapData = new MapData();
+        KList<Location> res = null;
         try {
-            KList<Location> res = mapData.pathFromXtoY("57", "70");
+            res = mapData.pathFromXtoY("邮局", "图书馆");
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        if (res != null) {
+            res.stream()
+                    .forEach(e -> System.out.println(e));
         }
     }
 }
