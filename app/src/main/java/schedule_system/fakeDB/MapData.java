@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -38,14 +39,14 @@ public class MapData {
         KMap<String, Integer> distence = new KMap<>();
         distence.put(x, 0);
         // 未访问的节点（这里value无意义，就是我懒得再写个Set了）
-        KMap<String, Integer> visitedNodes = new KMap<>();
+        // KMap<String, Integer> visitedNodes = new KMap<>();
+        HashSet<String> visitedNodes = new HashSet<String>();
         // 广度有限遍历的队列
         KList<MapNode> queue = new KList<>(MapNode.class);
         queue.add(this.nodes.get(x));
         while (queue.size() != 0
-                && visitedNodes.getKeyArray(String.class).length != this.nodes.getKeyArray(String.class).length) {
+                && visitedNodes.size() < this.nodes.getKeyArray(String.class).length) {
             MapNode currentNode = queue.popLeft();
-            visitedNodes.put(currentNode.getLocation().getName(), 0);
             logger.info("visiting: " + currentNode.getLocation().getName());
             for (AdjData e : currentNode.getAdj()) {
                 int weight = distence.get(currentNode.getLocation().getName()) + e.weight();
@@ -54,10 +55,11 @@ public class MapData {
                     distence.put(e.name(), weight);
                     logger.info("put " + e.name() + ", of distence " + weight);
                 }
-                if (!visitedNodes.containKey(e.name())) {
+                if (!visitedNodes.contains(e.name())) {
                     logger.info("Never visit " + e.name() + " before, add it into queue.");
                     // 如果邻接节点没有访问过，入队
                     queue.add(this.nodes.get(e.name()));
+                    visitedNodes.add(currentNode.getLocation().getName());
                 }
             }
         }
