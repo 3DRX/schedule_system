@@ -16,6 +16,11 @@ public class Location {
         this.y = y;
     }
 
+    @Override
+    public String toString() {
+        return this.name + "(" + x + "," + y + ")";
+    }
+
     public boolean equals(Location location) {
         return this.name.equals(location.name);
     }

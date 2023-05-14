@@ -44,9 +44,15 @@ public class MapNode {
         for (int i = 0; i < this.adj.length; i++) {
             if (i != this.adj.length - 1) {
                 res += this.adj[i].name();
+                res += "<";
+                res += this.adj[i].weight();
+                res += ">";
                 res += ", ";
             } else {
                 res += this.adj[i].name();
+                res += "<";
+                res += this.adj[i].weight();
+                res += ">";
             }
         }
         res += "]";

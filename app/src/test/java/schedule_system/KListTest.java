@@ -39,6 +39,7 @@ public class KListTest {
         list.add(2);
         assertEquals(list.popLeft(), 1);
         assertEquals(list.popLeft(), 2);
+        assertEquals(list.size(), 0);
     }
 
     @Test
