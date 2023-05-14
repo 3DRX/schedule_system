@@ -4,18 +4,18 @@
     "endWeek": 10,
     "testWeek": 11,
     "classTime": {
-      "day": 5,
-      "time": 9,
+      "day": 1,
+      "time": 13,
       "duration": 3
     },
     "examTime": {
-      "day": 5,
-      "time": 9,
+      "day": 1,
+      "time": 13,
       "duration": 3
     },
-    "name": "java",
+    "name": "面向对象程序设计",
     "location": {
-      "name": "abc",
+      "name": "教二楼",
       "x": 0,
       "y": 0
     }
@@ -25,18 +25,18 @@
     "endWeek": 10,
     "testWeek": 11,
     "classTime": {
-      "day": 1,
-      "time": 12,
-      "duration": 1
+      "day": 4,
+      "time": 9,
+      "duration": 2
     },
     "examTime": {
-      "day": 1,
-      "time": 12,
-      "duration": 1
+      "day": 4,
+      "time": 9,
+      "duration": 2
     },
-    "name": "python",
+    "name": "羽毛球",
     "location": {
-      "name": "abc",
+      "name": "体育馆",
       "x": 0,
       "y": 0
     }
@@ -48,16 +48,16 @@
     "classTime": {
       "day": 1,
       "time": 8,
-      "duration": 2
+      "duration": 3
     },
     "examTime": {
       "day": 1,
       "time": 8,
-      "duration": 2
+      "duration": 3
     },
-    "name": "math",
+    "name": "数据结构",
     "location": {
-      "name": "abc",
+      "name": "教三楼",
       "x": 0,
       "y": 0
     }
