@@ -9,7 +9,7 @@ import schedule_system.fakeDB.StudentData;
 import schedule_system.fakeDB.UserData;
 
 /**
- * 初始化三个文件读写器
+ * 四个数据控制器的配置类
  * DataConfig
  */
 @Configuration

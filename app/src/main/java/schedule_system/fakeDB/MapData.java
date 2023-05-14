@@ -30,12 +30,22 @@ public class MapData {
         this.logger.info("Reading map data from " + path);
     }
 
+    public boolean isValidLocation(String locationName) {
+        if (this.nodes.get(locationName) != null) {
+            logger.info("Location " + locationName + " is valid.");
+            return true;
+        } else {
+            logger.info("Location " + locationName + " is invalid.");
+            return false;
+        }
+    }
+
     // Dijkstra's algorithm
     public KList<Location> pathFromXtoY(String x, String y) {
-        // TODO: 
+        // TODO:
         // 1. 生成最短距离的时候不能遍历全图
         // 2. 把下面HashSet替换成自己的数据结构
-    
+
         // init
         // x 点到每个点的距离
         KMap<String, Integer> distence = new KMap<>();
@@ -87,7 +97,8 @@ public class MapData {
                 // logger.info(adj.name());
                 // logger.info("adjDistence: " + adjDistence);
                 // logger.info("adjWeight: " + adjWeight);
-                // logger.info("thisDistence: " + distence.get(currentNode.getLocation().getName()));
+                // logger.info("thisDistence: " +
+                // distence.get(currentNode.getLocation().getName()));
                 Boolean flag = adjDistence + adjWeight == distence.get(currentNode.getLocation().getName());
                 if (flag) {
                     filtered = adj;
