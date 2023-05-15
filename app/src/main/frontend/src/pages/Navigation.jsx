@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import "./Navigation.css";
 
 const Navigation = () => {
     const query = new URLSearchParams(useLocation().search);
@@ -12,6 +13,22 @@ const Navigation = () => {
         <>
             <h1>Navigation</h1>
             <p>Go to {courseName}, at {location}, ({x}, {y}).</p>
+            <div id="navigateContent">
+
+                <div id="controllerBox">
+                    <input type="text"/>
+                </div>
+                <div id="mapBox">
+                    <div id="Map">
+                        {/*在这个div里显示路径 */}
+
+                    </div>
+
+                </div>
+
+
+                
+            </div>
         </>
     )
 };

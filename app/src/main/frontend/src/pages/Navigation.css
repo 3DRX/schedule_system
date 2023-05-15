@@ -1,0 +1,19 @@
+#navigateContent{
+    display: block;
+}
+#controllerBox{
+    height: 15vh;
+
+}
+
+#mapBox{
+    display: flex;
+    justify-content: center;
+}
+#Map{
+    width: 30vw;
+    height: 70.6vh;
+    background-image: url("../image/BUPT_Map.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+}

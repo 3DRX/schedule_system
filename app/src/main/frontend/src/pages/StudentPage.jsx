@@ -150,6 +150,8 @@ function StudentPage() {
                                 step={1}
                                 max={20}
                                 min={8}
+
+
                             />
                         </div>
                         <div>
