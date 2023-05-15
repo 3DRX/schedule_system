@@ -27,25 +27,30 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
 
     const renderContent = () => {
         if (courses.length === 0) {
-            return (
-                <div onClick={() => {
-                    // console.log(`在第${week}周，周${day}，${startTime}-${startTime + 1}添加课程`);
-                    setAddClassInfo({
-                        week: week,
-                        day: day,
-                        startTime: startTime
-                    })
-                    setShowModal(true);
-                }}
-                    style={{
-                        backgroundColor: hover ? "lightgrey" : "white",
+            if (isAdmin) {
+                return (
+                    <div onClick={() => {
+                        // console.log(`在第${week}周，周${day}，${startTime}-${startTime + 1}添加课程`);
+                        setAddClassInfo({
+                            week: week,
+                            day: day,
+                            startTime: startTime
+                        })
+                        setShowModal(true);
                     }}
-                    id="addButton"
-                    onMouseEnter={() => { setHover(true) }}
-                    onMouseLeave={() => { setHover(false) }}
-                >+
-                </div>
-            );
+                        style={{
+                            backgroundColor: hover ? "lightgrey" : "white",
+                        }}
+                        id="addButton"
+                        onMouseEnter={() => { setHover(true) }}
+                        onMouseLeave={() => { setHover(false) }}
+                    >+
+                    </div>
+                );
+            }
+            else {
+                return <></>
+            }
         }
         else {
             return (

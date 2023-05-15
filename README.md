@@ -23,6 +23,9 @@
 ### 客户端
 
 - JavaScript 语言（node.js）
+    - v20.0.0
+    - v18.16.0
+    - (不能保证在老版本的 node.js 上能正确运行)
 - npm 包管理器
 - React.js 框架
 - Neovim, VScode 文本编辑器

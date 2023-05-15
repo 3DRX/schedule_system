@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import schedule_system.fakeDB.CourseData;
+import schedule_system.fakeDB.MapData;
 import schedule_system.fakeDB.StudentData;
 
 import schedule_system.utils.Course;
@@ -24,6 +25,8 @@ public class AddCourseController {
     CourseData courseData; // 课程数据控制器
     @Autowired
     StudentData studentData; // 学生数据控制器
+    @Autowired
+    MapData mapData;
 
     /**
      * 添加课程，并检测inputCourse是否与现有数据库中信息冲突
@@ -36,8 +39,17 @@ public class AddCourseController {
     @PostMapping("/addCourse")
     public boolean addCourse(
             @RequestBody CourseInfoRecord inputCourse) {
-        return createCourse(inputCourse.course()) &&
-                addCourseToStudent(inputCourse.course().getName(), inputCourse.students());
+        if (!mapData.isValidLocation(inputCourse.course().getLocation().getName())) {
+            logger.warn("添加课程 " + inputCourse.course().getName() + " 失败：地点不存在");
+            return false;
+        }
+        if (!createCourse(inputCourse.course())) {
+            return false;
+        }
+        if (!addCourseToStudent(inputCourse.course().getName(), inputCourse.students())) {
+            return false;
+        }
+        return true;
     }
 
     /**
