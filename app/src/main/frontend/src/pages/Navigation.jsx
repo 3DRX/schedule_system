@@ -1,7 +1,9 @@
 import React, { useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Form, Button } from 'react-bootstrap';
+import mapImage from "./mapImage.png";
 import axios from "axios";
+import { useEffect } from "react";
 
 const Navigation = () => {
     const query = new URLSearchParams(useLocation().search);
@@ -9,30 +11,44 @@ const Navigation = () => {
     const location = query.get("location");
 
     const [locationInput, setLocationInput] = useState("");
+    const [scale, setScale] = useState(2);
+    const [path, setPath] = useState([]);
     const canvasRef = useRef(null);
+    const imgRef = useRef(null);
 
-    const drawLine = (ctx, x1, y1, x2, y2) => {
-        ctx.moveTo(x1, y1);
-        ctx.lineTo(x2, y2);
-        ctx.stroke();
+    const drawLine = (context, x1, y1, x2, y2) => {
+        console.log(context.type, 'drawLine', x1, y1, x2, y2);
+        context.beginPath();
+        context.moveTo(x1, y1);
+        context.lineTo(x2, y2);
+        context.stroke();
     };
 
-    const onPaint = (path) => {
-        if (path === null) {
+    useEffect(() => {
+        if (path === null || path.length === 0) {
             return;
         }
         const canvas = canvasRef.current;
-        const ctx = canvas.getContext("2d");
-        ctx.strokeStyle = "red";
-        ctx.lineWidth = 15;
-        ctx.lineCap = "round";
+        const context = canvas.getContext("2d");
+        console.log(canvas.type);
+        context.strokeStyle = "red";
+        context.lineWidth = 15;
+        context.lineCap = "round";
+        context.lineJoin = "round";
+        const img = imgRef.current;
+        context.drawImage(img, 0, 0, img.width / scale, img.height / scale);
         path.forEach((point, index) => {
-            // console.log(point);
             if (index !== 0) {
-                drawLine(ctx, path[index - 1].x, path[index - 1].y, point.x, point.y);
+                drawLine(
+                    context,
+                    path[index - 1].x / scale,
+                    path[index - 1].y / scale,
+                    point.x / scale,
+                    point.y / scale
+                );
             }
         });
-    }
+    }, [path]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -43,7 +59,7 @@ const Navigation = () => {
         axios.post("http://" + window.location.hostname + ":8888/navigate", jsonData)
             .then((response) => {
                 const path = JSON.parse(response.request.response);
-                onPaint(path);
+                setPath(path);
             })
             .catch((error) => {
                 console.log(error);
@@ -69,14 +85,22 @@ const Navigation = () => {
                     确认
                 </Button>
             </Form>
+            <img
+                src={mapImage}
+                ref={imgRef}
+                className="mapImage"
+                alt="mapImage"
+                style={{
+                    width: { scale },
+                    height: { scale },
+                    display: "none",
+                }}
+            />
             <canvas
                 id="map"
                 ref={canvasRef}
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    border: "1px solid #000",
-                }}
+                width={imgRef.current ? imgRef.current.width / scale : 0}
+                height={imgRef.current ? imgRef.current.height / scale : 0}
             >
                 您的浏览器不支持canvas，请更换浏览器
             </canvas>
