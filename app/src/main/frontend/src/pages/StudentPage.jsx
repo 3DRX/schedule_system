@@ -4,6 +4,7 @@ import NavBar from '../components/NavBar'
 import { InputNumber } from 'rsuite';
 import { notification } from 'antd';
 import Button from 'react-bootstrap/Button';
+import "./StudentPage.css";
 
 function StudentPage() {
     const query = new URLSearchParams(useLocation().search);
@@ -92,62 +93,82 @@ function StudentPage() {
     return (
         <div>
             <NavBar isAdmin="false" userName={userName} enabled={!start} />
-            <h1>welcome, {userName}.</h1>
-            <Button size='sm' variant='outline-primary' onClick={handleOnClick}>{start ? "stop" : "start"}</Button>
-            <Button size='sm' variant='outline-secondary' onClick={() => {
-                setWeek(1);
-                setDay(1);
-                setTime(8);
-                setData("");
-            }}>reset</Button>
-            <p>
-                第
-                <InputNumber
-                    value={week}
-                    onChange={setWeek}
-                    step={1}
-                    max={20}
-                    min={1}
-                    style={{
-                        width: "10ex",
-                    }}
-                />
-                周
-            </p>
-            <p>
-                周
-                <InputNumber
-                    value={day}
-                    onChange={setDay}
-                    step={1}
-                    max={5}
-                    min={1}
-                    style={{
-                        width: "10ex",
-                    }}
-                />
-            </p>
-            <p>
-                <InputNumber
-                    value={time}
-                    onChange={setTime}
-                    step={1}
-                    max={20}
-                    min={8}
-                    style={{
-                        width: "10ex",
-                    }}
-                />
-                点
-            </p>
-            {contextHolder}
-            <ul>
-                Received Data
-                <li>{data.split(",")[0]}</li>
-                <li>{data.split(",")[1]}</li>
-                <li>{data.split(",")[2]}</li>
-                <li>{data.split(",")[3]}</li>
-            </ul>
+            <div id="studentPageContent">
+                <div id="welcome">
+                    <h1>welcome, {userName}.</h1>
+                </div>
+                <div id="timeForm">
+                    <div id="twoButtons">
+                        <div id="buttonBox">
+                            <div>
+                                <Button size='sm' variant='outline-primary' onClick={handleOnClick}>{start ? "stop" : "start"}</Button>
+                            </div>
+                            <div>
+                                <Button size='sm' variant='outline-secondary' onClick={() => {
+                                    setWeek(1);
+                                    setDay(1);
+                                    setTime(8);
+                                    setData("");
+                                }}>reset</Button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="timeWeek">
+                        <div>
+                            第
+                        </div>
+                        <div>
+                            <InputNumber
+                                value={week}
+                                onChange={setWeek}
+                                step={1}
+                                max={20}
+                                min={1}
+                            />
+                        </div>
+                        <div>
+                            周
+                        </div>
+                    </div>
+                    <div id="timeHour">
+                        <div>
+                            周
+                        </div>
+                        <div>
+                            <InputNumber
+                                value={day}
+                                onChange={setDay}
+                                step={1}
+                                max={5}
+                                min={1}
+                            />
+                        </div>
+                        <div>
+                            <InputNumber
+                                value={time}
+                                onChange={setTime}
+                                step={1}
+                                max={20}
+                                min={8}
+                            />
+                        </div>
+                        <div>
+                            点
+                        </div>
+                    </div>
+                    {contextHolder}
+                    <ul id="timeInformation">
+                        Received Data
+                        <li>{data.split(",")[0]}</li>
+                        <li>{data.split(",")[1]}</li>
+                        <li>{data.split(",")[2]}</li>
+                        <li>{data.split(",")[3]}</li>
+                    </ul>
+                </div>
+
+
+            </div>
+
         </div>
     )
 }

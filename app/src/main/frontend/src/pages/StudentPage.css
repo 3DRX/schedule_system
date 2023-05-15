@@ -1,0 +1,46 @@
+#studentPageContent{
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    justify-content: center;
+    margin: 0;
+    background-color: papayawhip;
+    border-radius: 0;
+    box-shadow: 0 0 0 white;
+}
+#timeForm{
+    display: block;
+    justify-content: center;
+    margin: 2vh 10vh 2vh 10vh;
+    border-radius: 10px;
+    background-color: rgba(214, 214, 214, 0.479);
+    backdrop-filter: saturate(100%) blur(3px);
+    box-shadow: 0 0 2vw 0 rgba(49, 49, 49, 0.623);
+    padding: 40px 15px 40px 15px;
+}
+#twoButtons{
+    display: flex;
+    justify-content: center;
+    margin: 2vh;
+}
+#buttonBox{
+    width: 20vw;
+    display: flex;
+    justify-content: space-evenly;
+}
+#timeWeek{
+    display: flex;
+    justify-content: center;
+    margin: 2vh;
+}
+#timeHour{
+    display: flex;
+    justify-content: center;
+    margin: 2vh;
+}
+#timeInformation{
+    display: block;
+    justify-content: center;
+    width: 10vw;
+    margin: 0 auto;
+}
