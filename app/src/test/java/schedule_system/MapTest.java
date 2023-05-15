@@ -28,7 +28,7 @@ class MapTest {
         MapData mapData = new MapData();
         KList<Location> res = null;
         try {
-            res = mapData.pathFromXtoY("邮局", "图书馆");
+            res = mapData.pathFromXtoY("学三公寓", "教二楼");
         } catch (Exception e) {
             e.printStackTrace();
         }
