@@ -40,26 +40,22 @@ public class MapData {
         }
     }
 
-    // Dijkstra's algorithm
     public KList<Location> pathFromXtoY(String x, String y) {
-        // TODO:
-        // 1. 生成最短距离的时候不能遍历全图
-        // 2. 把下面HashSet替换成自己的数据结构
-
         // init
         // x 点到每个点的距离
         KMap<String, Integer> distence = new KMap<>();
         distence.put(x, 0);
-        // 未访问的节点（这里value无意义，就是我懒得再写个Set了）
+        // 已访问的节点（这里value无意义，就是我懒得再写个Set了）
         // KMap<String, Integer> visitedNodes = new KMap<>();
         HashSet<String> visitedNodes = new HashSet<String>();
-        // 广度有限遍历的队列
+        // 广度优先遍历的队列
         KList<MapNode> queue = new KList<>(MapNode.class);
         queue.add(this.nodes.get(x));
         while (queue.size() != 0
                 && visitedNodes.size() < this.nodes.size()) {
             MapNode currentNode = queue.popLeft();
             // logger.info("visiting: " + currentNode.getLocation().getName());
+            visitedNodes.add(currentNode.getLocation().getName());
             for (AdjData e : currentNode.getAdj()) {
                 int weight = distence.get(currentNode.getLocation().getName()) + e.weight();
                 if (distence.get(e.name()) == null || distence.get(e.name()) > weight) {
@@ -71,7 +67,6 @@ public class MapData {
                     // logger.info("Never visit " + e.name() + " before, add it into queue.");
                     // 如果邻接节点没有访问过，入队
                     queue.add(this.nodes.get(e.name()));
-                    visitedNodes.add(e.name());
                 }
             }
         }
