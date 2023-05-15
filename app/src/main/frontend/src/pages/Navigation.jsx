@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Form, Button } from 'react-bootstrap';
 import axios from "axios";
@@ -9,15 +9,28 @@ const Navigation = () => {
     const location = query.get("location");
 
     const [locationInput, setLocationInput] = useState("");
+    const canvasRef = useRef(null);
+
+    const drawLine = (ctx, x1, y1, x2, y2) => {
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+    };
 
     const onPaint = (path) => {
         if (path === null) {
             return;
         }
-        console.log("onPaint");
-        path.forEach((element, index) => {
-            console.log(element);
-            console.log(index);
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext("2d");
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 15;
+        ctx.lineCap = "round";
+        path.forEach((point, index) => {
+            // console.log(point);
+            if (index !== 0) {
+                drawLine(ctx, path[index - 1].x, path[index - 1].y, point.x, point.y);
+            }
         });
     }
 
@@ -56,6 +69,17 @@ const Navigation = () => {
                     确认
                 </Button>
             </Form>
+            <canvas
+                id="map"
+                ref={canvasRef}
+                style={{
+                    width: "100%",
+                    height: "100%",
+                    border: "1px solid #000",
+                }}
+            >
+                您的浏览器不支持canvas，请更换浏览器
+            </canvas>
         </>
     )
 };
