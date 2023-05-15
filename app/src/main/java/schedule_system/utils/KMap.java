@@ -12,20 +12,20 @@ public class KMap<K, V> {
     private MyEntry<K, V>[] table;
 
     public KMap() {
-        table = new MyEntry[defautLength];
-        threshold = (int) (defautLength * defaultFactor);
-        size = 0;
+        this.table = new MyEntry[defautLength];
+        this.threshold = (int) (defautLength * defaultFactor);
+        this.size = 0;
     }
 
-    private int index(K key) {
-        return Math.abs(key.hashCode()) % table.length;
+    private int index(K key, int capacity) {
+        return Math.abs(key.hashCode()) % capacity;
     }
 
     public void put(K key, V value) {
         if (key == null) {
             return;
         }
-        int index = index(key);
+        int index = index(key, this.table.length);
         MyEntry<K, V> entry = table[index];
         while (entry != null) {
             if ((entry.getKey() == key || entry.getKey().equals(key))) {
@@ -54,14 +54,14 @@ public class KMap<K, V> {
             MyEntry<K, V> old = table[i];
             while (old != null) {
                 MyEntry<K, V> next = old.getNext();
-                int index = index(old.getKey());
+                int index = index(old.getKey(), capacity);
                 old.setNext(newTabe[index]);
                 newTabe[index] = old;
                 old = next;
             }
         }
         this.table = newTabe;
-        threshold = (int) (table.length * defaultFactor);
+        this.threshold = (int) (this.table.length * KMap.defaultFactor);
         this.resize++;
     }
 
@@ -74,7 +74,7 @@ public class KMap<K, V> {
     }
 
     private MyEntry<K, V> getEntry(K key) {
-        MyEntry<K, V> entry = table[index(key)];
+        MyEntry<K, V> entry = table[index(key, this.table.length)];
         while (entry != null) {
             if (entry.getKey().hashCode() == key.hashCode()
                     && (entry.getKey() == key
@@ -90,7 +90,7 @@ public class KMap<K, V> {
         if (key == null) {
             return;
         }
-        int index = index(key);
+        int index = index(key, this.table.length);
         MyEntry<K, V> pre = null;
         MyEntry<K, V> entry = table[index];
         while (entry != null) {

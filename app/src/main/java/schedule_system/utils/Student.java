@@ -1,10 +1,5 @@
 package schedule_system.utils;
 
-import java.util.ArrayList;
-
-/**
- * StudentData
- */
 public class Student {
     private String[] courses;
     private String name;
@@ -15,16 +10,14 @@ public class Student {
     }
 
     public void deleteCourseIfHave(String courseName) {
-        ArrayList<String> newCourses = new ArrayList<>();
+        KList<String> newCourses = new KList<>(String.class);
         for (String course : this.courses) {
             if (course.equals(courseName)) {
             } else {
                 newCourses.add(course);
             }
         }
-        String[] resCourses = new String[newCourses.size()];
-        newCourses.toArray(resCourses);
-        this.courses = resCourses;
+        this.courses = newCourses.toArray();
     }
 
     public String[] getCourses() {

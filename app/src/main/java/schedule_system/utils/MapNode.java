@@ -1,8 +1,6 @@
-
 package schedule_system.utils;
 
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class MapNode {
     private Location location;
@@ -19,23 +17,20 @@ public class MapNode {
 
     /**
      * 返回节点到另一个节点的距离，若输入是自身，返回0
+     * 若本节点与另一节点不相连，返回INTMAX
      * 
      * @param nodeName
      * @return
      */
-    public double distenceTo(String nodeName) {
+    public int distenceToAdj(String nodeName) {
         if (this.getLocation().getName().equals(nodeName)) {
             return 0;
         }
-        AdjData[] res = (AdjData[]) Arrays.stream(adj)
+        AdjData res = Arrays.stream(adj)
                 .filter(e -> e.name().equals(nodeName))
-                .collect(Collectors.toList())
-                .toArray();
-        if (res.length == 0) {
-            return Double.MAX_VALUE;
-        } else {
-            return res[0].weight();
-        }
+                .findFirst()
+                .orElse(null);
+        return res != null ? res.weight() : Integer.MAX_VALUE;
     }
 
     @Override
@@ -49,17 +44,23 @@ public class MapNode {
         for (int i = 0; i < this.adj.length; i++) {
             if (i != this.adj.length - 1) {
                 res += this.adj[i].name();
+                res += "<";
+                res += this.adj[i].weight();
+                res += ">";
                 res += ", ";
             } else {
                 res += this.adj[i].name();
+                res += "<";
+                res += this.adj[i].weight();
+                res += ">";
             }
         }
         res += "]";
         return res;
     }
 
-    public void addAdj(AdjData adjData) {
-        // TODO: change to private
+    @Deprecated
+    private void addAdj(AdjData adjData) {
         AdjData[] newList = Arrays.copyOf(this.adj, this.adj.length + 1);
         newList[newList.length - 1] = adjData;
         this.adj = newList;

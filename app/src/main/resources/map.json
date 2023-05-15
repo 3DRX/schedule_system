@@ -1,30 +1,3803 @@
 [
   {
     "location": {
-      "name": "北邮锦江酒店",
-      "x": 0,
-      "y": 0
+      "name": "1",
+      "x": 744,
+      "y": 468
     },
-    "isBuilding": true,
+    "isBuilding": false,
     "adj": [
       {
-        "name": "1"
+        "name": "北门",
+        "weight": 321
+      },
+      {
+        "name": "7",
+        "weight": 102
       }
     ]
   },
   {
     "location": {
-      "name": "1",
-      "x": 1,
-      "y": 0
+      "name": "2",
+      "x": 1065,
+      "y": 541
     },
     "isBuilding": false,
     "adj": [
       {
-        "name": "北邮锦江酒店"
+        "name": "北门",
+        "weight": 76
       },
       {
-        "name": "学十一公寓"
+        "name": "9",
+        "weight": 117
+      },
+      {
+        "name": "本科招生办研究生招生办就业与创业指导中心",
+        "weight": 99
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "3",
+      "x": 1538,
+      "y": 553
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "4",
+        "weight": 127
+      },
+      {
+        "name": "学六公寓",
+        "weight": 78
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "4",
+      "x": 1665,
+      "y": 553
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "12",
+        "weight": 103
+      },
+      {
+        "name": "3",
+        "weight": 127
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "5",
+      "x": 517,
+      "y": 570
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "6",
+        "weight": 170
+      },
+      {
+        "name": "北邮锦江酒店",
+        "weight": 156
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "6",
+      "x": 687,
+      "y": 570
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "学十一公寓",
+        "weight": 59
+      },
+      {
+        "name": "7",
+        "weight": 58
+      },
+      {
+        "name": "5",
+        "weight": 170
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "7",
+      "x": 745,
+      "y": 570
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "1",
+        "weight": 102
+      },
+      {
+        "name": "8",
+        "weight": 90
+      },
+      {
+        "name": "6",
+        "weight": 58
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "8",
+      "x": 745,
+      "y": 660
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "7",
+        "weight": 90
+      },
+      {
+        "name": "18",
+        "weight": 58
+      },
+      {
+        "name": "教九",
+        "weight": 50
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "9",
+      "x": 1065,
+      "y": 658
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "2",
+        "weight": 117
+      },
+      {
+        "name": "10",
+        "weight": 130
+      },
+      {
+        "name": "20",
+        "weight": 60
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "10",
+      "x": 1195,
+      "y": 658
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "经管楼",
+        "weight": 102
+      },
+      {
+        "name": "11",
+        "weight": 181
+      },
+      {
+        "name": "9",
+        "weight": 130
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "11",
+      "x": 1376,
+      "y": 656
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "12",
+        "weight": 288
+      },
+      {
+        "name": "综合服务楼",
+        "weight": 122
+      },
+      {
+        "name": "10",
+        "weight": 181
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "12",
+      "x": 1664,
+      "y": 656
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "4",
+        "weight": 103
+      },
+      {
+        "name": "13",
+        "weight": 124
+      },
+      {
+        "name": "34",
+        "weight": 232
+      },
+      {
+        "name": "11",
+        "weight": 288
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "13",
+      "x": 1788,
+      "y": 656
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "14",
+        "weight": 283
+      },
+      {
+        "name": "科研楼",
+        "weight": 137
+      },
+      {
+        "name": "12",
+        "weight": 124
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "14",
+      "x": 2071,
+      "y": 656
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "东北门",
+        "weight": 140
+      },
+      {
+        "name": "13",
+        "weight": 283
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "15",
+      "x": 473,
+      "y": 718
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "16",
+        "weight": 114
+      },
+      {
+        "name": "24",
+        "weight": 105
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "16",
+      "x": 587,
+      "y": 718
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "17",
+        "weight": 51
+      },
+      {
+        "name": "留学生公寓",
+        "weight": 75
+      },
+      {
+        "name": "15",
+        "weight": 114
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "17",
+      "x": 638,
+      "y": 718
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "学九公寓",
+        "weight": 62
+      },
+      {
+        "name": "18",
+        "weight": 105
+      },
+      {
+        "name": "16",
+        "weight": 51
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "18",
+      "x": 743,
+      "y": 718
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "8",
+        "weight": 58
+      },
+      {
+        "name": "19",
+        "weight": 143
+      },
+      {
+        "name": "21",
+        "weight": 76
+      },
+      {
+        "name": "17",
+        "weight": 105
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "19",
+      "x": 886,
+      "y": 718
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "学十公寓",
+        "weight": 145
+      },
+      {
+        "name": "20",
+        "weight": 178
+      },
+      {
+        "name": "18",
+        "weight": 143
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "20",
+      "x": 1064,
+      "y": 718
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "9",
+        "weight": 60
+      },
+      {
+        "name": "22",
+        "weight": 76
+      },
+      {
+        "name": "19",
+        "weight": 178
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "21",
+      "x": 743,
+      "y": 794
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "18",
+        "weight": 76
+      },
+      {
+        "name": "综合食堂",
+        "weight": 146
+      },
+      {
+        "name": "26",
+        "weight": 94
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "22",
+      "x": 1064,
+      "y": 794
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "20",
+        "weight": 76
+      },
+      {
+        "name": "27",
+        "weight": 94
+      },
+      {
+        "name": "综合食堂",
+        "weight": 175
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "23",
+      "x": 1326,
+      "y": 778
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "综合服务楼",
+        "weight": 46
+      },
+      {
+        "name": "29",
+        "weight": 110
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "24",
+      "x": 473,
+      "y": 823
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "15",
+        "weight": 105
+      },
+      {
+        "name": "25",
+        "weight": 65
+      },
+      {
+        "name": "青年公寓",
+        "weight": 98
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "25",
+      "x": 473,
+      "y": 888
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "24",
+        "weight": 65
+      },
+      {
+        "name": "26",
+        "weight": 270
+      },
+      {
+        "name": "37",
+        "weight": 122
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "26",
+      "x": 743,
+      "y": 888
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "21",
+        "weight": 94
+      },
+      {
+        "name": "27",
+        "weight": 321
+      },
+      {
+        "name": "39",
+        "weight": 123
+      },
+      {
+        "name": "25",
+        "weight": 270
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "27",
+      "x": 1064,
+      "y": 888
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "22",
+        "weight": 94
+      },
+      {
+        "name": "28",
+        "weight": 165
+      },
+      {
+        "name": "41",
+        "weight": 123
+      },
+      {
+        "name": "26",
+        "weight": 321
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "28",
+      "x": 1229,
+      "y": 888
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "学生活动中心",
+        "weight": 95
+      },
+      {
+        "name": "29",
+        "weight": 97
+      },
+      {
+        "name": "35",
+        "weight": 70
+      },
+      {
+        "name": "27",
+        "weight": 165
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "29",
+      "x": 1326,
+      "y": 888
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "23",
+        "weight": 110
+      },
+      {
+        "name": "30",
+        "weight": 104
+      },
+      {
+        "name": "移动营业厅",
+        "weight": 71
+      },
+      {
+        "name": "28",
+        "weight": 97
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "30",
+      "x": 1430,
+      "y": 888
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "浴室",
+        "weight": 49
+      },
+      {
+        "name": "31",
+        "weight": 70
+      },
+      {
+        "name": "物美超市",
+        "weight": 68
+      },
+      {
+        "name": "29",
+        "weight": 104
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "31",
+      "x": 1500,
+      "y": 888
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "联通营业厅",
+        "weight": 48
+      },
+      {
+        "name": "32",
+        "weight": 38
+      },
+      {
+        "name": "30",
+        "weight": 70
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "32",
+      "x": 1538,
+      "y": 888
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "水房",
+        "weight": 49
+      },
+      {
+        "name": "33",
+        "weight": 62
+      },
+      {
+        "name": "门店",
+        "weight": 57
+      },
+      {
+        "name": "31",
+        "weight": 38
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "33",
+      "x": 1600,
+      "y": 888
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "锅炉房",
+        "weight": 49
+      },
+      {
+        "name": "34",
+        "weight": 65
+      },
+      {
+        "name": "32",
+        "weight": 62
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "34",
+      "x": 1665,
+      "y": 888
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "12",
+        "weight": 232
+      },
+      {
+        "name": "42",
+        "weight": 123
+      },
+      {
+        "name": "33",
+        "weight": 65
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "35",
+      "x": 1229,
+      "y": 958
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "28",
+        "weight": 70
+      },
+      {
+        "name": "漫咖啡",
+        "weight": 51
+      },
+      {
+        "name": "43",
+        "weight": 109
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "36",
+      "x": 2030,
+      "y": 952
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "后勤处采招办保卫处（东配楼）",
+        "weight": 88
+      },
+      {
+        "name": "55",
+        "weight": 198
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "37",
+      "x": 472,
+      "y": 1010
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "25",
+        "weight": 122
+      },
+      {
+        "name": "38",
+        "weight": 145
+      },
+      {
+        "name": "44",
+        "weight": 141
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "38",
+      "x": 617,
+      "y": 1011
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "37",
+        "weight": 145
+      },
+      {
+        "name": "学五公寓",
+        "weight": 57
+      },
+      {
+        "name": "39",
+        "weight": 128
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "39",
+      "x": 745,
+      "y": 1011
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "38",
+        "weight": 128
+      },
+      {
+        "name": "26",
+        "weight": 123
+      },
+      {
+        "name": "40",
+        "weight": 142
+      },
+      {
+        "name": "46",
+        "weight": 140
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "40",
+      "x": 887,
+      "y": 1011
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "39",
+        "weight": 142
+      },
+      {
+        "name": "学八公寓",
+        "weight": 57
+      },
+      {
+        "name": "41",
+        "weight": 178
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "41",
+      "x": 1065,
+      "y": 1011
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "40",
+        "weight": 178
+      },
+      {
+        "name": "48",
+        "weight": 40
+      },
+      {
+        "name": "27",
+        "weight": 123
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "42",
+      "x": 1664,
+      "y": 1011
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "学苑风味餐厅",
+        "weight": 93
+      },
+      {
+        "name": "学生食堂",
+        "weight": 96
+      },
+      {
+        "name": "34",
+        "weight": 123
+      },
+      {
+        "name": "53",
+        "weight": 138
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "43",
+      "x": 1229,
+      "y": 1067
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "35",
+        "weight": 109
+      },
+      {
+        "name": "学生发展中心",
+        "weight": 146
+      },
+      {
+        "name": "49",
+        "weight": 84
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "44",
+      "x": 472,
+      "y": 1151
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "学十三公寓",
+        "weight": 98
+      },
+      {
+        "name": "37",
+        "weight": 141
+      },
+      {
+        "name": "45",
+        "weight": 145
+      },
+      {
+        "name": "57",
+        "weight": 109
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "45",
+      "x": 617,
+      "y": 1151
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "44",
+        "weight": 145
+      },
+      {
+        "name": "46",
+        "weight": 128
+      },
+      {
+        "name": "学三公寓",
+        "weight": 65
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "46",
+      "x": 745,
+      "y": 1151
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "45",
+        "weight": 128
+      },
+      {
+        "name": "39",
+        "weight": 140
+      },
+      {
+        "name": "47",
+        "weight": 142
+      },
+      {
+        "name": "58",
+        "weight": 109
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "47",
+      "x": 887,
+      "y": 1151
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "46",
+        "weight": 142
+      },
+      {
+        "name": "学四公寓",
+        "weight": 62
+      },
+      {
+        "name": "48",
+        "weight": 204
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "48",
+      "x": 1065,
+      "y": 1051
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "47",
+        "weight": 204
+      },
+      {
+        "name": "41",
+        "weight": 40
+      },
+      {
+        "name": "49",
+        "weight": 191
+      },
+      {
+        "name": "59",
+        "weight": 209
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "49",
+      "x": 1228,
+      "y": 1151
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "48",
+        "weight": 191
+      },
+      {
+        "name": "43",
+        "weight": 84
+      },
+      {
+        "name": "50",
+        "weight": 146
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "50",
+      "x": 1374,
+      "y": 1151
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "49",
+        "weight": 146
+      },
+      {
+        "name": "51",
+        "weight": 127
+      },
+      {
+        "name": "62",
+        "weight": 171
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "51",
+      "x": 1501,
+      "y": 1151
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "50",
+        "weight": 127
+      },
+      {
+        "name": "档案馆",
+        "weight": 48
+      },
+      {
+        "name": "52",
+        "weight": 67
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "52",
+      "x": 1568,
+      "y": 1148
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "51",
+        "weight": 67
+      },
+      {
+        "name": "北邮书屋",
+        "weight": 64
+      },
+      {
+        "name": "53",
+        "weight": 96
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "53",
+      "x": 1664,
+      "y": 1149
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "52",
+        "weight": 96
+      },
+      {
+        "name": "42",
+        "weight": 138
+      },
+      {
+        "name": "54",
+        "weight": 94
+      },
+      {
+        "name": "63",
+        "weight": 173
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "54",
+      "x": 1758,
+      "y": 1149
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "53",
+        "weight": 94
+      },
+      {
+        "name": "学生食堂",
+        "weight": 139
+      },
+      {
+        "name": "55",
+        "weight": 271
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "55",
+      "x": 2029,
+      "y": 1150
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "54",
+        "weight": 271
+      },
+      {
+        "name": "36",
+        "weight": 198
+      },
+      {
+        "name": "56",
+        "weight": 182
+      },
+      {
+        "name": "76",
+        "weight": 353
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "56",
+      "x": 2211,
+      "y": 1149
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "55",
+        "weight": 182
+      },
+      {
+        "name": "东北门",
+        "weight": 493
+      },
+      {
+        "name": "东门",
+        "weight": 358
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "57",
+      "x": 471,
+      "y": 1260
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "44",
+        "weight": 109
+      },
+      {
+        "name": "58",
+        "weight": 274
+      },
+      {
+        "name": "64",
+        "weight": 114
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "58",
+      "x": 745,
+      "y": 1260
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "57",
+        "weight": 274
+      },
+      {
+        "name": "46",
+        "weight": 109
+      },
+      {
+        "name": "59",
+        "weight": 320
+      },
+      {
+        "name": "65",
+        "weight": 114
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "59",
+      "x": 1065,
+      "y": 1260
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "58",
+        "weight": 320
+      },
+      {
+        "name": "48",
+        "weight": 209
+      },
+      {
+        "name": "60",
+        "weight": 62
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "60",
+      "x": 1065,
+      "y": 1322
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "59",
+        "weight": 62
+      },
+      {
+        "name": "61",
+        "weight": 164
+      },
+      {
+        "name": "66",
+        "weight": 52
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "61",
+      "x": 1229,
+      "y": 1322
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "60",
+        "weight": 164
+      },
+      {
+        "name": "62",
+        "weight": 145
+      },
+      {
+        "name": "时光广场",
+        "weight": 99
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "62",
+      "x": 1374,
+      "y": 1322
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "61",
+        "weight": 145
+      },
+      {
+        "name": "50",
+        "weight": 171
+      },
+      {
+        "name": "图书馆",
+        "weight": 127
+      },
+      {
+        "name": "73",
+        "weight": 181
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "63",
+      "x": 1665,
+      "y": 1322
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "53",
+        "weight": 173
+      },
+      {
+        "name": "篮球场",
+        "weight": 124
+      },
+      {
+        "name": "74",
+        "weight": 181
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "64",
+      "x": 472,
+      "y": 1374
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "57",
+        "weight": 114
+      },
+      {
+        "name": "65",
+        "weight": 272
+      },
+      {
+        "name": "68",
+        "weight": 129
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "65",
+      "x": 744,
+      "y": 1374
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "64",
+        "weight": 272
+      },
+      {
+        "name": "58",
+        "weight": 114
+      },
+      {
+        "name": "66",
+        "weight": 320
+      },
+      {
+        "name": "70",
+        "weight": 129
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "66",
+      "x": 1064,
+      "y": 1374
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "65",
+        "weight": 320
+      },
+      {
+        "name": "60",
+        "weight": 52
+      },
+      {
+        "name": "72",
+        "weight": 129
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "67",
+      "x": 377,
+      "y": 1503
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "鸿通楼",
+        "weight": 73
+      },
+      {
+        "name": "68",
+        "weight": 94
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "68",
+      "x": 471,
+      "y": 1503
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "67",
+        "weight": 94
+      },
+      {
+        "name": "64",
+        "weight": 129
+      },
+      {
+        "name": "69",
+        "weight": 146
+      },
+      {
+        "name": "83",
+        "weight": 197
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "69",
+      "x": 617,
+      "y": 1503
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "68",
+        "weight": 146
+      },
+      {
+        "name": "学一公寓",
+        "weight": 81
+      },
+      {
+        "name": "70",
+        "weight": 128
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "70",
+      "x": 745,
+      "y": 1503
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "69",
+        "weight": 128
+      },
+      {
+        "name": "65",
+        "weight": 129
+      },
+      {
+        "name": "71",
+        "weight": 140
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "71",
+      "x": 885,
+      "y": 1503
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "学二公寓",
+        "weight": 85
+      },
+      {
+        "name": "70",
+        "weight": 140
+      },
+      {
+        "name": "72",
+        "weight": 182
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "72",
+      "x": 1067,
+      "y": 1503
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "66",
+        "weight": 129
+      },
+      {
+        "name": "71",
+        "weight": 182
+      },
+      {
+        "name": "73",
+        "weight": 308
+      },
+      {
+        "name": "80",
+        "weight": 149
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "73",
+      "x": 1375,
+      "y": 1503
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "62",
+        "weight": 181
+      },
+      {
+        "name": "72",
+        "weight": 308
+      },
+      {
+        "name": "74",
+        "weight": 289
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "74",
+      "x": 1664,
+      "y": 1503
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "63",
+        "weight": 181
+      },
+      {
+        "name": "73",
+        "weight": 289
+      },
+      {
+        "name": "75",
+        "weight": 266
+      },
+      {
+        "name": "79",
+        "weight": 107
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "75",
+      "x": 1930,
+      "y": 1503
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "74",
+        "weight": 266
+      },
+      {
+        "name": "76",
+        "weight": 105
+      },
+      {
+        "name": "85",
+        "weight": 197
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "76",
+      "x": 2035,
+      "y": 1503
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "55",
+        "weight": 353
+      },
+      {
+        "name": "75",
+        "weight": 105
+      },
+      {
+        "name": "77",
+        "weight": 36
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "77",
+      "x": 2071,
+      "y": 1503
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "76",
+        "weight": 36
+      },
+      {
+        "name": "78",
+        "weight": 74
+      },
+      {
+        "name": "体育馆",
+        "weight": 198
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "78",
+      "x": 2145,
+      "y": 1503
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "77",
+        "weight": 74
+      },
+      {
+        "name": "学29公寓",
+        "weight": 180
+      },
+      {
+        "name": "游泳馆",
+        "weight": 197
+      },
+      {
+        "name": "东门",
+        "weight": 67
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "79",
+      "x": 1664,
+      "y": 1610
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "物业中心配电室",
+        "weight": 97
+      },
+      {
+        "name": "74",
+        "weight": 107
+      },
+      {
+        "name": "87",
+        "weight": 141
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "80",
+      "x": 1064,
+      "y": 1652
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "72",
+        "weight": 149
+      },
+      {
+        "name": "81",
+        "weight": 95
+      },
+      {
+        "name": "84",
+        "weight": 48
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "81",
+      "x": 1159,
+      "y": 1652
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "80",
+        "weight": 95
+      },
+      {
+        "name": "82",
+        "weight": 72
+      },
+      {
+        "name": "资产管理处审计处",
+        "weight": 63
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "82",
+      "x": 1231,
+      "y": 1652
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "81",
+        "weight": 72
+      },
+      {
+        "name": "财务处",
+        "weight": 65
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "83",
+      "x": 471,
+      "y": 1700
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "68",
+        "weight": 197
+      },
+      {
+        "name": "88",
+        "weight": 170
+      },
+      {
+        "name": "邮局",
+        "weight": 97
+      },
+      {
+        "name": "教四楼",
+        "weight": 286
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "84",
+      "x": 1067,
+      "y": 1700
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "80",
+        "weight": 48
+      },
+      {
+        "name": "86",
+        "weight": 51
+      },
+      {
+        "name": "教四楼",
+        "weight": 310
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "85",
+      "x": 1930,
+      "y": 1700
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "75",
+        "weight": 197
+      },
+      {
+        "name": "94",
+        "weight": 170
+      },
+      {
+        "name": "体育馆",
+        "weight": 141
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "86",
+      "x": 1067,
+      "y": 1751
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "84",
+        "weight": 51
+      },
+      {
+        "name": "教一楼",
+        "weight": 304
+      },
+      {
+        "name": "90",
+        "weight": 119
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "87",
+      "x": 1664,
+      "y": 1751
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "79",
+        "weight": 141
+      },
+      {
+        "name": "教一楼",
+        "weight": 293
+      },
+      {
+        "name": "92",
+        "weight": 119
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "88",
+      "x": 471,
+      "y": 1870
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "83",
+        "weight": 170
+      },
+      {
+        "name": "89",
+        "weight": 285
+      },
+      {
+        "name": "98",
+        "weight": 192
+      },
+      {
+        "name": "ATM",
+        "weight": 97
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "89",
+      "x": 756,
+      "y": 1870
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "88",
+        "weight": 285
+      },
+      {
+        "name": "校训石",
+        "weight": 193
+      },
+      {
+        "name": "90",
+        "weight": 307
+      },
+      {
+        "name": "教四楼",
+        "weight": 167
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "90",
+      "x": 1063,
+      "y": 1870
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "86",
+        "weight": 119
+      },
+      {
+        "name": "99",
+        "weight": 192
+      },
+      {
+        "name": "89",
+        "weight": 307
+      },
+      {
+        "name": "91",
+        "weight": 312
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "91",
+      "x": 1375,
+      "y": 1870
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "90",
+        "weight": 312
+      },
+      {
+        "name": "92",
+        "weight": 289
+      },
+      {
+        "name": "100",
+        "weight": 192
+      },
+      {
+        "name": "教一楼",
+        "weight": 116
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "92",
+      "x": 1664,
+      "y": 1870
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "87",
+        "weight": 119
+      },
+      {
+        "name": "91",
+        "weight": 289
+      },
+      {
+        "name": "93",
+        "weight": 146
+      },
+      {
+        "name": "106",
+        "weight": 367
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "93",
+      "x": 1810,
+      "y": 1870
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "92",
+        "weight": 146
+      },
+      {
+        "name": "94",
+        "weight": 118
+      },
+      {
+        "name": "科学会堂",
+        "weight": 192
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "94",
+      "x": 1928,
+      "y": 1870
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "85",
+        "weight": 170
+      },
+      {
+        "name": "93",
+        "weight": 118
+      },
+      {
+        "name": "95",
+        "weight": 32
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "95",
+      "x": 1960,
+      "y": 1870
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "94",
+        "weight": 32
+      },
+      {
+        "name": "96",
+        "weight": 50
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "96",
+      "x": 1960,
+      "y": 1920
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "95",
+        "weight": 50
+      },
+      {
+        "name": "97",
+        "weight": 160
+      },
+      {
+        "name": "100",
+        "weight": 600
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "97",
+      "x": 2120,
+      "y": 1920
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "96",
+        "weight": 160
+      },
+      {
+        "name": "体育场",
+        "weight": 143
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "98",
+      "x": 471,
+      "y": 2062
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "88",
+        "weight": 192
+      },
+      {
+        "name": "校训石",
+        "weight": 287
+      },
+      {
+        "name": "102",
+        "weight": 175
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "99",
+      "x": 1067,
+      "y": 2062
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "90",
+        "weight": 192
+      },
+      {
+        "name": "104",
+        "weight": 175
+      },
+      {
+        "name": "主席像",
+        "weight": 165
+      },
+      {
+        "name": "国旗",
+        "weight": 105
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "100",
+      "x": 1377,
+      "y": 2062
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "91",
+        "weight": 192
+      },
+      {
+        "name": "105",
+        "weight": 175
+      },
+      {
+        "name": "主楼",
+        "weight": 148
+      },
+      {
+        "name": "音乐喷泉",
+        "weight": 68
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "101",
+      "x": 1960,
+      "y": 2062
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "96",
+        "weight": 142
+      },
+      {
+        "name": "108",
+        "weight": 175
+      },
+      {
+        "name": "体育场",
+        "weight": 161
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "102",
+      "x": 471,
+      "y": 2237
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "98",
+        "weight": 175
+      },
+      {
+        "name": "109",
+        "weight": 168
+      },
+      {
+        "name": "停车坪",
+        "weight": 95
+      },
+      {
+        "name": "103",
+        "weight": 289
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "103",
+      "x": 760,
+      "y": 2237
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "102",
+        "weight": 289
+      },
+      {
+        "name": "教三楼",
+        "weight": 167
+      },
+      {
+        "name": "104",
+        "weight": 308
+      },
+      {
+        "name": "主席像",
+        "weight": 224
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "104",
+      "x": 1068,
+      "y": 2237
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "99",
+        "weight": 175
+      },
+      {
+        "name": "110",
+        "weight": 168
+      },
+      {
+        "name": "103",
+        "weight": 308
+      },
+      {
+        "name": "105",
+        "weight": 306
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "105",
+      "x": 1374,
+      "y": 2237
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "100",
+        "weight": 175
+      },
+      {
+        "name": "104",
+        "weight": 306
+      },
+      {
+        "name": "106",
+        "weight": 290
+      },
+      {
+        "name": "教二楼",
+        "weight": 167
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "106",
+      "x": 1664,
+      "y": 2237
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "92",
+        "weight": 367
+      },
+      {
+        "name": "105",
+        "weight": 290
+      },
+      {
+        "name": "107",
+        "weight": 57
+      },
+      {
+        "name": "114",
+        "weight": 336
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "107",
+      "x": 1721,
+      "y": 2237
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "106",
+        "weight": 57
+      },
+      {
+        "name": "108",
+        "weight": 236
+      },
+      {
+        "name": "科学会堂",
+        "weight": 197
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "108",
+      "x": 1957,
+      "y": 2237
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "101",
+        "weight": 175
+      },
+      {
+        "name": "107",
+        "weight": 236
+      },
+      {
+        "name": "116",
+        "weight": 336
+      },
+      {
+        "name": "体育部",
+        "weight": 239
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "109",
+      "x": 471,
+      "y": 2405
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "102",
+        "weight": 168
+      },
+      {
+        "name": "111",
+        "weight": 168
+      },
+      {
+        "name": "校车车库",
+        "weight": 91
+      },
+      {
+        "name": "教三楼",
+        "weight": 287
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "110",
+      "x": 1067,
+      "y": 2405
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "104",
+        "weight": 168
+      },
+      {
+        "name": "113",
+        "weight": 168
+      },
+      {
+        "name": "教二楼",
+        "weight": 307
+      },
+      {
+        "name": "教三楼",
+        "weight": 309
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "111",
+      "x": 471,
+      "y": 2573
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "109",
+        "weight": 168
+      },
+      {
+        "name": "112",
+        "weight": 291
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "112",
+      "x": 762,
+      "y": 2573
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "111",
+        "weight": 291
+      },
+      {
+        "name": "113",
+        "weight": 305
+      },
+      {
+        "name": "校医院",
+        "weight": 76
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "113",
+      "x": 1067,
+      "y": 2573
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "110",
+        "weight": 168
+      },
+      {
+        "name": "112",
+        "weight": 305
+      },
+      {
+        "name": "114",
+        "weight": 597
+      },
+      {
+        "name": "中门",
+        "weight": 87
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "114",
+      "x": 1664,
+      "y": 2573
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "106",
+        "weight": 336
+      },
+      {
+        "name": "113",
+        "weight": 597
+      },
+      {
+        "name": "115",
+        "weight": 148
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "115",
+      "x": 1812,
+      "y": 2573
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "114",
+        "weight": 148
+      },
+      {
+        "name": "116",
+        "weight": 147
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "116",
+      "x": 1959,
+      "y": 2573
+    },
+    "isBuilding": false,
+    "adj": [
+      {
+        "name": "108",
+        "weight": 336
+      },
+      {
+        "name": "115",
+        "weight": 147
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "北邮锦江酒店",
+      "x": 361,
+      "y": 571
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "5",
+        "weight": 156
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "学十一公寓",
+      "x": 691,
+      "y": 511
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "6",
+        "weight": 59
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "学九公寓",
+      "x": 635,
+      "y": 656
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "17",
+        "weight": 62
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "教九",
+      "x": 695,
+      "y": 655
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "8",
+        "weight": 50
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "北门",
+      "x": 1065,
+      "y": 465
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "1",
+        "weight": 321
+      },
+      {
+        "name": "2",
+        "weight": 76
+      },
+      {
+        "name": "快递站",
+        "weight": 175
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "快递站",
+      "x": 1240,
+      "y": 467
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "北门",
+        "weight": 175
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "本科招生办研究生招生办就业与创业指导中心",
+      "x": 966,
+      "y": 542
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "2",
+        "weight": 99
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "学十公寓",
+      "x": 885,
+      "y": 573
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "19",
+        "weight": 145
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "经管楼",
+      "x": 1194,
+      "y": 556
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "10",
+        "weight": 102
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "学六公寓",
+      "x": 1460,
+      "y": 552
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "3",
+        "weight": 78
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "青年教师公寓",
+      "x": 2070,
+      "y": 589
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "14",
+        "weight": 67
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "东北门",
+      "x": 2211,
+      "y": 656
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "14",
+        "weight": 140
+      },
+      {
+        "name": "56",
+        "weight": 493
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "青年公寓",
+      "x": 375,
+      "y": 826
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "24",
+        "weight": 98
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "留学生公寓",
+      "x": 588,
+      "y": 793
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "16",
+        "weight": 75
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "综合食堂",
+      "x": 889,
+      "y": 795
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "21",
+        "weight": 146
+      },
+      {
+        "name": "22",
+        "weight": 175
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "学生活动中心",
+      "x": 1230,
+      "y": 793
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "28",
+        "weight": 95
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "综合服务楼",
+      "x": 1372,
+      "y": 778
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "11",
+        "weight": 122
+      },
+      {
+        "name": "23",
+        "weight": 46
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "浴室",
+      "x": 1430,
+      "y": 839
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "30",
+        "weight": 49
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "联通营业厅",
+      "x": 1494,
+      "y": 840
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "31",
+        "weight": 48
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "水房",
+      "x": 1543,
+      "y": 839
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "32",
+        "weight": 49
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "锅炉房",
+      "x": 1601,
+      "y": 839
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "33",
+        "weight": 49
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "科研楼",
+      "x": 1788,
+      "y": 793
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "13",
+        "weight": 137
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "学五公寓",
+      "x": 620,
+      "y": 954
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "38",
+        "weight": 57
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "学八公寓",
+      "x": 888,
+      "y": 954
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "40",
+        "weight": 57
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "漫咖啡",
+      "x": 1280,
+      "y": 958
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "35",
+        "weight": 51
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "移动营业厅",
+      "x": 1335,
+      "y": 959
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "29",
+        "weight": 71
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "物美超市",
+      "x": 1430,
+      "y": 956
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "30",
+        "weight": 68
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "门店",
+      "x": 1537,
+      "y": 945
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "32",
+        "weight": 57
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "图片社打印店",
+      "x": 1599,
+      "y": 945
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "33",
+        "weight": 57
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "学生发展中心",
+      "x": 1375,
+      "y": 1068
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "43",
+        "weight": 146
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "学苑风味餐厅",
+      "x": 1571,
+      "y": 1009
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "42",
+        "weight": 93
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "北邮书屋",
+      "x": 1570,
+      "y": 1084
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "52",
+        "weight": 64
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "学生食堂",
+      "x": 1760,
+      "y": 1010
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "42",
+        "weight": 96
+      },
+      {
+        "name": "54",
+        "weight": 139
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "后勤处采招办保卫处（东配楼）",
+      "x": 2118,
+      "y": 951
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "36",
+        "weight": 88
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "学十三公寓",
+      "x": 374,
+      "y": 1150
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "44",
+        "weight": 98
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "学三公寓",
+      "x": 615,
+      "y": 1216
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "45",
+        "weight": 65
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "学四公寓",
+      "x": 888,
+      "y": 1213
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "47",
+        "weight": 62
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "学一公寓",
+      "x": 616,
+      "y": 1422
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "69",
+        "weight": 81
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "学二公寓",
+      "x": 888,
+      "y": 1418
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "71",
+        "weight": 85
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "小松林",
+      "x": 1228,
+      "y": 1212
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "49",
+        "weight": 61
+      },
+      {
+        "name": "61",
+        "weight": 110
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "时光广场",
+      "x": 1230,
+      "y": 1421
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "61",
+        "weight": 99
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "档案馆",
+      "x": 1501,
+      "y": 1199
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "51",
+        "weight": 48
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "图书馆",
+      "x": 1501,
+      "y": 1327
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "62",
+        "weight": 127
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "篮球场",
+      "x": 1789,
+      "y": 1323
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "63",
+        "weight": 124
+      },
+      {
+        "name": "网球场排球场",
+        "weight": 154
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "网球场排球场",
+      "x": 1943,
+      "y": 1326
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "篮球场",
+        "weight": 154
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "学29公寓",
+      "x": 2140,
+      "y": 1323
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "78",
+        "weight": 180
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "东门",
+      "x": 2212,
+      "y": 1507
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "56",
+        "weight": 358
+      },
+      {
+        "name": "78",
+        "weight": 67
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "鸿通楼",
+      "x": 376,
+      "y": 1576
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "67",
+        "weight": 73
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "资产管理处审计处",
+      "x": 1155,
+      "y": 1589
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "81",
+        "weight": 63
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "财务处",
+      "x": 1231,
+      "y": 1587
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "82",
+        "weight": 65
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "行政办公楼",
+      "x": 1376,
+      "y": 1626
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "73",
+        "weight": 123
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "物业中心配电室",
+      "x": 1567,
+      "y": 1612
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "79",
+        "weight": 97
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "邮局",
+      "x": 374,
+      "y": 1703
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "83",
+        "weight": 97
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "教四楼",
+      "x": 757,
+      "y": 1703
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "83",
+        "weight": 286
+      },
+      {
+        "name": "84",
+        "weight": 310
+      },
+      {
+        "name": "89",
+        "weight": 167
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "教一楼",
+      "x": 1371,
+      "y": 1754
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "86",
+        "weight": 304
+      },
+      {
+        "name": "87",
+        "weight": 293
+      },
+      {
+        "name": "91",
+        "weight": 116
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "体育馆",
+      "x": 2071,
+      "y": 1701
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "85",
+        "weight": 141
+      },
+      {
+        "name": "77",
+        "weight": 198
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "游泳馆",
+      "x": 2140,
+      "y": 1700
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "78",
+        "weight": 197
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "体育场",
+      "x": 2121,
+      "y": 2063
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "97",
+        "weight": 143
+      },
+      {
+        "name": "101",
+        "weight": 161
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "体育部",
+      "x": 2121,
+      "y": 2063
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "108",
+        "weight": 239
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "科学会堂",
+      "x": 1812,
+      "y": 2062
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "93",
+        "weight": 192
+      },
+      {
+        "name": "107",
+        "weight": 197
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "主楼",
+      "x": 1525,
+      "y": 2062
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "100",
+        "weight": 148
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "音乐喷泉",
+      "x": 1309,
+      "y": 2062
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "100",
+        "weight": 68
+      },
+      {
+        "name": "国旗",
+        "weight": 137
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "国旗",
+      "x": 1172,
+      "y": 2062
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "99",
+        "weight": 105
+      },
+      {
+        "name": "音乐喷泉",
+        "weight": 137
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "主席像",
+      "x": 902,
+      "y": 2063
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "99",
+        "weight": 165
+      },
+      {
+        "name": "校训石",
+        "weight": 144
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "校训石",
+      "x": 758,
+      "y": 2063
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "98",
+        "weight": 287
+      },
+      {
+        "name": "89",
+        "weight": 193
+      },
+      {
+        "name": "103",
+        "weight": 174
+      },
+      {
+        "name": "主席像",
+        "weight": 144
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "西门",
+      "x": 328,
+      "y": 2063
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "98",
+        "weight": 143
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "ATM",
+      "x": 375,
+      "y": 1851
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "88",
+        "weight": 97
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "停车坪",
+      "x": 376,
+      "y": 2235
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "102",
+        "weight": 95
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "校车车库",
+      "x": 380,
+      "y": 2403
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "109",
+        "weight": 91
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "教三楼",
+      "x": 758,
+      "y": 2404
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "109",
+        "weight": 287
+      },
+      {
+        "name": "110",
+        "weight": 309
+      },
+      {
+        "name": "103",
+        "weight": 167
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "教二楼",
+      "x": 1374,
+      "y": 2404
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "105",
+        "weight": 167
+      },
+      {
+        "name": "110",
+        "weight": 307
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "创新楼",
+      "x": 1813,
+      "y": 2404
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "115",
+        "weight": 169
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "校医院",
+      "x": 758,
+      "y": 2649
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "112",
+        "weight": 76
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "中门",
+      "x": 1065,
+      "y": 2660
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "113",
+        "weight": 87
+      },
+      {
+        "name": "中门邮局",
+        "weight": 107
+      }
+    ]
+  },
+  {
+    "location": {
+      "name": "中门邮局",
+      "x": 1172,
+      "y": 2660
+    },
+    "isBuilding": true,
+    "adj": [
+      {
+        "name": "中门",
+        "weight": 107
       }
     ]
   }

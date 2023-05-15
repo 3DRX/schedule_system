@@ -3,11 +3,13 @@ package schedule_system.fakeDB;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 
+import schedule_system.utils.KList;
 import schedule_system.utils.theUser;
 
 public class UserData {
@@ -17,7 +19,7 @@ public class UserData {
 
     // 从resources/users.json读取所有的用户存入数组中
     private theUser[] jsonUsers;
-    private theUser[] students;
+    private KList<theUser> students;
 
     public UserData() {
         this.jsonUsers = readUsers();
@@ -35,7 +37,7 @@ public class UserData {
      * @return theUser[] students
      */
     public theUser[] students() {
-        return this.students;
+        return this.students.toArray(new theUser[this.students.size()]);
     }
 
     /**
@@ -43,19 +45,12 @@ public class UserData {
      * 
      * @return
      */
-    private theUser[] getStudents() {
-        theUser[] ret = new theUser[jsonUsers.length - 1];
-        int i = 0;
-        for (theUser user : jsonUsers) {
-            if (user.isAdmin() == false) {
-                continue;
-            } else {
-                ret[i] = user;
-                i++;
-            }
-        }
-        return ret;
-        // TODO: test this
+    private KList<theUser> getStudents() {
+        KList<theUser> res = new KList<>(theUser.class);
+        Arrays.stream(this.jsonUsers)
+                .filter(e -> !e.isAdmin())
+                .forEach(e -> res.add(e));
+        return res;
     }
 
     /**

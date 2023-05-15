@@ -143,7 +143,7 @@ public class Course {
         return location;
     }
 
-    private void setLocation(final Location location) {
+    public void setLocation(final Location location) {
         this.location = location;
     }
 
