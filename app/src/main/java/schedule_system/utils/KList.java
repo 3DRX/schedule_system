@@ -5,13 +5,47 @@ import java.util.AbstractList;
 import java.util.Arrays;
 
 /**
- * KList
+ * @param <T>
  */
 public class KList<T> extends AbstractList<T> {
     private T[] list;
 
     public KList(Class<T> t) {
         this.list = (T[]) Array.newInstance(t, 0);
+    }
+
+    /**
+     * 快速排序
+     * 
+     * @param rule lambda 表达式，如果a应排在b前面，返回true
+     */
+    public void quickSort(CompareRule<T> rule) {
+        pQuickSort(rule, 0, list.length - 1);
+    }
+
+    private void pQuickSort(CompareRule<T> rule, int left, int right) {
+        if (left < right) {
+            int pi = partition(rule, left, right);
+            pQuickSort(rule, left, pi - 1);
+            pQuickSort(rule, pi + 1, right);
+        }
+    }
+
+    private int partition(CompareRule<T> rule, int left, int right) {
+        T pivot = this.list[right];
+        int i = (left - 1);
+        for (int j = left; j < right; j++) {
+            if (rule.calc(this.list[j], pivot)) {
+                i++;
+                T swapTemp = this.list[i];
+                this.list[i] = this.list[j];
+                this.list[j] = swapTemp;
+            }
+        }
+        T swapTemp = this.list[i + 1];
+        this.list[i + 1] = this.list[right];
+        this.list[right] = swapTemp;
+        return i + 1;
     }
 
     public int size() {

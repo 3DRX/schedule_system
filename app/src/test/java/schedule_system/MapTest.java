@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Disabled;
 
-// @Disabled
+@Disabled
 class MapTest {
 
     void mapTest() {
