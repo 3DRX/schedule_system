@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Arrays;
-import java.util.HashSet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,6 +64,38 @@ public class MapData {
             }
         }
         return distence;
+    }
+
+    /**
+     * return the path of shortest distence from x passing all locations
+     * 
+     * @param locations
+     * @param x
+     * @return
+     */
+    public KList<Location> pathPassingLocations(String[] locations, String x) {
+        // TODO: test me
+        final KMap<String, Integer> unvisited = new KMap<>();
+        Arrays.stream(locations)
+                .forEach((e) -> unvisited.put(e, 0));
+        final KList<Location> res = new KList<>(Location.class);
+        String currentLocation = x;
+        while (unvisited.size() != 0) {
+            res.add(this.nodes.get(currentLocation).getLocation());
+            int minDistence = Integer.MAX_VALUE;
+            String nearestLocation = null;
+            KMap<String, Integer> distence = this.distence(currentLocation);
+            for (String location : unvisited.getKeyArray(String.class)) {
+                if (distence.get(location) != null
+                        && distence.get(location) < minDistence) {
+                    minDistence = distence.get(location);
+                    nearestLocation = location;
+                }
+            }
+            currentLocation = nearestLocation;
+            unvisited.remove(nearestLocation);
+        }
+        return res;
     }
 
     public KList<Location> pathFromXtoY(String x, String y) {
