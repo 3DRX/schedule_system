@@ -95,6 +95,7 @@ public class MapData {
             currentLocation = nearestLocation;
             unvisited.remove(nearestLocation);
         }
+        res.add(this.nodes.get(x).getLocation());
         return res;
     }
 
