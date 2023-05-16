@@ -7,6 +7,8 @@ import java.util.Arrays;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
@@ -27,6 +29,9 @@ public class StudentData {
 
     private KMap<String, Student> students;
     private KMap<String, BitMap> schedules;
+
+    @Autowired
+    CourseData courseData;
 
     public StudentData() {
         this.students = new KMap<>();
@@ -81,12 +86,15 @@ public class StudentData {
     public boolean deleteCourseFromStudents(String courseName) {
         for (Student student : this.getStudentClasses()) {
             student.deleteCourseIfHave(courseName);
+            // unset occupied time
+            BitMap schedule = this.schedules.get(student.getName());
+            schedule = schedule.and(courseData.getCourseByName(courseName).getOccupiedTime().not());
+            this.schedules.put(student.getName(), schedule);
         }
         return writeStudentClasses(this.getStudentClasses());
     }
 
     public boolean addCourseToStudents(String newCourseName, String[] students) {
-        final CourseData courseData = new CourseData();
         for (String studentName : students) {
             Student student = this.students.get(studentName);
             if (student == null) {
@@ -94,7 +102,6 @@ public class StudentData {
             }
             // 检查学生的课程会不会冲突
             // 即：学生的所有课程是否有时间重叠
-            // TODO: TEST_ME
             String[] studentCourses = student.getCourses();
             Course newCourse = courseData.getCourseByName(newCourseName);
             if (newCourse == null) {

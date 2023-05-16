@@ -31,7 +31,22 @@ public class ClassTime {
      * @return
      */
     public static int realTimeToIndex(int week, int day, int time) {
+        // check input
+        if (week < 1 || week > 20 || day < 1 || day > 5 || time < 8 || time > 20) {
+            throw new IllegalArgumentException("输入不合法");
+        }
         return (week - 1) * 50 + (day - 1) * 5 + time - 8;
+    }
+
+    public static boolean isValidTime(int week, int day, int time) {
+        return week >= 1 && week <= 20 && day >= 1 && day <= 5 && time >= 8 && time <= 20;
+    }
+
+    /**
+     * @return the maximum value of time index
+     */
+    public static int getMaxIndex() {
+        return 20 * 5 * 10;
     }
 
     /**

@@ -1,5 +1,7 @@
 package schedule_system.utils;
 
+import java.util.Arrays;
+
 public class BitMap {
     private int[] bits;
     private int size;
@@ -15,6 +17,24 @@ public class BitMap {
         int index = n / 32;
         int offset = n % 32;
         bits[index] |= (1 << offset);
+    }
+
+    public void setAll() {
+        Arrays.fill(bits, 0xffffffff);
+    }
+
+    public void unsetAll() {
+        Arrays.fill(bits, 0);
+    }
+
+    public boolean overlaps(BitMap other) {
+        if (other.size != size)
+            throw new IllegalArgumentException();
+        for (int i = 0; i < bits.length; i++) {
+            if ((bits[i] & other.bits[i]) != 0)
+                return true;
+        }
+        return false;
     }
 
     public void unset(int n) {
