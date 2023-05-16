@@ -1,19 +1,328 @@
-#navigateContent{
+#navigationContent{
     display: block;
+    margin: 0 auto;
+    background-color: papayawhip;
+    padding-top: 2vh;
+    padding-bottom: 20vh;
 }
-#controllerBox{
-    height: 15vh;
+#titleBox{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1vh;
+}
+#navigationTitle{
+    display: flex;
+    justify-content: center;
+    font-size: 4vh;
+    font-weight: 700;
+    border-radius: 1.5vh;
+    width: 14vw;
+    min-height: 7vh;
+    align-items: center;
+    /*颜色和背景颜色相近，低对比度*/
+
+    user-select: none;
+
+    /*增加过渡*/
+    transition: box-shadow var(--duration-ani) ease-out;
+
+    background-color: #e9e9e9;
+    /* 添加边框样式 */
+    border: 1px solid #c4c4c4;
+    /* 添加背景渐变 */
+    background: linear-gradient(145deg, #e9e9e9, #d7d7d7);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.15),
+    inset 5px 5px 10px var(--color-light),
+    inset -5px -5px 10px var(--color-shadow);;
+    /* 增加过渡效果 */
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
 
 }
 
-#mapBox{
+.format{
+    font-weight: bold;
+}
+.center{
     display: flex;
     justify-content: center;
 }
-#Map{
-    width: 30vw;
-    height: 70.6vh;
-    background-image: url("../image/BUPT_Map.jpg");
-    background-repeat: no-repeat;
-    background-size: contain;
+#destination{
+    display: flex;
+    justify-content: center;
+    font-size: 2vh;
+    margin-bottom: 1vh;
 }
+#current{
+    margin-top: 1vh;
+    margin-bottom: 0.5vh;
+    font-size: 2vh;
+    font-weight: bold;
+    font-weight: bold;
+    text-shadow: 3px 5px 4px rgba(0, 0, 0, 0.3);
+}
+#placeInput{
+    width: 30vw;
+    text-align: center;
+    line-height: 2vh;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0),
+    0 0 0 rgba(0, 0, 0, 0),
+    inset 5px 5px 10px var(--color-light),
+    inset -5px -5px 10px var(--color-shadow);
+}
+#start {
+    display: block;
+    align-items: center;
+    padding: 3vh 4.7vh 4.7vh 3vh;
+    width: 70vw;
+    min-width: 15vh;
+    /* 一个合适的圆角 */
+    border-radius: 4vh;
+    /* 添加背景颜色 */
+    background-color: #e9e9e9;
+    /* 添加边框样式 */
+    border: 1px solid #c4c4c4;
+    /* 添加背景渐变 */
+    background: linear-gradient(145deg, #e9e9e9, #d7d7d7);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.15),
+    inset 5px 5px 10px var(--color-light),
+    inset -5px -5px 10px var(--color-shadow);;
+    /* 增加过渡效果 */
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+#start:hover {
+    /* 凸起的效果 */
+
+    transform: translate(0, -2px);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+
+
+
+#start:active {
+    /* 按下时微调阴影 */
+
+    transform: translateY(2px);
+}
+
+
+#startButtonBox{
+    display: flex;
+    justify-content: center;
+}
+#startButton{
+    line-height: 2vh;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0),
+    0 0 0 rgba(0, 0, 0, 0),
+    inset 0px 0px 25px var(--color-light),
+    inset 0px 0px 4px var(--color-shadow);
+
+
+
+}
+#origin{
+    display: flex;
+    justify-content: center;
+}
+#controllerBox{
+    height: 15vh;
+}
+
+#map{
+    display: flex;
+    justify-content: center;
+    border-radius: 2.1vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    background: #f5f5f5;
+    box-shadow: inset 0 1px 55px -0.5px rgba(0, 0, 0, 0.55);
+}
+
+#mapImg{
+    margin-top: 0vh;
+    margin-bottom: 0vh;
+    border-radius: 2.1vh;
+    width: 65vw;
+}
+:root {
+    --color-background: #ebecf0;
+    --color-icon-bg: #ebecf0;
+    --color-label: slategrey;
+    --color-light: rgba(121, 130, 160, .55);
+    --color-shadow: rgb(255, 255, 255);
+    --duration-ani: 50ms;
+}
+
+#navigationTitle {
+
+
+
+    font-weight: 700;
+}
+
+
+#startButton {
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+    transition: filter 250ms;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+.shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: hsl(0deg 0% 0% / 0.25);
+    will-change: transform;
+    transform: translateY(2px);
+    transition: transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
+}
+
+.edge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: linear-gradient(
+            to left,
+            hsl(340deg 100% 16%) 0%,
+            hsl(340deg 100% 32%) 8%,
+            hsl(340deg 100% 32%) 92%,
+            hsl(340deg 100% 16%) 100%
+    );
+}
+
+.front {
+    display: block;
+    position: relative;
+    padding: 12px 27px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    color: white;
+    background: hsl(345deg 100% 47%);
+    will-change: transform;
+    transform: translateY(-4px);
+    transition: transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
+}
+
+button:hover {
+    filter: brightness(110%);
+}
+
+button:hover .front {
+    transform: translateY(-6px);
+    transition: transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
+}
+
+button:active .front {
+    transform: translateY(-2px);
+    transition: transform 34ms;
+}
+
+button:hover .shadow {
+    transform: translateY(4px);
+    transition: transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
+}
+
+button:active .shadow {
+    transform: translateY(1px);
+    transition: transform 34ms;
+}
+
+button:focus:not(:focus-visible) {
+    outline: none;
+}
+
+
+.card {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    width: 14vw;
+    min-width: 12vh;
+    min-height: 7vh;
+    margin: 0 auto;
+
+
+
+    border-radius: 20px;
+    background: #f5f5f5;
+    border: 1px solid #c3c6ce;
+    box-shadow: inset 0 1px 15px -0.5px rgba(0, 0, 0, 0.55);
+}
+
+
+#titleBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+#navigationTitle {
+    position: relative;
+    padding: 20px 40px;
+    font-size: 24px;
+    background-color:  transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+    font-size: 3vh;
+}
+
+#navigationTitle::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(0.95);
+    opacity: 0;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+#navigationTitle:active {
+    transform: scale(0.95);
+}
+
+#navigationTitle:active::before {
+    transform: scale(1);
+    opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
