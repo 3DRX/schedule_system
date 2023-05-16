@@ -45,6 +45,16 @@ public class Course {
         setLocation(location);
     }
 
+    public BitMap getOccupiedTime() {
+        BitMap occupiedTime = new BitMap(20 * 5 * 10);
+        for (int i = startWeek; i <= endWeek; i++) {
+            for (int j = 0; j < classTime.getDuration(); j++) {
+
+            }
+        }
+        return occupiedTime;
+    }
+
     /**
      * 用于模拟时判断 index 对应时间是否有本课程
      * 

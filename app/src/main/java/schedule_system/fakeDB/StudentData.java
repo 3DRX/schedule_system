@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 
+import schedule_system.utils.BitMap;
 import schedule_system.utils.Course;
 import schedule_system.utils.KMap;
 import schedule_system.utils.Student;
@@ -24,17 +25,36 @@ public class StudentData {
     private final Logger logger = LoggerFactory.getLogger(StudentData.class);
 
     private KMap<String, Student> students;
+    private KMap<String, BitMap> schedules;
 
     public StudentData() {
         this.students = new KMap<>();
+        this.schedules = new KMap<>();
         Arrays.stream(readStudentClasses())
-                .forEach(e -> this.students.put(e.getName(), e));
+            .forEach((e) -> {
+                this.schedules.put(e.getName(), getStudentSchedule(e));
+                this.students.put(e.getName(), e);
+            });
+    }
+
+    private BitMap getStudentSchedule(Student student) {
+        BitMap res = new BitMap(20 * 5 * 10);
+        // get all occupied time slot
+        CourseData courseData = new CourseData();
+        for (String courseName : student.getCourses()) {
+            Course course = courseData.getCourseByName(courseName);
+            if (course == null) {
+                continue;
+            }
+            res = res.or(course.getOccupiedTime());
+        }
+        return res;
     }
 
     public Student[] getStudentClasses() {
         return Arrays.stream(this.students.getKeyArray(String.class))
-                .map(i -> this.students.get(i))
-                .toArray(size -> new Student[size]);
+            .map(i -> this.students.get(i))
+            .toArray(size -> new Student[size]);
     }
 
     public Student getStudentById(String id) {
