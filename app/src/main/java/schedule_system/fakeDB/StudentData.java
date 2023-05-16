@@ -12,6 +12,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 
 import schedule_system.utils.BitMap;
+import schedule_system.utils.ClassTime;
 import schedule_system.utils.Course;
 import schedule_system.utils.KMap;
 import schedule_system.utils.Student;
@@ -31,13 +32,29 @@ public class StudentData {
         this.students = new KMap<>();
         this.schedules = new KMap<>();
         Arrays.stream(readStudentClasses())
-            .forEach((e) -> {
-                this.schedules.put(e.getName(), getStudentSchedule(e));
-                this.students.put(e.getName(), e);
-            });
+                .forEach((e) -> {
+                    this.schedules.put(e.getName(), generateSchedule(e));
+                    this.students.put(e.getName(), e);
+                });
     }
 
-    private BitMap getStudentSchedule(Student student) {
+    public boolean isOccupied(String studentName, int week, int day, int time) {
+        BitMap occupiedTime = this.schedules.get(studentName);
+        if (occupiedTime == null) {
+            return false;
+        }
+        return occupiedTime.get(ClassTime.realTimeToIndex(week, day, time));
+    }
+
+    public boolean isOccupied(String studentName, int index) {
+        BitMap occupiedTime = this.schedules.get(studentName);
+        if (occupiedTime == null) {
+            return false;
+        }
+        return occupiedTime.get(index);
+    }
+
+    private BitMap generateSchedule(Student student) {
         BitMap res = new BitMap(20 * 5 * 10);
         // get all occupied time slot
         CourseData courseData = new CourseData();
@@ -53,8 +70,8 @@ public class StudentData {
 
     public Student[] getStudentClasses() {
         return Arrays.stream(this.students.getKeyArray(String.class))
-            .map(i -> this.students.get(i))
-            .toArray(size -> new Student[size]);
+                .map(i -> this.students.get(i))
+                .toArray(size -> new Student[size]);
     }
 
     public Student getStudentById(String id) {

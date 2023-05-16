@@ -23,6 +23,18 @@ public class ClassTime {
     }
 
     /**
+     * Convert real time to time index
+     * 
+     * @param week
+     * @param day
+     * @param time
+     * @return
+     */
+    public static int realTimeToIndex(int week, int day, int time) {
+        return (week - 1) * 50 + (day - 1) * 5 + time - 8;
+    }
+
+    /**
      * 判断是否与另一个时间有重叠
      *
      * @param ClassTime

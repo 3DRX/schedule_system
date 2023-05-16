@@ -47,9 +47,11 @@ public class Course {
 
     public BitMap getOccupiedTime() {
         BitMap occupiedTime = new BitMap(20 * 5 * 10);
-        for (int i = startWeek; i <= endWeek; i++) {
+        for (int week = startWeek; week <= endWeek; week++) {
+            int day = classTime.getDay();
+            int time = classTime.getTime();
             for (int j = 0; j < classTime.getDuration(); j++) {
-
+                occupiedTime.set(ClassTime.realTimeToIndex(week, day, time + j));
             }
         }
         return occupiedTime;
@@ -99,7 +101,8 @@ public class Course {
         if (this.classTime.overlaps(course.getClassTime()) && weekOverlaps(course)
                 && this.location.equals(course.location)) {
             // 若两门课程在同一时间占用同一地点，则冲突
-            // System.out.println("新课程" + course.getName() + "与" + this.getName() + "在同一时间占用同一地点");
+            // System.out.println("新课程" + course.getName() + "与" + this.getName() +
+            // "在同一时间占用同一地点");
             haveConflict = true;
         }
         return haveConflict;
