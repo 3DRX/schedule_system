@@ -45,7 +45,7 @@ public class ReferCourseController {
         int start = Integer.parseInt(time.split("-")[0]);
         int end = Integer.parseInt(time.split("-")[1]);
         // 获得该时间的课程
-        Course[] courses = getCourses(start, end, week, day);
+        Course[] courses = getCourses(start, week, day);
         String courseName;
         String courseLocationName;
         String[] students;
@@ -111,22 +111,14 @@ public class ReferCourseController {
      * @param day   天
      * @return Course[]
      */
-    private Course[] getCourses(int start, int end, int week, int day) {
+    private Course[] getCourses(int time, int week, int day) {
         // check input
-        if (start > end) {
-            throw new IllegalArgumentException("start > end");
-        } else if (!ClassTime.isValidTime(week, day, start)
-                || !ClassTime.isValidTime(week, day, end)) {
+        if (!ClassTime.isValidTime(week, day, time)) {
             throw new IllegalArgumentException("invalid time");
         }
-        BitMap bitMap = new BitMap(ClassTime.getMaxIndex());
-        IntStream.range(start, end + 1)
-                .map(time -> ClassTime.realTimeToIndex(week, day, time))
-                .forEach(bitMap::set);
+        int index = ClassTime.realTimeToIndex(week, day, time);
         return Arrays.stream(courseData.allCourses())
-                .filter(course -> course
-                        .getOccupiedTime()
-                        .overlaps(bitMap))
+                .filter(course -> course.getOccupiedTime().get(index))
                 .toArray(Course[]::new);
     }
 

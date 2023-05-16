@@ -9,6 +9,7 @@ public class BitMap {
     public BitMap(int size) {
         this.size = size;
         bits = new int[size / 32 + 1];
+        this.unsetAll();
     }
 
     public void set(int n) {

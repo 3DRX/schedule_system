@@ -32,21 +32,49 @@ public class ClassTime {
      */
     public static int realTimeToIndex(int week, int day, int time) {
         // check input
-        if (week < 1 || week > 20 || day < 1 || day > 5 || time < 8 || time > 20) {
+        if (!isValidTime(week, day, time)) {
             throw new IllegalArgumentException("输入不合法");
         }
-        return (week - 1) * 50 + (day - 1) * 5 + time - 8;
+        return (week - 1) * getHourInWeek()
+                + (day - 1) * getHourInDay()
+                + time - firstIndexOfHour();
     }
 
     public static boolean isValidTime(int week, int day, int time) {
-        return week >= 1 && week <= 20 && day >= 1 && day <= 5 && time >= 8 && time <= 20;
+        return week >= 1 && week <= getWeekInSemester()
+                && day >= 1 && day <= getDayInWeek()
+                && time >= firstIndexOfHour() && time <= lastIndexOfHour();
     }
 
     /**
      * @return the maximum value of time index
      */
     public static int getMaxIndex() {
-        return 20 * 5 * 10;
+        return getDayInWeek() * getHourInDay() * getWeekInSemester();
+    }
+
+    public static int getHourInWeek() {
+        return getHourInDay() * getDayInWeek();
+    }
+
+    public static int lastIndexOfHour() {
+        return firstIndexOfHour() + getHourInDay() - 1;
+    }
+
+    public static int firstIndexOfHour() {
+        return 8;
+    }
+
+    public static int getHourInDay() {
+        return 12;
+    }
+
+    public static int getDayInWeek() {
+        return 5;
+    }
+
+    public static int getWeekInSemester() {
+        return 20;
     }
 
     /**

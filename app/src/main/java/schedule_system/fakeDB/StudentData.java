@@ -60,7 +60,7 @@ public class StudentData {
     }
 
     private BitMap generateSchedule(Student student) {
-        BitMap res = new BitMap(20 * 5 * 10);
+        BitMap res = new BitMap(ClassTime.getMaxIndex());
         // get all occupied time slot
         CourseData courseData = new CourseData();
         for (String courseName : student.getCourses()) {
