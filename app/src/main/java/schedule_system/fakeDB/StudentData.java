@@ -106,6 +106,11 @@ public class StudentData {
         return writeStudentThings(this.getStudentsArray());
     }
 
+    public boolean deleteEventFromStudent(String eventName, String studentName) {
+        this.students.get(studentName).deleteEvent(eventName);
+        return writeStudentThings(this.getStudentsArray());
+    }
+
     public boolean addCourseToStudents(String newCourseName, String[] students) {
         for (String studentName : students) {
             Student student = this.students.get(studentName);

@@ -25,10 +25,14 @@ public class EventData {
         Arrays.stream(readEvents())
                 .filter(e -> e != null)
                 .forEach(e -> this.events.put(
-                        e.getName(),
+                        e.getName() + "," + e.getPerson(),
                         e));
     }
 
+    /**
+     * @param eventName <name>,<person>
+     * @return
+     */
     public Event getEventByName(String eventName) {
         return this.events.get(eventName);
     }
@@ -47,11 +51,21 @@ public class EventData {
     }
 
     public boolean addEvent(Event newEvent) {
-        if (this.events.containKey(newEvent.getName())) {
+        String key = newEvent.getName()
+                + "," + newEvent.getPerson();
+        if (this.events.containKey(key)) {
             return false;
         }
-        this.events.put(newEvent.getName(), newEvent);
+        this.events.put(key, newEvent);
         return writeEvents(allEvents());
+    }
+
+    /**
+     * @param eventName <name>,<person>
+     * @return
+     */
+    public boolean containsEvent(String eventName) {
+        return this.events.containKey(eventName);
     }
 
     /**

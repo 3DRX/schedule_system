@@ -76,7 +76,19 @@ public class AddEventController {
         Event event = new Event(
                 newEvent.name(),
                 time,
-                newEvent.location());
+                newEvent.location(),
+                newEvent.student());
+        // check if event exists
+        if (eventData.containsEvent(newEvent.name() + newEvent.student())) {
+            logger.warn(new StringBuilder()
+                    .append("Event ")
+                    .append(newEvent.name())
+                    .append(" of ")
+                    .append(newEvent.student())
+                    .append(" already exists.")
+                    .toString());
+            return false;
+        }
         boolean successFlag = true;
         successFlag &= eventData.addEvent(event);
         successFlag &= studentData.addEventToStudent(

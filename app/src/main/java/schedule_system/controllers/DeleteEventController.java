@@ -1,7 +1,5 @@
 package schedule_system.controllers;
 
-import java.util.Arrays;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import schedule_system.fakeDB.EventData;
 import schedule_system.fakeDB.StudentData;
-import schedule_system.utils.Event;
-import schedule_system.utils.KList;
 
 @RestController
 @CrossOrigin
-public class ReferEventController {
+public class DeleteEventController {
     // 日志控制器
     private final Logger logger = LoggerFactory.getLogger(
             ReferEventController.class);
@@ -26,23 +22,21 @@ public class ReferEventController {
     @Autowired
     StudentData studentData; // 学生数据控制器
 
-    @GetMapping("/referEvents")
-    public Event[] referEvents(String studentName) {
+    @GetMapping("/deleteEvent")
+    public boolean deleteEvent(String studentName, String eventName) {
         // check if the student exists
         if (!studentData.isStudent(studentName)) {
             logger.info("Student " + studentName + " does not exist.");
-            return new Event[0];
+            return false;
         }
-        KList<Event> events = new KList<>(Event.class);
-        Arrays.stream(studentData
-                .getStudentById(studentName)
-                .getEvents())
-                .map(e -> eventData.getEventByName(e + "," + studentName))
-                .forEach(events::add);
-        return events
-                .quickSort((e1, e2) -> e1
-                        .getTime()
-                        .leq(e2.getTime()))
-                .toArray();
+        // check if the event exists
+        if (!eventData.containsEvent(eventName + "," + studentName)) {
+            logger.info("Event " + eventName + " does not exist.");
+            return false;
+        }
+        // delete the event
+        studentData.deleteEventFromStudent(eventName, studentName);
+        eventData.deleteEvent(eventName + "," + studentName);
+        return true;
     }
 }
