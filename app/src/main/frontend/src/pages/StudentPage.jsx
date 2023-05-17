@@ -119,6 +119,7 @@ function StudentPage() {
                         </div>
                         <div>
                             <InputNumber
+                                id="weekInput"
                                 value={week}
                                 onChange={setWeek}
                                 step={1}
@@ -136,6 +137,7 @@ function StudentPage() {
                         </div>
                         <div>
                             <InputNumber
+                                id="dayInput"
                                 value={day}
                                 onChange={setDay}
                                 step={1}
@@ -145,11 +147,14 @@ function StudentPage() {
                         </div>
                         <div>
                             <InputNumber
+                                id="timeInput"
                                 value={time}
                                 onChange={setTime}
                                 step={1}
                                 max={20}
                                 min={8}
+
+
                             />
                         </div>
                         <div>
