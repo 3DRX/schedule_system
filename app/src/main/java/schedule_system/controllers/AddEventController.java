@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import schedule_system.fakeDB.EventData;
@@ -28,7 +29,7 @@ public class AddEventController {
     MapData mapData; // 地图数据控制器
 
     @PostMapping("/addEvent")
-    public boolean addEvent(EventRecord newEvent) {
+    public boolean addEvent(@RequestBody EventRecord newEvent) {
         // check input
         if (!studentData.isStudent(newEvent.student())) {
             logger.warn("Student " + newEvent.student() + " does not exist.");
@@ -79,8 +80,8 @@ public class AddEventController {
         boolean successFlag = true;
         successFlag &= eventData.addEvent(event);
         successFlag &= studentData.addEventToStudent(
-                newEvent.student(),
-                newEvent.name());
+                newEvent.name(),
+                newEvent.student());
         return successFlag;
     }
 }

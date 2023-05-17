@@ -21,7 +21,7 @@ public class StudentDataTest {
     @Test
     void test2() {
         StudentData studentData = new StudentData();
-        Arrays.stream(studentData.getStudentClasses())
+        Arrays.stream(studentData.getStudentsArray())
                 .forEach(e -> System.out.println(e.getName()));
     }
 }

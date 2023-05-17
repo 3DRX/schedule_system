@@ -73,7 +73,7 @@ public class StudentData {
         return res;
     }
 
-    public Student[] getStudentClasses() {
+    public Student[] getStudentsArray() {
         return Arrays.stream(this.students.getKeyArray(String.class))
                 .map(i -> this.students.get(i))
                 .toArray(size -> new Student[size]);
@@ -84,19 +84,26 @@ public class StudentData {
     }
 
     public boolean deleteCourseFromStudents(String courseName) {
-        for (Student student : this.getStudentClasses()) {
+        for (Student student : this.getStudentsArray()) {
             student.deleteCourseIfHave(courseName);
             // unset occupied time
             BitMap schedule = this.schedules.get(student.getName());
             schedule = schedule.and(courseData.getCourseByName(courseName).getOccupiedTime().not());
             this.schedules.put(student.getName(), schedule);
         }
-        return writeStudentClasses(this.getStudentClasses());
+        return writeStudentThings(this.getStudentsArray());
     }
 
     public boolean addEventToStudent(String newEventName, String studentName) {
+        // check if student already have this event
+        for (String eventName : this.students.get(studentName).getEvents()) {
+            if (eventName.equals(newEventName)) {
+                logger.warn("为学生添加事件 " + newEventName + " 失败：学生已有该事件");
+                return false;
+            }
+        }
         this.students.get(studentName).addEvent(newEventName);
-        return true;
+        return writeStudentThings(this.getStudentsArray());
     }
 
     public boolean addCourseToStudents(String newCourseName, String[] students) {
@@ -124,7 +131,7 @@ public class StudentData {
             }
             student.addCourse(newCourseName);
         }
-        return writeStudentClasses(this.getStudentClasses());
+        return writeStudentThings(this.getStudentsArray());
     }
 
     public boolean isStudent(String userName) {
@@ -142,7 +149,7 @@ public class StudentData {
         return readStudent;
     }
 
-    public boolean writeStudentClasses(Student[] students) {
+    public boolean writeStudentThings(Student[] students) {
         File file = new File(path);
         String res = gson.toJson(students);
         boolean successFlag = true;

@@ -127,7 +127,7 @@ public class ReferCourseController {
      */
     private String[] getStudents(String courseName) {
         ArrayList<String> studentsOfCourse = new ArrayList<>();
-        for (Student theStudent : studentData.getStudentClasses()) {
+        for (Student theStudent : studentData.getStudentsArray()) {
             String[] courses = theStudent.getCourses();
             for (String cN : courses) {
                 if (cN.equals(courseName)) {
