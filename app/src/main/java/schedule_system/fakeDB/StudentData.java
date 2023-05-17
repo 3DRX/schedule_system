@@ -94,6 +94,11 @@ public class StudentData {
         return writeStudentClasses(this.getStudentClasses());
     }
 
+    public boolean addEventToStudent(String newEventName, String studentName) {
+        this.students.get(studentName).addEvent(newEventName);
+        return true;
+    }
+
     public boolean addCourseToStudents(String newCourseName, String[] students) {
         for (String studentName : students) {
             Student student = this.students.get(studentName);

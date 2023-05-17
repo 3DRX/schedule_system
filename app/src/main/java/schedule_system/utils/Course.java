@@ -51,7 +51,7 @@ public class Course {
      * @return occupiedTime
      */
     public BitMap getOccupiedTime() {
-        BitMap occupiedTime = new BitMap(20 * 5 * 10);
+        BitMap occupiedTime = new BitMap(ClassTime.getMaxIndex());
         for (int week = startWeek; week <= endWeek; week++) {
             int day = classTime.getDay();
             int time = classTime.getTime();

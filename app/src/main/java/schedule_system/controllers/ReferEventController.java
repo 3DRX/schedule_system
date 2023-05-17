@@ -22,7 +22,7 @@ public class ReferEventController {
             ReferEventController.class);
 
     @Autowired
-    EventData eventData; // 课程数据控制器
+    EventData eventData; // 临时事物控制器
     @Autowired
     StudentData studentData; // 学生数据控制器
 

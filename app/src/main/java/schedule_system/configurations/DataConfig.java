@@ -10,7 +10,7 @@ import schedule_system.fakeDB.StudentData;
 import schedule_system.fakeDB.UserData;
 
 /**
- * 四个数据控制器的配置类
+ * 五个数据控制器的配置类
  * DataConfig
  */
 @Configuration
@@ -22,11 +22,6 @@ public class DataConfig {
     }
 
     @Bean
-    public StudentData studentData() {
-        return new StudentData();
-    }
-
-    @Bean
     public CourseData courseData() {
         return new CourseData();
     }
@@ -34,6 +29,11 @@ public class DataConfig {
     @Bean
     public EventData eventData() {
         return new EventData();
+    }
+
+    @Bean
+    public StudentData studentData() {
+        return new StudentData();
     }
 
     @Bean
