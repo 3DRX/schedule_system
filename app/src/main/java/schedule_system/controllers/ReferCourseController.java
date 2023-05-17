@@ -1,6 +1,8 @@
 package schedule_system.controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.IntStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import schedule_system.fakeDB.CourseData;
 import schedule_system.fakeDB.StudentData;
+import schedule_system.utils.BitMap;
+import schedule_system.utils.ClassTime;
 import schedule_system.utils.Course;
+import schedule_system.utils.KList;
 import schedule_system.utils.Student;
 
 /**
@@ -40,7 +45,7 @@ public class ReferCourseController {
         int start = Integer.parseInt(time.split("-")[0]);
         int end = Integer.parseInt(time.split("-")[1]);
         // 获得该时间的课程
-        Course[] courses = getCourses(start, end, week, day);
+        Course[] courses = getCourses(start, week, day);
         String courseName;
         String courseLocationName;
         String[] students;
@@ -100,22 +105,21 @@ public class ReferCourseController {
      * 获取该时间的课程的数组
      * 如果没有课程，返回空数组
      * 
-     * @param start
-     * @param end
-     * @param week
-     * @param day
+     * @param start 开始时间
+     * @param end   结束时间
+     * @param week  周
+     * @param day   天
      * @return Course[]
      */
-    private Course[] getCourses(int start, int end, int week, int day) {
-        ArrayList<Course> res = new ArrayList<>();
-        for (Course course : courseData.allCourses()) {
-            if (course.covers(week) && course.getClassTime().covers(start, end, day)) {
-                res.add(course);
-            }
+    private Course[] getCourses(int time, int week, int day) {
+        // check input
+        if (!ClassTime.isValidTime(week, day, time)) {
+            throw new IllegalArgumentException("invalid time");
         }
-        Course[] ans = new Course[res.size()];
-        res.toArray(ans);
-        return ans;
+        int index = ClassTime.realTimeToIndex(week, day, time);
+        return Arrays.stream(courseData.allCourses())
+                .filter(course -> course.getOccupiedTime().get(index))
+                .toArray(Course[]::new);
     }
 
     /**
