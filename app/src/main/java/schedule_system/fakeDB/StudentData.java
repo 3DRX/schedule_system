@@ -23,7 +23,7 @@ import schedule_system.utils.Student;
  * StudentData
  */
 public class StudentData {
-    final private String path = "src/main/resources/studentCourses.json";
+    final private String path = "src/main/resources/studentThings.json";
     final private Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private final Logger logger = LoggerFactory.getLogger(StudentData.class);
 

@@ -19,8 +19,9 @@ public class KList<T> extends AbstractList<T> {
      * 
      * @param rule lambda 表达式，如果a应排在b前面，返回true
      */
-    public void quickSort(CompareRule<T> rule) {
+    public KList<T> quickSort(CompareRule<T> rule) {
         pQuickSort(rule, 0, list.length - 1);
+        return this;
     }
 
     private void pQuickSort(CompareRule<T> rule, int left, int right) {
