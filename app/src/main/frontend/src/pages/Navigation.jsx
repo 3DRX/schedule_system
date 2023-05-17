@@ -23,6 +23,9 @@ const Navigation = () => {
         }
         const canvas = canvasRef.current;
         const context = canvas.getContext("2d");
+        // clear canvas
+        canvas.height = canvas.height
+        // 👆 somehow this sh*t works
         const img = imgRef.current;
         context.drawImage(img, 0, 0, img.width / scale, img.height / scale);
         context.strokeStyle = "black";
@@ -30,9 +33,10 @@ const Navigation = () => {
         context.lineCap = "round";
         context.lineJoin = "round";
         path.forEach((point, index) => {
+            console.log(point);
             if (index !== 0) {
                 context.lineTo(point.x / scale, point.y / scale);
-            }else{
+            } else {
                 context.moveTo(point.x / scale, point.y / scale);
             }
         });
@@ -42,7 +46,7 @@ const Navigation = () => {
         path.forEach((point, index) => {
             if (index !== 0) {
                 context.lineTo(point.x / scale, point.y / scale);
-            }else{
+            } else {
                 context.moveTo(point.x / scale, point.y / scale);
             }
         });
@@ -67,15 +71,15 @@ const Navigation = () => {
 
     return (
         <div id="navigationContent">
-            <div id="titleBox"><div id="navigationTitle" class="card primary">路径规划</div></div>
+            <div id="titleBox"><div id="navigationTitle" className="card primary">路径规划</div></div>
             <div id="destination">
-                <div class="format">前往</div>
+                <div className="format">前往</div>
                 <div> {courseName} </div>
-                <div class="format">课,</div>
-                <div class="format"> 地点</div>
+                <div className="format">课,</div>
+                <div className="format"> 地点</div>
                 <div> {location}. </div>
             </div>
-            <div class="center">
+            <div className="center">
                 <div id="start" >
                     <div id="map">
                         <img id="mapImg"
@@ -84,31 +88,38 @@ const Navigation = () => {
                             className="mapImage"
                             alt="mapImage"
                             style={{
-                                width: {scale},
-                                height: {scale},
+                                width: { scale },
+                                height: { scale },
                                 display: "none",
                             }}
                         />
                         <canvas
                             id="mapImg"
                             ref={canvasRef}
-                            width={imgRef.current ? imgRef.current.width / scale : 0}
-                            height={imgRef.current ? imgRef.current.height / scale : 0}
+                            width={
+                                imgRef.current && path.length !== 0
+                                    ? imgRef.current.width / scale
+                                    : 0
+                            }
+                            height={
+                                imgRef.current && path.length !== 0
+                                    ? imgRef.current.height / scale
+                                    : 0
+                            }
                         >
-                            您的浏览器不支持canvas，请更换浏览器
+                            您的浏览器不支持canvas，请更换浏览器😡
                         </canvas>
                     </div>
-
                     <div className="center">
                         <Form onSubmit={handleSubmit}>
                             <div id="origin">
                                 <Form.Group className="mb-3" controlId="formBasicText">
-                                    <Form.Label class="center" id="current">当前位置</Form.Label>
+                                    <Form.Label className="center" id="current">当前位置</Form.Label>
                                     <Form.Control
                                         id="placeInput"
                                         type="text"
                                         placeholder="请输入起点"
-                                        onChange={({target: {value}}) => {
+                                        onChange={({ target: { value } }) => {
                                             setLocationInput(value)
                                         }}
                                     />
@@ -118,18 +129,13 @@ const Navigation = () => {
                                 <Button type="submit" id="startButton">
                                     <span className="shadow"></span>
                                     <span className="edge"></span>
-                                    <span className="front text"> 出发!</span>
+                                    <span className="front text">出发!</span>
                                 </Button>
                             </div>
                         </Form>
                     </div>
-
                 </div>
-
             </div>
-
-
-
         </div>
     )
 };
