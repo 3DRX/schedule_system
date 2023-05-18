@@ -1,12 +1,12 @@
 [
   {
-    "name": "洗衣服",
+    "name": "取外卖",
     "time": {
       "week": 11,
       "day": 1,
-      "time": 10
+      "time": 8
     },
-    "location": "学三公寓",
+    "location": "北门",
     "person": "002"
   }
 ]

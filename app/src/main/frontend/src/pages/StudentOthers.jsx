@@ -38,6 +38,11 @@ const StudentOthers = () => {
     const [data, setData] = useState([]);
     const [refresh, setRefresh] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [name, setName] = useState("");
+    const [week, setWeek] = useState(1);
+    const [day, setDay] = useState(1);
+    const [time, setTime] = useState(8);
+    const [location, setLocation] = useState("");
 
     // refresh table data
     useEffect(() => {
@@ -48,14 +53,30 @@ const StudentOthers = () => {
             .then((response) => {
                 const data = response.data;
                 let tableData = [];
-                // TODO: set action to delete button in the following code
                 data.forEach((element, index) => {
-                    console.log(element);
                     tableData.push({
                         key: index,
                         name: element.name,
                         time: `第${element.time.week}周，周${element.time.day}，${element.time.time}点`,
                         location: element.location,
+                        action: <Button variant="secondary"
+                            onClick={() => {
+                                axios.get("http://"
+                                    + window.location.hostname
+                                    + ":8888/deleteEvent"
+                                    + "?studentName="
+                                    + userName
+                                    + "&eventName="
+                                    + element.name)
+                                    .then((_) => {
+                                        setRefresh(!refresh);
+                                    })
+                                    .catch((error) => {
+                                        console.log(error);
+                                    });
+                            }}
+
+                        >完成</Button>
                     });
                 });
                 setData(tableData);
@@ -70,14 +91,32 @@ const StudentOthers = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setRefresh(!refresh);
-        setShowModal(false);
+        const newEvent = {
+            student: userName,
+            name: name,
+            week: week,
+            day: day,
+            time: time,
+            location: location,
+        };
+        axios.post("http://"
+            + window.location.hostname
+            + ":8888/addEvent", newEvent)
+            .then((_) => {
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .finally(() => {
+                setRefresh(!refresh);
+                setShowModal(false);
+            });
     };
 
     return (
         <>
             <NavBar isAdmin="false" userName={userName} />
-            <h1>临时事物管理</h1>
+            <h1>临时事务管理</h1>
             <Button variant="secondary"
                 onClick={() => {
                     setRefresh(!refresh);
@@ -89,7 +128,7 @@ const StudentOthers = () => {
                     setShowModal(true);
                 }}
                 id="globalAddButton"
-            >添加临时事物
+            >添加临时事务
             </Button>
             <Table columns={columns} dataSource={data} />
             <Modal
@@ -101,21 +140,23 @@ const StudentOthers = () => {
                 backdrop="static"
             >
                 <Modal.Header id="header" closeButton>
-                    <Modal.Title>添加临时事物</Modal.Title>
+                    <Modal.Title>添加临时事务</Modal.Title>
                 </Modal.Header>
                 <Form id="form" onSubmit={handleSubmit}>
                     <Modal.Body>
                         <p>名称</p>
-                        <Form.Control size="sm" type="text" placeholder="在此输入事物名称……"
+                        <Form.Control size="sm" type="text" placeholder="在此输入临时事务……"
                             onChange={({ target: { value } }) => {
                                 if (value !== "") {
+                                    setName(value);
                                 }
                             }}
                         />
                         <p>时间</p>
                         <a>第</a>
-                        <NumberPicker defaultValue={1} step={1} max={20} min={1} onChange={(value) => {
+                        <NumberPicker defaultValue={week} step={1} max={20} min={1} onChange={(value) => {
                             if (value !== null && value >= 1 && value <= 20) {
+                                setWeek(value);
                             }
                         }}
                             style={{
@@ -123,8 +164,9 @@ const StudentOthers = () => {
                             }}
                         />
                         <a>周，周</a>
-                        <NumberPicker defaultValue={1} step={1} max={20} min={1} onChange={(value) => {
+                        <NumberPicker defaultValue={day} step={1} max={5} min={1} onChange={(value) => {
                             if (value !== null && value >= 1 && value <= 20) {
+                                setDay(value);
                             }
                         }}
                             style={{
@@ -132,8 +174,9 @@ const StudentOthers = () => {
                             }}
                         />
                         <a>，</a>
-                        <NumberPicker defaultValue={1} step={1} max={20} min={1} onChange={(value) => {
+                        <NumberPicker defaultValue={time} step={1} max={21} min={7} onChange={(value) => {
                             if (value !== null && value >= 1 && value <= 20) {
+                                setTime(value);
                             }
                         }}
                             style={{
@@ -141,6 +184,14 @@ const StudentOthers = () => {
                             }}
                         />
                         <a>点</a>
+                        <p>地点</p>
+                        <Form.Control size="sm" type="text" placeholder="在此输入地点……"
+                            onChange={({ target: { value } }) => {
+                                if (value !== "") {
+                                    setLocation(value);
+                                }
+                            }}
+                        />
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => setShowModal(false)}>
