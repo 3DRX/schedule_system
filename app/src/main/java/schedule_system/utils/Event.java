@@ -1,5 +1,9 @@
 package schedule_system.utils;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import schedule_system.fakeDB.MapData;
+
 public class Event {
     private String name;
     private EventTime time;
@@ -29,7 +33,7 @@ public class Event {
     public boolean equals(Event event) {
         return this.name.equals(event.getName())
                 && this.time.equals(event.getTime())
-                && this.location.equals(event.getLocation())
+                && this.location.equals(event.getLocationName())
                 && this.person.equals(event.getPerson());
     }
 
@@ -37,11 +41,15 @@ public class Event {
         return name;
     }
 
+    public boolean takesPlaceAt(int index) {
+        return this.time.toIndex() == index;
+    }
+
     public EventTime getTime() {
         return time;
     }
 
-    public String getLocation() {
+    public String getLocationName() {
         return location;
     }
 

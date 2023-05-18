@@ -1,6 +1,7 @@
 package schedule_system.controllers;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -14,8 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import schedule_system.fakeDB.CourseData;
+import schedule_system.fakeDB.EventData;
+import schedule_system.fakeDB.MapData;
 import schedule_system.fakeDB.StudentData;
+import schedule_system.utils.ClassTime;
 import schedule_system.utils.Course;
+import schedule_system.utils.Event;
+import schedule_system.utils.Location;
 import schedule_system.utils.Student;
 
 /**
@@ -29,6 +35,10 @@ public class TimeController {
     StudentData studentData;
     @Autowired
     CourseData courseData;
+    @Autowired
+    EventData eventData;
+    @Autowired
+    MapData mapData;
 
     /**
      * 收到GET请求后发送SSE
@@ -47,13 +57,13 @@ public class TimeController {
         sseEmitter.onCompletion(() -> logger.info("SseEmitter is completed"));
         sseEmitter.onTimeout(() -> logger.info("SseEmitter is timed out"));
         sseEmitter.onError((ex) -> logger.info("SseEmitter completed with error"));
-        if (start >= 1200) {
+        if (start >= ClassTime.getMaxIndex()) {
             logger.error("simulation start index out of range");
             throw new IllegalArgumentException("simulation start index out of range");
         }
         executor.execute(() -> {
             int i = start;
-            while (i < 1200) {
+            while (i < ClassTime.getMaxIndex()) {
                 ResponseRecord res = getSimRes(id, i + 1);
                 try {
                     sleep(1, sseEmitter);
@@ -79,12 +89,31 @@ public class TimeController {
      * @param index
      * @return
      */
-    private ResponseRecord getSimRes(String id, int index) {
+    private ResponseRecord getSimRes(final String id, int index) {
         Student theStudent = studentData.getStudentById(id);
         if (theStudent == null) {
             logger.error("can't find student simulating: " + id);
             return new ResponseRecord("", "", 0, 0, index++);
         } else {
+            // 如果这个时段没有课程，和课外活动
+            if (!studentData.isOccupied(id, index + 1)) {
+                // 如果有临时事物
+                for (String eventName : theStudent.getEvents()) {
+                    Event theEvent = eventData.getEventByName(eventName + "," + id);
+                    if (theEvent.takesPlaceAt(index + 1)) {
+                        logger.info("event: " + eventName + " takes place at " + index);
+                        Location theLocation = mapData.getLocation(theEvent.getLocationName());
+                        return new ResponseRecord(
+                                eventName,
+                                theLocation.getName(),
+                                theLocation.getX(),
+                                theLocation.getY(),
+                                index++);
+                    }
+                }
+                return new ResponseRecord("", "", 0, 0, index++);
+            }
+            // 如果有课
             for (String courseName : theStudent.getCourses()) {
                 Course theCourse = courseData.getCourseByName(courseName);
                 if (theCourse.atIndex(index + 1)) {
