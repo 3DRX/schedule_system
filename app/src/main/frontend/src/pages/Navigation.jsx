@@ -73,6 +73,35 @@ const Navigation = () => {
                 });
         }
         else {
+            let locations = [];
+            axios.get("http://"
+                + window.location.hostname
+                + ":8888/getLocations?studentName="
+                + userName
+                + "&eventName="
+                + courseName)
+                .then((response) => {
+                    // console.log(response);
+                    locations = response.data;
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+                .finally(() => {
+                    const jsonData = {
+                        start: locationInput,
+                        locations: locations
+                    }
+                    console.log(`jsonData: ${JSON.stringify(jsonData)}`);
+                    axios.post("http://" + window.location.hostname + ":8888/navigateToEvents", jsonData)
+                        .then((response) => {
+                            const path = JSON.parse(response.request.response);
+                            setPath(path);
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                });
         }
     }
 

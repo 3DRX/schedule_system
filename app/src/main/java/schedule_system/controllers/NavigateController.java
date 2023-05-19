@@ -2,11 +2,15 @@ package schedule_system.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import schedule_system.fakeDB.EventData;
 import schedule_system.fakeDB.MapData;
+import schedule_system.fakeDB.StudentData;
+import schedule_system.utils.EventTime;
 import schedule_system.utils.Location;
 
 import java.util.Arrays;
@@ -16,10 +20,15 @@ import org.slf4j.LoggerFactory;
 
 @RestController
 public class NavigateController {
-    private final Logger logger = LoggerFactory.getLogger(NavigateController.class); // 日志控制器
+    // 日志控制器
+    private final Logger logger = LoggerFactory.getLogger(NavigateController.class);
 
     @Autowired
     MapData mapData;
+    @Autowired
+    StudentData studentData;
+    @Autowired
+    EventData eventData;
 
     @PostMapping("/navigateToClass")
     @CrossOrigin
@@ -48,6 +57,20 @@ public class NavigateController {
                 return null;
             }
         }
+        return mapData.pathPassingLocations(input.locations(), input.start()).toArray();
+    }
+
+    @GetMapping("/getLocations")
+    @CrossOrigin
+    public String[] getLocations(String eventName, String studentName) {
+        final EventTime eventTime = eventData
+                .getEventByName(eventName + "," + studentName)
+                .getTime();
+        return Arrays.stream(studentData.getStudentById(studentName).getEvents())
+                .map(e -> eventData.getEventByName(e + "," + studentName))
+                .filter(e -> e.getTime().equals(eventTime))
+                .map(e -> e.getLocationName())
+                .toArray(String[]::new);
     }
 }
 
