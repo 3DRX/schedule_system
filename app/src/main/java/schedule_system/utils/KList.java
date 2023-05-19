@@ -91,6 +91,18 @@ public class KList<T> extends AbstractList<T> {
         return list[list.length - 1];
     }
 
+    public T remove(int index) {
+        if (index < 0 || index >= list.length) {
+            return null;
+        }
+        T res = list[index];
+        for (int i = index; i < list.length - 1; i++) {
+            list[i] = list[i + 1];
+        }
+        list = Arrays.copyOf(list, list.length - 1);
+        return res;
+    }
+
     @Override
     public T[] toArray() {
         return Arrays.copyOf(this.list, this.list.length);
