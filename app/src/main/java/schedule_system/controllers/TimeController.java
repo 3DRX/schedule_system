@@ -1,7 +1,6 @@
 package schedule_system.controllers;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -93,7 +92,7 @@ public class TimeController {
         Student theStudent = studentData.getStudentById(id);
         if (theStudent == null) {
             logger.error("can't find student simulating: " + id);
-            return new ResponseRecord("", "", 0, 0, index++);
+            return new ResponseRecord("", "", 0, 0, index++, true);
         } else {
             // 如果这个时段没有课程，和课外活动
             if (!studentData.isOccupied(id, index + 1)) {
@@ -108,10 +107,11 @@ public class TimeController {
                                 theLocation.getName(),
                                 theLocation.getX(),
                                 theLocation.getY(),
-                                index++);
+                                index++,
+                                false);
                     }
                 }
-                return new ResponseRecord("", "", 0, 0, index++);
+                return new ResponseRecord("", "", 0, 0, index++, true);
             }
             // 如果有课
             for (String courseName : theStudent.getCourses()) {
@@ -122,12 +122,13 @@ public class TimeController {
                             theCourse.getLocation().getName(),
                             theCourse.getLocation().getX(),
                             theCourse.getLocation().getY(),
-                            index++);
+                            index++,
+                            true);
                 } else {
                 }
             }
         }
-        return new ResponseRecord("", "", 0, 0, index++);
+        return new ResponseRecord("", "", 0, 0, index++, true);
     }
 
     private void sleep(int seconds, SseEmitter sseEmitter) {
@@ -148,9 +149,22 @@ record ResponseRecord(
         String location,
         int x,
         int y,
-        int index) {
+        int index,
+        boolean isCourse) {
     @Override
     public String toString() {
-        return this.courseName + "," + this.location + "," + x + "," + y + "," + index;
+        return new StringBuilder()
+                .append(this.courseName)
+                .append(",")
+                .append(this.location)
+                .append(",")
+                .append(x)
+                .append(",")
+                .append(y)
+                .append(",")
+                .append(index)
+                .append(",")
+                .append(isCourse)
+                .toString();
     }
 }

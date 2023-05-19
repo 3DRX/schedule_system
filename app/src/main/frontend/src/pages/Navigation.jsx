@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
+import NavBar from '../components/NavBar'
 import { Form, Button } from 'react-bootstrap';
 import mapImage from "../image/BUPT_Map.jpg";
 import axios from "axios";
@@ -8,8 +9,10 @@ import { useEffect } from "react";
 
 const Navigation = () => {
     const query = new URLSearchParams(useLocation().search);
+    const userName = query.get("userName");
     const courseName = query.get("courseName");
     const location = query.get("location");
+    const isCourse = query.get("isCourse");
 
     const [locationInput, setLocationInput] = useState("");
     const [scale, setScale] = useState(2);
@@ -55,30 +58,54 @@ const Navigation = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const jsonData = {
-            start: locationInput,
-            end: location,
-        };
-        axios.post("http://" + window.location.hostname + ":8888/navigate", jsonData)
-            .then((response) => {
-                const path = JSON.parse(response.request.response);
-                setPath(path);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        if (isCourse === "true") {
+            const jsonData = {
+                start: locationInput,
+                end: location,
+            };
+            axios.post("http://" + window.location.hostname + ":8888/navigateToClass", jsonData)
+                .then((response) => {
+                    const path = JSON.parse(response.request.response);
+                    setPath(path);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+        else {
+        }
     }
+
+    const renderHeader = () => {
+        if (isCourse === "true") {
+            return (
+                <>
+                    <div id="destination">
+                        <div className="format">前往</div>
+                        <div> {courseName} </div>
+                        <div className="format">,</div>
+                        <div className="format">位于</div>
+                        <div> {location}. </div>
+                    </div>
+                </>
+            );
+        }
+        else {
+            return (
+                <>
+                    <div id="destination">
+                        <div className="format">临时事务导航</div>
+                    </div>
+                </>
+            );
+        }
+    };
 
     return (
         <div id="navigationContent">
+            <NavBar isAdmin="false" userName={userName} enabled={true} />
             <div id="titleBox"><div id="navigationTitle" className="card primary">路径规划</div></div>
-            <div id="destination">
-                <div className="format">前往</div>
-                <div> {courseName} </div>
-                <div className="format">课,</div>
-                <div className="format"> 地点</div>
-                <div> {location}. </div>
-            </div>
+            {renderHeader()}
             <div className="center">
                 <div id="start" >
                     <div id="map">
@@ -137,7 +164,7 @@ const Navigation = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 };
 
 export default Navigation;

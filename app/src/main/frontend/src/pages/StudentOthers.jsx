@@ -54,11 +54,12 @@ const StudentOthers = () => {
                 const data = response.data;
                 let tableData = [];
                 data.forEach((element, index) => {
+                    console.log(element)
                     tableData.push({
                         key: index,
                         name: element.name,
                         time: `第${element.time.week}周，周${element.time.day}，${element.time.time}点`,
-                        location: element.location,
+                        location: element.locationName,
                         action: <Button variant="secondary"
                             onClick={() => {
                                 axios.get("http://"
@@ -205,7 +206,6 @@ const StudentOthers = () => {
             </Modal>
         </>
     )
-}
+};
 
 export default StudentOthers;
-
