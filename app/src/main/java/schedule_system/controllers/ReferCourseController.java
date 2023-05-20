@@ -73,7 +73,7 @@ public class ReferCourseController {
                     // 2. 获得课程名字
                     courseName = theCourse.getName();
                     // 3. 获得上课地点的名字
-                    courseLocationName = theCourse.getLocation().getName();
+                    courseLocationName = theCourse.getLocationName();
                     // 4. 获得上课学生的名单
                     students = getStudents(courseName);
                     CourseObjectRecord[] res = {
@@ -91,7 +91,7 @@ public class ReferCourseController {
                     Course course = courses[i];
                     res[i] = new CourseObjectRecord(course.getName(),
                             getStudents(course.getName()),
-                            course.getLocation().getName());
+                            course.getLocationName());
                 }
                 return res;
             }

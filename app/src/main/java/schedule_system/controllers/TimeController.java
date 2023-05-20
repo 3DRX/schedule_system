@@ -92,7 +92,7 @@ public class TimeController {
         Student theStudent = studentData.getStudentById(id);
         if (theStudent == null) {
             logger.error("can't find student simulating: " + id);
-            return new ResponseRecord("", "", 0, 0, index++, true);
+            return new ResponseRecord("", "", index++, true);
         } else {
             // 如果这个时段没有课程，和课外活动
             if (!studentData.isOccupied(id, index + 1)) {
@@ -105,13 +105,11 @@ public class TimeController {
                         return new ResponseRecord(
                                 eventName,
                                 theLocation.getName(),
-                                theLocation.getX(),
-                                theLocation.getY(),
                                 index++,
                                 false);
                     }
                 }
-                return new ResponseRecord("", "", 0, 0, index++, true);
+                return new ResponseRecord("", "", index++, true);
             }
             // 如果有课
             for (String courseName : theStudent.getCourses()) {
@@ -119,16 +117,14 @@ public class TimeController {
                 if (theCourse.atIndex(index + 1)) {
                     return new ResponseRecord(
                             courseName,
-                            theCourse.getLocation().getName(),
-                            theCourse.getLocation().getX(),
-                            theCourse.getLocation().getY(),
+                            theCourse.getLocationName(),
                             index++,
                             true);
                 } else {
                 }
             }
         }
-        return new ResponseRecord("", "", 0, 0, index++, true);
+        return new ResponseRecord("", "", index++, true);
     }
 
     private void sleep(int seconds, SseEmitter sseEmitter) {
@@ -147,8 +143,6 @@ public class TimeController {
 record ResponseRecord(
         String courseName,
         String location,
-        int x,
-        int y,
         int index,
         boolean isCourse) {
     @Override
@@ -157,10 +151,6 @@ record ResponseRecord(
                 .append(this.courseName)
                 .append(",")
                 .append(this.location)
-                .append(",")
-                .append(x)
-                .append(",")
-                .append(y)
                 .append(",")
                 .append(index)
                 .append(",")

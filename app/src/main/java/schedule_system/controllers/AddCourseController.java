@@ -39,7 +39,7 @@ public class AddCourseController {
     @PostMapping("/addCourse")
     public boolean addCourse(
             @RequestBody CourseInfoRecord inputCourse) {
-        if (!mapData.isValidLocation(inputCourse.course().getLocation().getName())) {
+        if (!mapData.isValidLocation(inputCourse.course().getLocationName())) {
             logger.warn("添加课程 " + inputCourse.course().getName() + " 失败：地点不存在");
             return false;
         }
