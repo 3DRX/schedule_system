@@ -29,7 +29,7 @@ function StudentPage() {
         console.log(`data: ${data}`);
         const courseName = data.split(",")[0];
         const location = data.split(",")[1];
-        const isCourse = data.split(",")[5];
+        const isCourse = data.split(",")[3];
         console.log("open navigation");
         console.log(`isCourse: ${isCourse}`);
         window.open(`${prefix}/student/nav?courseName=${courseName}&location=${location}&isCourse=${isCourse}&userName=${userName}`);
@@ -72,7 +72,7 @@ function StudentPage() {
             newEventSource.onmessage = (event) => {
                 // event.data 格式: name,location,x,y,newIndex,isCourse
                 console.log("result", event.data);
-                const reIndex = parseInt(event.data.split(",")[4]);
+                const reIndex = parseInt(event.data.split(",")[2]);
                 console.log(reIndex);
                 setWeek(parseInt(reIndex / 60) + 1);
                 setDay(parseInt((reIndex % 60) / 12) + 1);

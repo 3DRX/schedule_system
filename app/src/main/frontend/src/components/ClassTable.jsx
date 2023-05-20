@@ -173,11 +173,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
                     duration: classDuration
                 },
                 name: newName,
-                location: {
-                    x: 0,
-                    y: 0,
-                    name: location
-                }
+                location: location
             },
             students: resStudents
         };

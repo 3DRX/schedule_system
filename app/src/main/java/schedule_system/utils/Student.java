@@ -1,15 +1,15 @@
 package schedule_system.utils;
 
-import java.util.AbstractList;
-
 public class Student {
     private String[] courses;
     private String[] events;
+    private String[] activities;
     private String name;
 
     public Student(String name) {
         this.courses = null;
         this.events = null;
+        this.activities = null;
         this.name = name;
     }
 
@@ -26,6 +26,10 @@ public class Student {
 
     public String[] getCourses() {
         return courses;
+    }
+
+    public String[] getActivities() {
+        return activities;
     }
 
     public String getName() {
@@ -62,5 +66,14 @@ public class Student {
         }
         newCourses[this.courses.length] = courseName;
         this.courses = newCourses.clone();
+    }
+
+    public void addActivity(String activityName) {
+        String[] newActivities = new String[this.activities.length + 1];
+        for (int i = 0; i < this.activities.length; i++) {
+            newActivities[i] = this.activities[i];
+        }
+        newActivities[this.activities.length] = activityName;
+        this.activities = newActivities.clone();
     }
 }
