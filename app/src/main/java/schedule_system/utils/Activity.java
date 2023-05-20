@@ -25,8 +25,19 @@ public class Activity {
     }
 
     public boolean takesPlaceAt(int index) {
-        // TODO
-        return false;
+        int week = ClassTime.weekOfIndex(index);
+        int day = ClassTime.dayOfIndex(index);
+        int timeInt = ClassTime.timeOfIndex(index);
+        if (!(week >= startWeek && week <= endWeek)) {
+            return false;
+        }
+        if (!(day == time.getDay())) {
+            return false;
+        }
+        if (!(timeInt >= time.getTime() && timeInt <= time.getTime() + time.getDuration())) {
+            return false;
+        }
+        return true;
     }
 
     public boolean timeOverlapsWith(Activity other) {

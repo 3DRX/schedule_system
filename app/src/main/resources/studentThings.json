@@ -9,7 +9,9 @@
       "吃饭",
       "买饮料"
     ],
-    "activities": [],
+    "activities": [
+      "深♂入♂交♂流"
+    ],
     "name": "002"
   },
   {
@@ -21,7 +23,9 @@
     "events": [
       "洗衣服"
     ],
-    "activities": [],
+    "activities": [
+      "深♂入♂交♂流"
+    ],
     "name": "003"
   }
 ]

@@ -54,6 +54,14 @@ public class ActivityData {
         return read_activities;
     }
 
+    public boolean addActivity(Activity activity) {
+        if (this.activities.containKey(activity.getName())) {
+            return false;
+        }
+        this.activities.put(activity.getName(), activity);
+        return writeActivities(this.allActivities());
+    }
+
     private boolean writeActivities(Activity[] activities) {
         File file = new File(path);
         String res = gson.toJson(activities);

@@ -70,10 +70,11 @@ public class ReferTableCellController {
             logger.error("user {} is not a student", userName);
             return null;
         }
-        if (!studentData.isOccupied(userName, week, day, start)) {
-            logger.error("user {} is not occupied at {} {} {}", userName, week, day, start);
-            return null;
-        }
+        // if (!studentData.isOccupied(userName, week, day, start)) {
+        // logger.error("user {} is not occupied at {} {} {}", userName, week, day,
+        // start);
+        // return null;
+        // }
         Course course = studentData.courseAt(userName, week, day, start);
         Activity activity = studentData.activityAt(userName, week, day, start);
         if (course == null && activity == null) {
@@ -148,5 +149,5 @@ record CellContent(
         String name,
         String[] students,
         String location,
-        boolean isStudent) {
+        boolean isActivity) {
 }

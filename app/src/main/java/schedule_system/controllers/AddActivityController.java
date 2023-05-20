@@ -29,15 +29,17 @@ public class AddActivityController {
 
     @PostMapping("/addActivity")
     public boolean addActivity(
-            @RequestBody ActivityInfoRecord inputActivity) {
-        if (!mapData.isValidLocation(inputActivity.activity().getLocationName())) {
-            logger.warn("添加课外活动 " + inputActivity.activity().getName() + " 失败：地点不存在");
+            @RequestBody Activity inputActivity) {
+        if (!mapData.isValidLocation(inputActivity.getLocationName())) {
+            logger.warn("添加课外活动 " + inputActivity.getName() + " 失败：地点不存在");
             return false;
         }
-        if (!createActivity(inputActivity.activity())) {
+        if (!createActivity(inputActivity)) {
             return false;
         }
-        if (!addActivityToStudents(inputActivity.activity().getName(), inputActivity.students())) {
+        if (!addActivityToStudents(inputActivity.getName(), inputActivity.getParticipants())) {
+            activityData.deleteActivity(inputActivity.getName());
+            logger.warn("添加课外活动 " + inputActivity.getName() + " 失败：向学生列表中添加课外活动失败");
             return false;
         }
         return true;
@@ -48,6 +50,7 @@ public class AddActivityController {
             logger.warn("添加课外活动 " + activity.getName() + " 失败：课外活动已存在");
             return false;
         }
+        activityData.addActivity(activity);
         logger.info("添加课外活动 " + activity.getName() + " 成功");
         return true;
     }
@@ -57,5 +60,5 @@ public class AddActivityController {
     }
 }
 
-record ActivityInfoRecord(Activity activity, String[] students) {
+record ActivityInfoRecord(Activity activity) {
 }
