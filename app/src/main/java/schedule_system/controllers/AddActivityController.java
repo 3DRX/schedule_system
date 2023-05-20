@@ -17,7 +17,7 @@ import schedule_system.utils.Activity;
 @RestController
 @CrossOrigin
 public class AddActivityController {
-    private final Logger logger = LoggerFactory.getLogger(AddCourseController.class); // 日志控制器
+    private final Logger logger = LoggerFactory.getLogger(AddActivityController.class); // 日志控制器
     @Autowired
     CourseData courseData;
     @Autowired
