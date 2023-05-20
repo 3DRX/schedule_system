@@ -119,7 +119,7 @@ function StudentPage() {
                         <div>第</div>
                         <div>
                             <InputNumber
-                                id="weekInput"
+                                id="weekInput-time"
                                 value={week}
                                 onChange={setWeek}
                                 step={1}
