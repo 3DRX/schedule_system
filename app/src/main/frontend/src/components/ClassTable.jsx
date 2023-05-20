@@ -224,6 +224,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
                                                 border: 'solid 1px gray',
                                                 background: 'white',
                                             }}
+
                                         >
                                             {cell.render('Cell')}
                                         </td>
