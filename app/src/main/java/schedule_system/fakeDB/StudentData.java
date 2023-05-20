@@ -46,6 +46,26 @@ public class StudentData {
                 });
     }
 
+    public Course courseAt(String studentName, int week, int day, int time) {
+        int timeIndex = ClassTime.realTimeToIndex(week, day, time);
+        return Arrays.stream(students.get(studentName).getCourses())
+                .map(courseData::getCourseByName)
+                .filter(course -> course != null)
+                .filter(course -> course.getOccupiedTime().get(timeIndex))
+                .findAny()
+                .orElse(null);
+    }
+
+    public Activity activityAt(String studentName, int week, int day, int time) {
+        int timeIndex = ClassTime.realTimeToIndex(week, day, time);
+        return Arrays.stream(students.get(studentName).getActivities())
+                .map(activityData::getActivityByName)
+                .filter(activity -> activity != null)
+                .filter(activity -> activity.takesPlaceAt(timeIndex))
+                .findAny()
+                .orElse(null);
+    }
+
     public boolean isOccupied(String studentName, int week, int day, int time) {
         BitMap occupiedTime = this.schedules.get(studentName);
         if (occupiedTime == null) {
