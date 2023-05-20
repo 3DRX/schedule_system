@@ -67,4 +67,13 @@ public class Student {
         newCourses[this.courses.length] = courseName;
         this.courses = newCourses.clone();
     }
+
+    public void addActivity(String activityName) {
+        String[] newActivities = new String[this.activities.length + 1];
+        for (int i = 0; i < this.activities.length; i++) {
+            newActivities[i] = this.activities[i];
+        }
+        newActivities[this.activities.length] = activityName;
+        this.activities = newActivities.clone();
+    }
 }

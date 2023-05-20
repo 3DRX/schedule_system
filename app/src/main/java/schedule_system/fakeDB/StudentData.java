@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 
+import schedule_system.utils.Activity;
 import schedule_system.utils.BitMap;
 import schedule_system.utils.ClassTime;
 import schedule_system.utils.Course;
@@ -32,6 +33,8 @@ public class StudentData {
 
     @Autowired
     CourseData courseData;
+    @Autowired
+    ActivityData activityData;
 
     public StudentData() {
         this.students = new KMap<>();
@@ -108,6 +111,31 @@ public class StudentData {
 
     public boolean deleteEventFromStudent(String eventName, String studentName) {
         this.students.get(studentName).deleteEvent(eventName);
+        return writeStudentThings(this.getStudentsArray());
+    }
+
+    public boolean addActivityToStudents(String activityName, String[] students) {
+        for (String studentName : students) {
+            Student student = this.students.get(studentName);
+            if (students == null) {
+                continue;
+            }
+            String[] studentActivities = student.getActivities();
+            Activity newActivity = activityData.getActivityByName(activityName);
+            if (newActivity == null) {
+                logger.warn("为学生添加课外活动" + activityName + "失败：该课外活动不存在");
+            }
+            for (int i = 0; i < studentActivities.length; i++) {
+                Activity loopActivity = activityData.getActivityByName(studentActivities[i]);
+                if (loopActivity.timeOverlapsWith(newActivity)) {
+                    logger.warn("为学生" + student.getName() + "添加课外活动"
+                            + activityName + "失败：与学生已有课外活动："
+                            + studentActivities[i] + "冲突");
+                    return false;
+                }
+            }
+            student.addActivity(activityName);
+        }
         return writeStudentThings(this.getStudentsArray());
     }
 

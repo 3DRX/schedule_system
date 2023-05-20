@@ -6,7 +6,7 @@ public class Activity {
     private int startWeek;
     private int endWeek;
     private ClassTime time;
-    private Location location;
+    private String location;
 
     public Activity(
             final String name,
@@ -14,7 +14,7 @@ public class Activity {
             final int startWeek,
             final int endWeek,
             final ClassTime time,
-            final Location location) {
+            final String location) {
         // TODO: check input
         this.name = name;
         this.participants = participants;
@@ -25,6 +25,11 @@ public class Activity {
     }
 
     public boolean takesPlaceAt(int index) {
+        // TODO
+        return false;
+    }
+
+    public boolean timeOverlapsWith(Activity other) {
         // TODO
         return false;
     }
@@ -49,7 +54,7 @@ public class Activity {
         return time;
     }
 
-    public Location getLocation() {
+    public String getLocationName() {
         return location;
     }
 }

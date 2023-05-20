@@ -28,9 +28,32 @@ public class AddActivityController {
     MapData mapData;
 
     @PostMapping("/addActivity")
-    public boolean addActivity(@RequestBody ActivityInfoRecord inputActivity) {
-        // check if location is valid
+    public boolean addActivity(
+            @RequestBody ActivityInfoRecord inputActivity) {
+        if (!mapData.isValidLocation(inputActivity.activity().getLocationName())) {
+            logger.warn("添加课外活动 " + inputActivity.activity().getName() + " 失败：地点不存在");
+            return false;
+        }
+        if (!createActivity(inputActivity.activity())) {
+            return false;
+        }
+        if (!addActivityToStudents(inputActivity.activity().getName(), inputActivity.students())) {
+            return false;
+        }
         return true;
+    }
+
+    private boolean createActivity(Activity activity) {
+        if (activityData.isActivityExist(activity.getName())) {
+            logger.warn("添加课外活动 " + activity.getName() + " 失败：课外活动已存在");
+            return false;
+        }
+        logger.info("添加课外活动 " + activity.getName() + " 成功");
+        return true;
+    }
+
+    private boolean addActivityToStudents(String activityName, String[] studentNames) {
+        return studentData.addActivityToStudents(activityName, studentNames);
     }
 }
 

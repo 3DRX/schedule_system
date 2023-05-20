@@ -34,6 +34,10 @@ public class ActivityData {
         return this.activities.get(name);
     }
 
+    public boolean isActivityExist(String name) {
+        return this.activities.containKey(name);
+    }
+
     public boolean deleteActivity(String activityName) {
         this.activities.remove(activityName);
         return writeActivities(this.allActivities());
