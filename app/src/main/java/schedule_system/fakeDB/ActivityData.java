@@ -43,6 +43,15 @@ public class ActivityData {
         return writeActivities(this.allActivities());
     }
 
+    public Activity[] getActivityByDay(int week, int day) {
+        return Arrays.stream(this.activities.getKeyArray(String.class))
+                .map(i -> this.activities.get(i))
+                .filter(i -> i.getStartWeek() <= week
+                        && i.getEndWeek() >= week
+                        && i.getTime().getDay() == day)
+                .toArray(Activity[]::new);
+    }
+
     private Activity[] readActivities() {
         Activity[] read_activities = {};
         try {

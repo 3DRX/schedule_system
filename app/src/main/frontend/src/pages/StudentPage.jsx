@@ -5,6 +5,7 @@ import { InputNumber } from 'rsuite';
 import { notification } from 'antd';
 import Button from 'react-bootstrap/Button';
 import "./StudentPage.css";
+import DailyDashBoard from '../components/DailyDashBoard';
 
 function StudentPage() {
     const query = new URLSearchParams(useLocation().search);
@@ -15,6 +16,7 @@ function StudentPage() {
     const [week, setWeek] = useState(1);
     const [day, setDay] = useState(1);
     const [time, setTime] = useState(8);
+    const [refreshDashBoard, setRefreshDashBoard] = useState(false);
 
     const [api, contextHolder] = notification.useNotification();
 
@@ -78,6 +80,9 @@ function StudentPage() {
                 setDay(parseInt((reIndex % 60) / 12) + 1);
                 setTime((reIndex % 12) + 8);
                 setData(event.data);
+                if ((reIndex % 12) + 8 === 8) {
+                    setRefreshDashBoard(!refreshDashBoard);
+                }
             }
             newEventSource.onerror = (event) => {
                 console.log(event.target.readyState);
@@ -111,6 +116,7 @@ function StudentPage() {
                                     setDay(1);
                                     setTime(8);
                                     setData("");
+                                    setRefreshDashBoard(!refreshDashBoard);
                                 }}>reset</Button>
                             </div>
                         </div>
@@ -156,6 +162,12 @@ function StudentPage() {
                     {contextHolder}
                 </div>
             </div>
+            <DailyDashBoard
+                studentName={userName}
+                week={week}
+                day={day}
+                refresh={refreshDashBoard}
+            />
         </div>
     )
 }

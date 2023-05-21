@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import schedule_system.fakeDB.CourseData;
 import schedule_system.fakeDB.StudentData;
 import schedule_system.utils.Activity;
+import schedule_system.utils.CellContent;
 import schedule_system.utils.ClassTime;
 import schedule_system.utils.Course;
 import schedule_system.utils.Student;
@@ -143,11 +144,4 @@ public class ReferTableCellController {
         studentsOfCourse.toArray(res);
         return res;
     }
-}
-
-record CellContent(
-        String name,
-        String[] students,
-        String location,
-        boolean isActivity) {
 }
