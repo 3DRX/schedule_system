@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-
+import "./DailyDashBoard.css";
 const DailyDashBoard = ({ studentName, week, day, refresh, reset }) => {
     const [data, setData] = useState([]);
 
@@ -24,11 +24,14 @@ const DailyDashBoard = ({ studentName, week, day, refresh, reset }) => {
     }, [refresh]);
 
     return (
-        <>
-            <h3>当天所有日程</h3>
+        <div id="notifyContentBoard">
+            <div id="notifyContentBoardTitle">
+                <h3>当天所有日程</h3>
+            </div>
+
             {data.map((item) => {
                 return (
-                    <div key={item.name}>
+                    <div key={item.name} className="item">
                         <a>Name: </a>
                         <p>{item.name}</p>
                         <a>Students: </a>
@@ -42,7 +45,7 @@ const DailyDashBoard = ({ studentName, week, day, refresh, reset }) => {
                     </div>
                 );
             })}
-        </>
+        </div>
     );
 };
 

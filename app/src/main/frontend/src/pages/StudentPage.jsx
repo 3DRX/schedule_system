@@ -161,12 +161,16 @@ function StudentPage() {
                     </div>
                     {contextHolder}
                 </div>
-                <DailyDashBoard
-                    studentName={userName}
-                    week={week}
-                    day={day}
-                    refresh={refreshDashBoard}
-                />
+                <div id="nextdayNotifyBox">
+                    <DailyDashBoard
+                        id="nextdayNotify"
+                        studentName={userName}
+                        week={week}
+                        day={day}
+                        refresh={refreshDashBoard}
+                    />
+                </div>
+
             </div>
         </div>
     )
