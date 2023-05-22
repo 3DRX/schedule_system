@@ -161,13 +161,13 @@ function StudentPage() {
                     </div>
                     {contextHolder}
                 </div>
+                <DailyDashBoard
+                    studentName={userName}
+                    week={week}
+                    day={day}
+                    refresh={refreshDashBoard}
+                />
             </div>
-            <DailyDashBoard
-                studentName={userName}
-                week={week}
-                day={day}
-                refresh={refreshDashBoard}
-            />
         </div>
     )
 }
