@@ -57,7 +57,14 @@ public class NavigateController {
                 return null;
             }
         }
-        return mapData.pathPassingLocations(input.locations(), input.start()).toArray();
+        logger.info("locations: " + Arrays.toString(input.locations()) + " start: " + input.start());
+        try {
+            return mapData.pathPassingLocations(input.locations(), input.start()).toArray();
+        } catch (Exception e) {
+            logger.warn("导航失败：无法到达");
+            e.printStackTrace();
+            return new Location[0];
+        }
     }
 
     @GetMapping("/getLocations")

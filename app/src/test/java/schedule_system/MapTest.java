@@ -23,12 +23,12 @@ class MapTest {
         System.out.println(mapNodes.length);
     }
 
-    // @Test
+    @Test
     void testShortestPath() {
         MapData mapData = new MapData();
         KList<Location> res = null;
         try {
-            res = mapData.pathFromXtoY("学三公寓", "教二楼");
+            res = mapData.pathFromXtoY("学三公寓", "物美超市");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -38,7 +38,7 @@ class MapTest {
         }
     }
 
-    @Test
+    // @Test
     void testPassingLocations() {
         MapData mapData = new MapData();
         KList<Location> res = null;
