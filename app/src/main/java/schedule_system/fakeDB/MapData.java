@@ -95,7 +95,7 @@ public class MapData {
             // System.out.println("unvisited: ");
             // System.out.print("\t");
             // Arrays.stream(unvisited.getKeyArray(String.class))
-            //         .forEach(e -> System.out.print(e + " "));
+            // .forEach(e -> System.out.print(e + " "));
             // System.out.println();
             // System.out.println("currentNode: " + currentLocation);
             // System.out.println("start+++++++++++++++++++++++++++");
@@ -111,7 +111,16 @@ public class MapData {
                 }
             }
             // add path to nearestLocation in res
-            KList<Location> path = this.pathFromXtoY(currentLocation, nearestLocation);
+            KList<Location> path = null;
+            try {
+                path = this.pathFromXtoY(currentLocation, nearestLocation);
+            } catch (Exception e) {
+                try {
+                    path = this.pathFromXtoY(nearestLocation, currentLocation).reverse();
+                } catch (Exception e1) {
+                    throw new RuntimeException("No path from " + currentLocation + " to " + nearestLocation);
+                }
+            }
             path.popLeft();
             path.popRight();
             for (Location e : path) {
@@ -123,12 +132,24 @@ public class MapData {
             // System.out.println("unvisited: ");
             // System.out.print("\t");
             // Arrays.stream(unvisited.getKeyArray(String.class))
-            //         .forEach(e -> System.out.print(e + " "));
+            // .forEach(e -> System.out.print(e + " "));
             // System.out.println();
             // System.out.println("currentNode: " + currentLocation);
             // System.out.println("end============================");
         }
-        res.add(this.nodes.get(x).getLocation());
+        KList<Location> path = null;
+        try {
+            path = this.pathFromXtoY(currentLocation, x);
+        } catch (Exception e) {
+            try {
+                path = this.pathFromXtoY(x, currentLocation).reverse();
+            } catch (Exception e1) {
+                throw new RuntimeException("No path from " + currentLocation + " to " + x);
+            }
+        }
+        for (Location e : path) {
+            res.add(e);
+        }
         return res;
     }
 
@@ -140,18 +161,26 @@ public class MapData {
         int temp = 0;
         while (temp < 100) {
             AdjData filtered = null;
+            // System.out.println("\t" + currentNode.getLocation().getName());
             for (AdjData adj : currentNode.getAdj()) {
+                // System.out.println("\t\t" + adj.name());
                 MapNode adjNode = this.nodes.get(adj.name());
                 int adjDistence = distence.get(adjNode.getLocation().getName());
+                // System.out.println("\t\t\tadjDistence: " + adjDistence);
                 int adjWeight = 0;
                 for (AdjData i : adjNode.getAdj()) {
                     if (i.name().equals(currentNode.getLocation().getName())) {
                         adjWeight = i.weight();
                     }
                 }
-                Boolean flag = adjDistence + adjWeight == distence.get(currentNode.getLocation().getName());
-                if (flag) {
+                // System.out.println("\t\t\tadjWeight: " + adjWeight);
+                // System.out.println("\t\t\tadjDistence + adjWeight: " + (adjDistence +
+                // adjWeight));
+                // System.out.println("\t\t\tcurrentDistence: " +
+                // distence.get(currentNode.getLocation().getName()));
+                if (adjDistence + adjWeight == distence.get(currentNode.getLocation().getName())) {
                     filtered = adj;
+                    // System.out.println("\t\t\t" + adj.name() + " is filtered");
                     break;
                 }
             }

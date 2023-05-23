@@ -103,6 +103,15 @@ public class KList<T> extends AbstractList<T> {
         return res;
     }
 
+    public KList<T> reverse() {
+        for (int i = 0; i < list.length / 2; i++) {
+            T temp = list[i];
+            list[i] = list[list.length - 1 - i];
+            list[list.length - 1 - i] = temp;
+        }
+        return this;
+    }
+
     @Override
     public T[] toArray() {
         return Arrays.copyOf(this.list, this.list.length);
