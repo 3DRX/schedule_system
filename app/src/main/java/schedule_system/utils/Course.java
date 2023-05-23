@@ -46,16 +46,56 @@ public class Course {
     }
 
     /**
+     * 获得该课程所占用所有时间的BitMap
+     * 
+     * @return occupiedTime
+     */
+    public BitMap getOccupiedTime() {
+        BitMap occupiedTime = new BitMap(ClassTime.getMaxIndex());
+        for (int week = startWeek; week <= endWeek; week++) {
+            int day = classTime.getDay();
+            int time = classTime.getTime();
+            for (int j = 0; j < classTime.getDuration(); j++) {
+                occupiedTime.set(ClassTime.realTimeToIndex(week, day, time + j));
+            }
+        }
+        return occupiedTime;
+    }
+
+    /**
+     * 检查是否占用某个时间
+     * 
+     * @param index
+     * @return
+     */
+    public boolean takesPlaceAt(int index) {
+        return getOccupiedTime().get(index);
+    }
+
+    /**
+     * 检查是否占用某个时间
+     * 
+     * @param week
+     * @param day
+     * @param time
+     * @return
+     */
+    public boolean takesPlaceAt(int week, int day, int time) {
+        return takesPlaceAt(ClassTime.realTimeToIndex(week, day, time));
+    }
+
+    /**
      * 用于模拟时判断 index 对应时间是否有本课程
+     * 与 {@link #takesPlaceAt(int)} 不同的是，本方法只在 index 正好对应本课程开始的那一个小时时返回 true
      * 
      * @param index
      * @return
      */
     public boolean atIndex(int index) {
         // parse index into week, day, hour
-        int week = (index / 60) + 1;
-        int day = ((index % 60) / 12) + 1;
-        int hour = index % 12 + 8;
+        int week = (index / ClassTime.getHourInWeek()) + 1;
+        int day = ((index % ClassTime.getHourInWeek()) / ClassTime.getHourInDay()) + 1;
+        int hour = index % ClassTime.getHourInDay() + ClassTime.firstIndexOfHour();
         boolean res = false;
         // at the correct week
         if (week >= this.startWeek && week <= this.endWeek) {
@@ -74,7 +114,7 @@ public class Course {
      * 1. 名称冲突
      * 2. 同一时间占用同一地点
      * （用于判断新建课程是否与其他课程冲突）
-     * TODO: 现在先不管考试时间，只检查上课时间
+     * 忽略考试时间，只检查上课时间
      *
      * @param Course course
      * @return boolean
@@ -83,13 +123,10 @@ public class Course {
         boolean haveConflict = false;
         if (this.getName().equals(course.getName())) {
             // 若两门课程名称一样，则冲突
-            // System.out.println("两课程名称一样");
             haveConflict = true;
         }
-        if (this.classTime.overlaps(course.getClassTime()) && weekOverlaps(course)
-                && this.location.equals(course.location)) {
+        if (this.timeOverlapsWith(course) && this.location.equals(course.location)) {
             // 若两门课程在同一时间占用同一地点，则冲突
-            // System.out.println("新课程" + course.getName() + "与" + this.getName() + "在同一时间占用同一地点");
             haveConflict = true;
         }
         return haveConflict;
@@ -99,36 +136,12 @@ public class Course {
      * 判断是否与另一门课在时间上有冲突
      * 1. 开始周、结束周有重叠
      * 2. 上课时间有重叠
-     * （用于判断新课程与某一位学生的已有课程冲突与否）
      *
      * @param Course course
      * @return boolean
      */
     public boolean timeOverlapsWith(Course course) {
-        boolean res = this.classTime.overlaps(course.getClassTime()) && weekOverlaps(course);
-        return res;
-    }
-
-    /**
-     * 判断是否与另一门课有重叠的上课周
-     *
-     * @param b
-     * @return
-     */
-    private boolean weekOverlaps(Course b) {
-        boolean res = false;
-        if (this.startWeek < b.startWeek) {
-            res = this.endWeek >= b.startWeek;
-        } else if (b.startWeek < this.startWeek) {
-            res = b.endWeek >= b.startWeek;
-        } else {
-            res = true;
-        }
-        return res;
-    }
-
-    public boolean covers(int week) {
-        return this.startWeek <= week && this.endWeek >= week;
+        return this.getOccupiedTime().overlaps(course.getOccupiedTime());
     }
 
     public String getName() {

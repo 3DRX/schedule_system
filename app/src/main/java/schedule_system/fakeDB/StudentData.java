@@ -7,10 +7,14 @@ import java.util.Arrays;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 
+import schedule_system.utils.BitMap;
+import schedule_system.utils.ClassTime;
 import schedule_system.utils.Course;
 import schedule_system.utils.KMap;
 import schedule_system.utils.Student;
@@ -19,19 +23,57 @@ import schedule_system.utils.Student;
  * StudentData
  */
 public class StudentData {
-    final private String path = "src/main/resources/studentCourses.json";
+    final private String path = "src/main/resources/studentThings.json";
     final private Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private final Logger logger = LoggerFactory.getLogger(StudentData.class);
 
     private KMap<String, Student> students;
+    private KMap<String, BitMap> schedules;
+
+    @Autowired
+    CourseData courseData;
 
     public StudentData() {
         this.students = new KMap<>();
+        this.schedules = new KMap<>();
         Arrays.stream(readStudentClasses())
-                .forEach(e -> this.students.put(e.getName(), e));
+                .forEach((e) -> {
+                    this.schedules.put(e.getName(), generateSchedule(e));
+                    this.students.put(e.getName(), e);
+                });
     }
 
-    public Student[] getStudentClasses() {
+    public boolean isOccupied(String studentName, int week, int day, int time) {
+        BitMap occupiedTime = this.schedules.get(studentName);
+        if (occupiedTime == null) {
+            return false;
+        }
+        return occupiedTime.get(ClassTime.realTimeToIndex(week, day, time));
+    }
+
+    public boolean isOccupied(String studentName, int index) {
+        BitMap occupiedTime = this.schedules.get(studentName);
+        if (occupiedTime == null) {
+            return false;
+        }
+        return occupiedTime.get(index);
+    }
+
+    private BitMap generateSchedule(Student student) {
+        BitMap res = new BitMap(ClassTime.getMaxIndex());
+        // get all occupied time slot
+        CourseData courseData = new CourseData();
+        for (String courseName : student.getCourses()) {
+            Course course = courseData.getCourseByName(courseName);
+            if (course == null) {
+                continue;
+            }
+            res = res.or(course.getOccupiedTime());
+        }
+        return res;
+    }
+
+    public Student[] getStudentsArray() {
         return Arrays.stream(this.students.getKeyArray(String.class))
                 .map(i -> this.students.get(i))
                 .toArray(size -> new Student[size]);
@@ -42,14 +84,34 @@ public class StudentData {
     }
 
     public boolean deleteCourseFromStudents(String courseName) {
-        for (Student student : this.getStudentClasses()) {
+        for (Student student : this.getStudentsArray()) {
             student.deleteCourseIfHave(courseName);
+            // unset occupied time
+            BitMap schedule = this.schedules.get(student.getName());
+            schedule = schedule.and(courseData.getCourseByName(courseName).getOccupiedTime().not());
+            this.schedules.put(student.getName(), schedule);
         }
-        return writeStudentClasses(this.getStudentClasses());
+        return writeStudentThings(this.getStudentsArray());
+    }
+
+    public boolean addEventToStudent(String newEventName, String studentName) {
+        // check if student already have this event
+        for (String eventName : this.students.get(studentName).getEvents()) {
+            if (eventName.equals(newEventName)) {
+                logger.warn("为学生添加事件 " + newEventName + " 失败：学生已有该事件");
+                return false;
+            }
+        }
+        this.students.get(studentName).addEvent(newEventName);
+        return writeStudentThings(this.getStudentsArray());
+    }
+
+    public boolean deleteEventFromStudent(String eventName, String studentName) {
+        this.students.get(studentName).deleteEvent(eventName);
+        return writeStudentThings(this.getStudentsArray());
     }
 
     public boolean addCourseToStudents(String newCourseName, String[] students) {
-        final CourseData courseData = new CourseData();
         for (String studentName : students) {
             Student student = this.students.get(studentName);
             if (student == null) {
@@ -57,7 +119,6 @@ public class StudentData {
             }
             // 检查学生的课程会不会冲突
             // 即：学生的所有课程是否有时间重叠
-            // TODO: TEST_ME
             String[] studentCourses = student.getCourses();
             Course newCourse = courseData.getCourseByName(newCourseName);
             if (newCourse == null) {
@@ -75,7 +136,7 @@ public class StudentData {
             }
             student.addCourse(newCourseName);
         }
-        return writeStudentClasses(this.getStudentClasses());
+        return writeStudentThings(this.getStudentsArray());
     }
 
     public boolean isStudent(String userName) {
@@ -93,7 +154,7 @@ public class StudentData {
         return readStudent;
     }
 
-    public boolean writeStudentClasses(Student[] students) {
+    public boolean writeStudentThings(Student[] students) {
         File file = new File(path);
         String res = gson.toJson(students);
         boolean successFlag = true;

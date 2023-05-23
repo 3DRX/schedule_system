@@ -23,6 +23,61 @@ public class ClassTime {
     }
 
     /**
+     * Convert real time to time index
+     * 
+     * @param week
+     * @param day
+     * @param time
+     * @return
+     */
+    public static int realTimeToIndex(int week, int day, int time) {
+        // check input
+        if (!isValidTime(week, day, time)) {
+            throw new IllegalArgumentException("输入不合法");
+        }
+        return (week - 1) * getHourInWeek()
+                + (day - 1) * getHourInDay()
+                + time - firstIndexOfHour();
+    }
+
+    public static boolean isValidTime(int week, int day, int time) {
+        return week >= 1 && week <= getWeekInSemester()
+                && day >= 1 && day <= getDayInWeek()
+                && time >= firstIndexOfHour() && time <= lastIndexOfHour();
+    }
+
+    /**
+     * @return the maximum value of time index
+     */
+    public static int getMaxIndex() {
+        return getDayInWeek() * getHourInDay() * getWeekInSemester();
+    }
+
+    public static int getHourInWeek() {
+        return getHourInDay() * getDayInWeek();
+    }
+
+    public static int lastIndexOfHour() {
+        return firstIndexOfHour() + getHourInDay() - 1;
+    }
+
+    public static int firstIndexOfHour() {
+        return 8;
+    }
+
+    public static int getHourInDay() {
+        return 12;
+    }
+
+    public static int getDayInWeek() {
+        return 5;
+    }
+
+    public static int getWeekInSemester() {
+        return 20;
+    }
+
+    /**
      * 判断是否与另一个时间有重叠
      *
      * @param ClassTime

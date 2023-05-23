@@ -29,6 +29,10 @@ public class MapData {
         this.logger.info("Reading map data from " + path);
     }
 
+    public Location getLocation(String locationName) {
+        return this.nodes.get(locationName).getLocation();
+    }
+
     public boolean isValidLocation(String locationName) {
         if (this.nodes.get(locationName) != null) {
             logger.info("Location " + locationName + " is valid.");

@@ -1,0 +1,97 @@
+#studentPageContent{
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    justify-content: center;
+    margin: 0;
+    background-color: papayawhip;
+    border-radius: 0;
+    box-shadow: 0 0 0 white;
+}
+#timeForm{
+    display: block;
+    justify-content: center;
+    margin: 2vh 10vh 2vh 10vh;
+    border-radius: 3vh;
+    background-color: rgba(214, 214, 214, 0.479);
+    backdrop-filter: saturate(100%) blur(3px);
+    box-shadow: 0 0 2vw 0 rgba(49, 49, 49, 0.623);
+    padding: 40px 15px 40px 15px;
+
+    background-color: #e9e9e9;
+    /* 添加边框样式 */
+    border: 1px solid #c4c4c4;
+    /* 添加背景渐变 */
+    background: linear-gradient(145deg, #e9e9e9, #d7d7d7);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.15),
+    inset 5px 5px 10px var(--color-light),
+    inset -5px -5px 10px var(--color-shadow);;
+    /* 增加过渡效果 */
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+#twoButtons{
+    display: flex;
+    justify-content: center;
+    margin: 2vh;
+}
+#buttonBox{
+    width: 20vw;
+    display: flex;
+    justify-content: space-evenly;
+}
+#timeWeek{
+    display: flex;
+    justify-content: center;
+    margin: 2vh;
+}
+#timeHour{
+    display: flex;
+    justify-content: center;
+    margin: 2vh;
+}
+#timeInformation{
+    display: block;
+    justify-content: center;
+    width: 10vw;
+    margin: 0 auto;
+}
+#weekInput{
+    width: 15vw;
+    text-align: center;
+    line-height: 3vh;
+    margin-bottom: 1vh;
+    margin-left: 1vw;
+    border-radius: 0.5vh;
+    border: 0;
+
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0),
+    0 0 0 rgba(0, 0, 0, 0),
+    inset 5px 5px 10px var(--color-light),
+    inset -5px -5px 10px var(--color-shadow);
+}
+#dayInput{
+    width: 5.5vw;
+    text-align: center;
+    line-height: 3vh;
+    margin-bottom: 1vh;
+    margin-left: 1vw;
+    border-radius: 0.5vh;
+    border: 0;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0),
+    0 0 0 rgba(0, 0, 0, 0),
+    inset 5px 5px 10px var(--color-light),
+    inset -5px -5px 10px var(--color-shadow);
+}
+#timeInput{
+    width: 5.5vw;
+    text-align: center;
+    line-height: 3vh;
+    margin-bottom: 1vh;
+    margin-left: 1vw;
+    border-radius: 0.5vh;
+    border: 0;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0),
+    0 0 0 rgba(0, 0, 0, 0),
+    inset 5px 5px 10px var(--color-light),
+    inset -5px -5px 10px var(--color-shadow);
+}

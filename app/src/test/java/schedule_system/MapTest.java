@@ -42,8 +42,9 @@ class MapTest {
     void testPassingLocations() {
         MapData mapData = new MapData();
         KList<Location> res = null;
+        String[] locations = { "学三公寓", "物美超市" };
         try {
-            res = mapData.pathPassingLocations(new String[] { "学三公寓", "物美超市" }, "教三楼");
+            res = mapData.pathPassingLocations(locations, "教三楼");
         } catch (Exception e) {
             e.printStackTrace();
         }
