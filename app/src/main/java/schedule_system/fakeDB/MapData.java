@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Arrays;
-import java.util.HashSet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +29,10 @@ public class MapData {
         this.logger.info("Reading map data from " + path);
     }
 
+    public Location getLocation(String locationName) {
+        return this.nodes.get(locationName).getLocation();
+    }
+
     public boolean isValidLocation(String locationName) {
         if (this.nodes.get(locationName) != null) {
             logger.info("Location " + locationName + " is valid.");
@@ -40,69 +43,149 @@ public class MapData {
         }
     }
 
-    public KList<Location> pathFromXtoY(String x, String y) {
-        // init
+    private KMap<String, Integer> distence(String x) {
         // x 点到每个点的距离
         KMap<String, Integer> distence = new KMap<>();
         distence.put(x, 0);
-        // 已访问的节点（这里value无意义，就是我懒得再写个Set了）
-        // KMap<String, Integer> visitedNodes = new KMap<>();
-        HashSet<String> visitedNodes = new HashSet<String>();
-        // 广度优先遍历的队列
+        // 已访问的节点（这里value无意义，当Set用）
+        KMap<String, Integer> visitedNodes = new KMap<>();
         KList<MapNode> queue = new KList<>(MapNode.class);
         queue.add(this.nodes.get(x));
         while (queue.size() != 0
                 && visitedNodes.size() < this.nodes.size()) {
             MapNode currentNode = queue.popLeft();
-            // logger.info("visiting: " + currentNode.getLocation().getName());
-            visitedNodes.add(currentNode.getLocation().getName());
+            visitedNodes.put(currentNode.getLocation().getName(), 0);
             for (AdjData e : currentNode.getAdj()) {
                 int weight = distence.get(currentNode.getLocation().getName()) + e.weight();
                 if (distence.get(e.name()) == null || distence.get(e.name()) > weight) {
                     // 如果通过当前节点访问其邻接节点比原来的距离近，则更新最短距离。
                     distence.put(e.name(), weight);
-                    // logger.info("put " + e.name() + ", of distence " + weight);
                 }
-                if (!visitedNodes.contains(e.name())) {
-                    // logger.info("Never visit " + e.name() + " before, add it into queue.");
+                if (visitedNodes.get(e.name()) == null) {
                     // 如果邻接节点没有访问过，入队
                     queue.add(this.nodes.get(e.name()));
                 }
             }
         }
-        // logger.info("==========" + distence.getKeyArray(String.class).length);
-        // logger.debug("node number: " + this.nodes.size());
-        // get result
+        return distence;
+    }
+
+    /**
+     * return the path of shortest distence from x passing all locations
+     * 
+     * @param locations
+     * @param x
+     * @return
+     */
+    public KList<Location> pathPassingLocations(String[] locations, String x) {
+        // check input
+        if (!this.isValidLocation(x))
+            throw new IllegalArgumentException();
+        for (String location : locations)
+            if (!this.isValidLocation(location))
+                throw new IllegalArgumentException();
+
+        final KMap<String, Integer> unvisited = new KMap<>();
+        Arrays.stream(locations)
+                .forEach((e) -> unvisited.put(e, 0));
+        final KList<Location> res = new KList<>(Location.class);
+        String currentLocation = x;
+        while (unvisited.size() != 0) {
+            // System.out.println("start+++++++++++++++++++++++++++");
+            // System.out.println("unvisited: ");
+            // System.out.print("\t");
+            // Arrays.stream(unvisited.getKeyArray(String.class))
+            // .forEach(e -> System.out.print(e + " "));
+            // System.out.println();
+            // System.out.println("currentNode: " + currentLocation);
+            // System.out.println("start+++++++++++++++++++++++++++");
+            res.add(this.nodes.get(currentLocation).getLocation());
+            int minDistence = Integer.MAX_VALUE;
+            String nearestLocation = null;
+            KMap<String, Integer> distence = this.distence(currentLocation);
+            for (String location : unvisited.getKeyArray(String.class)) {
+                if (distence.get(location) != null
+                        && distence.get(location) < minDistence) {
+                    minDistence = distence.get(location);
+                    nearestLocation = location;
+                }
+            }
+            // add path to nearestLocation in res
+            KList<Location> path = null;
+            try {
+                path = this.pathFromXtoY(currentLocation, nearestLocation);
+            } catch (Exception e) {
+                try {
+                    path = this.pathFromXtoY(nearestLocation, currentLocation).reverse();
+                } catch (Exception e1) {
+                    throw new RuntimeException("No path from " + currentLocation + " to " + nearestLocation);
+                }
+            }
+            path.popLeft();
+            path.popRight();
+            for (Location e : path) {
+                res.add(e);
+            }
+            currentLocation = nearestLocation;
+            unvisited.remove(nearestLocation);
+            // System.out.println("end============================");
+            // System.out.println("unvisited: ");
+            // System.out.print("\t");
+            // Arrays.stream(unvisited.getKeyArray(String.class))
+            // .forEach(e -> System.out.print(e + " "));
+            // System.out.println();
+            // System.out.println("currentNode: " + currentLocation);
+            // System.out.println("end============================");
+        }
+        KList<Location> path = null;
+        try {
+            path = this.pathFromXtoY(currentLocation, x);
+        } catch (Exception e) {
+            try {
+                path = this.pathFromXtoY(x, currentLocation).reverse();
+            } catch (Exception e1) {
+                throw new RuntimeException("No path from " + currentLocation + " to " + x);
+            }
+        }
+        for (Location e : path) {
+            res.add(e);
+        }
+        return res;
+    }
+
+    public KList<Location> pathFromXtoY(String x, String y) {
+        KMap<String, Integer> distence = this.distence(x);
         KList<Location> res = new KList<>(Location.class);
         MapNode currentNode = this.nodes.get(y);
-        // logger.debug("add node: " + currentNode.getLocation().getName());
         res.add(currentNode.getLocation());
         int temp = 0;
         while (temp < 100) {
             AdjData filtered = null;
+            // System.out.println("\t" + currentNode.getLocation().getName());
             for (AdjData adj : currentNode.getAdj()) {
+                // System.out.println("\t\t" + adj.name());
                 MapNode adjNode = this.nodes.get(adj.name());
                 int adjDistence = distence.get(adjNode.getLocation().getName());
+                // System.out.println("\t\t\tadjDistence: " + adjDistence);
                 int adjWeight = 0;
                 for (AdjData i : adjNode.getAdj()) {
                     if (i.name().equals(currentNode.getLocation().getName())) {
                         adjWeight = i.weight();
                     }
                 }
-                // logger.info(adj.name());
-                // logger.info("adjDistence: " + adjDistence);
-                // logger.info("adjWeight: " + adjWeight);
-                // logger.info("thisDistence: " +
+                // System.out.println("\t\t\tadjWeight: " + adjWeight);
+                // System.out.println("\t\t\tadjDistence + adjWeight: " + (adjDistence +
+                // adjWeight));
+                // System.out.println("\t\t\tcurrentDistence: " +
                 // distence.get(currentNode.getLocation().getName()));
-                Boolean flag = adjDistence + adjWeight == distence.get(currentNode.getLocation().getName());
-                if (flag) {
+                if (adjDistence + adjWeight == distence.get(currentNode.getLocation().getName())) {
                     filtered = adj;
+                    // System.out.println("\t\t\t" + adj.name() + " is filtered");
                     break;
                 }
             }
             String theNode = filtered.name();
             temp++;
-            // logger.debug("add node: " + theNode);
             res.add(0, this.nodes.get(theNode).getLocation());
             if (theNode.equals(x)) {
                 break;

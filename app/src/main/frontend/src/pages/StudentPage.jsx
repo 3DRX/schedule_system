@@ -26,12 +26,13 @@ function StudentPage() {
 
     const openNav = () => {
         const prefix = "http://" + window.location.host;
+        console.log(`data: ${data}`);
         const courseName = data.split(",")[0];
         const location = data.split(",")[1];
-        const x = data.split(",")[2];
-        const y = data.split(",")[3];
+        const isCourse = data.split(",")[5];
         console.log("open navigation");
-        window.open(`${prefix}/student/nav?courseName=${courseName}&location=${location}&x=${x}&y=${y}`);
+        console.log(`isCourse: ${isCourse}`);
+        window.open(`${prefix}/student/nav?courseName=${courseName}&location=${location}&isCourse=${isCourse}&userName=${userName}`);
         api.destroy();
     }
 
@@ -39,15 +40,14 @@ function StudentPage() {
         const key = `open${Date.now()}`;
         const btn = (
             <>
-                <Button size='sm' variant='primary' onClick={openNav} >
+                <Button size='sm' variant='primary' onClick={openNav}>
                     导航
                 </Button>
             </>
         );
         api.open({
             message: '上课提醒：' + data.split(",")[0],
-            description:
-                `地点：${data.split(",")[1]}`,
+            description: `地点：${data.split(",")[1]}`,
             btn,
             key,
             onClose: () => { },
@@ -66,11 +66,11 @@ function StudentPage() {
             console.log("http://localhost:8888/time/" + userName + "/" + index);
             const newEventSource = new EventSource("http://localhost:8888/time/" + userName + "/" + index);
             setEventSource(newEventSource);
-            newEventSource.onopen = (event) => {
+            newEventSource.onopen = (_) => {
                 console.log("connection opened");
             }
             newEventSource.onmessage = (event) => {
-                // event.data 格式: name,location,x,y,newIndex
+                // event.data 格式: name,location,x,y,newIndex,isCourse
                 console.log("result", event.data);
                 const reIndex = parseInt(event.data.split(",")[4]);
                 console.log(reIndex);
@@ -101,7 +101,9 @@ function StudentPage() {
                     <div id="twoButtons">
                         <div id="buttonBox">
                             <div>
-                                <Button size='sm' variant='outline-primary' onClick={handleOnClick}>{start ? "stop" : "start"}</Button>
+                                <Button size='sm' variant='outline-primary' onClick={handleOnClick}>
+                                    {start ? "stop" : "start"}
+                                </Button>
                             </div>
                             <div>
                                 <Button size='sm' variant='outline-secondary' onClick={() => {
@@ -114,11 +116,10 @@ function StudentPage() {
                         </div>
                     </div>
                     <div id="timeWeek">
-                        <div>
-                            第
-                        </div>
+                        <div>第</div>
                         <div>
                             <InputNumber
+                                id="weekInput"
                                 value={week}
                                 onChange={setWeek}
                                 step={1}
@@ -126,16 +127,13 @@ function StudentPage() {
                                 min={1}
                             />
                         </div>
-                        <div>
-                            周
-                        </div>
+                        <div>周</div>
                     </div>
                     <div id="timeHour">
-                        <div>
-                            周
-                        </div>
+                        <div>周</div>
                         <div>
                             <InputNumber
+                                id="dayInput"
                                 value={day}
                                 onChange={setDay}
                                 step={1}
@@ -145,6 +143,7 @@ function StudentPage() {
                         </div>
                         <div>
                             <InputNumber
+                                id="timeInput"
                                 value={time}
                                 onChange={setTime}
                                 step={1}
@@ -152,23 +151,11 @@ function StudentPage() {
                                 min={8}
                             />
                         </div>
-                        <div>
-                            点
-                        </div>
+                        <div>点</div>
                     </div>
                     {contextHolder}
-                    <ul id="timeInformation">
-                        Received Data
-                        <li>{data.split(",")[0]}</li>
-                        <li>{data.split(",")[1]}</li>
-                        <li>{data.split(",")[2]}</li>
-                        <li>{data.split(",")[3]}</li>
-                    </ul>
                 </div>
-
-
             </div>
-
         </div>
     )
 }

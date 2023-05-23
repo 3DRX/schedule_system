@@ -1,11 +1,15 @@
 package schedule_system.utils;
 
+import java.util.AbstractList;
+
 public class Student {
     private String[] courses;
+    private String[] events;
     private String name;
 
-    public Student(String[] courses, String name) {
-        this.courses = courses.clone();
+    public Student(String name) {
+        this.courses = null;
+        this.events = null;
         this.name = name;
     }
 
@@ -26,6 +30,29 @@ public class Student {
 
     public String getName() {
         return name;
+    }
+
+    public String[] getEvents() {
+        return events;
+    }
+
+    public void addEvent(String eventName) {
+        String[] newEvents = new String[this.events.length + 1];
+        for (int i = 0; i < this.events.length; i++) {
+            newEvents[i] = this.events[i];
+        }
+        newEvents[this.events.length] = eventName;
+        this.events = newEvents.clone();
+    }
+
+    public void deleteEvent(String eventName) {
+        KList<String> newEvents = new KList<>(String.class);
+        for (String event : this.events) {
+            if (!event.equals(eventName)) {
+                newEvents.add(event);
+            }
+        }
+        this.events = newEvents.toArray();
     }
 
     public void addCourse(String courseName) {

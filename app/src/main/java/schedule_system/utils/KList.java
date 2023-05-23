@@ -19,8 +19,9 @@ public class KList<T> extends AbstractList<T> {
      * 
      * @param rule lambda 表达式，如果a应排在b前面，返回true
      */
-    public void quickSort(CompareRule<T> rule) {
+    public KList<T> quickSort(CompareRule<T> rule) {
         pQuickSort(rule, 0, list.length - 1);
+        return this;
     }
 
     private void pQuickSort(CompareRule<T> rule, int left, int right) {
@@ -88,6 +89,27 @@ public class KList<T> extends AbstractList<T> {
 
     public T peekRight() {
         return list[list.length - 1];
+    }
+
+    public T remove(int index) {
+        if (index < 0 || index >= list.length) {
+            return null;
+        }
+        T res = list[index];
+        for (int i = index; i < list.length - 1; i++) {
+            list[i] = list[i + 1];
+        }
+        list = Arrays.copyOf(list, list.length - 1);
+        return res;
+    }
+
+    public KList<T> reverse() {
+        for (int i = 0; i < list.length / 2; i++) {
+            T temp = list[i];
+            list[i] = list[list.length - 1 - i];
+            list[list.length - 1 - i] = temp;
+        }
+        return this;
     }
 
     @Override
