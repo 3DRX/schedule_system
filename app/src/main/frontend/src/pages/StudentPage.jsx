@@ -63,8 +63,14 @@ function StudentPage() {
         }
         else {
             const index = (60 * (week - 1)) + (12 * (day - 1)) + (time - 8);
-            console.log("http://localhost:8888/time/" + userName + "/" + index);
-            const newEventSource = new EventSource("http://localhost:8888/time/" + userName + "/" + index);
+            console.log("http://" + window.location.hostname + ":8888/time/" + userName + "/" + index);
+            const newEventSource = new EventSource(
+                "http://"
+                + window.location.hostname
+                + ":8888/time/"
+                + userName
+                + "/"
+                + index);
             setEventSource(newEventSource);
             newEventSource.onopen = (_) => {
                 console.log("connection opened");
