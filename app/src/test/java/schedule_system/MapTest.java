@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Disabled;
 
-@Disabled
+// @Disabled
 class MapTest {
 
     void mapTest() {
@@ -23,12 +23,27 @@ class MapTest {
         System.out.println(mapNodes.length);
     }
 
-    @Test
+    // @Test
     void testShortestPath() {
         MapData mapData = new MapData();
         KList<Location> res = null;
         try {
             res = mapData.pathFromXtoY("学三公寓", "教二楼");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (res != null) {
+            res.stream()
+                    .forEach(e -> System.out.println(e));
+        }
+    }
+
+    @Test
+    void testPassingLocations() {
+        MapData mapData = new MapData();
+        KList<Location> res = null;
+        try {
+            res = mapData.pathPassingLocations(new String[] { "学三公寓", "物美超市" }, "教三楼");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -74,13 +74,27 @@ public class MapData {
      * @return
      */
     public KList<Location> pathPassingLocations(String[] locations, String x) {
-        // TODO: test me
+        // check input
+        if (!this.isValidLocation(x))
+            throw new IllegalArgumentException();
+        for (String location : locations)
+            if (!this.isValidLocation(location))
+                throw new IllegalArgumentException();
+
         final KMap<String, Integer> unvisited = new KMap<>();
         Arrays.stream(locations)
                 .forEach((e) -> unvisited.put(e, 0));
         final KList<Location> res = new KList<>(Location.class);
         String currentLocation = x;
         while (unvisited.size() != 0) {
+            // System.out.println("start+++++++++++++++++++++++++++");
+            // System.out.println("unvisited: ");
+            // System.out.print("\t");
+            // Arrays.stream(unvisited.getKeyArray(String.class))
+            //         .forEach(e -> System.out.print(e + " "));
+            // System.out.println();
+            // System.out.println("currentNode: " + currentLocation);
+            // System.out.println("start+++++++++++++++++++++++++++");
             res.add(this.nodes.get(currentLocation).getLocation());
             int minDistence = Integer.MAX_VALUE;
             String nearestLocation = null;
@@ -92,8 +106,23 @@ public class MapData {
                     nearestLocation = location;
                 }
             }
+            // add path to nearestLocation in res
+            KList<Location> path = this.pathFromXtoY(currentLocation, nearestLocation);
+            path.popLeft();
+            path.popRight();
+            for (Location e : path) {
+                res.add(e);
+            }
             currentLocation = nearestLocation;
             unvisited.remove(nearestLocation);
+            // System.out.println("end============================");
+            // System.out.println("unvisited: ");
+            // System.out.print("\t");
+            // Arrays.stream(unvisited.getKeyArray(String.class))
+            //         .forEach(e -> System.out.print(e + " "));
+            // System.out.println();
+            // System.out.println("currentNode: " + currentLocation);
+            // System.out.println("end============================");
         }
         res.add(this.nodes.get(x).getLocation());
         return res;
