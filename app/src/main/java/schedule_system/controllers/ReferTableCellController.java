@@ -65,11 +65,11 @@ public class ReferTableCellController {
     }
 
     @GetMapping("/studentGetStatusByTime")
-    public CellContent adminGetStatusByTime(String time, int week, int day, String userName) {
+    public CellContent[] adminGetStatusByTime(String time, int week, int day, String userName) {
         int start = Integer.parseInt(time.split("-")[0]);
         if (!studentData.isStudent(userName)) {
             logger.error("user {} is not a student", userName);
-            return null;
+            return new CellContent[0];
         }
         // if (!studentData.isOccupied(userName, week, day, start)) {
         // logger.error("user {} is not occupied at {} {} {}", userName, week, day,
@@ -80,35 +80,32 @@ public class ReferTableCellController {
         Activity activity = studentData.activityAt(userName, week, day, start);
         if (course == null && activity == null) {
             logger.error("user {} is occupied at {} {} {} but no course or activity", userName, week, day, start);
-            return null;
+            return new CellContent[0];
         } else if (course != null && activity != null) {
             logger.error("user {} is occupied at {} {} {} but both course and activity", userName, week, day, start);
-            return null;
+            return new CellContent[0];
         } else if (course != null) {
             logger.info("user {} is occupied at {} {} {} by course {}", userName, week, day, start, course.getName());
-            return new CellContent(course.getName(),
+            return new CellContent[]{new CellContent(course.getName(),
                     getStudents(course.getName()),
                     course.getLocationName(),
-                    false);
+                    false)};
         } else if (activity != null) {
             logger.info("user {} is occupied at {} {} {} by activity {}", userName, week, day, start,
                     activity.getName());
-            return new CellContent(activity.getName(),
+            return new CellContent[]{new CellContent(activity.getName(),
                     activity.getParticipants(),
                     activity.getLocationName(),
-                    true);
+                    true)};
         } else {
             logger.error("user {} is occupied at {} {} {} but no course or activity", userName, week, day, start);
-            return null;
+            return new CellContent[0];
         }
     }
 
     /**
      * 获取该时间的课程的数组
      * 如果没有课程，返回空数组
-     * 
-     * @param start 开始时间
-     * @param end   结束时间
      * @param week  周
      * @param day   天
      * @return Course[]
