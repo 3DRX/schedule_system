@@ -5,6 +5,7 @@ import { InputNumber } from 'rsuite';
 import { notification } from 'antd';
 import Button from 'react-bootstrap/Button';
 import "./StudentPage.css";
+import DailyDashBoard from '../components/DailyDashBoard';
 
 function StudentPage() {
     const query = new URLSearchParams(useLocation().search);
@@ -15,6 +16,7 @@ function StudentPage() {
     const [week, setWeek] = useState(1);
     const [day, setDay] = useState(1);
     const [time, setTime] = useState(8);
+    const [refreshDashBoard, setRefreshDashBoard] = useState(false);
 
     const [api, contextHolder] = notification.useNotification();
 
@@ -29,7 +31,7 @@ function StudentPage() {
         console.log(`data: ${data}`);
         const courseName = data.split(",")[0];
         const location = data.split(",")[1];
-        const isCourse = data.split(",")[5];
+        const isCourse = data.split(",")[3];
         console.log("open navigation");
         console.log(`isCourse: ${isCourse}`);
         window.open(`${prefix}/student/nav?courseName=${courseName}&location=${location}&isCourse=${isCourse}&userName=${userName}`);
@@ -78,12 +80,15 @@ function StudentPage() {
             newEventSource.onmessage = (event) => {
                 // event.data 格式: name,location,x,y,newIndex,isCourse
                 console.log("result", event.data);
-                const reIndex = parseInt(event.data.split(",")[4]);
+                const reIndex = parseInt(event.data.split(",")[2]);
                 console.log(reIndex);
                 setWeek(parseInt(reIndex / 60) + 1);
                 setDay(parseInt((reIndex % 60) / 12) + 1);
                 setTime((reIndex % 12) + 8);
                 setData(event.data);
+                if ((reIndex % 12) + 8 === 8) {
+                    setRefreshDashBoard(!refreshDashBoard);
+                }
             }
             newEventSource.onerror = (event) => {
                 console.log(event.target.readyState);
@@ -117,6 +122,7 @@ function StudentPage() {
                                     setDay(1);
                                     setTime(8);
                                     setData("");
+                                    setRefreshDashBoard(!refreshDashBoard);
                                 }}>reset</Button>
                             </div>
                         </div>
@@ -125,7 +131,7 @@ function StudentPage() {
                         <div>第</div>
                         <div>
                             <InputNumber
-                                id="weekInput"
+                                id="weekInput-time"
                                 value={week}
                                 onChange={setWeek}
                                 step={1}
@@ -161,6 +167,16 @@ function StudentPage() {
                     </div>
                     {contextHolder}
                 </div>
+                <div id="nextdayNotifyBox">
+                    <DailyDashBoard
+                        id="nextdayNotify"
+                        studentName={userName}
+                        week={week}
+                        day={day}
+                        refresh={refreshDashBoard}
+                    />
+                </div>
+
             </div>
         </div>
     )

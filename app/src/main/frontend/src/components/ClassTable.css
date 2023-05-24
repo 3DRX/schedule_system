@@ -1,12 +1,14 @@
 .ClassTableContent{
     width: 100vw;
     height: auto;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     margin: 0;
     background-color: papayawhip;
     border-radius: 0;
     box-shadow: 0 0 0 white;
+    padding-bottom: 5vh;
 }
 #table{
     justify-content: center;

@@ -19,3 +19,10 @@
     justify-content: center;
     text-align: center;
 }
+
+.isActivity{
+    color: chartreuse;
+}
+.isCourse{
+    color: black;
+}

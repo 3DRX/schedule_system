@@ -7,6 +7,7 @@ import axios from "axios";
 import Modal from 'react-bootstrap/Modal';
 import { NumberPicker } from "react-widgets";
 import Form from 'react-bootstrap/Form';
+import "./StudentOthers.css";
 
 const columns = [
     {
@@ -117,93 +118,97 @@ const StudentOthers = () => {
     return (
         <>
             <NavBar isAdmin="false" userName={userName} />
-            <h1>临时事务管理</h1>
-            <Button variant="secondary"
-                onClick={() => {
-                    setRefresh(!refresh);
-                }}
-                id="refreshButton"
-            >刷新</Button>
-            <Button variant="secondary"
-                onClick={() => {
-                    setShowModal(true);
-                }}
-                id="globalAddButton"
-            >添加临时事务
-            </Button>
-            <Table columns={columns} dataSource={data} />
-            <Modal
-                show={showModal}
-                onHide={() => {
-                    setShowModal(false);
-                }}
-                onShow={modalOnShow}
-                backdrop="static"
-            >
-                <Modal.Header id="header" closeButton>
-                    <Modal.Title>添加临时事务</Modal.Title>
-                </Modal.Header>
-                <Form id="form" onSubmit={handleSubmit}>
-                    <Modal.Body>
-                        <p>名称</p>
-                        <Form.Control size="sm" type="text" placeholder="在此输入临时事务……"
-                            onChange={({ target: { value } }) => {
-                                if (value !== "") {
-                                    setName(value);
+            <div id="StudentOthersContent">
+                <h1>临时事务管理</h1>
+                <Button variant="secondary"
+                        onClick={() => {
+                            setRefresh(!refresh);
+                        }}
+                        id="refreshButton"
+                >刷新</Button>
+                <Button variant="secondary"
+                        onClick={() => {
+                            setShowModal(true);
+                        }}
+                        id="globalAddButton"
+                >添加临时事务
+                </Button>
+                <Table columns={columns} dataSource={data} />
+                <Modal
+                    show={showModal}
+                    onHide={() => {
+                        setShowModal(false);
+                    }}
+                    onShow={modalOnShow}
+                    backdrop="static"
+                >
+                    <Modal.Header id="header" closeButton>
+                        <Modal.Title>添加临时事务</Modal.Title>
+                    </Modal.Header>
+                    <Form id="form" onSubmit={handleSubmit}>
+                        <Modal.Body>
+                            <p>名称</p>
+                            <Form.Control size="sm" type="text" placeholder="在此输入临时事务……"
+                                          onChange={({ target: { value } }) => {
+                                              if (value !== "") {
+                                                  setName(value);
+                                              }
+                                          }}
+                            />
+                            <p>时间</p>
+                            <a>第</a>
+                            <NumberPicker defaultValue={week} step={1} max={20} min={1} onChange={(value) => {
+                                if (value !== null && value >= 1 && value <= 20) {
+                                    setWeek(value);
                                 }
                             }}
-                        />
-                        <p>时间</p>
-                        <a>第</a>
-                        <NumberPicker defaultValue={week} step={1} max={20} min={1} onChange={(value) => {
-                            if (value !== null && value >= 1 && value <= 20) {
-                                setWeek(value);
-                            }
-                        }}
-                            style={{
-                                width: "10ex",
-                            }}
-                        />
-                        <a>周，周</a>
-                        <NumberPicker defaultValue={day} step={1} max={5} min={1} onChange={(value) => {
-                            if (value !== null && value >= 1 && value <= 20) {
-                                setDay(value);
-                            }
-                        }}
-                            style={{
-                                width: "10ex",
-                            }}
-                        />
-                        <a>，</a>
-                        <NumberPicker defaultValue={time} step={1} max={21} min={7} onChange={(value) => {
-                            if (value !== null && value >= 1 && value <= 20) {
-                                setTime(value);
-                            }
-                        }}
-                            style={{
-                                width: "10ex",
-                            }}
-                        />
-                        <a>点</a>
-                        <p>地点</p>
-                        <Form.Control size="sm" type="text" placeholder="在此输入地点……"
-                            onChange={({ target: { value } }) => {
-                                if (value !== "") {
-                                    setLocation(value);
+                                          style={{
+                                              width: "10ex",
+                                          }}
+                            />
+                            <a>周，周</a>
+                            <NumberPicker defaultValue={day} step={1} max={5} min={1} onChange={(value) => {
+                                if (value !== null && value >= 1 && value <= 20) {
+                                    setDay(value);
                                 }
                             }}
-                        />
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={() => setShowModal(false)}>
-                            Close
-                        </Button>
-                        <Button variant="primary" type="submit">
-                            Save Changes
-                        </Button>
-                    </Modal.Footer>
-                </Form>
-            </Modal>
+                                          style={{
+                                              width: "10ex",
+                                          }}
+                            />
+                            <a>，</a>
+                            <NumberPicker defaultValue={time} step={1} max={21} min={7} onChange={(value) => {
+                                if (value !== null && value >= 1 && value <= 20) {
+                                    setTime(value);
+                                }
+                            }}
+                                          style={{
+                                              width: "10ex",
+                                          }}
+                            />
+                            <a>点</a>
+                            <p>地点</p>
+                            <Form.Control size="sm" type="text" placeholder="在此输入地点……"
+                                          onChange={({ target: { value } }) => {
+                                              if (value !== "") {
+                                                  setLocation(value);
+                                              }
+                                          }}
+                            />
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={() => setShowModal(false)}>
+                                Close
+                            </Button>
+                            <Button variant="primary" type="submit">
+                                Save Changes
+                            </Button>
+                        </Modal.Footer>
+                    </Form>
+                </Modal>
+
+            </div>
+
         </>
     )
 };

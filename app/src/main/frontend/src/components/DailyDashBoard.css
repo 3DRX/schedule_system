@@ -1,0 +1,33 @@
+#notifyContentBoard{
+    display: flex;
+    justify-items: left;
+}
+#notifyContentBoardTitle{
+    display: flex;
+    align-items: center;
+    width: 25vw;
+    min-width: 5vw;
+    padding-left: 2vw;
+    padding-right: 2vw;
+
+}
+.item{
+    text-align: center;
+    line-height: 2vh;
+    width: 17vw;
+    margin-bottom: 1vh;
+    margin-left: 1.5vw;
+    margin-right: 1.5vw;
+    padding: 1vw;
+    border-radius: 2vh;
+    border: 0;
+    transition: all 0.5s ease;
+    background-color: #FFF2DD;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15), 0 10px 40px rgba(0, 0, 0, 0.15),
+    inset 5px 5px 10px var(--color-light),
+    inset -5px -5px 20px var(--color-shadow)
+}
+.item:hover{
+    width: 23vw;
+    transition: 0.5s;
+}

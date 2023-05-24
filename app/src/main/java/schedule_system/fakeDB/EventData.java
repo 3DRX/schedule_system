@@ -37,6 +37,14 @@ public class EventData {
         return this.events.get(eventName);
     }
 
+    public Event[] getEventByDay(int week, int day) {
+        return Arrays.stream(this.events.getKeyArray(String.class))
+                .map(i -> this.events.get(i))
+                .filter(i -> i.getTime().getWeek() == week
+                        && i.getTime().getDay() == day)
+                .toArray(size -> new Event[size]);
+    }
+
     public Event[] allEvents() {
         return Arrays
                 .stream(this.events.getKeyArray(

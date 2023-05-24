@@ -40,6 +40,18 @@ public class ClassTime {
                 + time - firstIndexOfHour();
     }
 
+    public static int weekOfIndex(int index) {
+        return index / getHourInWeek() + 1;
+    }
+
+    public static int dayOfIndex(int index) {
+        return index % getHourInWeek() / getHourInDay() + 1;
+    }
+
+    public static int timeOfIndex(int index) {
+        return index % getHourInDay() + firstIndexOfHour();
+    }
+
     public static boolean isValidTime(int week, int day, int time) {
         return week >= 1 && week <= getWeekInSemester()
                 && day >= 1 && day <= getDayInWeek()
