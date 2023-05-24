@@ -31,7 +31,7 @@ public class KMapTest {
         for (Course course : courseData.allCourses()) {
             map.put(course.getName(), course);
         }
-        assertTrue(map.get("java").getLocation() == courseData.getCourseByName("java").getLocation());
+        assertTrue(map.get("java").getLocationName() == courseData.getCourseByName("java").getLocationName());
     }
 
     @Test

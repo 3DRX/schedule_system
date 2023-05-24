@@ -2,30 +2,31 @@
     display: block;
     margin: 0 auto;
     background-color: papayawhip;
-    padding-top: 2vh;
     padding-bottom: 20vh;
+    min-height: 100vh;
 }
 #titleBox{
     width: 100vw;
+    height: auto;
     display: flex;
     justify-content: center;
-    margin-bottom: 1vh;
+    margin-top: 2vh;
+    margin-bottom: 0vh;
 }
 #navigationTitle{
+
     display: flex;
     justify-content: center;
-    font-size: 4vh;
     font-weight: 700;
     border-radius: 1.5vh;
-    width: 14vw;
-    min-height: 7vh;
+    width: 12vw;
+    min-height: 8.5vh;
     align-items: center;
     /*颜色和背景颜色相近，低对比度*/
 
     user-select: none;
 
     /*增加过渡*/
-    transition: box-shadow var(--duration-ani) ease-out;
 
     background-color: #e9e9e9;
     /* 添加边框样式 */
@@ -37,9 +38,18 @@
     inset -5px -5px 10px var(--color-shadow);;
     /* 增加过渡效果 */
     transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+    position: relative;
+    background-color:  transparent;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+    font-size: 3vh;
 
 }
+#logo{
+    width: 8vw;
 
+}
 .format{
     font-weight: bold;
 }
@@ -65,21 +75,21 @@
     width: 30vw;
     text-align: center;
     line-height: 2vh;
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0),
-    0 0 0 rgba(0, 0, 0, 0),
-    inset 5px 5px 10px var(--color-light),
+    background: linear-gradient(145deg, #e9e9e9, #d7d7d7);
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15), 0 8px 20px rgba(0, 0, 0, 0.15),
+    inset 5px 5px 15px var(--color-light),
     inset -5px -5px 10px var(--color-shadow);
 }
 #start {
     display: block;
     align-items: center;
-    padding: 3vh 4.7vh 4.7vh 3vh;
+    padding: 3vh 5vh 4vh 5vh;
     width: 70vw;
     min-width: 15vh;
     /* 一个合适的圆角 */
     border-radius: 4vh;
     /* 添加背景颜色 */
-    background-color: #e9e9e9;
+
     /* 添加边框样式 */
     border: 1px solid #c4c4c4;
     /* 添加背景渐变 */
@@ -154,13 +164,6 @@
     --color-light: rgba(121, 130, 160, .55);
     --color-shadow: rgb(255, 255, 255);
     --duration-ani: 50ms;
-}
-
-#navigationTitle {
-
-
-
-    font-weight: 700;
 }
 
 
@@ -261,10 +264,8 @@ button:focus:not(:focus-visible) {
     text-align: center;
     width: 14vw;
     min-width: 12vh;
-    min-height: 7vh;
+
     margin: 0 auto;
-
-
 
     border-radius: 20px;
     background: #f5f5f5;
@@ -278,18 +279,6 @@ button:focus:not(:focus-visible) {
     justify-content: center;
     align-items: center;
     height: 100px;
-}
-
-#navigationTitle {
-    position: relative;
-    padding: 20px 40px;
-    font-size: 24px;
-    background-color:  transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    overflow: hidden;
-    font-size: 3vh;
 }
 
 #navigationTitle::before {

@@ -19,7 +19,7 @@ import schedule_system.utils.EventTime;
 public class AddEventController {
     // 日志控制器
     private final Logger logger = LoggerFactory.getLogger(
-            ReferEventController.class);
+            AddEventController.class);
 
     @Autowired
     EventData eventData; // 临时事物控制器

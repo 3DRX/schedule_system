@@ -14,11 +14,7 @@
       "duration": 3
     },
     "name": "面向对象程序设计",
-    "location": {
-      "name": "教二楼",
-      "x": 0,
-      "y": 0
-    }
+    "location": "教二楼"
   },
   {
     "startWeek": 1,
@@ -35,11 +31,7 @@
       "duration": 2
     },
     "name": "羽毛球",
-    "location": {
-      "name": "体育馆",
-      "x": 0,
-      "y": 0
-    }
+    "location": "体育馆"
   },
   {
     "startWeek": 1,
@@ -56,10 +48,6 @@
       "duration": 3
     },
     "name": "数据结构",
-    "location": {
-      "name": "教三楼",
-      "x": 0,
-      "y": 0
-    }
+    "location": "教三楼"
   }
 ]

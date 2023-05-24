@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import NavBar from '../components/NavBar'
 import { Form, Button } from 'react-bootstrap';
 import mapImage from "../image/BUPT_Map.jpg";
+import logo from "../image/logo.png";
 import axios from "axios";
 import "./Navigation.css";
 import { useEffect } from "react";
@@ -133,7 +134,7 @@ const Navigation = () => {
     return (
         <div id="navigationContent">
             <NavBar isAdmin="false" userName={userName} enabled={true} />
-            <div id="titleBox"><div id="navigationTitle" className="card primary">路径规划</div></div>
+            <div id="titleBox"><div id="navigationTitle" className="card primary"><img id="logo" src={logo} alt=""/></div></div>
             {renderHeader()}
             <div className="center">
                 <div id="start" >

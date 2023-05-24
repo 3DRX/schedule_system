@@ -17,7 +17,7 @@ public class Course {
     private ClassTime classTime; // 每周的上课时间
     private ClassTime examTime; // 考试时间
     private String name; // 课程名称（唯一id）
-    private Location location; // 课程地点
+    private String location; // 课程地点
 
     public Course(
             final int startWeek,
@@ -26,7 +26,7 @@ public class Course {
             final ClassTime classTime,
             final ClassTime examTime,
             final String name,
-            final Location location) {
+            final String location) {
 
         if (endWeek > 20 || startWeek > 20 || testWeek > 20)
             throw new IllegalArgumentException("学期周数要小于等于20！！！！");
@@ -43,6 +43,10 @@ public class Course {
         setExamTime(examTime);
         setName(name);
         setLocation(location);
+    }
+
+    public String getLocation() {
+        return location;
     }
 
     /**
@@ -152,11 +156,11 @@ public class Course {
         this.name = name;
     }
 
-    public Location getLocation() {
+    public String getLocationName() {
         return location;
     }
 
-    public void setLocation(final Location location) {
+    public void setLocation(final String location) {
         this.location = location;
     }
 

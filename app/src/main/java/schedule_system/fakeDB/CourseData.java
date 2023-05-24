@@ -48,6 +48,15 @@ public class CourseData {
         return this.courses.get(courseName);
     }
 
+    public Course[] getCourseByDay(int week, int day) {
+        return Arrays.stream(this.courses.getKeyArray(String.class))
+                .map(i -> this.courses.get(i))
+                .filter(i -> i.getStartWeek() <= week
+                        && i.getEndWeek() >= week
+                        && i.getClassTime().getDay() == day)
+                .toArray(size -> new Course[size]);
+    }
+
     public void changeCourseLocation(String courseName, String locationName) {
         // TODO
     }
