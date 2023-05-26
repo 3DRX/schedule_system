@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { useLocation } from "react-router-dom";
 import ClassTable from "../components/ClassTable";
 import Button from 'react-bootstrap/Button';
@@ -34,7 +34,22 @@ const StudentCourse = () => {
     const [checkedState, setCheckedState] = useState(
         new Array(studentList.length).fill(false)
     );
+    useEffect(() => {
+        setCheckedState(new Array(studentList.length).fill(selectAllStudents));
+    }, [selectAllStudents]);
 
+    useEffect(() => {
+        axios.get("http://" + window.location.hostname + ":8888/studentList")
+            .then((response) => {
+                setStudentList(response.data);
+            })
+    }, [refresh]);
+
+    useEffect(() => {
+        setClassDay(addActivityInfo.day);
+        setClassTime(addActivityInfo.startTime);
+        setStartWeek(addActivityInfo.week);
+    }, [addActivityInfo]);
 
 
     const activityOnShow = () => {
@@ -161,7 +176,7 @@ const StudentCourse = () => {
                             <p id="courseName">
                                 活动名称
                             </p>
-                            <Form.Control id="courseNameInput" size="sm" type="text" placeholder="在此输入课程名称……"
+                            <Form.Control id="courseNameInput" size="sm" type="text" placeholder="在此输入活动名称……"
                                           onChange={({ target: { value } }) => {
                                               if (value !== "") {
                                                   setNewName(value)
@@ -271,7 +286,7 @@ const StudentCourse = () => {
                                 活动地点
                             </p>
                             <p>
-                                <Form.Control id="locationInput" size="sm" type="text" placeholder="在此输入上课地点……"
+                                <Form.Control id="locationInput" size="sm" type="text" placeholder="在此输入活动地点……"
                                               controlId="exampleForm.location"
                                               onChange={({ target: { value } }) => {
                                                   if (value !== "") {
