@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
+import schedule_system.fakeDB.ActivityData;
 import schedule_system.fakeDB.CourseData;
 import schedule_system.fakeDB.EventData;
 import schedule_system.fakeDB.MapData;
 import schedule_system.fakeDB.StudentData;
+import schedule_system.utils.Activity;
 import schedule_system.utils.ClassTime;
 import schedule_system.utils.Course;
 import schedule_system.utils.Event;
@@ -38,6 +40,8 @@ public class TimeController {
     EventData eventData;
     @Autowired
     MapData mapData;
+    @Autowired
+    ActivityData activityData;
 
     /**
      * 收到GET请求后发送SSE
@@ -93,35 +97,46 @@ public class TimeController {
         if (theStudent == null) {
             logger.error("can't find student simulating: " + id);
             return new ResponseRecord("", "", index++, true);
-        } else {
-            // 如果这个时段没有课程，和课外活动
-            if (!studentData.isOccupied(id, index + 1)) {
-                // 如果有临时事物
-                for (String eventName : theStudent.getEvents()) {
-                    Event theEvent = eventData.getEventByName(eventName + "," + id);
-                    if (theEvent.takesPlaceAt(index + 1)) {
-                        logger.info("event: " + eventName + " takes place at " + index);
-                        Location theLocation = mapData.getLocation(theEvent.getLocationName());
-                        return new ResponseRecord(
-                                eventName,
-                                theLocation.getName(),
-                                index++,
-                                false);
-                    }
-                }
-                return new ResponseRecord("", "", index++, true);
-            }
-            // 如果有课
-            for (String courseName : theStudent.getCourses()) {
-                Course theCourse = courseData.getCourseByName(courseName);
-                if (theCourse.atIndex(index + 1)) {
+        }
+        if (!studentData.isOccupied(id, index + 1)) {
+            // 如果有临时事物
+            for (String eventName : theStudent.getEvents()) {
+                Event theEvent = eventData.getEventByName(eventName + "," + id);
+                if (theEvent.takesPlaceAt(index + 1)) {
+                    logger.info("event: " + eventName + " takes place at " + index);
+                    Location theLocation = mapData.getLocation(theEvent.getLocationName());
                     return new ResponseRecord(
-                            courseName,
-                            theCourse.getLocationName(),
+                            eventName,
+                            theLocation.getName(),
                             index++,
-                            true);
-                } else {
+                            false);
                 }
+            }
+            return new ResponseRecord("", "", index++, true);
+        }
+        // 如果有课
+        for (String courseName : theStudent.getCourses()) {
+            Course theCourse = courseData.getCourseByName(courseName);
+            if (theCourse.atIndex(index + 1)) {
+                logger.info("course: " + courseName + " takes place at " + index);
+                return new ResponseRecord(
+                        courseName,
+                        theCourse.getLocationName(),
+                        index++,
+                        true);
+            }
+        }
+        // 如果有课外活动
+        for (String activityName : theStudent.getActivities()) {
+            Activity theActivity = activityData.getActivityByName(activityName);
+            if (theActivity.takesPlaceAt(index + 1)) {
+                logger.info("ativity: " + activityName + " takes place at " + index);
+                Location theLocation = mapData.getLocation(theActivity.getLocationName());
+                return new ResponseRecord(
+                        activityName,
+                        theLocation.getName(),
+                        index++,
+                        false);
             }
         }
         return new ResponseRecord("", "", index++, true);
