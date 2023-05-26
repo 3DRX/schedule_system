@@ -12,7 +12,7 @@ const LoginPage = () => {
         const jsonData = Object.fromEntries(formData.entries());
         const userName = formData.getAll("id")[0];
         // 仍然不能在其他设备上登陆
-        axios.post("http://" + window.location.hostname + ":8888/login", jsonData)
+        axios.post("https://" + window.location.hostname + ":8888/login", jsonData)
             .then(function (response) {
                 // console.log(response);
                 // console.log(response.data.isValid)
