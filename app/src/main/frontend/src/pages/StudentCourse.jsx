@@ -71,7 +71,7 @@ const StudentCourse = () => {
             students: resStudents
         };
         // console.log(res);
-        axios.post("https://" + window.location.hostname + ":8888/addCourse", res)
+        axios.post("http://" + window.location.hostname + ":8888/addCourse", res)
             .then((response) => {
                 // console.log(response.data)
             })

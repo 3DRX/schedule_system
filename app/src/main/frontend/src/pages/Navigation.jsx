@@ -64,7 +64,7 @@ const Navigation = () => {
                 start: locationInput,
                 end: location,
             };
-            axios.post("https://" + window.location.hostname + ":8888/navigateToClass", jsonData)
+            axios.post("http://" + window.location.hostname + ":8888/navigateToClass", jsonData)
                 .then((response) => {
                     const path = JSON.parse(response.request.response);
                     setPath(path);
@@ -75,7 +75,7 @@ const Navigation = () => {
         }
         else {
             let locations = [];
-            axios.get("https://"
+            axios.get("http://"
                 + window.location.hostname
                 + ":8888/getLocations?studentName="
                 + userName
@@ -94,7 +94,7 @@ const Navigation = () => {
                         locations: locations
                     }
                     console.log(`jsonData: ${JSON.stringify(jsonData)}`);
-                    axios.post("https://" + window.location.hostname + ":8888/navigateToEvents", jsonData)
+                    axios.post("http://" + window.location.hostname + ":8888/navigateToEvents", jsonData)
                         .then((response) => {
                             const path = JSON.parse(response.request.response);
                             setPath(path);

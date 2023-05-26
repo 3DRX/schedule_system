@@ -37,7 +37,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
     }, [selectAllStudents]);
 
     useEffect(() => {
-        axios.get("https://" + window.location.hostname + ":8888/studentList")
+        axios.get("http://" + window.location.hostname + ":8888/studentList")
             .then((response) => {
                 setStudentList(response.data);
             })

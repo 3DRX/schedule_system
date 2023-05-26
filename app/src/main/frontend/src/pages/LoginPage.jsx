@@ -12,13 +12,13 @@ const LoginPage = () => {
         const jsonData = Object.fromEntries(formData.entries());
         const userName = formData.getAll("id")[0];
         // 仍然不能在其他设备上登陆
-        axios.post("https://" + window.location.hostname + ":8888/login", jsonData)
+        axios.post("http://" + window.location.hostname + ":8888/login", jsonData)
             .then(function (response) {
                 // console.log(response);
                 // console.log(response.data.isValid)
                 if (response.data.isValid) {
                     // console.log("登陆成功");
-                    const prefix = "https://" + window.location.host;
+                    const prefix = "http://" + window.location.host;
                     if (response.data.isAdmin) {
                         window.open(`${prefix}/admin?userName=${userName}`);
                     }
