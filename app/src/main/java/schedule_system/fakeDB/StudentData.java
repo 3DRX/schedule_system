@@ -86,12 +86,20 @@ public class StudentData {
         BitMap res = new BitMap(ClassTime.getMaxIndex());
         // get all occupied time slot
         CourseData courseData = new CourseData();
+        ActivityData activityData = new ActivityData();
         for (String courseName : student.getCourses()) {
             Course course = courseData.getCourseByName(courseName);
             if (course == null) {
                 continue;
             }
             res = res.or(course.getOccupiedTime());
+        }
+        for (String activityName : student.getActivities()) {
+            Activity activity = activityData.getActivityByName(activityName);
+            if (activity == null) {
+                continue;
+            }
+            res = res.or(activity.getOccupiedTime());
         }
         return res;
     }

@@ -40,6 +40,18 @@ public class Activity {
         return true;
     }
 
+    public BitMap getOccupiedTime() {
+        BitMap occupiedTime = new BitMap(ClassTime.getMaxIndex());
+        for (int week = startWeek; week <= endWeek; week++) {
+            int day = this.time.getDay();
+            int time = this.time.getTime();
+            for (int j = 0; j < this.time.getDuration(); j++) {
+                occupiedTime.set(ClassTime.realTimeToIndex(week, day, time + j));
+            }
+        }
+        return occupiedTime;
+    }
+
     public boolean timeOverlapsWith(Activity other) {
         // TODO
         return false;

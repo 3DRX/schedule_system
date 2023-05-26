@@ -71,15 +71,9 @@ public class ReferTableCellController {
             logger.error("user {} is not a student", userName);
             return new CellContent[0];
         }
-        // if (!studentData.isOccupied(userName, week, day, start)) {
-        // logger.error("user {} is not occupied at {} {} {}", userName, week, day,
-        // start);
-        // return null;
-        // }
         Course course = studentData.courseAt(userName, week, day, start);
         Activity activity = studentData.activityAt(userName, week, day, start);
         if (course == null && activity == null) {
-            logger.error("user {} is occupied at {} {} {} but no course or activity", userName, week, day, start);
             return new CellContent[0];
         } else if (course != null && activity != null) {
             logger.error("user {} is occupied at {} {} {} but both course and activity", userName, week, day, start);
@@ -98,7 +92,6 @@ public class ReferTableCellController {
                     activity.getLocationName(),
                     true)};
         } else {
-            logger.error("user {} is occupied at {} {} {} but no course or activity", userName, week, day, start);
             return new CellContent[0];
         }
     }
