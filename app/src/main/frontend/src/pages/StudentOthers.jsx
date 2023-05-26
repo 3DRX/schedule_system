@@ -47,7 +47,7 @@ const StudentOthers = () => {
 
     // refresh table data
     useEffect(() => {
-        axios.get("http://"
+        axios.get("https://"
             + window.location.hostname
             + ":8888/referEvents?studentName="
             + userName)
@@ -63,7 +63,7 @@ const StudentOthers = () => {
                         location: element.locationName,
                         action: <Button variant="secondary"
                             onClick={() => {
-                                axios.get("http://"
+                                axios.get("https://"
                                     + window.location.hostname
                                     + ":8888/deleteEvent"
                                     + "?studentName="
@@ -101,7 +101,7 @@ const StudentOthers = () => {
             time: time,
             location: location,
         };
-        axios.post("http://"
+        axios.post("https://"
             + window.location.hostname
             + ":8888/addEvent", newEvent)
             .then((_) => {

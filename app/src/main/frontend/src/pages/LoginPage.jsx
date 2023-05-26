@@ -18,7 +18,7 @@ const LoginPage = () => {
                 // console.log(response.data.isValid)
                 if (response.data.isValid) {
                     // console.log("登陆成功");
-                    const prefix = "http://" + window.location.host;
+                    const prefix = "https://" + window.location.host;
                     if (response.data.isAdmin) {
                         window.open(`${prefix}/admin?userName=${userName}`);
                     }

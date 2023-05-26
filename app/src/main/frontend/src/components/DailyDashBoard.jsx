@@ -6,7 +6,7 @@ const DailyDashBoard = ({ studentName, week, day, refresh, reset }) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get("http://"
+        axios.get("https://"
             + window.location.hostname
             + ":8888/getDashBoard"
             + `?week=${week}`

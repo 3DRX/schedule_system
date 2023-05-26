@@ -12,7 +12,7 @@ const CellDetail = ({ course, refresh, setRefresh, isAdmin }) => {
 
     // 发送删除课程的请求
     const setDeleteCourseRequest = () => {
-        axios.delete("http://" + window.location.hostname + `:8888/deleteCourse?courseName=${course.name}`)
+        axios.delete("https://" + window.location.hostname + `:8888/deleteCourse?courseName=${course.name}`)
             .then((response) => {
                 if (response) {
                     setRefresh(!refresh);

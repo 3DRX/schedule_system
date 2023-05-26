@@ -15,7 +15,7 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
     useEffect(() => {
         if(isAdmin)
         {
-            axios.get("http://" + window.location.hostname + ":8888/adminGetStatusByTime", {
+            axios.get("https://" + window.location.hostname + ":8888/adminGetStatusByTime", {
                 params: {
                     time: startTime + '-' + (startTime + 1),
                     week: week,
@@ -29,7 +29,7 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
         }
         else
         {
-            axios.get("http://" + window.location.hostname + ":8888/studentGetStatusByTime", {
+            axios.get("https://" + window.location.hostname + ":8888/studentGetStatusByTime", {
                 params: {
                     time: startTime + '-' + (startTime + 1),
                     week: week,
