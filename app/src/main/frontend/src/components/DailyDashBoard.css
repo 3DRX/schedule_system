@@ -1,23 +1,31 @@
 #notifyContentBoard{
     display: flex;
+    flex-wrap: wrap;
     justify-items: left;
+    width: 80vw;
 }
 #notifyContentBoardTitle{
     display: flex;
     align-items: center;
-    width: 25vw;
+    width: 12vw;
     min-width: 5vw;
-    padding-left: 2vw;
-    padding-right: 2vw;
-
+}
+#notifyItem{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 68vw;
 }
 .item{
     text-align: center;
     line-height: 2vh;
     width: 17vw;
-    margin-bottom: 1vh;
     margin-left: 1.5vw;
     margin-right: 1.5vw;
+    min-width: 17vw;
+    min-height: 30vh;
+    margin-bottom: 1vh;
+
     padding: 1vw;
     border-radius: 2vh;
     border: 0;

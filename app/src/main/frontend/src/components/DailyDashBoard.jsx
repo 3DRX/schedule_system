@@ -28,23 +28,25 @@ const DailyDashBoard = ({ studentName, week, day, refresh, reset }) => {
             <div id="notifyContentBoardTitle">
                 <h3>当天所有日程</h3>
             </div>
+            <div id="notifyItem">
+                {data.map((item) => {
+                    return (
+                        <div key={item.name} className="item">
+                            <a>Name: </a>
+                            <p>{item.name}</p>
+                            <a>Students: </a>
+                            {item.students.map((student) => {
+                                return <p>{student}</p>
+                            })}
+                            <a>Location: </a>
+                            <p>{item.location}</p>
+                            <a>Type: </a>
+                            <p>{item.isActivity ? "Activity" : "Course"}</p>
+                        </div>
+                    );
+                })}
+            </div>
 
-            {data.map((item) => {
-                return (
-                    <div key={item.name} className="item">
-                        <a>Name: </a>
-                        <p>{item.name}</p>
-                        <a>Students: </a>
-                        {item.students.map((student) => {
-                            return <p>{student}</p>
-                        })}
-                        <a>Location: </a>
-                        <p>{item.location}</p>
-                        <a>Type: </a>
-                        <p>{item.isActivity ? "Activity" : "Course"}</p>
-                    </div>
-                );
-            })}
         </div>
     );
 };
