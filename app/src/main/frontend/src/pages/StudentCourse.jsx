@@ -9,6 +9,7 @@ import "./AdminCourse.css";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
+import "./StudentCourse.css";
 
 // 学生课程主页
 // 1. 设置周数
@@ -129,6 +130,11 @@ const StudentCourse = () => {
     return (
         <>
             <NavBar isAdmin="false" userName={userName} />
+            <div id="searchArea">
+                <div className="texts">搜索</div>
+                <div><input id="searchBox" type="text"/></div>
+                <button id="searchButton" type="submit"></button>
+            </div>
             <div className="setWeekTab">
                 <div className="texts">set week</div>
                 <NumberPicker defaultValue={1} step={1} max={20} min={1} onChange={(value) => {
