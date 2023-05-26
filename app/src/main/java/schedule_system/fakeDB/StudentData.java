@@ -191,6 +191,7 @@ public class StudentData {
                 }
             }
             student.addCourse(newCourseName);
+            this.schedules.get(studentName).or(newCourse.getOccupiedTime());
         }
         return writeStudentThings(this.getStudentsArray());
     }
@@ -223,6 +224,12 @@ public class StudentData {
             successFlag = false;
             e.printStackTrace();
         }
+        // 重新读取一遍学生信息，更新学生时间占用 BitMap
+        Arrays.stream(readStudentClasses())
+                .forEach((e) -> {
+                    this.schedules.put(e.getName(), generateSchedule(e));
+                    this.students.put(e.getName(), e);
+                });
         return successFlag;
     }
 }
