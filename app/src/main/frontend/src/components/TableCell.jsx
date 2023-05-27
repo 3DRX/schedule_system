@@ -54,6 +54,18 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
             })*/
     }, [startTime, week, day, userName, refresh]);
 
+    const renderStyle = () => {
+        if (courses.length === 1) {
+            console.log(courses[0])
+
+            return courses[0].isActivity ? {
+                backgroundColor: "#ffcc5c",
+            } : {};
+        } else {
+            return {};
+        }
+    };
+
     const renderContent = () => {
         if (courses.length === 0) {
             if (isAdmin && startTime !== 7 && startTime !== 20 && day !== 6 && day !== 7) {
@@ -83,8 +95,9 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
         }
         else {
             return (
-                <CellWithCourse className={courses.isActivity?"isActivity":"isCourse"} courses={courses} refresh={refresh} setRefresh={setRefresh} isAdmin={isAdmin} />
+                <CellWithCourse style={renderStyle()} className={courses.isActivity?"isActivity":"isCourse"} courses={courses} refresh={refresh} setRefresh={setRefresh} isAdmin={isAdmin} />
             )
+
         }
     }
 

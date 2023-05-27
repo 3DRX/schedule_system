@@ -118,8 +118,20 @@ const CellDetail = ({ course, refresh, setRefresh, isAdmin }) => {
 
     return (
         <>
-            <p>{course.name}</p>
-            <p>{course.location}</p>
+            <p
+                style={
+                    course.isActivity ? {
+                        color: "brown",
+                    } : {}
+                }
+            >{course.name}</p>
+            <p
+                style={
+                    course.isActivity ? {
+                        color: "brown",
+                    } : {}
+                }
+            >{course.location}</p>
             {renderButton()}
         </>
     )
