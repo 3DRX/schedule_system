@@ -87,9 +87,6 @@ function StudentPage() {
                 setDay(parseInt((reIndex % 60) / 12) + 1);
                 setTime((reIndex % 12) + 8);
                 setData(event.data);
-                if ((reIndex % 12) + 8 === 8) {
-                    setRefreshDashBoard(!refreshDashBoard);
-                }
             }
             newEventSource.onerror = (event) => {
                 console.log(event.target.readyState);
