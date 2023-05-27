@@ -145,9 +145,10 @@ const StudentOthers = () => {
                     <Modal.Header id="header" closeButton>
                         <Modal.Title>添加临时事务</Modal.Title>
                     </Modal.Header>
-                    <Form id="form" onSubmit={handleSubmit}>
+                    <Form id="formContent" onSubmit={handleSubmit}>
                         <Modal.Body>
-                            <p>名称</p>
+                            <p id="tempEventInfo">
+                            <p id="courseName">名称</p>
                             <Form.Control size="sm" type="text" placeholder="在此输入临时事务……"
                                           onChange={({ target: { value } }) => {
                                               if (value !== "") {
@@ -155,46 +156,59 @@ const StudentOthers = () => {
                                               }
                                           }}
                             />
-                            <p>时间</p>
-                            <a>第</a>
-                            <NumberPicker defaultValue={week} step={1} max={20} min={1} onChange={(value) => {
-                                if (value !== null && value >= 1 && value <= 20) {
-                                    setWeek(value);
-                                }
-                            }}
-                                          style={{
-                                              width: "10ex",
-                                          }}
-                            />
-                            <a>周，周</a>
-                            <NumberPicker defaultValue={day} step={1} max={5} min={1} onChange={(value) => {
-                                if (value !== null && value >= 1 && value <= 20) {
-                                    setDay(value);
-                                }
-                            }}
-                                          style={{
-                                              width: "10ex",
-                                          }}
-                            />
-                            <a>，</a>
-                            <NumberPicker defaultValue={time} step={1} max={21} min={7} onChange={(value) => {
-                                if (value !== null && value >= 1 && value <= 20) {
-                                    setTime(value);
-                                }
-                            }}
-                                          style={{
-                                              width: "10ex",
-                                          }}
-                            />
-                            <a>点</a>
-                            <p>地点</p>
-                            <Form.Control size="sm" type="text" placeholder="在此输入地点……"
-                                          onChange={({ target: { value } }) => {
-                                              if (value !== "") {
-                                                  setLocation(value);
-                                              }
-                                          }}
-                            />
+                            <p >时间</p>
+                            <div id="tempEventDuration">
+                                <div className="weeks" id="tempEventWeek">
+                                    <p className="TEtext">第</p>
+                                    <NumberPicker defaultValue={week} step={1} max={20} min={1} onChange={(value) => {
+                                        if (value !== null && value >= 1 && value <= 20) {
+                                            setWeek(value);
+                                        }
+                                    }}
+                                                  style={{
+                                                      width: "10ex",
+                                                  }}
+                                    />
+                                    <p className="TEtext">周</p>
+                                </div>
+                                <div className="weeks" id="tempEventDay">
+                                    <p className="TEtext">周</p>
+                                    <NumberPicker defaultValue={day} step={1} max={7} min={1} onChange={(value) => {
+                                        if (value !== null && value >= 1 && value <= 7) {
+                                            setDay(value);
+                                        }
+                                    }}
+                                                  style={{
+                                                      width: "10ex",
+                                                  }}
+                                    />
+                                </div>
+                                <div className="weeks" id="tempEventTime">
+                                    <NumberPicker defaultValue={time} step={1} max={21} min={7} onChange={(value) => {
+                                        if (value !== null && value >= 1 && value <= 21) {
+                                            setTime(value);
+                                        }
+                                    }}
+                                                  style={{
+                                                      width: "10ex",
+                                                  }}
+                                    />
+                                    <p className="TEtext">点</p>
+                                </div>
+
+                            </div>
+                            </p>
+                            <div id="tempEventLocation">
+                                <p>地点</p>
+                                <Form.Control size="sm" type="text" placeholder="在此输入地点……"
+                                              onChange={({ target: { value } }) => {
+                                                  if (value !== "") {
+                                                      setLocation(value);
+                                                  }
+                                              }}
+                                />
+                            </div>
+
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="secondary" onClick={() => setShowModal(false)}>

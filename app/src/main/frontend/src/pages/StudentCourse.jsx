@@ -271,8 +271,8 @@ const StudentCourse = () => {
                                     星期
                                 </div>
                                 <div id="weekInput">
-                                    <NumberPicker defaultValue={addActivityInfo.day} step={1} max={5} min={1} onChange={(value) => {
-                                        if (value !== null && value >= 1 && value <= 5) {
+                                    <NumberPicker defaultValue={addActivityInfo.day} step={1} max={7} min={1} onChange={(value) => {
+                                        if (value !== null && value >= 1 && value <= 7) {
                                             setClassDay(value);
                                         }
                                     }}
@@ -282,8 +282,8 @@ const StudentCourse = () => {
                                     />
                                 </div>
                                 <div>
-                                    <NumberPicker defaultValue={addActivityInfo.startTime} step={1} max={20} min={8} onChange={(value) => {
-                                        if (value !== null && value >= 8 && value <= 20) {
+                                    <NumberPicker defaultValue={addActivityInfo.startTime} step={1} max={20} min={7} onChange={(value) => {
+                                        if (value !== null && value >= 7 && value <= 20) {
                                             setClassTime(value);
                                         }
                                     }}
