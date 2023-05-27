@@ -86,12 +86,20 @@ public class StudentData {
         BitMap res = new BitMap(ClassTime.getMaxIndex());
         // get all occupied time slot
         CourseData courseData = new CourseData();
+        ActivityData activityData = new ActivityData();
         for (String courseName : student.getCourses()) {
             Course course = courseData.getCourseByName(courseName);
             if (course == null) {
                 continue;
             }
             res = res.or(course.getOccupiedTime());
+        }
+        for (String activityName : student.getActivities()) {
+            Activity activity = activityData.getActivityByName(activityName);
+            if (activity == null) {
+                continue;
+            }
+            res = res.or(activity.getOccupiedTime());
         }
         return res;
     }
@@ -183,6 +191,7 @@ public class StudentData {
                 }
             }
             student.addCourse(newCourseName);
+            this.schedules.get(studentName).or(newCourse.getOccupiedTime());
         }
         return writeStudentThings(this.getStudentsArray());
     }
@@ -215,6 +224,12 @@ public class StudentData {
             successFlag = false;
             e.printStackTrace();
         }
+        // 重新读取一遍学生信息，更新学生时间占用 BitMap
+        Arrays.stream(readStudentClasses())
+                .forEach((e) -> {
+                    this.schedules.put(e.getName(), generateSchedule(e));
+                    this.students.put(e.getName(), e);
+                });
         return successFlag;
     }
 }

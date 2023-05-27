@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import schedule_system.fakeDB.ActivityData;
 import schedule_system.fakeDB.CourseData;
 import schedule_system.fakeDB.StudentData;
 import schedule_system.utils.Activity;
@@ -27,6 +28,8 @@ public class ReferTableCellController {
     private final Logger logger = LoggerFactory.getLogger(ReferTableCellController.class); // 日志控制器
     @Autowired
     CourseData courseData; // 课程数据控制器
+    @Autowired
+    ActivityData activityData;
     @Autowired
     StudentData studentData; // 学生数据控制器
 
@@ -71,43 +74,85 @@ public class ReferTableCellController {
             logger.error("user {} is not a student", userName);
             return new CellContent[0];
         }
-        // if (!studentData.isOccupied(userName, week, day, start)) {
-        // logger.error("user {} is not occupied at {} {} {}", userName, week, day,
-        // start);
-        // return null;
-        // }
         Course course = studentData.courseAt(userName, week, day, start);
         Activity activity = studentData.activityAt(userName, week, day, start);
         if (course == null && activity == null) {
-            logger.error("user {} is occupied at {} {} {} but no course or activity", userName, week, day, start);
             return new CellContent[0];
         } else if (course != null && activity != null) {
             logger.error("user {} is occupied at {} {} {} but both course and activity", userName, week, day, start);
             return new CellContent[0];
         } else if (course != null) {
             logger.info("user {} is occupied at {} {} {} by course {}", userName, week, day, start, course.getName());
-            return new CellContent[]{new CellContent(course.getName(),
+            return new CellContent[] { new CellContent(course.getName(),
                     getStudents(course.getName()),
                     course.getLocationName(),
-                    false)};
+                    false) };
         } else if (activity != null) {
             logger.info("user {} is occupied at {} {} {} by activity {}", userName, week, day, start,
                     activity.getName());
-            return new CellContent[]{new CellContent(activity.getName(),
+            return new CellContent[] { new CellContent(activity.getName(),
                     activity.getParticipants(),
                     activity.getLocationName(),
-                    true)};
+                    true) };
         } else {
-            logger.error("user {} is occupied at {} {} {} but no course or activity", userName, week, day, start);
             return new CellContent[0];
+        }
+    }
+
+    @GetMapping("/studentGetCourseByName")
+    public CellContent[] studentGetCourseByName(String studentName, String courseName) {
+        if (!studentData.isStudent(studentName)) {
+            logger.error("user {} is not a student", studentName);
+            return new CellContent[0];
+        }
+        if (Arrays.stream(studentData.getStudentById(studentName).getCourses())
+                .noneMatch(courseName::equals)) {
+            logger.error("user {} has no course {}", studentName, courseName);
+            return new CellContent[0];
+        }
+        Course course = courseData.getCourseByName(courseName);
+        if (course == null) {
+            logger.error("user {} has no course {}", studentName, courseName);
+            return new CellContent[0];
+        } else {
+            logger.info("user {} has course {}", studentName, courseName);
+            return new CellContent[] { new CellContent(course.getName(),
+                    getStudents(course.getName()),
+                    course.getLocationName(),
+                    false) };
+        }
+    }
+
+    @GetMapping("/studentGetActivityByName")
+    public CellContent[] studentGetActivityByName(String studentName, String activityName) {
+        if (!studentData.isStudent(studentName)) {
+            logger.error("user {} is not a student", studentName);
+            return new CellContent[0];
+        }
+        if (Arrays.stream(studentData.getStudentById(studentName).getActivities())
+                .noneMatch(activityName::equals)) {
+            logger.error("user {} has no activity {}", studentName, activityName);
+            return new CellContent[0];
+        }
+        Activity activity = activityData.getActivityByName(activityName);
+        if (activity == null) {
+            logger.error("user {} has no activity {}", studentName, activityName);
+            return new CellContent[0];
+        } else {
+            logger.info("user {} has activity {}", studentName, activityName);
+            return new CellContent[] { new CellContent(activity.getName(),
+                    activity.getParticipants(),
+                    activity.getLocationName(),
+                    true) };
         }
     }
 
     /**
      * 获取该时间的课程的数组
      * 如果没有课程，返回空数组
-     * @param week  周
-     * @param day   天
+     * 
+     * @param week 周
+     * @param day  天
      * @return Course[]
      */
     private Course[] getCourses(int time, int week, int day) {

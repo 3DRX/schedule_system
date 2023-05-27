@@ -21,6 +21,40 @@
     "endWeek": 10,
     "testWeek": 11,
     "classTime": {
+      "day": 1,
+      "time": 17,
+      "duration": 2
+    },
+    "examTime": {
+      "day": 1,
+      "time": 13,
+      "duration": 3
+    },
+    "name": "面向袁宝库程序设计",
+    "location": "教二楼"
+  },
+  {
+    "startWeek": 1,
+    "endWeek": 10,
+    "testWeek": 11,
+    "classTime": {
+      "day": 1,
+      "time": 19,
+      "duration": 1
+    },
+    "examTime": {
+      "day": 1,
+      "time": 13,
+      "duration": 3
+    },
+    "name": "不面向袁宝库程序设计",
+    "location": "教二楼"
+  },
+  {
+    "startWeek": 1,
+    "endWeek": 10,
+    "testWeek": 11,
+    "classTime": {
       "day": 4,
       "time": 9,
       "duration": 2

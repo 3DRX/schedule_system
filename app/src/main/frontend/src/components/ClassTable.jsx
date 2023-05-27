@@ -408,6 +408,12 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
                     </Modal.Footer>
                 </Form>
             </Modal>
+
+
+
+
+
+
         </div >
     )
 }
