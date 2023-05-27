@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import "./DailyDashBoard.css";
-const DailyDashBoard = ({ studentName, week, day, refresh, reset }) => {
+const DailyDashBoard = ({ studentName, week, day, refresh }) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -21,7 +21,7 @@ const DailyDashBoard = ({ studentName, week, day, refresh, reset }) => {
             .finally(() => {
                 console.log(data);
             });
-    }, [refresh]);
+    }, [refresh, week, day]);
 
     return (
         <div id="notifyContentBoard">
