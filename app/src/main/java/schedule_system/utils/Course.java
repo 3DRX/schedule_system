@@ -28,7 +28,8 @@ public class Course {
             final String name,
             final String location) {
 
-        if (endWeek > 20 || startWeek > 20 || testWeek > 20)
+        int weekInSemester = SystemTime.getWeekInSemester();
+        if (endWeek > weekInSemester || startWeek > weekInSemester || testWeek > weekInSemester)
             throw new IllegalArgumentException("学期周数要小于等于20！！！！");
         if (startWeek > endWeek)
             throw new IllegalArgumentException("课程结束周必须大于等于课程开始周！！！！");

@@ -10,7 +10,6 @@ public class Location {
     private int y;
 
     public Location(String name, int x, int y) {
-        // TODO: 检查输入合法性
         this.name = name;
         this.x = x;
         this.y = y;

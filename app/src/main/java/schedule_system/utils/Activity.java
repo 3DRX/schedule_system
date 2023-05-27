@@ -5,7 +5,7 @@ public class Activity {
     private String[] participants;
     private int startWeek;
     private int endWeek;
-    private ClassTime time;
+    private ActivityTime time;
     private String location;
 
     public Activity(
@@ -13,7 +13,7 @@ public class Activity {
             final String[] participants,
             final int startWeek,
             final int endWeek,
-            final ClassTime time,
+            final ActivityTime time,
             final String location) {
         // TODO: check input
         this.name = name;
@@ -73,7 +73,7 @@ public class Activity {
         return endWeek;
     }
 
-    public ClassTime getTime() {
+    public SystemTime getTime() {
         return time;
     }
 

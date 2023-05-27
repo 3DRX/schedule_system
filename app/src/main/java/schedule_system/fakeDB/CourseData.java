@@ -57,10 +57,6 @@ public class CourseData {
                 .toArray(size -> new Course[size]);
     }
 
-    public void changeCourseLocation(String courseName, String locationName) {
-        // TODO
-    }
-
     /**
      * 从内存中删除课程并将更改写入文件
      * 
