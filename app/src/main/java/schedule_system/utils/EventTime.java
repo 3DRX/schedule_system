@@ -6,7 +6,6 @@ public class EventTime {
     private int time;
 
     public EventTime(int week, int day, int time) throws IllegalArgumentException {
-        // check input
         if (!ClassTime.isValidTime(week, day, time)) {
             throw new IllegalArgumentException("输入不合法");
         }
