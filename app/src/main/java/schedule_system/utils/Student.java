@@ -24,6 +24,17 @@ public class Student {
         this.courses = newCourses.toArray();
     }
 
+    public void deleteActivityIfHave(String activityName) {
+        KList<String> newActivities = new KList<>(String.class);
+        for (String activity : this.activities) {
+            if (activity.equals(activityName)) {
+            } else {
+                newActivities.add(activity);
+            }
+        }
+        this.activities = newActivities.toArray();
+    }
+
     public String[] getCourses() {
         return courses;
     }
