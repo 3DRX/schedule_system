@@ -129,14 +129,14 @@ public class StudentData {
         return writeStudentThings(this.getStudentsArray());
     }
 
-    public boolean deleteActivityFromStudets(String activityName) {
-        for (Student student : this.getStudentsArray()) {
-            student.deleteActivityIfHave(activityName);
-            // unset occupied time
-            BitMap schedule = this.schedules.get(student.getName());
-            schedule = schedule.and(activityData.getActivityByName(activityName).getOccupiedTime().not());
-            this.schedules.put(student.getName(), schedule);
-        }
+    public boolean deleteActivityFromStudet(String activityName, String studentName) {
+        this.activityData.getActivityByName(activityName).removeParticipant(studentName);
+        Student student = this.students.get(studentName);
+        student.deleteActivityIfHave(activityName);
+        // unset occupied time
+        BitMap schedule = this.schedules.get(student.getName());
+        schedule = schedule.and(activityData.getActivityByName(activityName).getOccupiedTime().not());
+        this.schedules.put(student.getName(), schedule);
         return writeStudentThings(this.getStudentsArray());
     }
 

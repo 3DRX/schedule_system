@@ -1,5 +1,7 @@
 package schedule_system.utils;
 
+import java.util.Arrays;
+
 public class Activity {
     private String name;
     private String[] participants;
@@ -50,6 +52,12 @@ public class Activity {
             }
         }
         return occupiedTime;
+    }
+
+    public void removeParticipant(String participant) {
+        this.participants = Arrays.stream(this.participants)
+                .filter(p -> !p.equals(participant))
+                .toArray(String[]::new);
     }
 
     public boolean timeOverlapsWith(Activity other) {
