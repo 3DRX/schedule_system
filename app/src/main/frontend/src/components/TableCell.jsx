@@ -56,7 +56,7 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
 
     const renderContent = () => {
         if (courses.length === 0) {
-            if (isAdmin) {
+            if (isAdmin && startTime !== 7 && startTime !== 20 && day !== 6 && day !== 7) {
                 return (
                     <div onClick={() => {
                         // console.log(`在第${week}周，周${day}，${startTime}-${startTime + 1}添加课程`);
