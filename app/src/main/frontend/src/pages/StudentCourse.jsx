@@ -139,7 +139,7 @@ const StudentCourse = () => {
         <>
             <NavBar isAdmin="false" userName={userName} />
             <div id="searchArea">
-                <div className="texts">搜索</div>
+                <div className="texts"></div>
                 <div><input id="searchBox" type="text" onChange={(event) => {
                     if (event.target.value !== "") {
                         setSearchInput(event.target.value);
@@ -247,7 +247,7 @@ const StudentCourse = () => {
                                         }}
                                     />
                                 </div>
-                                <div className="weeks">
+                                <div className="weeks" id="activityEndWeek">
                                     <text>结束周</text>
                                     <NumberPicker defaultValue={null} step={1} max={20} min={startWeek}
                                         onChange={(value) => {
@@ -295,23 +295,7 @@ const StudentCourse = () => {
                                 <div id="hour">
                                     点
                                 </div>
-                                <div id="lasting">
-                                    时长
-                                </div>
-                                <div>
-                                    <Form.Select size="sm"
-                                        controlId="exampleForm.duration"
-                                        style={{
-                                            width: "10ex",
-                                            height: "5.1ex"
-                                        }}
-                                        onChange={({ target: { value } }) => {
-                                            setClassDuration(parseInt(value[0]));
-                                        }}
-                                    >
-                                        {generateOptions()}
-                                    </Form.Select>
-                                </div>
+
                             </p>
                             <p id="location">
                                 活动地点
