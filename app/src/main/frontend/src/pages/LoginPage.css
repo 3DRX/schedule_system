@@ -101,10 +101,12 @@
     justify-content: center;
 }
 .loginButton{
-    color: white;
-    background-color: green;
     height: 5vh;
     width: 20vw;
-    border-radius: 1vh;
     text-align: center;
+}
+#loginFail{
+    text-align: center;
+    font-size: 2vh;
+    margin-top: 1vh;
 }

@@ -65,7 +65,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
     const data = React.useMemo(
         () => {
             let res = [];
-            for (let i = 8; i <= 19; i++) {
+            for (let i = 7; i <= 19; i++) {
                 let cell = { col0: i + '-' + (i + 1) };
                 for (let j = 1; j <= 5; j++) {
                     let key = "col" + j;
@@ -112,6 +112,14 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
             {
                 Header: '五',
                 accessor: 'col5',
+            },
+            {
+                Header: '六',
+                accessor: 'col6'
+            },
+            {
+                Header: '日',
+                accessor: 'col7'
             },
         ], []
     )

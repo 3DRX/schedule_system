@@ -45,3 +45,9 @@
     border: solid black 0.3vh;
     transition: 0.2s;
 }
+#duration{
+    justify-content: left;
+}
+#activityEndWeek{
+    margin-left: 2vw;
+}
