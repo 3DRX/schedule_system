@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import './LoginPage.css';
+import { Form, Button } from 'react-bootstrap';
 
 const LoginPage = () => {
     const [resText, setResText] = useState("");
@@ -27,7 +28,7 @@ const LoginPage = () => {
                     }
                 }
                 else {
-                    // console.log("登陆失败");
+                    //console.log("登陆失败");
                     setResText("登陆失败");
                 }
             })
@@ -54,9 +55,13 @@ const LoginPage = () => {
                             </view>
                         </view>
                         <view className="buttonArea">
-                            <input type="submit" value="登录" bindtap="Login" className="loginButton"></input>
+                            <Button type="submit" id="startButton" className="loginButton">
+                                <span className="shadow"></span>
+                                <span className="edge"></span>
+                                <span className="front text">登录</span>
+                            </Button>
                         </view>
-                        <text>{resText}</text>
+                        <div id="loginFail">{resText}</div>
                     </form>
                 </view>
             </view>

@@ -15,7 +15,7 @@ function StudentPage() {
     const [eventSource, setEventSource] = useState(null);
     const [week, setWeek] = useState(1);
     const [day, setDay] = useState(1);
-    const [time, setTime] = useState(8);
+    const [time, setTime] = useState(7);
     const [refreshDashBoard, setRefreshDashBoard] = useState(false);
 
     const [api, contextHolder] = notification.useNotification();
@@ -43,12 +43,12 @@ function StudentPage() {
         const btn = (
             <>
                 <Button size='sm' variant='primary' onClick={openNav}>
-                    导航
+                    去上课
                 </Button>
             </>
         );
         api.open({
-            message: '上课提醒：' + data.split(",")[0],
+            message: '事件提醒：' + data.split(",")[0],
             description: `地点：${data.split(",")[1]}`,
             btn,
             key,
@@ -64,7 +64,7 @@ function StudentPage() {
             setEventSource(null);
         }
         else {
-            const index = (60 * (week - 1)) + (12 * (day - 1)) + (time - 8);
+            const index = (98 * (week - 1)) + (14 * (day - 1)) + (time - 7);
             console.log("http://" + window.location.hostname + ":8888/time/" + userName + "/" + index);
             const newEventSource = new EventSource(
                 "http://"
@@ -83,9 +83,9 @@ function StudentPage() {
                 console.log("result", event.data);
                 const reIndex = parseInt(event.data.split(",")[2]);
                 console.log(reIndex);
-                setWeek(parseInt(reIndex / 60) + 1);
-                setDay(parseInt((reIndex % 60) / 12) + 1);
-                setTime((reIndex % 12) + 8);
+                setWeek(parseInt(reIndex / 98) + 1);
+                setDay(parseInt((reIndex % 98) / 14) + 1);
+                setTime((reIndex % 14) + 7);
                 setData(event.data);
             }
             newEventSource.onerror = (event) => {
@@ -118,7 +118,7 @@ function StudentPage() {
                                 <Button size='sm' variant='outline-secondary' onClick={() => {
                                     setWeek(1);
                                     setDay(1);
-                                    setTime(8);
+                                    setTime(7);
                                     setData("");
                                     setRefreshDashBoard(!refreshDashBoard);
                                 }}>reset</Button>
@@ -147,7 +147,7 @@ function StudentPage() {
                                 value={day}
                                 onChange={setDay}
                                 step={1}
-                                max={5}
+                                max={7}
                                 min={1}
                             />
                         </div>
@@ -157,8 +157,8 @@ function StudentPage() {
                                 value={time}
                                 onChange={setTime}
                                 step={1}
-                                max={20}
-                                min={8}
+                                max={21}
+                                min={7}
                             />
                         </div>
                         <div>点</div>

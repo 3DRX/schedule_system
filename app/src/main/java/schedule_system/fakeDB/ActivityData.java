@@ -30,6 +30,17 @@ public class ActivityData {
                 .toArray(Activity[]::new);
     }
 
+    public void removeParticipantOf(String activityName, String studentName) {
+        Activity activity = this.activities.get(activityName);
+        activity.removeParticipant(studentName);
+        if (activity.getParticipants().length == 0) {
+            this.activities.remove(activityName);
+        } else {
+            this.activities.put(activityName, activity);
+        }
+        writeActivities(this.allActivities());
+    }
+
     public Activity getActivityByName(String name) {
         return this.activities.get(name);
     }

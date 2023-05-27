@@ -46,6 +46,10 @@ public class StudentData {
                 });
     }
 
+    public BitMap getScheduleOf(String studentName) {
+        return this.schedules.get(studentName);
+    }
+
     public Course courseAt(String studentName, int week, int day, int time) {
         int timeIndex = ClassTime.realTimeToIndex(week, day, time);
         return Arrays.stream(students.get(studentName).getCourses())
@@ -122,6 +126,18 @@ public class StudentData {
             schedule = schedule.and(courseData.getCourseByName(courseName).getOccupiedTime().not());
             this.schedules.put(student.getName(), schedule);
         }
+        return writeStudentThings(this.getStudentsArray());
+    }
+
+    public boolean deleteActivityFromStudet(String activityName, String studentName) {
+        BitMap occupiedTime = activityData.getActivityByName(activityName).getOccupiedTime();
+        this.activityData.removeParticipantOf(activityName, studentName);
+        Student student = this.students.get(studentName);
+        student.deleteActivityIfHave(activityName);
+        // unset occupied time
+        BitMap schedule = this.schedules.get(student.getName());
+        schedule = schedule.and(occupiedTime.not());
+        this.schedules.put(student.getName(), schedule);
         return writeStudentThings(this.getStudentsArray());
     }
 

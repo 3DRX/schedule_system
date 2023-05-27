@@ -1,15 +1,15 @@
 [
   {
-    "name": "深♂入♂交♂流",
+    "name": "搞比利",
     "participants": [
       "002",
       "003"
     ],
     "startWeek": 1,
-    "endWeek": 10,
+    "endWeek": 2,
     "time": {
-      "day": 1,
-      "time": 19,
+      "day": 3,
+      "time": 10,
       "duration": 1
     },
     "location": "小松林"

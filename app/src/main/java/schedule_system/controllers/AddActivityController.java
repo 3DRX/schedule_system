@@ -50,6 +50,12 @@ public class AddActivityController {
             logger.warn("添加课外活动 " + activity.getName() + " 失败：课外活动已存在");
             return false;
         }
+        for (String studentName : activity.getParticipants()) {
+            if (activity.getOccupiedTime().overlaps(studentData.getScheduleOf(studentName))) {
+                logger.warn("添加课外活动 " + activity.getName() + " 失败：学生 " + studentName + " 时间冲突");
+                return false;
+            }
+        }
         activityData.addActivity(activity);
         logger.info("添加课外活动 " + activity.getName() + " 成功");
         return true;

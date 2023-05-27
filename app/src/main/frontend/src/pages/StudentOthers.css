@@ -4,3 +4,40 @@
     height: auto;
     padding: 2vw;
 }
+#formContent{
+    color: black;
+    padding: 7px;
+    background-color: #82AAE3;
+}
+#tempEventInfo{
+    border-radius: 10px;
+    background-color: rgba(214, 214, 214, 0.479);
+    backdrop-filter: saturate(100%) blur(3px);
+    box-shadow: 0 0 2vw 0 rgba(49, 49, 49, 0.623);
+    padding: 15px;
+    color: white;
+}
+#tempEventDuration{
+    display: flex;
+    justify-content: space-between;
+}
+#tempEventWeek{
+    display: flex;
+}
+#tempEventDay{
+    display: flex;
+}
+#tempEventTime{
+    display: flex;
+}
+.TEtext{
+    margin: 0.5vh 0.5vw 0.5vh 0.5vw;
+}
+#tempEventLocation{
+    border-radius: 10px;
+    background-color: rgba(214, 214, 214, 0.479);
+    backdrop-filter: saturate(100%) blur(3px);
+    box-shadow: 0 0 2vw 0 rgba(49, 49, 49, 0.623);
+    padding: 15px 15px 20px 15px;
+    color: white;
+}
