@@ -130,7 +130,7 @@ public class StudentData {
     }
 
     public boolean deleteActivityFromStudet(String activityName, String studentName) {
-        this.activityData.getActivityByName(activityName).removeParticipant(studentName);
+        this.activityData.removeParticipantOf(activityName, studentName);
         Student student = this.students.get(studentName);
         student.deleteActivityIfHave(activityName);
         // unset occupied time
