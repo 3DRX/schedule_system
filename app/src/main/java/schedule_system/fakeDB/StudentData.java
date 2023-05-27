@@ -129,6 +129,17 @@ public class StudentData {
         return writeStudentThings(this.getStudentsArray());
     }
 
+    public boolean deleteActivityFromStudet(String activityName, String studentName) {
+        this.activityData.removeParticipantOf(activityName, studentName);
+        Student student = this.students.get(studentName);
+        student.deleteActivityIfHave(activityName);
+        // unset occupied time
+        BitMap schedule = this.schedules.get(student.getName());
+        schedule = schedule.and(activityData.getActivityByName(activityName).getOccupiedTime().not());
+        this.schedules.put(student.getName(), schedule);
+        return writeStudentThings(this.getStudentsArray());
+    }
+
     public boolean addEventToStudent(String newEventName, String studentName) {
         // check if student already have this event
         for (String eventName : this.students.get(studentName).getEvents()) {

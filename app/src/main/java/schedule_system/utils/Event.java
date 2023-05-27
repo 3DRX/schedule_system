@@ -1,9 +1,5 @@
 package schedule_system.utils;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import schedule_system.fakeDB.MapData;
-
 public class Event {
     private String name;
     private EventTime time;
@@ -11,7 +7,6 @@ public class Event {
     private String person;
 
     public Event(String name, EventTime time, String location, String person) {
-        // check input
         if (name == null || name.length() == 0) {
             throw new IllegalArgumentException("输入不合法");
         }
