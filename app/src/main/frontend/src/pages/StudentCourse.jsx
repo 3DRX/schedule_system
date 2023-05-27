@@ -197,7 +197,7 @@ const StudentCourse = () => {
                         setWeek(value);
                     }
                 }}
-                    class="input"
+                    className="input"
                 />
                 <Button variant="secondary"
                     onClick={() => {
