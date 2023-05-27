@@ -19,14 +19,15 @@ const StudentCourse = () => {
     const query = new URLSearchParams(useLocation().search);
     const userName = query.get("userName");
     const [week, setWeek] = useState(1);
+    // ===========================
     const [newName, setNewName] = useState("");
     const [startWeek, setStartWeek] = useState(1);
     const [endWeek, setEndWeek] = useState(1);
-    const [testWeek, setTestWeek] = useState(1);
     const [classDay, setClassDay] = useState(1);
     const [classTime, setClassTime] = useState(8);
     const [classDuration, setClassDuration] = useState(1);
     const [location, setLocation] = useState("");
+    // ===========================
     const [refresh, setRefresh] = useState(false);
     const [showAddActivity, setShowAddActivity] = useState((false));
     const [addActivityInfo, setAddActivityInfo] = useState({});
@@ -61,6 +62,7 @@ const StudentCourse = () => {
         setCheckedState(new Array(studentList.length).fill(false));
         setSelectAllStudents(false);
     };
+
     const handleActivitySubmit = (e) => {
         e.preventDefault();
         let resStudents = [];
@@ -69,30 +71,21 @@ const StudentCourse = () => {
                 resStudents.push(studentList[i]);
             }
         }
-        let res = {
-            course: {
-                startWeek: startWeek,
-                endWeek: endWeek,
-                testWeek: testWeek,
-                classTime: {
-                    day: classDay,
-                    time: classTime,
-                    duration: classDuration
-                },
-                examTime: {
-                    day: classDay,
-                    time: classTime,
-                    duration: classDuration
-                },
-                name: newName,
-                location: location
+        const res = {
+            name: newName,
+            participants: resStudents,
+            startWeek: startWeek,
+            endWeek: endWeek,
+            time: {
+                day: classDay,
+                time: classTime,
+                duration: classDuration
             },
-            students: resStudents
-        };
-        // console.log(res);
-        axios.post("http://" + window.location.hostname + ":8888/addCourse", res)
-            .then((response) => {
-                // console.log(response.data)
+            location: location
+        }
+        console.log(res);
+        axios.post("http://" + window.location.hostname + ":8888/addActivity", res)
+            .then((_) => {
             })
             .finally(() => {
                 setRefresh(!refresh);
@@ -244,7 +237,7 @@ const StudentCourse = () => {
                             <p id="duration">
                                 <div className="weeks">
                                     <text>开始周</text>
-                                    <NumberPicker defaultValue={week} step={1} max={20} min={1} onChange={(value) => {
+                                    <NumberPicker defaultValue={startWeek} step={1} max={20} min={1} onChange={(value) => {
                                         if (value !== null && value >= 1 && value <= 20) {
                                             setStartWeek(value);
                                         }

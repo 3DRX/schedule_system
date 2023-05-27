@@ -46,6 +46,10 @@ public class StudentData {
                 });
     }
 
+    public BitMap getScheduleOf(String studentName) {
+        return this.schedules.get(studentName);
+    }
+
     public Course courseAt(String studentName, int week, int day, int time) {
         int timeIndex = ClassTime.realTimeToIndex(week, day, time);
         return Arrays.stream(students.get(studentName).getCourses())
