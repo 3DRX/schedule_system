@@ -27,7 +27,7 @@ function StudentPage() {
     }, [data]);
 
     const openNav = () => {
-        const prefix = "https://" + window.location.host;
+        const prefix = "http://" + window.location.host;
         console.log(`data: ${data}`);
         const courseName = data.split(",")[0];
         const location = data.split(",")[1];
@@ -65,13 +65,14 @@ function StudentPage() {
         }
         else {
             const index = (60 * (week - 1)) + (12 * (day - 1)) + (time - 8);
-            console.log("https://" + window.location.hostname + ":8888/time/" + userName + "/" + index);
+            console.log("http://" + window.location.hostname + ":8888/time/" + userName + "/" + index);
             const newEventSource = new EventSource(
-                "https://"
+                "http://"
                 + window.location.hostname
-                + ":8888/time/"
+                + ":8888/time"
+                + "?id="
                 + userName
-                + "/"
+                + "&start="
                 + index);
             setEventSource(newEventSource);
             newEventSource.onopen = (_) => {

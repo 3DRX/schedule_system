@@ -29,6 +29,7 @@ import schedule_system.utils.Student;
  * 模拟系统时间控制器
  */
 @RestController
+@CrossOrigin
 public class TimeController {
     private final Logger logger = LoggerFactory.getLogger(TimeController.class); // 日志控制器
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -53,9 +54,8 @@ public class TimeController {
      * @param start
      * @return
      */
-    @GetMapping("/time/{id}/{start}")
-    @CrossOrigin
-    public SseEmitter streamDateTime(@PathVariable String id, @PathVariable int start) {
+    @GetMapping("/time")
+    public SseEmitter streamDateTime(String id, int start) {
         SseEmitter sseEmitter = new SseEmitter(Long.MAX_VALUE);
         sseEmitter.onCompletion(() -> logger.info("SseEmitter is completed"));
         sseEmitter.onTimeout(() -> logger.info("SseEmitter is timed out"));
