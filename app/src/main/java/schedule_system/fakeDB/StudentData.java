@@ -130,12 +130,13 @@ public class StudentData {
     }
 
     public boolean deleteActivityFromStudet(String activityName, String studentName) {
+        BitMap occupiedTime = activityData.getActivityByName(activityName).getOccupiedTime();
         this.activityData.removeParticipantOf(activityName, studentName);
         Student student = this.students.get(studentName);
         student.deleteActivityIfHave(activityName);
         // unset occupied time
         BitMap schedule = this.schedules.get(student.getName());
-        schedule = schedule.and(activityData.getActivityByName(activityName).getOccupiedTime().not());
+        schedule = schedule.and(occupiedTime.not());
         this.schedules.put(student.getName(), schedule);
         return writeStudentThings(this.getStudentsArray());
     }

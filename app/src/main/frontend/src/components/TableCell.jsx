@@ -11,10 +11,8 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
     const [courses, setCourses] = useState([]);
     const [hover, setHover] = useState(false);
 
-
     useEffect(() => {
-        if(isAdmin)
-        {
+        if (isAdmin) {
             axios.get("http://" + window.location.hostname + ":8888/adminGetStatusByTime", {
                 params: {
                     time: startTime + '-' + (startTime + 1),
@@ -27,15 +25,14 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
                     setCourses(response.data);
                 })
         }
-        else
-        {
+        else {
             axios.get("http://" + window.location.hostname + ":8888/studentGetStatusByTime", {
                 params: {
                     time: startTime + '-' + (startTime + 1),
                     week: week,
                     day: day,
                     userName: userName,
-             }
+                }
             })
                 .then((response) => {
                     setCourses(response.data);
@@ -95,7 +92,15 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
         }
         else {
             return (
-                <CellWithCourse style={renderStyle()} className={courses.isActivity?"isActivity":"isCourse"} courses={courses} refresh={refresh} setRefresh={setRefresh} isAdmin={isAdmin} />
+                <CellWithCourse
+                    style={renderStyle()}
+                    className={courses.isActivity ? "isActivity" : "isCourse"}
+                    courses={courses}
+                    refresh={refresh}
+                    setRefresh={setRefresh}
+                    isAdmin={isAdmin}
+                    userName={userName}
+                />
             )
 
         }

@@ -33,7 +33,11 @@ public class ActivityData {
     public void removeParticipantOf(String activityName, String studentName) {
         Activity activity = this.activities.get(activityName);
         activity.removeParticipant(studentName);
-        this.activities.put(activityName, activity);
+        if (activity.getParticipants().length == 0) {
+            this.activities.remove(activityName);
+        } else {
+            this.activities.put(activityName, activity);
+        }
         writeActivities(this.allActivities());
     }
 

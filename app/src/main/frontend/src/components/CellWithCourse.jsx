@@ -2,10 +2,16 @@ import React from "react";
 import Carousel from 'react-bootstrap/Carousel';
 import CellDetail from "./CellDetail";
 
-const CellWithCourse = ({ courses, refresh, setRefresh, isAdmin }) => {
+const CellWithCourse = ({ courses, refresh, setRefresh, isAdmin, userName }) => {
 
     if (courses.length === 1) {
-        return <CellDetail course={courses[0]} refresh={refresh} setRefresh={setRefresh} isAdmin={isAdmin} />
+        return <CellDetail
+            course={courses[0]}
+            refresh={refresh}
+            setRefresh={setRefresh}
+            isAdmin={isAdmin}
+            studentName={userName}
+        />
     }
     else {
         return (
@@ -13,7 +19,13 @@ const CellWithCourse = ({ courses, refresh, setRefresh, isAdmin }) => {
                 {courses.map((course) => {
                     return (
                         <Carousel.Item>
-                            < CellDetail course={course} refresh={refresh} setRefresh={setRefresh} isAdmin={isAdmin} />
+                            < CellDetail
+                                course={course}
+                                refresh={refresh}
+                                setRefresh={setRefresh}
+                                isAdmin={isAdmin}
+                                studentName={userName}
+                            />
                         </Carousel.Item>
                     )
                 })}

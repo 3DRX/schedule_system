@@ -5,7 +5,7 @@ import Overlay from 'react-bootstrap/Overlay';
 import Modal from 'react-bootstrap/Modal';
 import axios from "axios";
 
-const CellDetail = ({ course, refresh, setRefresh, isAdmin }) => {
+const CellDetail = ({ course, refresh, setRefresh, isAdmin, studentName }) => {
     const [showOverlay, setShowOverlay] = useState(false);
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
     const target = useRef(null);
@@ -14,6 +14,20 @@ const CellDetail = ({ course, refresh, setRefresh, isAdmin }) => {
     // 发送删除课程的请求
     const setDeleteCourseRequest = () => {
         axios.delete("http://" + window.location.hostname + `:8888/deleteCourse?courseName=${course.name}`)
+            .then((response) => {
+                if (response) {
+                    setRefresh(!refresh);
+                }
+                else {
+                    console.warn(`删除课程${course.name}失败`);
+                }
+            });
+    };
+
+    const setDeleteActivityRequest = () => {
+        axios.delete("http://" + window.location.hostname + ":8888/deleteActivity"
+            + `?activityName=${course.name}`
+            + `&studentName=${studentName}`)
             .then((response) => {
                 if (response) {
                     setRefresh(!refresh);
@@ -71,11 +85,11 @@ const CellDetail = ({ course, refresh, setRefresh, isAdmin }) => {
                 </>
             )
         }
-        else if(course.isActivity)
-        {
+        else if (course.isActivity) {
             return (
                 <>
-                    <Button className="btn" variant="info" ref={target} onClick={() => {}}>detail</Button>
+                    <Button className="btn" variant="info" ref={target}
+                        onClick={() => { setShowActivityDetail(!showActivityDetail) }}>detail</Button>
                     <Overlay target={target.current} show={showActivityDetail} placement="right">
                         <Popover id="popover-basic" show={showActivityDetail}>
                             <Popover.Header as="h3">{course.name}</Popover.Header>
@@ -86,14 +100,14 @@ const CellDetail = ({ course, refresh, setRefresh, isAdmin }) => {
                                         return <li>{student}</li>
                                     })}
                                 </ul>
-                                <Button className="btn" variant="outline-danger" size="sm" onClick={() => {
-                                }}>delete</Button>
+                                <Button className="btn" variant="outline-danger" size="sm"
+                                    onClick={() => { setShowDeleteActivityModal(true) }}>delete</Button>
                             </Popover.Body>
                         </Popover>
                     </Overlay>
                     <Modal
                         show={showDeleteActivityModal}
-                        onHide={() => {}}
+                        onHide={() => { setShowDeleteActivityModal(false) }}
                         backdrop="static"
                         keyboard={false}
                     >
@@ -104,10 +118,12 @@ const CellDetail = ({ course, refresh, setRefresh, isAdmin }) => {
                             此课程一经删除，无法恢复。
                         </Modal.Body>
                         <Modal.Footer>
-                            <Button variant="secondary" onClick={() => {}}>
+                            <Button variant="secondary" onClick={() => { setShowDeleteActivityModal(false) }}>
                                 取消
                             </Button>
                             <Button variant="primary" onClick={() => {
+                                setDeleteActivityRequest();
+                                setShowDeleteActivityModal(false);
                             }}>确认删除</Button>
                         </Modal.Footer>
                     </Modal>
