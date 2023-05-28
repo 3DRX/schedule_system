@@ -17,6 +17,7 @@ import schedule_system.utils.Activity;
 import schedule_system.utils.CellContent;
 import schedule_system.utils.ClassTime;
 import schedule_system.utils.Course;
+import schedule_system.utils.CourseDetail;
 import schedule_system.utils.Student;
 
 /**
@@ -100,26 +101,31 @@ public class ReferTableCellController {
     }
 
     @GetMapping("/studentGetCourseByName")
-    public CellContent[] studentGetCourseByName(String studentName, String courseName) {
+    public CourseDetail[] studentGetCourseByName(String studentName, String courseName) {
         if (!studentData.isStudent(studentName)) {
             logger.error("user {} is not a student", studentName);
-            return new CellContent[0];
+            return new CourseDetail[0];
         }
         if (Arrays.stream(studentData.getStudentById(studentName).getCourses())
                 .noneMatch(courseName::equals)) {
             logger.error("user {} has no course {}", studentName, courseName);
-            return new CellContent[0];
+            return new CourseDetail[0];
         }
         Course course = courseData.getCourseByName(courseName);
         if (course == null) {
             logger.error("user {} has no course {}", studentName, courseName);
-            return new CellContent[0];
+            return new CourseDetail[0];
         } else {
             logger.info("user {} has course {}", studentName, courseName);
-            return new CellContent[] { new CellContent(course.getName(),
-                    getStudents(course.getName()),
-                    course.getLocationName(),
-                    false) };
+            return new CourseDetail[] {
+                    new CourseDetail(
+                            course.getTestWeek(),
+                            new CellContent(
+                                    course.getName(),
+                                    getStudents(course.getName()),
+                                    course.getLocationName(),
+                                    false))
+            };
         }
     }
 

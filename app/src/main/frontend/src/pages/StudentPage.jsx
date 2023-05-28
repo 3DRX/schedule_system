@@ -26,16 +26,31 @@ function StudentPage() {
         }
     }, [data]);
 
+    function isValidUrl(string) {
+        try {
+            new URL(string);
+            return true;
+        } catch (err) {
+            return false;
+        }
+    }
+
+
     const openNav = () => {
-        const prefix = "http://" + window.location.host;
-        console.log(`data: ${data}`);
-        const courseName = data.split(",")[0];
         const location = data.split(",")[1];
-        const isCourse = data.split(",")[3];
-        console.log("open navigation");
-        console.log(`isCourse: ${isCourse}`);
-        window.open(`${prefix}/student/nav?courseName=${courseName}&location=${location}&isCourse=${isCourse}&userName=${userName}`);
-        api.destroy();
+        if (isValidUrl(location)) {
+            window.open(location);
+        }
+        else {
+            const prefix = "http://" + window.location.host;
+            console.log(`data: ${data}`);
+            const courseName = data.split(",")[0];
+            const isCourse = data.split(",")[3];
+            console.log("open navigation");
+            console.log(`isCourse: ${isCourse}`);
+            window.open(`${prefix}/student/nav?courseName=${courseName}&location=${location}&isCourse=${isCourse}&userName=${userName}`);
+            api.destroy();
+        }
     }
 
     const openNotification = () => {

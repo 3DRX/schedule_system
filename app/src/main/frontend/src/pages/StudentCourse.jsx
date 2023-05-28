@@ -115,7 +115,7 @@ const StudentCourse = () => {
             <NavBar isAdmin="false" userName={userName} />
             <div id="searchArea">
                 <div className="texts"></div>
-                <div><input id="searchBox" type="text" onChange={(event) => {
+                <div><input id="searchBox" type="text" placeholder="搜索课程..." onChange={(event) => {
                     if (event.target.value !== "") {
                         setSearchInput(event.target.value);
                     }
@@ -137,14 +137,20 @@ const StudentCourse = () => {
                 <Modal.Body id="formContent">
                     <div id="searchResult">
                         {searchResult.map((item, index) => {
+                            const name = item.content.name;
+                            const location = item.content.location;
+                            const students = item.content.students;
+                            const examWeek = item.examWeek;
                             return (
                                 <div key={index} className="searchResultItem">
-                                    <div className="searchResultItemTexts">名称</div>
-                                    <div className="searchResultItemTexts">{item.name}</div>
-                                    <div className="searchResultItemTexts">地点</div>
-                                    <div className="searchResultItemTexts">{item.location}</div>
-                                    <div className="searchResultItemTexts">参与者</div>
-                                    <div className="searchResultItemTexts">{item.students.map((item) => {
+                                    <div>名称</div>
+                                    <div className="searchResultItemTexts">{name}</div>
+                                    <div>地点</div>
+                                    <div className="searchResultItemTexts">{location}</div>
+                                    <div>考试周</div>
+                                    <div className="searchResultItemTexts">{examWeek}</div>
+                                    <div>参与者</div>
+                                    <div className="searchResultItemTexts">{students.map((item) => {
                                         return (<div>{item}</div>)
                                     })}</div>
                                 </div>

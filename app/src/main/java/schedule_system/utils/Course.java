@@ -46,10 +46,6 @@ public class Course {
         setLocation(location);
     }
 
-    public String getLocation() {
-        return location;
-    }
-
     /**
      * 获得该课程所占用所有时间的BitMap
      * 
