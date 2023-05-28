@@ -11,21 +11,16 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 import "./StudentCourse.css";
 
-// 学生课程主页
-// 1. 设置周数
-// 2. 刷新按钮
-// 3. 课程表（CourseTable组件）
 const StudentCourse = () => {
     const query = new URLSearchParams(useLocation().search);
     const userName = query.get("userName");
     const [week, setWeek] = useState(1);
-    // ===========================
+    // =========================== 学生添加课外活动的 state
     const [newName, setNewName] = useState("");
     const [startWeek, setStartWeek] = useState(1);
     const [endWeek, setEndWeek] = useState(1);
     const [classDay, setClassDay] = useState(1);
     const [classTime, setClassTime] = useState(8);
-    const [classDuration, setClassDuration] = useState(1);
     const [location, setLocation] = useState("");
     // ===========================
     const [refresh, setRefresh] = useState(false);
@@ -58,7 +53,6 @@ const StudentCourse = () => {
 
 
     const activityOnShow = () => {
-        // console.log(`studentList: ${studentList}`);
         setCheckedState(new Array(studentList.length).fill(false));
         setSelectAllStudents(false);
     };
@@ -67,6 +61,10 @@ const StudentCourse = () => {
         e.preventDefault();
         let resStudents = [];
         for (let i = 0; i < studentList.length; i++) {
+            if (studentList[i] === userName) {
+                resStudents.push(studentList[i]);
+                continue;
+            }
             if (checkedState[i]) {
                 resStudents.push(studentList[i]);
             }
@@ -79,7 +77,7 @@ const StudentCourse = () => {
             time: {
                 day: classDay,
                 time: classTime,
-                duration: classDuration
+                duration: 1
             },
             location: location
         }
@@ -92,30 +90,7 @@ const StudentCourse = () => {
                 setShowAddActivity(false);
             });
     };
-    const generateOptions = () => {
-        if (addActivityInfo.startTime === 19) {
-            return (
-                <option>1h</option>
-            )
-        }
-        else if (addActivityInfo.startTime === 18) {
-            return (
-                <>
-                    <option>1h</option>
-                    <option>2h</option>
-                </>
-            )
-        }
-        else {
-            return (
-                <>
-                    <option>1h</option>
-                    <option>2h</option>
-                    <option>3h</option>
-                </>
-            )
-        }
-    };
+
     const handleOnChange = (position) => {
         const updatedCheckedState = checkedState.map((item, index) =>
             index === position ? !item : item
@@ -140,13 +115,14 @@ const StudentCourse = () => {
             <NavBar isAdmin="false" userName={userName} />
             <div id="searchArea">
                 <div className="texts"></div>
-                <div><input id="searchBox" type="text" onChange={(event) => {
+                <div><input id="searchBox" type="text" placeholder="搜索课程..." onChange={(event) => {
                     if (event.target.value !== "") {
                         setSearchInput(event.target.value);
                     }
                 }} /></div>
                 <button id="searchButton" type="submit" onClick={handleSearch}></button>
             </div>
+
             <Modal
                 show={showSearchResult}
                 onHide={() => {
@@ -158,17 +134,23 @@ const StudentCourse = () => {
                 <Modal.Header id="header" closeButton>
                     <Modal.Title>搜索结果</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body id="formContent">
                     <div id="searchResult">
                         {searchResult.map((item, index) => {
+                            const name = item.content.name;
+                            const location = item.content.location;
+                            const students = item.content.students;
+                            const examWeek = item.examWeek;
                             return (
                                 <div key={index} className="searchResultItem">
-                                    <div>名称</div>
-                                    <div className="searchResultItemTexts">{item.name}</div>
-                                    <div>地点</div>
-                                    <div className="searchResultItemTexts">{item.location}</div>
-                                    <div>参与者</div>
-                                    <div className="searchResultItemTexts">{item.students.map((item) => {
+                                    <div className="searchResultItemTexts">名称</div>
+                                    <div className="searchResultItemTexts">{name}</div>
+                                    <div className="searchResultItemTexts">地点</div>
+                                    <div className="searchResultItemTexts">{location}</div>
+                                    <div className="searchResultItemTexts">考试周</div>
+                                    <div className="searchResultItemTexts">{examWeek}</div>
+                                    <div className="searchResultItemTexts">参与者</div>
+                                    <div className="searchResultItemTexts">{students.map((item) => {
                                         return (<div>{item}</div>)
                                     })}</div>
                                 </div>
@@ -176,17 +158,17 @@ const StudentCourse = () => {
                         })}
                     </div>
                 </Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer id="formContent">
                     <Button variant="secondary" onClick={() => setShowSearchResult(false)}>
                         Close
                     </Button>
                 </Modal.Footer>
             </Modal>
+
             <div className="setWeekTab">
                 <div className="texts">set week</div>
                 <NumberPicker defaultValue={1} step={1} max={20} min={1} onChange={(value) => {
                     if (value !== null && (value >= 1 && value <= 20)) {
-                        // console.log(`set value to ${value}`)
                         setWeek(value);
                     }
                 }}
@@ -200,7 +182,6 @@ const StudentCourse = () => {
                 >刷新</Button>
                 <Button variant="secondary"
                     onClick={() => {
-                        // console.log(`在第${week}周，周${day}，${startTime}-${startTime + 1}添加课程`);
                         setShowAddActivity(true);
                     }}
                     id="globalAddButton"
@@ -282,8 +263,8 @@ const StudentCourse = () => {
                                     />
                                 </div>
                                 <div>
-                                    <NumberPicker defaultValue={addActivityInfo.startTime} step={1} max={20} min={7} onChange={(value) => {
-                                        if (value !== null && value >= 7 && value <= 20) {
+                                    <NumberPicker defaultValue={addActivityInfo.startTime} step={1} max={21} min={6} onChange={(value) => {
+                                        if (value !== null && value >= 6 && value <= 21) {
                                             setClassTime(value);
                                         }
                                     }}
@@ -351,6 +332,6 @@ const StudentCourse = () => {
             </Modal>
         </>
     )
-}
+};
 
 export default StudentCourse;

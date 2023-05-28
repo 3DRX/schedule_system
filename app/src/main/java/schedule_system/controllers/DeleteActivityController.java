@@ -20,11 +20,11 @@ public class DeleteActivityController {
     public boolean deleteActivity(String activityName, String studentName) {
         boolean flag = studentData.deleteActivityFromStudet(activityName, studentName);
         logger.info(new StringBuilder()
-                .append("Delete activity ")
-                .append(activityName)
-                .append(" from student ")
+                .append("从 ")
                 .append(studentName)
-                .append(flag ? " success" : " failed")
+                .append(" 的日程中删除课程 ")
+                .append(activityName)
+                .append(flag ? " 成功" : " 失败")
                 .toString());
         return flag;
     }

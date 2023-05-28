@@ -34,13 +34,14 @@ public class NavigateController {
     @CrossOrigin
     public Location[] navigate(@RequestBody NavigateRecord input) {
         if (!mapData.isValidLocation(input.start())) {
-            logger.warn("导航失败：起点不存在");
+            logger.warn("导航失败：起点 " + input.start() + " 不存在");
             return null;
         }
         if (!mapData.isValidLocation(input.end())) {
-            logger.warn("导航失败：终点不存在");
+            logger.warn("导航失败：终点 " + input.end() + " 不存在");
             return null;
         }
+        logger.info("导航开始，起点: " + input.start() + " 终点: " + input.end());
         return mapData.pathFromXtoY(input.start(), input.end()).toArray();
     }
 
@@ -48,16 +49,16 @@ public class NavigateController {
     @CrossOrigin
     public Location[] navigateToEvents(@RequestBody EventNavRecord input) {
         if (!mapData.isValidLocation(input.start())) {
-            logger.warn("导航失败：起点不存在");
+            logger.warn("导航失败：起点 " + input.start() + " 不存在");
             return null;
         }
         for (String location : input.locations()) {
             if (!mapData.isValidLocation(location)) {
-                logger.warn("导航失败：终点不存在");
+                logger.warn("导航失败：途径地点 " + location + " 不存在");
                 return null;
             }
         }
-        logger.info("locations: " + Arrays.toString(input.locations()) + " start: " + input.start());
+        logger.info("导航开始，途径: " + Arrays.toString(input.locations()) + " 起点: " + input.start());
         try {
             return mapData.pathPassingLocations(input.locations(), input.start()).toArray();
         } catch (Exception e) {

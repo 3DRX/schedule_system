@@ -1,17 +1,2 @@
 [
-  {
-    "name": "搞比利",
-    "participants": [
-      "002",
-      "003"
-    ],
-    "startWeek": 1,
-    "endWeek": 2,
-    "time": {
-      "day": 3,
-      "time": 10,
-      "duration": 1
-    },
-    "location": "小松林"
-  }
 ]

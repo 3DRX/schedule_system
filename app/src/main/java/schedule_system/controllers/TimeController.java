@@ -57,11 +57,11 @@ public class TimeController {
     @GetMapping("/time")
     public SseEmitter streamDateTime(String id, int start) {
         SseEmitter sseEmitter = new SseEmitter(Long.MAX_VALUE);
-        sseEmitter.onCompletion(() -> logger.info("SseEmitter is completed"));
-        sseEmitter.onTimeout(() -> logger.info("SseEmitter is timed out"));
-        sseEmitter.onError((ex) -> logger.info("SseEmitter completed with error"));
+        sseEmitter.onCompletion(() -> logger.info("模拟系统时间完成"));
+        sseEmitter.onTimeout(() -> logger.info("模拟系统时间超时"));
+        sseEmitter.onError((ex) -> logger.info("模拟系统时间错误结束"));
         if (start >= ClassTime.getMaxIndex()) {
-            logger.error("simulation start index out of range");
+            logger.error("开始时间超出范围");
             throw new IllegalArgumentException("simulation start index out of range");
         }
         executor.execute(() -> {
@@ -70,6 +70,7 @@ public class TimeController {
                 ResponseRecord res = getSimRes(id, i + 1);
                 try {
                     sleep(1, sseEmitter);
+                    logger.info("发送提醒: " + res.courseName());
                     sseEmitter.send(res.toString());
                 } catch (IOException e) {
                     sseEmitter.completeWithError(e);
@@ -79,7 +80,6 @@ public class TimeController {
             }
             sseEmitter.complete();
         });
-        logger.info("Controller exists");
         return sseEmitter;
     }
 
