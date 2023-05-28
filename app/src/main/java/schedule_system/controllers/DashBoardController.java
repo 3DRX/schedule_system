@@ -62,6 +62,7 @@ public class DashBoardController {
                         e.getName(),
                         participants,
                         e.getLocationName(), true)));
+        logger.info("学生 " + studentName + " 的第 " + week + " 周周 " + day + " 查询日程");
         return res.toArray();
     }
 }

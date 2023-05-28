@@ -32,11 +32,11 @@ public class LoginController {
             @RequestBody theUser iptUser) {
         for (theUser user : userData.allUsers()) {
             if (iptUser.getId().equals(user.getId()) && iptUser.getPassword().equals(user.getPassword())) {
-                logger.info("登陆成功");
+                logger.info(iptUser.getId() + " 登陆成功");
                 return new UserRecord(true, user.isAdmin());
             }
         }
-        logger.info("用户名或密码错误");
+        logger.info(iptUser.getId() + " 登陆失败，用户名或密码错误");
         return new UserRecord(false, false);
     }
 }

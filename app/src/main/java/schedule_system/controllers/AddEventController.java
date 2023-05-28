@@ -32,11 +32,11 @@ public class AddEventController {
     public boolean addEvent(@RequestBody EventRecord newEvent) {
         // check input
         if (!studentData.isStudent(newEvent.student())) {
-            logger.warn("Student " + newEvent.student() + " does not exist.");
+            logger.warn("学生 " + newEvent.student() + " 不存在");
             return false;
         }
         if (!mapData.isValidLocation(newEvent.location())) {
-            logger.warn("Location " + newEvent.location() + " does not exist.");
+            logger.warn("地点 " + newEvent.location() + " 不存在");
             return false;
         }
         EventTime time = null;
@@ -47,13 +47,13 @@ public class AddEventController {
                     newEvent.time());
         } catch (Exception e) {
             logger.warn(new StringBuilder()
-                    .append("Time ")
+                    .append("时间 ")
                     .append(newEvent.week())
                     .append("-")
                     .append(newEvent.day())
                     .append("-")
                     .append(newEvent.time())
-                    .append(" is invalid.")
+                    .append(" 不合法")
                     .toString());
         }
         // check if time conflicts with student schedule
@@ -61,15 +61,15 @@ public class AddEventController {
                 newEvent.student(),
                 time.toIndex())) {
             logger.warn(new StringBuilder()
-                    .append("Time ")
+                    .append("时间 ")
                     .append(newEvent.week())
                     .append("-")
                     .append(newEvent.day())
                     .append("-")
                     .append(newEvent.time())
-                    .append(" conflicts with student ")
+                    .append(" 与学生 ")
                     .append(newEvent.student())
-                    .append("'s schedule.")
+                    .append(" 的时间安排冲突")
                     .toString());
             return false;
         }
@@ -81,11 +81,11 @@ public class AddEventController {
         // check if event exists
         if (eventData.containsEvent(newEvent.name() + "," + newEvent.student())) {
             logger.warn(new StringBuilder()
-                    .append("Event ")
+                    .append("学生 ")
                     .append(newEvent.name())
-                    .append(" of ")
+                    .append(" 的临时事物 ")
                     .append(newEvent.student())
-                    .append(" already exists.")
+                    .append(" 已经存在")
                     .toString());
             return false;
         }

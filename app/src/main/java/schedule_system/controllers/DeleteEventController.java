@@ -26,12 +26,12 @@ public class DeleteEventController {
     public boolean deleteEvent(String studentName, String eventName) {
         // check if the student exists
         if (!studentData.isStudent(studentName)) {
-            logger.info("Student " + studentName + " does not exist.");
+            logger.info("学生 " + studentName + " 不存在");
             return false;
         }
         // check if the event exists
         if (!eventData.containsEvent(eventName + "," + studentName)) {
-            logger.info("Event " + eventName + " does not exist.");
+            logger.info("学生 " + studentName + " 的临时事物 " + eventName + " 不存在");
             return false;
         }
         // delete the event

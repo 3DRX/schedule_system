@@ -86,8 +86,6 @@ public class AddCourseController {
     private boolean addCourseToStudent(String courseName, String[] students) {
         boolean successFlag = studentData.addCourseToStudents(courseName, students);
         if (!successFlag) {
-            logger.warn("将课程添加到学生的课表中时失败，从课程列表中删除该课程");
-            // 从课程列表中删除创建的课程
             boolean a = courseData.deleteCourse(courseName);
             if (!a) {
                 logger.warn("从课程列表中删除课程：" + courseName + "失败");

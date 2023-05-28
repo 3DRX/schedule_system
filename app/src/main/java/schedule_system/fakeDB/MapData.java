@@ -26,7 +26,7 @@ public class MapData {
         Arrays.stream(this.readMap())
                 // .forEach(e -> System.out.println(e.toString()));
                 .forEach(x -> nodes.put(x.getLocation().getName(), x));
-        this.logger.info("Reading map data from " + path);
+        this.logger.info("从 " + path + " 读取地图数据成功");
     }
 
     public Location getLocation(String locationName) {
@@ -35,10 +35,8 @@ public class MapData {
 
     public boolean isValidLocation(String locationName) {
         if (this.nodes.get(locationName) != null) {
-            logger.info("Location " + locationName + " is valid.");
             return true;
         } else {
-            logger.info("Location " + locationName + " is invalid.");
             return false;
         }
     }

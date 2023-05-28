@@ -145,7 +145,7 @@ public class StudentData {
         // check if student already have this event
         for (String eventName : this.students.get(studentName).getEvents()) {
             if (eventName.equals(newEventName)) {
-                logger.warn("为学生添加事件 " + newEventName + " 失败：学生已有该事件");
+                logger.warn("为学生 " + studentName + " 添加事件 " + newEventName + " 失败：学生已有该事件");
                 return false;
             }
         }
@@ -167,7 +167,7 @@ public class StudentData {
             String[] studentActivities = student.getActivities();
             Activity newActivity = activityData.getActivityByName(activityName);
             if (newActivity == null) {
-                logger.warn("为学生添加课外活动" + activityName + "失败：该课外活动不存在");
+                logger.warn("为学生 " + studentName + " 添加课外活动" + activityName + "失败：该课外活动不存在");
             }
             for (int i = 0; i < studentActivities.length; i++) {
                 Activity loopActivity = activityData.getActivityByName(studentActivities[i]);
@@ -191,7 +191,7 @@ public class StudentData {
             }
             Course newCourse = courseData.getCourseByName(newCourseName);
             if (newCourse == null) {
-                logger.warn("为学生添加课程" + newCourseName + "失败：课程不存在");
+                logger.warn("为学生 " + studentName + " 添加课程" + newCourseName + "失败：课程不存在");
                 return false;
             }
             if (this.getScheduleOf(studentName).overlaps(newCourse.getOccupiedTime())) {

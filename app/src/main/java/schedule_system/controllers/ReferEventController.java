@@ -30,7 +30,7 @@ public class ReferEventController {
     public Event[] referEvents(String studentName) {
         // check if the student exists
         if (!studentData.isStudent(studentName)) {
-            logger.info("Student " + studentName + " does not exist.");
+            logger.info("学生 " + studentName + " 不存在");
             return new Event[0];
         }
         KList<Event> events = new KList<>(Event.class);
