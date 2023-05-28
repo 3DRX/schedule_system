@@ -72,7 +72,7 @@ const AdminOthers = () => {
             })
             .catch((_) => {
             });
-    }, [refresh]);
+    }, [refresh, year, month, day, level, startTime, endTime]);
 
     return (
         <>
