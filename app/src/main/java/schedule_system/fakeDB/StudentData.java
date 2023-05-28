@@ -189,23 +189,15 @@ public class StudentData {
             if (student == null) {
                 continue;
             }
-            // 检查学生的课程会不会冲突
-            // 即：学生的所有课程是否有时间重叠
-            String[] studentCourses = student.getCourses();
             Course newCourse = courseData.getCourseByName(newCourseName);
             if (newCourse == null) {
                 logger.warn("为学生添加课程" + newCourseName + "失败：课程不存在");
                 return false;
             }
-            for (int i = 0; i < studentCourses.length; i++) {
-                System.out.println("looking at course: " + studentCourses[i]);
-                Course loopCourse = courseData.getCourseByName(studentCourses[i]);
-                if (loopCourse.timeOverlapsWith(newCourse)) {
-                    logger.warn("为学生" + student.getName() + "添加课程"
-                            + newCourseName + "失败：与学生已有课程："
-                            + studentCourses[i] + "冲突");
-                    return false;
-                }
+            if (this.getScheduleOf(studentName).overlaps(newCourse.getOccupiedTime())) {
+                logger.warn("为学生" + student.getName() + "添加课程"
+                        + newCourseName + "失败：与学生已有课程冲突");
+                return false;
             }
             student.addCourse(newCourseName);
             this.schedules.get(studentName).or(newCourse.getOccupiedTime());
