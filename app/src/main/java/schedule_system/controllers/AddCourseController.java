@@ -1,5 +1,8 @@
 package schedule_system.controllers;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +42,9 @@ public class AddCourseController {
     @PostMapping("/addCourse")
     public boolean addCourse(
             @RequestBody CourseInfoRecord inputCourse) {
-        if (!mapData.isValidLocation(inputCourse.course().getLocationName())) {
+        if (isHttpUrl(inputCourse.course().getLocationName())) {
+            // 若输入的地点是一个url，则允许添加
+        } else if (!mapData.isValidLocation(inputCourse.course().getLocationName())) {
             logger.warn("添加课程 " + inputCourse.course().getName() + " 失败：地点不存在");
             return false;
         }
@@ -90,6 +95,19 @@ public class AddCourseController {
             logger.info("成功将课程" + courseName + "添加到学生课表中");
         }
         return successFlag;
+    }
+
+    /**
+     * @param url
+     * @return
+     */
+    public static boolean isHttpUrl(String url) {
+        Pattern pattern = Pattern.compile("^((https?|ftp|file)://)?"
+                + "([\\w\\-]+\\.){1,5}[A-Za-z]{2,6}"
+                + "(:[0-9]{1,5})?"
+                + "(/\\S*)?$");
+        Matcher matcher = pattern.matcher(url.trim());
+        return matcher.matches();
     }
 }
 
