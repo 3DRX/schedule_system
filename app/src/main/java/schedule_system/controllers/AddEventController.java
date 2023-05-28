@@ -79,7 +79,7 @@ public class AddEventController {
                 newEvent.location(),
                 newEvent.student());
         // check if event exists
-        if (eventData.containsEvent(newEvent.name() + newEvent.student())) {
+        if (eventData.containsEvent(newEvent.name() + "," + newEvent.student())) {
             logger.warn(new StringBuilder()
                     .append("Event ")
                     .append(newEvent.name())
