@@ -1,0 +1,42 @@
+#logPageContent{
+    min-height: 100vh;
+    background-color: papayawhip;
+}
+#logPageSettings{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80vw;
+    height: 10vh;
+    border-radius: 1vw;
+    margin: 0 auto;
+    margin-bottom: 5vh;
+    background-color: #FFF2DD;
+    backdrop-filter: saturate(100%) blur(300px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.15),
+    inset 5px 5px 10px var(--color-light),
+    inset -5px -5px 10px var(--color-shadow);
+}
+#logDay{
+    display: flex;
+}
+#logTime{
+    display: flex;
+}
+#logType{
+    display: flex;
+}
+.logSettingText{
+    margin: 0.6vh 0.3vw 0 0.3vw;
+}
+#logTableBox{
+    padding: 0 2vw 1vh 2vw;
+}
+#logTable{
+    border-radius: 1vh;
+    background-color: rgba(155, 200, 250, 0.8);
+    backdrop-filter: saturate(100%) blur(300px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.15),
+    inset 5px 5px 50px var(--color-light),
+    inset -5px -5px 60px var(--color-shadow);
+}

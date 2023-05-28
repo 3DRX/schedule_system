@@ -58,7 +58,7 @@
 .searchResultItem{
     width: 10rem;
     max-width: 80vw;
-    background-color: rgba(214, 214, 214, 0.479);
+    background-color: rgba(180, 200, 230, 0.6);
     backdrop-filter: saturate(100%) blur(3px);
     box-shadow: 0 0 2vw 0 rgba(49, 49, 49, 0.623);
     margin: 0 auto;
