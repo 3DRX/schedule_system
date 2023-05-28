@@ -54,11 +54,11 @@ public abstract class SystemTime {
     }
 
     public final static int firstIndexOfHour() {
-        return 7;
+        return 6;
     }
 
     public final static int getHourInDay() {
-        return 14;
+        return 16;
     }
 
     public final static int getDayInWeek() {

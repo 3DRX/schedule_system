@@ -38,17 +38,6 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
                     setCourses(response.data);
                 })
         }
-        /*axios.get("http://" + window.location.hostname + ":8888/getCourseStatusByTime", {
-            params: {
-                time: startTime + '-' + (startTime + 1),
-                week: week,
-                day: day,
-                userName: userName,
-            }
-        })
-            .then((response) => {
-                setCourses(response.data);
-            })*/
     }, [startTime, week, day, userName, refresh]);
 
     const renderStyle = () => {
@@ -65,10 +54,9 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
 
     const renderContent = () => {
         if (courses.length === 0) {
-            if (isAdmin && startTime !== 7 && startTime !== 20 && day !== 6 && day !== 7) {
+            if (isAdmin && startTime >= 8 && startTime <= 19 && day >= 1 && day <= 5) {
                 return (
                     <div onClick={() => {
-                        // console.log(`在第${week}周，周${day}，${startTime}-${startTime + 1}添加课程`);
                         setAddClassInfo({
                             week: week,
                             day: day,

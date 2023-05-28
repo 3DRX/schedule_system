@@ -28,10 +28,6 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
         new Array(studentList.length).fill(false)
     );
 
-    // useEffect(() => {
-    //     console.log(checkedState);
-    // }, [checkedState]);
-
     useEffect(() => {
         setCheckedState(new Array(studentList.length).fill(selectAllStudents));
     }, [selectAllStudents]);
@@ -57,7 +53,6 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
     };
 
     const modalOnShow = () => {
-        // console.log(`studentList: ${studentList}`);
         setCheckedState(new Array(studentList.length).fill(false));
         setSelectAllStudents(false);
     };
@@ -65,7 +60,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
     const data = React.useMemo(
         () => {
             let res = [];
-            for (let i = 7; i <= 20; i++) {
+            for (let i = 6; i <= 21; i++) {
                 let cell = { col0: i + '-' + (i + 1) };
                 for (let j = 1; j <= 7; j++) {
                     let key = "col" + j;

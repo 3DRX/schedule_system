@@ -15,7 +15,7 @@ function StudentPage() {
     const [eventSource, setEventSource] = useState(null);
     const [week, setWeek] = useState(1);
     const [day, setDay] = useState(1);
-    const [time, setTime] = useState(7);
+    const [time, setTime] = useState(6);
     const [refreshDashBoard, setRefreshDashBoard] = useState(false);
 
     const [api, contextHolder] = notification.useNotification();
@@ -64,7 +64,7 @@ function StudentPage() {
             setEventSource(null);
         }
         else {
-            const index = (98 * (week - 1)) + (14 * (day - 1)) + (time - 7);
+            const index = (112 * (week - 1)) + (16 * (day - 1)) + (time - 6);
             console.log("http://" + window.location.hostname + ":8888/time/" + userName + "/" + index);
             const newEventSource = new EventSource(
                 "http://"
@@ -83,9 +83,9 @@ function StudentPage() {
                 console.log("result", event.data);
                 const reIndex = parseInt(event.data.split(",")[2]);
                 console.log(reIndex);
-                setWeek(parseInt(reIndex / 98) + 1);
-                setDay(parseInt((reIndex % 98) / 14) + 1);
-                setTime((reIndex % 14) + 7);
+                setWeek(parseInt(reIndex / 112) + 1);
+                setDay(parseInt((reIndex % 112) / 16) + 1);
+                setTime((reIndex % 16) + 6);
                 setData(event.data);
             }
             newEventSource.onerror = (event) => {
@@ -118,7 +118,7 @@ function StudentPage() {
                                 <Button size='sm' variant='outline-secondary' onClick={() => {
                                     setWeek(1);
                                     setDay(1);
-                                    setTime(7);
+                                    setTime(6);
                                     setData("");
                                     setRefreshDashBoard(!refreshDashBoard);
                                 }}>reset</Button>
@@ -157,8 +157,8 @@ function StudentPage() {
                                 value={time}
                                 onChange={setTime}
                                 step={1}
-                                max={21}
-                                min={7}
+                                max={22}
+                                min={6}
                             />
                         </div>
                         <div>点</div>
