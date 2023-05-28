@@ -122,6 +122,7 @@ const StudentCourse = () => {
                 }} /></div>
                 <button id="searchButton" type="submit" onClick={handleSearch}></button>
             </div>
+
             <Modal
                 show={showSearchResult}
                 onHide={() => {
@@ -133,16 +134,16 @@ const StudentCourse = () => {
                 <Modal.Header id="header" closeButton>
                     <Modal.Title>搜索结果</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body id="formContent">
                     <div id="searchResult">
                         {searchResult.map((item, index) => {
                             return (
                                 <div key={index} className="searchResultItem">
-                                    <div>名称</div>
+                                    <div className="searchResultItemTexts">名称</div>
                                     <div className="searchResultItemTexts">{item.name}</div>
-                                    <div>地点</div>
+                                    <div className="searchResultItemTexts">地点</div>
                                     <div className="searchResultItemTexts">{item.location}</div>
-                                    <div>参与者</div>
+                                    <div className="searchResultItemTexts">参与者</div>
                                     <div className="searchResultItemTexts">{item.students.map((item) => {
                                         return (<div>{item}</div>)
                                     })}</div>
@@ -151,12 +152,13 @@ const StudentCourse = () => {
                         })}
                     </div>
                 </Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer id="formContent">
                     <Button variant="secondary" onClick={() => setShowSearchResult(false)}>
                         Close
                     </Button>
                 </Modal.Footer>
             </Modal>
+
             <div className="setWeekTab">
                 <div className="texts">set week</div>
                 <NumberPicker defaultValue={1} step={1} max={20} min={1} onChange={(value) => {
