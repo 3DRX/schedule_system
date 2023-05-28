@@ -198,6 +198,7 @@ public class StudentData {
                 return false;
             }
             for (int i = 0; i < studentCourses.length; i++) {
+                System.out.println("looking at course: " + studentCourses[i]);
                 Course loopCourse = courseData.getCourseByName(studentCourses[i]);
                 if (loopCourse.timeOverlapsWith(newCourse)) {
                     logger.warn("为学生" + student.getName() + "添加课程"

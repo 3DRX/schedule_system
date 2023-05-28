@@ -44,6 +44,9 @@ public class AddCourseController {
             @RequestBody CourseInfoRecord inputCourse) {
         if (isHttpUrl(inputCourse.course().getLocationName())) {
             // 若输入的地点是一个url，则允许添加
+            logger.info("new course {} at {} is online course",
+                    inputCourse.course().getName(),
+                    inputCourse.course().getLocationName());
         } else if (!mapData.isValidLocation(inputCourse.course().getLocationName())) {
             logger.warn("添加课程 " + inputCourse.course().getName() + " 失败：地点不存在");
             return false;

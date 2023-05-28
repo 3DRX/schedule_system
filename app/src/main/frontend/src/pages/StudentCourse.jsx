@@ -143,13 +143,13 @@ const StudentCourse = () => {
                             const examWeek = item.examWeek;
                             return (
                                 <div key={index} className="searchResultItem">
-                                    <div>名称</div>
+                                    <div className="searchResultItemTexts">名称</div>
                                     <div className="searchResultItemTexts">{name}</div>
-                                    <div>地点</div>
+                                    <div className="searchResultItemTexts">地点</div>
                                     <div className="searchResultItemTexts">{location}</div>
-                                    <div>考试周</div>
+                                    <div className="searchResultItemTexts">考试周</div>
                                     <div className="searchResultItemTexts">{examWeek}</div>
-                                    <div>参与者</div>
+                                    <div className="searchResultItemTexts">参与者</div>
                                     <div className="searchResultItemTexts">{students.map((item) => {
                                         return (<div>{item}</div>)
                                     })}</div>
