@@ -4,8 +4,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {
     createBrowserRouter,
-    RouterProvider,
-    Route,
+    RouterProvider
 } from "react-router-dom";
 import LoginPage from './pages/LoginPage';
 import StudentPage from './pages/StudentPage';
