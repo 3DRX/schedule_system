@@ -27,8 +27,8 @@ const LoginPage = () => {
                 scale: 1.00,
                 scaleMobile: 1.00,
                 backgroundColor: 0xffffff,
-                color1: 0x796400,
-                color2: 0xcf8e03,
+                color1: 0xFFA947,
+                color2: 0xE08825,
                 birdSize: 2.40,
                 wingSpan: 29.00,
                 quantity: 3.00,
@@ -69,57 +69,69 @@ const LoginPage = () => {
 
     if (!showRegisterPage) {
         return (
+
             <div className="AllPage" ref={myRef}>
+                <div className="bg"></div>
+                <div className="bg bg2"></div>
+                <div className="bg bg3"></div>
                 <div className="LoginPageContent">
-                    <div id="SMS"><h1>学生日程管理系统</h1></div>
+                    <div id="registerTitle"><h1>学生日程管理系统</h1></div>
                     <Form noValidate onSubmit={handleSubmit} validated={userNameValid && passwordValid}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Control
-                                className="registerAccountInput"
-                                required
-                                type="text"
-                                placeholder="用户名"
-                                defaultValue=""
-                                isInvalid={!userNameValid}
-                                onChange={({ target: { value } }) => {
-                                    if (value.match(/^[\u4e00-\u9fa5_a-zA-Z0-9]+$/)) {
-                                        setUserName(value);
-                                        setUserNameValid(true);
-                                    }
-                                    else {
-                                        setUserName("");
-                                        setUserNameValid(false);
-                                    }
-                                }}
-                            />
-                            <Form.Control.Feedback type="invalid" className="warning">
-                                只能包含汉字、字母、数字、下划线
-                            </Form.Control.Feedback>
+                            <div className="inputArea fixedHeight">
+                                <div className="registerAccount">
+                                    <Form.Control
+                                        className="registerAccountInput"
+                                        required
+                                        type="text"
+                                        placeholder="用户名"
+                                        defaultValue=""
+                                        isInvalid={!userNameValid}
+                                        onChange={({ target: { value } }) => {
+                                            if (value.match(/^[\u4e00-\u9fa5_a-zA-Z0-9]+$/)) {
+                                                setUserName(value);
+                                                setUserNameValid(true);
+                                            }
+                                            else {
+                                                setUserName("");
+                                                setUserNameValid(false);
+                                            }
+                                        }}
+                                    />
+                                    <Form.Control.Feedback type="invalid" className="warning">
+                                        只能包含汉字、字母、数字、下划线
+                                    </Form.Control.Feedback>
+                                </div>
+                            </div>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Control
-                                className="registerAccountInput"
-                                required
-                                type="password"
-                                placeholder="密码"
-                                defaultValue=""
-                                isInvalid={!passwordValid}
-                                onChange={({ target: { value } }) => {
-                                    if (value.match(/^[a-zA-Z0-9]+$/)) {
-                                        setPassword(value);
-                                        setPasswordValid(true);
-                                    }
-                                    else {
-                                        setPassword("");
-                                        setPasswordValid(false);
-                                    }
-                                }}
-                            />
-                            <Form.Control.Feedback type="invalid" className="warning">
-                                只能包含字母、数字
-                            </Form.Control.Feedback>
+                            <div className="inputArea noMargin fixedHeight">
+                                <div className="registerAccount">
+                                    <Form.Control
+                                        className="registerAccountInput"
+                                        required
+                                        type="password"
+                                        placeholder="密码"
+                                        defaultValue=""
+                                        isInvalid={!passwordValid}
+                                        onChange={({ target: { value } }) => {
+                                            if (value.match(/^[a-zA-Z0-9]+$/)) {
+                                                setPassword(value);
+                                                setPasswordValid(true);
+                                            }
+                                            else {
+                                                setPassword("");
+                                                setPasswordValid(false);
+                                            }
+                                        }}
+                                    />
+                                    <Form.Control.Feedback type="invalid" className="warning">
+                                        只能包含字母、数字
+                                    </Form.Control.Feedback>
+                                </div>
+                            </div>
                         </Form.Group>
-                        <div className="buttonArea">
+                        <div className="buttonArea noMargin">
                             <Button onClick={() => setShowRegisterPage(true)}
                                 id="startButton" className="loginButton">
                                 <span className="shadow"></span>
@@ -141,6 +153,9 @@ const LoginPage = () => {
     } else {
         return (
             <div className="AllPage" ref={myRef}>
+                <div className="bg"></div>
+                <div className="bg bg2"></div>
+                <div className="bg bg3"></div>
                 <RegisterPage setShowRegisterPage={setShowRegisterPage} />
             </div>
         );

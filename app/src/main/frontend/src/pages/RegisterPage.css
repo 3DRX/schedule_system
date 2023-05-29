@@ -13,7 +13,8 @@
 }
 #registerTitle{
     text-align: center;
-    margin-top: 2.5vh;
+    margin-top: 3vh;
+    margin-bottom: 2vh;
 }
 .registerName{
     font-size: 2vh;
@@ -40,11 +41,11 @@
     background-color: whitesmoke;
 }
 .warning{
-    font-size: 1.5vh;
-    min-height: 1.5vh;
+    font-size: 0.5vh;
+    min-height: 1vh;
 }
 .noMargin{
-    margin-top: -2.5vh;
+    margin-top: -1.5vh;
 }
 .registerButtonArea{
     margin-top: -1vh;
@@ -52,6 +53,6 @@
     justify-content: center;
 }
 .fixedHeight{
-    min-height: 11.5vh;
+    min-height: 9vh;
 }
 
