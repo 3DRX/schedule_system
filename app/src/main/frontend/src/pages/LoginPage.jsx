@@ -52,7 +52,7 @@ const LoginPage = () => {
                     const prefix = "http://" + window.location.host;
                     setResText("登陆成功");
                     if (response.data.isAdmin) {
-                        window.open(`${prefix}/admin?userName=${userName}`);
+                        window.open(`${prefix}/admin/course?userName=${userName}`);
                     }
                     else {
                         window.open(`${prefix}/student?userName=${userName}`);
