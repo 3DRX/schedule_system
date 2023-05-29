@@ -37,6 +37,9 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
             .then((response) => {
                 setStudentList(response.data);
             })
+            .catch((error) => {
+                console.log(error);
+            });
     }, [refresh]);
 
     useEffect(() => {
