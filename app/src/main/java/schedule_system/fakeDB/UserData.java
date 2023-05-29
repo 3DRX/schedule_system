@@ -29,10 +29,22 @@ public class UserData {
     }
 
     public boolean addStudent(theUser user) {
-        if (this.students.contains(user) && !user.getId().equals("admin")) {
-            return false;
+        if (!this.students.contains(user) && !user.getId().equals("admin")) {
+            this.students.add(user);
+            writeUsers(this.students.toArray());
+            return true;
         }
-        this.students.add(user);
+        return false;
+    }
+
+    public boolean removeStudent(String id) {
+        KList<theUser> newStudents = new KList<>(theUser.class);
+        for (theUser user : this.students) {
+            if (!user.getId().equals(id)) {
+                newStudents.add(user);
+            }
+        }
+        this.students = newStudents;
         writeUsers(this.students.toArray());
         return true;
     }

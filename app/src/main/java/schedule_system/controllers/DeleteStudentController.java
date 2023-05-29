@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import schedule_system.fakeDB.EventData;
 import schedule_system.fakeDB.StudentData;
+import schedule_system.fakeDB.UserData;
 
 @RestController
 @CrossOrigin
@@ -17,11 +17,12 @@ public class DeleteStudentController {
     @Autowired
     StudentData studentData;
     @Autowired
-    EventData eventData;
+    UserData userData;
 
     @PostMapping("/deleteStudent")
     public boolean deleteStudent(String id) {
         boolean flag = studentData.removeStudent(id);
+        flag &= userData.removeStudent(id);
         if (flag) {
             logger.info("删除学生 " + id + " 成功");
         } else {
