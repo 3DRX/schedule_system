@@ -208,7 +208,6 @@ const StudentOthers = () => {
                                               }}
                                 />
                             </div>
-
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="secondary" onClick={() => setShowModal(false)}>
@@ -220,11 +219,9 @@ const StudentOthers = () => {
                         </Modal.Footer>
                     </Form>
                 </Modal>
-
             </div>
-
         </>
-    )
+    );
 };
 
 export default StudentOthers;

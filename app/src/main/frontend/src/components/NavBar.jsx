@@ -15,6 +15,7 @@ function NavBar({ isAdmin, userName, enabled }) {
             <>
                 <Link className='navBarItem' to={`/admin/course?userName=${userName}`}>课程</Link>
                 <Link className='navBarItem' to={`/admin/others?userName=${userName}`}>日志</Link>
+                <Link className='navBarItem' to={`/admin/students?userName=${userName}`}>用户管理</Link>
             </>
         )
     }

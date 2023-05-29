@@ -18,6 +18,7 @@ import StudentActivities from './pages/StudentActivities';
 import StudentOthers from './pages/StudentOthers';
 import Navigation from './pages/Navigation';
 import RegisterPage from './pages/RegisterPage';
+import AdminStudents from './pages/AdminStudents';
 
 // 不同URL对应不同的页面
 const router = createBrowserRouter([
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
     {
         path: "/admin/others",
         element: <AdminOthers />
+    },
+    {
+        path: "/admin/students",
+        element: <AdminStudents />
     },
     {
         path: "/student/course",
