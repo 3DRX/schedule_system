@@ -87,7 +87,7 @@ const RegisterPage = ({ setShowRegisterPage }) => {
                         </div>
                     </div>
                 </Form.Group>
-                <div className="registerButtonArea">
+                <div className="buttonArea noMargin">
                     <Button variant="secondary"
                         id="startButton"
                         className="loginButton"
