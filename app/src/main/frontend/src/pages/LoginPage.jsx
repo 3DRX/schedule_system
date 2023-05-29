@@ -35,35 +35,41 @@ const LoginPage = () => {
 
     return (
         <div>
-            <view className="AllPage">
-                <view className="LoginPageContent">
-                    <view className="userProfilePhotoArea">
-                    </view>
+            <div className="AllPage">
+                <div className="LoginPageContent">
+                    <div className="userProfilePhotoArea">
+                    </div>
                     <form onSubmit={handleSubmit}>
-                        <view className="inputArea">
-                            <view className="account">
+                        <div id="SMS"><h1>学生日程管理系统</h1></div>
+                        <div className="inputArea">
+                            <div className="account">
                                 <input type="text" name="id" bindinput="EmailInput" placeholder="请输入账号"
                                     placeholder-style="font-size: 1.2rem;" />
-                            </view>
-                            <view className="password">
+                            </div>
+                            <div className="password">
                                 <input type="password" name="password" bindinput="passwordInput"
                                     placeholder=" 请输入密码" placeholder-style="font-size: 1.2rem;" />
-                            </view>
-                        </view>
-                        <view className="buttonArea">
+                            </div>
+                        </div>
+                        <div className="buttonArea">
+                            <Button onClick={() => {
+                                window.open("http://" + window.location.host + "/register", "_self");
+                            }} id="startButton" className="loginButton">
+                                <span className="shadow"></span>
+                                <span className="edge" id="registerEdge"></span>
+                                <span className="front text" id="registerFront">注册</span>
+                            </Button>
                             <Button type="submit" id="startButton" className="loginButton">
                                 <span className="shadow"></span>
                                 <span className="edge"></span>
                                 <span className="front text">登录</span>
                             </Button>
-                            <Button onClick={() => {
-                                window.open("http://" + window.location.host + "/register", "_self");
-                            }}>注册</Button>
-                        </view>
+
+                        </div>
                         <div id="loginFail">{resText}</div>
                     </form>
-                </view>
-            </view>
+                </div>
+            </div>
         </div>
     );
 };
