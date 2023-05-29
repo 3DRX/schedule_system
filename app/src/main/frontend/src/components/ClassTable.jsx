@@ -37,6 +37,9 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
             .then((response) => {
                 setStudentList(response.data);
             })
+            .catch((error) => {
+                console.log(error);
+            });
     }, [refresh]);
 
     useEffect(() => {
@@ -180,10 +183,8 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
             },
             students: resStudents
         };
-        // console.log(res);
         axios.post("http://" + window.location.hostname + ":8888/addCourse", res)
-            .then((response) => {
-                // console.log(response.data)
+            .then((_) => {
             })
             .finally(() => {
                 setRefresh(!refresh);

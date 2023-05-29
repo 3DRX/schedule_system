@@ -46,6 +46,36 @@ public class StudentData {
                 });
     }
 
+    private Student[] allStudents() {
+        return Arrays.stream(this.students.getKeyArray(String.class))
+                .map(i -> this.students.get(i))
+                .toArray(size -> new Student[size]);
+    }
+
+    public boolean removeStudent(String name) {
+        Student student = this.students.get(name);
+        if (student == null) {
+            logger.warn("删除学生 " + name + " 失败，学生不存在");
+            return false;
+        }
+        for (String event : student.getEvents()) {
+            deleteEventFromStudent(event, name);
+        }
+        logger.info("删除学生 " + student.getName() + " 的全部临时事物");
+        for (String activity : student.getActivities()) {
+            deleteActivityFromStudet(activity, name);
+        }
+        this.students.remove(name);
+        this.schedules.remove(name);
+        return writeStudentThings(allStudents());
+    }
+
+    public boolean addStudent(String name) {
+        this.students.put(name, new Student(name));
+        this.schedules.put(name, new BitMap(ClassTime.getMaxIndex()));
+        return writeStudentThings(allStudents());
+    }
+
     public BitMap getScheduleOf(String studentName) {
         return this.schedules.get(studentName);
     }

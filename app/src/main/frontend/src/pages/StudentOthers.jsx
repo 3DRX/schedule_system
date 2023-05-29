@@ -117,6 +117,9 @@ const StudentOthers = () => {
 
     return (
         <>
+            <div className="bg"></div>
+            <div className="bg bg2"></div>
+            <div className="bg bg3"></div>
             <NavBar isAdmin="false" userName={userName} />
             <div id="StudentOthersContent">
                 <h1>临时事务管理</h1>
@@ -208,7 +211,6 @@ const StudentOthers = () => {
                                               }}
                                 />
                             </div>
-
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="secondary" onClick={() => setShowModal(false)}>
@@ -220,11 +222,9 @@ const StudentOthers = () => {
                         </Modal.Footer>
                     </Form>
                 </Modal>
-
             </div>
-
         </>
-    )
+    );
 };
 
 export default StudentOthers;

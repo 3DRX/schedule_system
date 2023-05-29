@@ -3,7 +3,6 @@ package schedule_system.fakeDB;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -13,24 +12,13 @@ import schedule_system.utils.KList;
 import schedule_system.utils.theUser;
 
 public class UserData {
-    // 用于读写json
     final private String path = "src/main/resources/users.json";
     final private Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    // 从resources/users.json读取所有的用户存入数组中
-    private theUser[] jsonUsers;
     private KList<theUser> students;
 
     public UserData() {
-        this.jsonUsers = readUsers();
-        this.students = getStudents();
-    }
-
-    /**
-     * @return theUser[] allUsers
-     */
-    public theUser[] allUsers() {
-        return this.jsonUsers;
+        this.students = readUsers();
     }
 
     /**
@@ -40,33 +28,42 @@ public class UserData {
         return this.students.toArray(new theUser[this.students.size()]);
     }
 
-    /**
-     * 从所有用户的数组中找出学生并返回一个所有学生的数组
-     * 
-     * @return
-     */
-    private KList<theUser> getStudents() {
-        KList<theUser> res = new KList<>(theUser.class);
-        Arrays.stream(this.jsonUsers)
-                .filter(e -> !e.isAdmin())
-                .forEach(e -> res.add(e));
-        return res;
+    public boolean addStudent(theUser user) {
+        if (!this.students.contains(user) && !user.getId().equals("admin")) {
+            this.students.add(user);
+            writeUsers(this.students.toArray());
+            return true;
+        }
+        return false;
     }
 
-    /**
-     * 从resources/users.json中读取users，返回users[]
-     * 
-     * @return theUser[]
-     */
-    private theUser[] readUsers() {
-        theUser[] read_users = {};
+    public boolean removeStudent(String id) {
+        KList<theUser> newStudents = new KList<>(theUser.class);
+        for (theUser user : this.students) {
+            if (!user.getId().equals(id)) {
+                newStudents.add(user);
+            }
+        }
+        this.students = newStudents;
+        writeUsers(this.students.toArray());
+        return true;
+    }
+
+    private KList<theUser> readUsers() {
         try {
-            JsonReader reader = new JsonReader(new FileReader(path));
-            read_users = new Gson().fromJson(reader, theUser[].class);
+            KList<theUser> res = new KList<>(theUser.class);
+            theUser[] users;
+            users = new Gson()
+                    .fromJson(new JsonReader(new FileReader(path)),
+                            theUser[].class);
+            for (theUser user : users) {
+                res.add(user);
+            }
+            return res;
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
-        return read_users;
     }
 
     /**

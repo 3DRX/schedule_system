@@ -77,6 +77,9 @@ const AdminOthers = () => {
 
     return (
         <>
+            <div className="bg"></div>
+            <div className="bg bg2"></div>
+            <div className="bg bg3"></div>
             <NavBar isAdmin="true" userName={userName} />
             <div id="logPageContent">
                 <h1>日志查看</h1>

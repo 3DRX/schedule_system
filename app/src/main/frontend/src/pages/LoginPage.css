@@ -1,9 +1,10 @@
 .AllPage{
-    background-size: 75% 75%;
+
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     width: 100vw;
-    height: 90vh;
+    min-height: 100vh;
     padding-top: 0vh;
     display: flex;
     justify-content: center;
@@ -16,12 +17,16 @@
     justify-content: center;
     background-color: rgba(214, 214, 214, 0.479);
     backdrop-filter: saturate(100%) blur(3px);
-    height: 35vh;
+    height: 40vh;
     width: 50vw;
     border-radius: 4vh;
     box-shadow: 0px 0px 5vw 1vw rgba(49, 49, 49, 0.623);
     margin-top: 31vh;
     padding-bottom: 3vh;
+}
+#SMS{
+    text-align: center;
+    margin-bottom: 3vh;
 }
 .userProfilePhotoArea{
     display: flex;
@@ -42,7 +47,8 @@
 }
 .inputArea{
     display: block;
-    width: 50vw;
+    width: 40vw;
+    margin: 0 auto;
 }
 .account{
     display: flex;
@@ -57,7 +63,7 @@
 .account input{
     margin-top: 0.2rem;
     width: 40vw;
-    height: 4vh;
+    height: 5vh;
     line-height: 1.6rem;
     text-align: center;
     border-style: solid;
@@ -78,7 +84,7 @@
 }
 .password input{
     width: 40vw;
-    height: 4vh;
+    height: 5vh;
     line-height: 1.6rem;
     text-align: center;
     border-style: solid;
@@ -96,13 +102,14 @@
     text-decoration: underline;
 }
 .buttonArea{
-    margin-top: 3rem;
+    margin-top: 3vh;
     display: flex;
     justify-content: center;
 }
 .loginButton{
-    height: 5vh;
-    width: 20vw;
+    height: 5.5vh;
+    width: 13vw;
+    margin: 0 3vw 0 3vw;
     text-align: center;
 }
 #loginFail{

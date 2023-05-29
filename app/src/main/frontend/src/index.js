@@ -4,8 +4,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {
     createBrowserRouter,
-    RouterProvider,
-    Route,
+    RouterProvider
 } from "react-router-dom";
 import LoginPage from './pages/LoginPage';
 import StudentPage from './pages/StudentPage';
@@ -17,12 +16,18 @@ import StudentCourse from './pages/StudentCourse';
 import StudentActivities from './pages/StudentActivities';
 import StudentOthers from './pages/StudentOthers';
 import Navigation from './pages/Navigation';
+import RegisterPage from './pages/RegisterPage';
+import AdminStudents from './pages/AdminStudents';
 
 // 不同URL对应不同的页面
 const router = createBrowserRouter([
     {
         path: "/",
         element: <LoginPage />
+    },
+    {
+        path: "/register",
+        element: <RegisterPage />
     },
     {
         path: "/student",
@@ -43,6 +48,10 @@ const router = createBrowserRouter([
     {
         path: "/admin/others",
         element: <AdminOthers />
+    },
+    {
+        path: "/admin/students",
+        element: <AdminStudents />
     },
     {
         path: "/student/course",

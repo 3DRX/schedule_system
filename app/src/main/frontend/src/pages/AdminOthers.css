@@ -1,6 +1,6 @@
 #logPageContent{
     min-height: 100vh;
-    background-color: papayawhip;
+
 }
 #logPageSettings{
     display: flex;
@@ -11,7 +11,7 @@
     border-radius: 1vw;
     margin: 0 auto;
     margin-bottom: 5vh;
-    background-color: #FFF2DD;
+
     backdrop-filter: saturate(100%) blur(300px);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.15),
     inset 5px 5px 10px var(--color-light),

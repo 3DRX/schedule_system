@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: papayawhip;
     padding: 1vh 0 1vh 0;
 
 }
@@ -15,7 +14,6 @@
     margin: 0 1vw 0 1vw;
     text-align: center;
     transition: 0.2s;
-    background-color: papayawhip;
     backdrop-filter: saturate(100%) blur(300px);
     box-shadow: 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0),
     inset 5px 5px 10px var(--color-light),
@@ -23,7 +21,6 @@
 }
 #searchBox:hover{
     border: solid black 0.3vh;
-    background-color: #E4DCCF;
     background-position: 90% 50%;
     transition: 0.1s;
 }
