@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import './LoginPage.css';
-import { Form, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 const LoginPage = () => {
     const [resText, setResText] = useState("");
@@ -12,14 +12,11 @@ const LoginPage = () => {
         const formData = new FormData(form);
         const jsonData = Object.fromEntries(formData.entries());
         const userName = formData.getAll("id")[0];
-        // 仍然不能在其他设备上登陆
         axios.post("http://" + window.location.hostname + ":8888/login", jsonData)
-            .then(function (response) {
-                // console.log(response);
-                // console.log(response.data.isValid)
+            .then(function(response) {
                 if (response.data.isValid) {
-                    // console.log("登陆成功");
                     const prefix = "http://" + window.location.host;
+                    setResText("登陆成功");
                     if (response.data.isAdmin) {
                         window.open(`${prefix}/admin?userName=${userName}`);
                     }
@@ -28,11 +25,10 @@ const LoginPage = () => {
                     }
                 }
                 else {
-                    //console.log("登陆失败");
                     setResText("登陆失败");
                 }
             })
-            .catch(function (error) {
+            .catch(function(error) {
                 console.log(error);
             });
     };
@@ -60,13 +56,16 @@ const LoginPage = () => {
                                 <span className="edge"></span>
                                 <span className="front text">登录</span>
                             </Button>
+                            <Button onClick={() => {
+                                window.open("http://" + window.location.host + "/register", "_self");
+                            }}>注册</Button>
                         </view>
                         <div id="loginFail">{resText}</div>
                     </form>
                 </view>
             </view>
         </div>
-    )
-}
+    );
+};
 
 export default LoginPage;

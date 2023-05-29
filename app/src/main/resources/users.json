@@ -1,17 +1,10 @@
 [
-    {
-        "isAdmin": true,
-        "id": "001",
-        "password": "password"
-    },
-    {
-        "isAdmin": false,
-        "id": "002",
-        "password": "1"
-    },
-    {
-        "isAdmin": false,
-        "id": "003",
-        "password": "1"
-    }
+  {
+    "id": "康京旸",
+    "password": "password"
+  },
+  {
+    "id": "张烨",
+    "password": "pwssword"
+  }
 ]

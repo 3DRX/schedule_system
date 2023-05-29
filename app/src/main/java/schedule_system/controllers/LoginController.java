@@ -30,10 +30,13 @@ public class LoginController {
     @PostMapping("/login")
     public UserRecord loginValidation(
             @RequestBody theUser iptUser) {
-        for (theUser user : userData.allUsers()) {
+        if (iptUser.getId().equals("admin") && iptUser.getPassword().equals("admin")) {
+            return new UserRecord(true, true);
+        }
+        for (theUser user : userData.students()) {
             if (iptUser.getId().equals(user.getId()) && iptUser.getPassword().equals(user.getPassword())) {
                 logger.info(iptUser.getId() + " 登陆成功");
-                return new UserRecord(true, user.isAdmin());
+                return new UserRecord(true, false);
             }
         }
         logger.info(iptUser.getId() + " 登陆失败，用户名或密码错误");
