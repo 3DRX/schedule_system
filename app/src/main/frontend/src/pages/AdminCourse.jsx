@@ -15,6 +15,9 @@ const AdminCourse = () => {
 
     return (
         <>
+            <div className="bg"></div>
+            <div className="bg bg2"></div>
+            <div className="bg bg3"></div>
             <NavBar isAdmin="true" userName={userName} />
             <div className="adminCourseContent">
                 <div className="setWeekTab">

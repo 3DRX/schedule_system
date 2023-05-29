@@ -116,6 +116,9 @@ function StudentPage() {
 
     return (
         <div>
+            <div className="bg"></div>
+            <div className="bg bg2"></div>
+            <div className="bg bg3"></div>
             <NavBar isAdmin="false" userName={userName} enabled={!start} />
             <div id="studentPageContent">
                 <div id="welcome">

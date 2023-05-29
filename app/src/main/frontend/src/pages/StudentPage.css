@@ -4,7 +4,7 @@
     display: block;
     justify-content: center;
     margin: 0;
-    background-color: papayawhip;
+
     padding-bottom: 2vh;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.15),
     inset 5px 5px 10px var(--color-light),
@@ -30,8 +30,8 @@
 /*
 background-color: rgba(214, 214, 214, 0.479);
     background: linear-gradient(145deg, #e9e9e9, #d7d7d7);*/
-    background-color: #FFF2DD;
-    backdrop-filter: saturate(100%) blur(300px);
+
+
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.15),
     inset 5px 5px 10px var(--color-light),
     inset -5px -5px 10px var(--color-shadow);
@@ -41,8 +41,9 @@ background-color: rgba(214, 214, 214, 0.479);
 #timeForm:hover{
     margin: 2vh 5vh 2vh 5vh;
     transition: 0.8s;
-    background-color: #E4DCCF;
+    background-color: rgba(255,255,255,0.4);
     background-position: 90% 50%;
+
 }
 
 #twoButtons{
@@ -80,7 +81,7 @@ background-color: rgba(214, 214, 214, 0.479);
     border-radius: 0.5vh;
     border: 0;
 
-    background-color: #FFF2DD;
+
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.15),
     inset 8px 8px 10px var(--color-light),
     inset -2px -2px 10px var(--color-shadow)
@@ -94,7 +95,7 @@ background-color: rgba(214, 214, 214, 0.479);
     margin-right: 0.5vw;
     border-radius: 0.5vh;
     border: 0;
-    background-color: #FFF2DD;
+
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.15),
     inset 8px 8px 10px var(--color-light),
     inset -2px -2px 10px var(--color-shadow)
@@ -109,7 +110,7 @@ background-color: rgba(214, 214, 214, 0.479);
     margin-right: 0.8vw;
     border-radius: 0.5vh;
     border: 0;
-    background-color: #FFF2DD;
+
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.15),
     inset 8px 8px 10px var(--color-light),
     inset -2px -2px 10px var(--color-shadow)
@@ -131,8 +132,8 @@ background-color: rgba(214, 214, 214, 0.479);
     /*
     background-color: rgba(214, 214, 214, 0.479);
         background: linear-gradient(145deg, #e9e9e9, #d7d7d7);*/
-    background-color: #FFF2DD;
-    backdrop-filter: saturate(100%) blur(300px);
+
+
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.15),
     inset 5px 5px 10px var(--color-light),
     inset -5px -5px 10px var(--color-shadow);
@@ -142,7 +143,35 @@ background-color: rgba(214, 214, 214, 0.479);
 #nextdayNotifyBox:hover{
     margin: 2vh 5vh 2vh 5vh;
     transition: 0.8s;
-    background-color: #E4DCCF;
+    background-color: rgba(255,255,255,0.4);
     background-position: 90% 50%;
+}
+.bg {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #FEF8CA 50%,#9BC6E0 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+}
+
+.bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:4s;
+}
+
+.bg3 {
+    animation-duration:5s;
+}
+@keyframes slide {
+    0% {
+        transform:translateX(-25%);
+    }
+    100% {
+        transform:translateX(25%);
+    }
 }
 

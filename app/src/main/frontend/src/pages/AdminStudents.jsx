@@ -55,10 +55,18 @@ const AdminStudents = () => {
 
     return (
         <>
+            <div className="bg"></div>
+            <div className="bg bg2"></div>
+            <div className="bg bg3"></div>
             <NavBar isAdmin="true" userName={userName} />
-            <h1>用户管理</h1>
-            <Button onClick={() => setRefresh(!refresh)}>刷新</Button>
-            <Table columns={columns} dataSource={data} />
+            <div id="userContent">
+                <Button onClick={() => setRefresh(!refresh)}>刷新</Button>
+                <div id="logTableBox">
+                    <Table columns={columns} dataSource={data} />
+                </div>
+            </div>
+
+
             <Modal
                 show={showConfirm}
                 onHide={() => setShowConfirm(false)}
