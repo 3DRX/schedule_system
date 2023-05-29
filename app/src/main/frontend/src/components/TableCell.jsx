@@ -24,6 +24,9 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
                 .then((response) => {
                     setCourses(response.data);
                 })
+                .catch((error) => {
+                    console.log(error);
+                });
         }
         else {
             axios.get("http://" + window.location.hostname + ":8888/studentGetStatusByTime", {
@@ -37,6 +40,9 @@ export default function TableCell({ startTime, week, day, userName, isAdmin, set
                 .then((response) => {
                     setCourses(response.data);
                 })
+                .catch((error) => {
+                    console.log(error);
+                });
         }
     }, [startTime, week, day, userName, refresh]);
 

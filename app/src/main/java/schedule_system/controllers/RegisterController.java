@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import schedule_system.fakeDB.StudentData;
 import schedule_system.fakeDB.UserData;
 import schedule_system.utils.theUser;
 
@@ -18,10 +19,13 @@ public class RegisterController {
 
     @Autowired
     UserData userData;
+    @Autowired
+    StudentData studentData;
 
     @PostMapping("/register")
     public boolean register(@RequestBody theUser newUser) {
         boolean flag = userData.addStudent(newUser);
+        flag &= studentData.addStudent(newUser.getId());
         if (flag) {
             logger.info("注册成功：" + newUser.getId());
         } else {

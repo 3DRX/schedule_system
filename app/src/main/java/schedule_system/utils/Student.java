@@ -7,9 +7,9 @@ public class Student {
     private String name;
 
     public Student(String name) {
-        this.courses = null;
-        this.events = null;
-        this.activities = null;
+        this.courses = new String[0];
+        this.events = new String[0];
+        this.activities = new String[0];
         this.name = name;
     }
 
