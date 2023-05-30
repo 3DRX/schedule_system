@@ -1,15 +1,16 @@
 package schedule_system.utils;
 
 /**
- * Course
+ * 课程
+ * startWeek 课程开始周
+ * endWeek 课程结束周
+ * testWeek 课程考试周
+ * classTime 每周的上课时间
+ * examTime 考试时间
+ * name 课程名称（唯一id）
+ * location 课程地点
  */
 public class Course {
-    // 检查输入参数是否符合要求
-    // 规则如下：
-    // 1. 一学期共有20周（即课程或考试不能>20）
-    // 2. 课程结束周必须大于等于课程开始周
-    // 3. 课程考试周必须大于课程结束周
-    // 4. 课程的上课时间和考试时间须合法
 
     private int startWeek; // 课程开始周
     private int endWeek; // 课程结束周
@@ -19,6 +20,21 @@ public class Course {
     private String name; // 课程名称（唯一id）
     private String location; // 课程地点
 
+    /**
+     * 检查输入规则如下：
+     * 1. 一学期共有20周（即课程或考试不能>20）
+     * 2. 课程结束周必须大于等于课程开始周
+     * 3. 课程考试周必须大于课程结束周
+     * 4. 课程的上课时间和考试时间须合法
+     * 
+     * @param startWeek 课程开始周
+     * @param endWeek   课程结束周
+     * @param testWeek  课程考试周
+     * @param classTime 每周的上课时间
+     * @param examTime  考试时间
+     * @param name      课程名称（唯一id）
+     * @param location  课程地点
+     */
     public Course(
             final int startWeek,
             final int endWeek,
@@ -27,16 +43,15 @@ public class Course {
             final ClassTime examTime,
             final String name,
             final String location) {
-
         int weekInSemester = SystemTime.getWeekInSemester();
         if (endWeek > weekInSemester || startWeek > weekInSemester || testWeek > weekInSemester)
-            throw new IllegalArgumentException("学期周数要小于等于20！！！！");
+            throw new IllegalArgumentException("学期周数要小于等于20");
         if (startWeek > endWeek)
-            throw new IllegalArgumentException("课程结束周必须大于等于课程开始周！！！！");
+            throw new IllegalArgumentException("课程结束周必须大于等于课程开始周");
         if (testWeek <= endWeek)
-            throw new IllegalArgumentException("课程考试周必须大于课程结束周！！！！");
+            throw new IllegalArgumentException("课程考试周必须大于课程结束周");
         if (endWeek <= 0 || startWeek <= 0 || testWeek <= 0)
-            throw new IllegalArgumentException("周数不能是负数！！！！");
+            throw new IllegalArgumentException("周数不能是负数");
         setStartWeek(startWeek);
         setEndWeek(endWeek);
         setTestWeek(testWeek);
