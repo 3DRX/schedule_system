@@ -1,2 +1,19 @@
 [
+  {
+    "startWeek": 1,
+    "endWeek": 10,
+    "testWeek": 11,
+    "classTime": {
+      "day": 1,
+      "time": 9,
+      "duration": 3
+    },
+    "examTime": {
+      "day": 1,
+      "time": 9,
+      "duration": 3
+    },
+    "name": "数据结构",
+    "location": "教三楼"
+  }
 ]

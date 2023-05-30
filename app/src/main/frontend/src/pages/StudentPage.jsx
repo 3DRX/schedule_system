@@ -48,7 +48,7 @@ function StudentPage() {
             const isCourse = data.split(",")[3];
             console.log("open navigation");
             console.log(`isCourse: ${isCourse}`);
-            window.open(`${prefix}/student/nav?courseName=${courseName}&location=${location}&isCourse=${isCourse}&userName=${userName}`);
+            window.open(`${prefix}/student/nav?courseName=${courseName}&location=${location}&isCourse=${isCourse}&userName=${userName}`, "_self");
             api.destroy();
         }
     }
