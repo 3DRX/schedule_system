@@ -58,6 +58,7 @@ public class DashBoardController {
         String[] participants = new String[1];
         participants[0] = studentName;
         Arrays.stream(eventData.getEventByDay(week, day))
+                .filter(e -> e.getPerson().equals(studentName))
                 .forEach(e -> res.add(new CellContent(
                         e.getName(),
                         participants,

@@ -51,14 +51,20 @@ const LoginPage = () => {
                 if (response.data.isValid) {
                     const prefix = "http://" + window.location.host;
                     setResText("登陆成功");
+                    setUserName("");
+                    setPassword("");
+                    setUserNameValid(false);
+                    setPasswordValid(false);
                     if (response.data.isAdmin) {
-                        window.open(`${prefix}/admin/course?userName=${userName}`);
+                        window.open(`${prefix}/admin/course?userName=${userName}`, "_self");
                     }
                     else {
-                        window.open(`${prefix}/student?userName=${userName}`);
+                        window.open(`${prefix}/student?userName=${userName}`, "_self");
                     }
                 }
                 else {
+                    setPassword("");
+                    setPasswordValid(false);
                     setResText("登陆失败");
                 }
             })

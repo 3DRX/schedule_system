@@ -1,12 +1,18 @@
 [
   {
-    "courses": [],
-    "events": [],
+    "courses": [
+      "数据结构"
+    ],
+    "events": [
+      "刷牙"
+    ],
     "activities": [],
     "name": "康京旸"
   },
   {
-    "courses": [],
+    "courses": [
+      "数据结构"
+    ],
     "events": [],
     "activities": [],
     "name": "张烨"

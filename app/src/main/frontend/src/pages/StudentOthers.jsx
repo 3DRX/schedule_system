@@ -187,8 +187,8 @@ const StudentOthers = () => {
                                     />
                                 </div>
                                 <div className="weeks" id="tempEventTime">
-                                    <NumberPicker defaultValue={time} step={1} max={21} min={7} onChange={(value) => {
-                                        if (value !== null && value >= 1 && value <= 21) {
+                                    <NumberPicker defaultValue={time} step={1} max={21} min={6} onChange={(value) => {
+                                        if (value !== null && value >= 6 && value <= 21) {
                                             setTime(value);
                                         }
                                     }}
