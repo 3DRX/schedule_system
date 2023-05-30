@@ -21,7 +21,7 @@ const AdminCourse = () => {
             <NavBar isAdmin="true" userName={userName} />
             <div className="adminCourseContent">
                 <div className="setWeekTab">
-                    <div id="texts">set week</div>
+                    <div id="texts">第</div>
                     <NumberPicker defaultValue={1} step={1} max={20} min={1} onChange={(value) => {
                         if (value !== null && (value >= 1 && value <= 20)) {
                             // console.log(`set value to ${value}`)
@@ -30,6 +30,7 @@ const AdminCourse = () => {
                     }}
                                   class="input"
                     />
+                    <div id="texts">周</div>
                     <Button variant="secondary"
                             onClick={() => {
                                 setRefresh(!refresh);

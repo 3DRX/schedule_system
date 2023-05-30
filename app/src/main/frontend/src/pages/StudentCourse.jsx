@@ -170,7 +170,7 @@ const StudentCourse = () => {
                 </Modal>
 
                 <div className="setWeekTab">
-                    <div className="texts">set week</div>
+                    <div id="texts">第</div>
                     <NumberPicker defaultValue={1} step={1} max={20} min={1} onChange={(value) => {
                         if (value !== null && (value >= 1 && value <= 20)) {
                             setWeek(value);
@@ -178,6 +178,7 @@ const StudentCourse = () => {
                     }}
                                   className="input"
                     />
+                    <div id="texts">周</div>
                     <Button variant="secondary"
                             onClick={() => {
                                 setRefresh(!refresh);

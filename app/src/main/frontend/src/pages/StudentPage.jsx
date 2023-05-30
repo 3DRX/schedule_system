@@ -129,7 +129,7 @@ function StudentPage() {
                         <div id="buttonBox">
                             <div>
                                 <Button size='sm' variant='outline-primary' onClick={handleOnClick}>
-                                    {start ? "stop" : "start"}
+                                    {start ? "暂停" : "开始"}
                                 </Button>
                             </div>
                             <div>
@@ -139,7 +139,7 @@ function StudentPage() {
                                     setTime(6);
                                     setData("");
                                     setRefreshDashBoard(!refreshDashBoard);
-                                }}>reset</Button>
+                                }}>重置</Button>
                             </div>
                         </div>
                     </div>

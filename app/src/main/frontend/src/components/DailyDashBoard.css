@@ -30,7 +30,7 @@
     border-radius: 2vh;
     border: 0;
     transition: all 0.5s ease;
-    background-color: #FFF2DD;
+
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15), 0 10px 40px rgba(0, 0, 0, 0.15),
     inset 5px 5px 10px var(--color-light),
     inset -5px -5px 20px var(--color-shadow)

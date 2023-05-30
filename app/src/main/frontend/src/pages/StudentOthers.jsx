@@ -122,21 +122,30 @@ const StudentOthers = () => {
             <div className="bg bg3"></div>
             <NavBar isAdmin="false" userName={userName} />
             <div id="StudentOthersContent">
-                <h1>临时事务管理</h1>
-                <Button variant="secondary"
-                        onClick={() => {
-                            setRefresh(!refresh);
-                        }}
-                        id="refreshButton"
-                >刷新</Button>
-                <Button variant="secondary"
-                        onClick={() => {
-                            setShowModal(true);
-                        }}
-                        id="globalAddButton"
-                >添加临时事务
-                </Button>
-                <Table columns={columns} dataSource={data} />
+                <div id="tempEventHeaderBox">
+                    <div>
+                        <h1>临时事务管理</h1>
+                    </div>
+                    <div id="tempEventButtons">
+                        <Button variant="secondary"
+                                onClick={() => {
+                                    setRefresh(!refresh);
+                                }}
+                                id="refreshButton"
+                        >刷新</Button>
+                        <Button variant="secondary"
+                                onClick={() => {
+                                    setShowModal(true);
+                                }}
+                                id="globalAddButton"
+                        >添加临时事务
+                        </Button>
+                    </div>
+                </div>
+                <div id="logTableBox">
+                    <Table id="logTable" columns={columns} dataSource={data} />
+                </div>
+
                 <Modal
                     show={showModal}
                     onHide={() => {

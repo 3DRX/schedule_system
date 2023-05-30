@@ -59,10 +59,10 @@ const AdminStudents = () => {
             <div className="bg bg2"></div>
             <div className="bg bg3"></div>
             <NavBar isAdmin="true" userName={userName} />
-            <div id="userContent">
-                <Button onClick={() => setRefresh(!refresh)}>刷新</Button>
+            <div id="userContent" style={{paddingTop:50,}}>
+                {/*<Button onClick={() => setRefresh(!refresh)}>刷新</Button>*/}
                 <div id="logTableBox">
-                    <Table columns={columns} dataSource={data} />
+                    <Table id="logTable" columns={columns} dataSource={data} />
                 </div>
             </div>
 

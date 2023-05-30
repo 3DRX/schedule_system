@@ -110,6 +110,9 @@ const Navigation = () => {
         if (isCourse === "true") {
             return (
                 <>
+                    <div className="bg"></div>
+                    <div className="bg bg2"></div>
+                    <div className="bg bg3"></div>
                     <div id="destination">
                         <div className="format">前往</div>
                         <div> {courseName} </div>
