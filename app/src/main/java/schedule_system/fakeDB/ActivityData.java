@@ -14,7 +14,7 @@ import schedule_system.utils.KMap;
 
 /**
  * 课外活动控制
- * 操作一组 {@link Activity} 对象
+ * 操作一组 {@link Activity} 对象 {@link #activities}
  */
 public class ActivityData {
     final private String path = "src/main/resources/activities.json";

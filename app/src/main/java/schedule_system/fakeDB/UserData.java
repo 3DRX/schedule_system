@@ -14,7 +14,7 @@ import schedule_system.utils.theUser;
 /**
  * 用户控制
  * 与 {@link StudentData} 的区别是，这里只操作学生的登陆信息，即姓名和密码
- * 操作一组 {@link theUser} 对象
+ * 操作一组 {@link theUser} 对象 {@link #students}
  */
 public class UserData {
     final private String path = "src/main/resources/users.json";

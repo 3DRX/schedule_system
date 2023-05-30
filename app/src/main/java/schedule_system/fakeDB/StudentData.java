@@ -23,7 +23,8 @@ import schedule_system.utils.Student;
 /**
  * 学生数据控制
  * 与 {@link UserData} 的区别是，这个类是用来控制学生的课程、课外活动、临时事务信息。
- * 操作一组 {@link Student} 对象和一组 {@link BitMap} 对象，存储学生的日程安排信息。
+ * 操作一组 {@link Student} 对象 {@link #students}
+ * 和一组 {@link BitMap} 对象 {@link #schedules}，存储学生的日程安排信息。
  */
 public class StudentData {
     final private String path = "src/main/resources/studentThings.json";

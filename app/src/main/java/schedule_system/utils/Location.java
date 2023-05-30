@@ -1,7 +1,11 @@
 package schedule_system.utils;
 
 /**
- * Location
+ * 地点
+ *
+ * {@link #name} 地点名称
+ * {@link #x} x 坐标
+ * {@link #y} y 坐标
  */
 public class Location {
 

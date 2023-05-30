@@ -5,13 +5,12 @@ import java.util.Arrays;
 /**
  * 课外活动
  *
- * 成员变量：
- * name 活动名称
- * participants 参与者
- * startWeek 开始周
- * endWeek 结束周
- * time 活动时间
- * location 活动地点
+ * {@link #name} 活动名称
+ * {@link #participants} 参与者
+ * {@link #startWeek} 开始周
+ * {@link #endWeek} 结束周
+ * {@link #time} 活动时间
+ * {@link #location} 活动地点
  */
 public class Activity {
     private String name;

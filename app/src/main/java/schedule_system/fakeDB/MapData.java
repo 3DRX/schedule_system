@@ -15,7 +15,7 @@ import schedule_system.utils.*;
 
 /**
  * 地图控制
- * 操作一组 {@link MapNode} 对象
+ * 操作一组 {@link MapNode} 对象 {@link #nodes}
  */
 public class MapData {
     final private String path = "src/main/resources/map.json";

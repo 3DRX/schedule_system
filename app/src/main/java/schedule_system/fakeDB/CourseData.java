@@ -14,7 +14,7 @@ import schedule_system.utils.KMap;
 
 /**
  * 课程控制
- * 操作一组 {@link Course} 对象
+ * 操作一组 {@link Course} 对象 {@link #courses}
  */
 public class CourseData {
     final private String path = "src/main/resources/courses.json";

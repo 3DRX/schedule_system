@@ -14,7 +14,7 @@ import schedule_system.utils.KMap;
 
 /**
  * 临时事物控制
- * 操作一组 {@link Event} 对象
+ * 操作一组 {@link Event} 对象 {@link #events}
  */
 public class EventData {
     final private String path = "src/main/resources/events.json";

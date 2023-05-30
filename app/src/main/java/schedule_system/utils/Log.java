@@ -1,5 +1,14 @@
 package schedule_system.utils;
 
+/**
+ * 日志类，用于解析日志文件
+ *
+ * {@link #date} 日志日期
+ * {@link #time} 日志时间
+ * {@link #level} 日志级别
+ * {@link #module} 日志模块
+ * {@link #message} 日志信息
+ */
 public class Log {
     private String date; // YYYY-MM-DD
     private String time; // HH:MM:SS
@@ -7,6 +16,9 @@ public class Log {
     private String module;
     private String message;
 
+    /**
+     * @param line 日志文件中的一行
+     */
     public Log(String line) {
         line = line.trim();
         if (line.length() == 0) {
@@ -24,22 +36,37 @@ public class Log {
         this.module = parts[3];
     }
 
+    /**
+     * @return 日志日期
+     */
     public String getDate() {
         return date;
     }
 
+    /**
+     * @return 日志时间
+     */
     public String getTime() {
         return time;
     }
 
+    /**
+     * @return 日志级别
+     */
     public String getLevel() {
         return level;
     }
 
+    /**
+     * @return 日志模块
+     */
     public String getModule() {
         return module;
     }
 
+    /**
+     * @return 日志信息
+     */
     public String getMessage() {
         return message;
     }

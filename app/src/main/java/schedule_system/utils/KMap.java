@@ -2,6 +2,12 @@ package schedule_system.utils;
 
 import java.lang.reflect.Array;
 
+/**
+ * 可扩容的哈希表
+ * 
+ * @param <K> 键
+ * @param <V> 值
+ */
 public class KMap<K, V> {
     private static final int defautLength = 16;
     private static final double defaultFactor = 0.75;
@@ -21,6 +27,13 @@ public class KMap<K, V> {
         return Math.abs(key.hashCode()) % capacity;
     }
 
+    /**
+     * 添加键值对
+     * 如果键已存在，覆盖值
+     * 
+     * @param key   键
+     * @param value 值
+     */
     public void put(K key, V value) {
         if (key == null) {
             return;
@@ -65,6 +78,10 @@ public class KMap<K, V> {
         this.resize++;
     }
 
+    /**
+     * @param k 键
+     * @return 键对应的值，如果键不存在，返回null
+     */
     public V get(K k) {
         if (k == null) {
             return null;
@@ -86,6 +103,11 @@ public class KMap<K, V> {
         return entry;
     }
 
+    /**
+     * 删除键值对
+     * 
+     * @param key 键
+     */
     public void remove(K key) {
         if (key == null) {
             return;
@@ -110,6 +132,10 @@ public class KMap<K, V> {
         }
     }
 
+    /**
+     * @param key 键
+     * @return 键是否存在
+     */
     public boolean containKey(K key) {
         if (key == null) {
             return false;
@@ -117,10 +143,16 @@ public class KMap<K, V> {
         return getEntry(key) != null;
     }
 
+    /**
+     * @return 哈希表中键值对的数量
+     */
     public int size() {
         return this.size;
     }
 
+    /**
+     * 清空哈希表
+     */
     public void clear() {
         for (int i = 0; i < table.length; i++) {
             table[i] = null;
@@ -128,6 +160,10 @@ public class KMap<K, V> {
         this.size = 0;
     }
 
+    /**
+     * @param c 键的类型
+     * @return 键的数组
+     */
     @SuppressWarnings({ "unchecked" })
     public K[] getKeyArray(Class<K> c) {
         K[] res = (K[]) Array.newInstance(c, this.size);
@@ -142,6 +178,10 @@ public class KMap<K, V> {
         return res;
     }
 
+    /**
+     * @param <K> 键的类型
+     * @param <V> 值的类型
+     */
     public final class MyEntry<K, V> {
         private K k;
         private V v;

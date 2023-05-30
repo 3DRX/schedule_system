@@ -1,5 +1,12 @@
 package schedule_system.utils;
 
+/**
+ * 系统时间，{@link ActivityTime} 和 {@link ClassTime} 的父类
+ *
+ * {@link #day} 日期
+ * {@link #time} 时间
+ * {@link #duration} 持续时间
+ */
 public abstract class SystemTime {
     int day;
     int time;

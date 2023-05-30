@@ -2,13 +2,14 @@ package schedule_system.utils;
 
 /**
  * 课程
- * startWeek 课程开始周
- * endWeek 课程结束周
- * testWeek 课程考试周
- * classTime 每周的上课时间
- * examTime 考试时间
- * name 课程名称（唯一id）
- * location 课程地点
+ *
+ * {@link #startWeek} 课程开始周
+ * {@link #endWeek} 课程结束周
+ * {@link #testWeek} 课程考试周
+ * {@link #classTime} 每周的上课时间
+ * {@link #examTime} 考试时间
+ * {@link #name} 课程名称（唯一id）
+ * {@link #location} 课程地点
  */
 public class Course {
 
@@ -160,6 +161,9 @@ public class Course {
         return this.getOccupiedTime().overlaps(course.getOccupiedTime());
     }
 
+    /**
+     * @return 课程名称
+     */
     public String getName() {
         return name;
     }
@@ -168,18 +172,20 @@ public class Course {
         this.name = name;
     }
 
+    /**
+     * @return 课程地点名称
+     */
     public String getLocationName() {
         return location;
     }
 
-    public void setLocation(final String location) {
+    private void setLocation(final String location) {
         this.location = location;
     }
 
-    public boolean isPeriodic() {
-        return this.startWeek == this.endWeek;
-    }
-
+    /**
+     * @return 课程开始周
+     */
     public int getStartWeek() {
         return startWeek;
     }
@@ -188,6 +194,9 @@ public class Course {
         this.startWeek = startWeek;
     }
 
+    /**
+     * @return 课程结束周
+     */
     public int getEndWeek() {
         return endWeek;
     }
@@ -196,6 +205,9 @@ public class Course {
         this.endWeek = endWeek;
     }
 
+    /**
+     * @return 课程考试周
+     */
     public int getTestWeek() {
         return testWeek;
     }
@@ -204,6 +216,9 @@ public class Course {
         this.testWeek = testWeek;
     }
 
+    /**
+     * @return 课程上课时间
+     */
     public ClassTime getClassTime() {
         return classTime;
     }
@@ -212,6 +227,9 @@ public class Course {
         this.classTime = classTime;
     }
 
+    /**
+     * @return 课程考试时间
+     */
     public ClassTime getExamTime() {
         return examTime;
     }
