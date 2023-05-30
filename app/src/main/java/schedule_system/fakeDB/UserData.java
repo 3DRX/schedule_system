@@ -11,23 +11,37 @@ import com.google.gson.stream.JsonReader;
 import schedule_system.utils.KList;
 import schedule_system.utils.theUser;
 
+/**
+ * 用户控制
+ * 与 {@link StudentData} 的区别是，这里只操作学生的登陆信息，即姓名和密码
+ * 操作一组 {@link theUser} 对象 {@link #students}
+ */
 public class UserData {
     final private String path = "src/main/resources/users.json";
     final private Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     private KList<theUser> students;
 
+    /**
+     * 从文件读取学生信息
+     */
     public UserData() {
         this.students = readUsers();
     }
 
     /**
-     * @return theUser[] students
+     * @return 所有学生
      */
     public theUser[] students() {
         return this.students.toArray(new theUser[this.students.size()]);
     }
 
+    /**
+     * 向名单中添加学生
+     * 
+     * @param user 学生
+     * @return 是否添加成功
+     */
     public boolean addStudent(theUser user) {
         if (!this.students.contains(user) && !user.getId().equals("admin")) {
             this.students.add(user);
@@ -37,6 +51,12 @@ public class UserData {
         return false;
     }
 
+    /**
+     * 从名单中删除学生
+     * 
+     * @param id 姓名
+     * @return 删除是否成功
+     */
     public boolean removeStudent(String id) {
         KList<theUser> newStudents = new KList<>(theUser.class);
         for (theUser user : this.students) {
@@ -49,6 +69,11 @@ public class UserData {
         return true;
     }
 
+    /**
+     * 从文件读取所有学生的信息
+     * 
+     * @return 所有学生的 {@link KList} 列表
+     */
     private KList<theUser> readUsers() {
         try {
             KList<theUser> res = new KList<>(theUser.class);
@@ -67,7 +92,7 @@ public class UserData {
     }
 
     /**
-     * 将一组特定的users写入resources/users.json中
+     * 将一组用户写入文件
      */
     private void writeUsers(theUser[] users) {
         File file = new File(path);

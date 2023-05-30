@@ -12,6 +12,10 @@ import com.google.gson.stream.JsonReader;
 import schedule_system.utils.Event;
 import schedule_system.utils.KMap;
 
+/**
+ * 临时事物控制
+ * 操作一组 {@link Event} 对象 {@link #events}
+ */
 public class EventData {
     final private String path = "src/main/resources/events.json";
     final private Gson gson = new GsonBuilder()
@@ -20,6 +24,9 @@ public class EventData {
 
     private KMap<String, Event> events;
 
+    /**
+     * 从文件读取临时事物信息
+     */
     public EventData() {
         this.events = new KMap<>();
         Arrays.stream(readEvents())
@@ -30,13 +37,22 @@ public class EventData {
     }
 
     /**
-     * @param eventName <name>,<person>
-     * @return
+     * 按名称查找临时事务
+     * 
+     * @param eventName 临时事务名称，格式为"name,person"
+     * @return 临时事务
      */
     public Event getEventByName(String eventName) {
         return this.events.get(eventName);
     }
 
+    /**
+     * 按周数和星期查找临时事务
+     * 
+     * @param week 周数
+     * @param day  星期
+     * @return 该周该天的所有临时事务
+     */
     public Event[] getEventByDay(int week, int day) {
         return Arrays.stream(this.events.getKeyArray(String.class))
                 .map(i -> this.events.get(i))
@@ -45,6 +61,9 @@ public class EventData {
                 .toArray(size -> new Event[size]);
     }
 
+    /**
+     * @return 所有临时事务
+     */
     public Event[] allEvents() {
         return Arrays
                 .stream(this.events.getKeyArray(
@@ -53,11 +72,23 @@ public class EventData {
                 .toArray(size -> new Event[size]);
     }
 
+    /**
+     * 删除临时事务，并将结果写入文件
+     * 
+     * @param eventName 临时事物名称，格式为"name,person"
+     * @return 是否成功删除
+     */
     public boolean deleteEvent(String eventName) {
         this.events.remove(eventName);
         return writeEvents(allEvents());
     }
 
+    /**
+     * 添加临时事务，并将结果写入文件
+     * 
+     * @param newEvent 新的临时事务
+     * @return 是否成功添加
+     */
     public boolean addEvent(Event newEvent) {
         String key = newEvent.getName()
                 + "," + newEvent.getPerson();
@@ -69,8 +100,8 @@ public class EventData {
     }
 
     /**
-     * @param eventName <name>,<person>
-     * @return
+     * @param eventName 临时事务名称，格式为"name,person"
+     * @return 是否包含该临时事务
      */
     public boolean containsEvent(String eventName) {
         return this.events.containKey(eventName);
@@ -79,7 +110,7 @@ public class EventData {
     /**
      * 从文件中读取临时事物列表
      * 
-     * @return
+     * @return 临时事物列表
      */
     private Event[] readEvents() {
         try {
@@ -92,6 +123,12 @@ public class EventData {
         }
     }
 
+    /**
+     * 将临时事物列表写入文件
+     * 
+     * @param events 临时事物列表
+     * @return 是否成功写入文件
+     */
     private boolean writeEvents(Event[] events) {
         try {
             FileWriter writer = new FileWriter(new File(path));

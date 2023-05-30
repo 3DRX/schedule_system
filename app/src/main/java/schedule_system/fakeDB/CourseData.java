@@ -13,7 +13,8 @@ import schedule_system.utils.Course;
 import schedule_system.utils.KMap;
 
 /**
- * CourseData
+ * 课程控制
+ * 操作一组 {@link Course} 对象 {@link #courses}
  */
 public class CourseData {
     final private String path = "src/main/resources/courses.json";
@@ -21,6 +22,9 @@ public class CourseData {
 
     private KMap<String, Course> courses;
 
+    /**
+     * 从文件读取课程信息
+     */
     public CourseData() {
         this.courses = new KMap<>();
         Arrays.stream(readCourses())
@@ -28,9 +32,7 @@ public class CourseData {
     }
 
     /**
-     * 获得所有课程数组
-     * 
-     * @return
+     * @return 所有课程
      */
     public Course[] allCourses() {
         return Arrays.stream(this.courses.getKeyArray(String.class))
@@ -41,13 +43,20 @@ public class CourseData {
     /**
      * 按名称查找课程
      * 
-     * @param String
-     * @return Course course
+     * @param 课程名称
+     * @return 课程
      */
     public Course getCourseByName(String courseName) {
         return this.courses.get(courseName);
     }
 
+    /**
+     * 按周数和星期查找课程
+     * 
+     * @param week 周数
+     * @param day  星期
+     * @return 该周该天的所有课程
+     */
     public Course[] getCourseByDay(int week, int day) {
         return Arrays.stream(this.courses.getKeyArray(String.class))
                 .map(i -> this.courses.get(i))
@@ -60,8 +69,8 @@ public class CourseData {
     /**
      * 从内存中删除课程并将更改写入文件
      * 
-     * @param courseName
-     * @return
+     * @param courseName 课程名称
+     * @return 是否成功
      */
     public boolean deleteCourse(String courseName) {
         this.courses.remove(courseName);
@@ -71,7 +80,7 @@ public class CourseData {
     /**
      * 从文件中读取课程列表
      * 
-     * @return
+     * @return 课程列表
      */
     private Course[] readCourses() {
         Course[] read_users = {};
@@ -87,8 +96,8 @@ public class CourseData {
     /**
      * 创建新课程，检查是否与已有课程冲突
      * 
-     * @param newCourse
-     * @return
+     * @param newCourse 新课程
+     * @return 是否成功
      */
     public boolean addCourse(Course newCourse) {
         if (this.courses.containKey(newCourse.getName())) {
@@ -99,10 +108,10 @@ public class CourseData {
     }
 
     /**
-     * 将更新后的课程列表写入文件
+     * 将课程列表写入文件
      * 
-     * @param courses
-     * @return
+     * @param courses 课程列表
+     * @return 是否成功
      */
     private boolean writeCourses(Course[] courses) {
         File file = new File(path);

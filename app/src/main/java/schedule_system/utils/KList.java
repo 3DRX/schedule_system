@@ -5,7 +5,7 @@ import java.util.AbstractList;
 import java.util.Arrays;
 
 /**
- * @param <T>
+ * 线性表
  */
 public class KList<T> extends AbstractList<T> {
     private T[] list;

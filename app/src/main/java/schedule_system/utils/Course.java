@@ -1,15 +1,17 @@
 package schedule_system.utils;
 
 /**
- * Course
+ * 课程
+ *
+ * {@link #startWeek} 课程开始周
+ * {@link #endWeek} 课程结束周
+ * {@link #testWeek} 课程考试周
+ * {@link #classTime} 每周的上课时间
+ * {@link #examTime} 考试时间
+ * {@link #name} 课程名称（唯一id）
+ * {@link #location} 课程地点
  */
 public class Course {
-    // 检查输入参数是否符合要求
-    // 规则如下：
-    // 1. 一学期共有20周（即课程或考试不能>20）
-    // 2. 课程结束周必须大于等于课程开始周
-    // 3. 课程考试周必须大于课程结束周
-    // 4. 课程的上课时间和考试时间须合法
 
     private int startWeek; // 课程开始周
     private int endWeek; // 课程结束周
@@ -19,6 +21,21 @@ public class Course {
     private String name; // 课程名称（唯一id）
     private String location; // 课程地点
 
+    /**
+     * 检查输入规则如下：
+     * 1. 一学期共有20周（即课程或考试不能>20）
+     * 2. 课程结束周必须大于等于课程开始周
+     * 3. 课程考试周必须大于课程结束周
+     * 4. 课程的上课时间和考试时间须合法
+     * 
+     * @param startWeek 课程开始周
+     * @param endWeek   课程结束周
+     * @param testWeek  课程考试周
+     * @param classTime 每周的上课时间
+     * @param examTime  考试时间
+     * @param name      课程名称（唯一id）
+     * @param location  课程地点
+     */
     public Course(
             final int startWeek,
             final int endWeek,
@@ -27,16 +44,15 @@ public class Course {
             final ClassTime examTime,
             final String name,
             final String location) {
-
         int weekInSemester = SystemTime.getWeekInSemester();
         if (endWeek > weekInSemester || startWeek > weekInSemester || testWeek > weekInSemester)
-            throw new IllegalArgumentException("学期周数要小于等于20！！！！");
+            throw new IllegalArgumentException("学期周数要小于等于20");
         if (startWeek > endWeek)
-            throw new IllegalArgumentException("课程结束周必须大于等于课程开始周！！！！");
+            throw new IllegalArgumentException("课程结束周必须大于等于课程开始周");
         if (testWeek <= endWeek)
-            throw new IllegalArgumentException("课程考试周必须大于课程结束周！！！！");
+            throw new IllegalArgumentException("课程考试周必须大于课程结束周");
         if (endWeek <= 0 || startWeek <= 0 || testWeek <= 0)
-            throw new IllegalArgumentException("周数不能是负数！！！！");
+            throw new IllegalArgumentException("周数不能是负数");
         setStartWeek(startWeek);
         setEndWeek(endWeek);
         setTestWeek(testWeek);
@@ -145,6 +161,9 @@ public class Course {
         return this.getOccupiedTime().overlaps(course.getOccupiedTime());
     }
 
+    /**
+     * @return 课程名称
+     */
     public String getName() {
         return name;
     }
@@ -153,18 +172,20 @@ public class Course {
         this.name = name;
     }
 
+    /**
+     * @return 课程地点名称
+     */
     public String getLocationName() {
         return location;
     }
 
-    public void setLocation(final String location) {
+    private void setLocation(final String location) {
         this.location = location;
     }
 
-    public boolean isPeriodic() {
-        return this.startWeek == this.endWeek;
-    }
-
+    /**
+     * @return 课程开始周
+     */
     public int getStartWeek() {
         return startWeek;
     }
@@ -173,6 +194,9 @@ public class Course {
         this.startWeek = startWeek;
     }
 
+    /**
+     * @return 课程结束周
+     */
     public int getEndWeek() {
         return endWeek;
     }
@@ -181,6 +205,9 @@ public class Course {
         this.endWeek = endWeek;
     }
 
+    /**
+     * @return 课程考试周
+     */
     public int getTestWeek() {
         return testWeek;
     }
@@ -189,6 +216,9 @@ public class Course {
         this.testWeek = testWeek;
     }
 
+    /**
+     * @return 课程上课时间
+     */
     public ClassTime getClassTime() {
         return classTime;
     }
@@ -197,6 +227,9 @@ public class Course {
         this.classTime = classTime;
     }
 
+    /**
+     * @return 课程考试时间
+     */
     public ClassTime getExamTime() {
         return examTime;
     }

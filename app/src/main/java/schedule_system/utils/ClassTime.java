@@ -1,7 +1,7 @@
 package schedule_system.utils;
 
 /**
- * ClassTime
+ * 课程时间 合法的时间范围：周一到周日，8:00到20:00
  */
 public class ClassTime extends SystemTime {
 

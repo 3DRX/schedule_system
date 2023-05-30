@@ -13,26 +13,43 @@ import com.google.gson.stream.JsonReader;
 
 import schedule_system.utils.*;
 
+/**
+ * 地图控制
+ * 操作一组 {@link MapNode} 对象 {@link #nodes}
+ */
 public class MapData {
     final private String path = "src/main/resources/map.json";
     final private Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private final Logger logger = LoggerFactory.getLogger(MapData.class);
 
-    // private MapNode[] nodes;
     private KMap<String, MapNode> nodes;
 
+    /**
+     * 从文件读取地图信息
+     */
     public MapData() {
         nodes = new KMap<>();
         Arrays.stream(this.readMap())
-                // .forEach(e -> System.out.println(e.toString()));
                 .forEach(x -> nodes.put(x.getLocation().getName(), x));
         this.logger.info("从 " + path + " 读取地图数据成功");
     }
 
+    /**
+     * 按名称查找地点
+     * 
+     * @param locationName 地点名称
+     * @return 该地点的实例
+     */
     public Location getLocation(String locationName) {
         return this.nodes.get(locationName).getLocation();
     }
 
+    /**
+     * 判断地点是否存在
+     * 
+     * @param locationName 地点名称
+     * @return 是否存在该地点
+     */
     public boolean isValidLocation(String locationName) {
         if (this.nodes.get(locationName) != null) {
             return true;
@@ -41,6 +58,12 @@ public class MapData {
         }
     }
 
+    /**
+     * 获得从 x 出发到所有点的最短距离
+     * 
+     * @param x 起点
+     * @return 从 x 出发到所有点的最短距离
+     */
     private KMap<String, Integer> distence(String x) {
         // x 点到每个点的距离
         KMap<String, Integer> distence = new KMap<>();
@@ -69,11 +92,11 @@ public class MapData {
     }
 
     /**
-     * return the path of shortest distence from x passing all locations
+     * 从 x 出发途径若干地点最后返回 x 的最短路径
      * 
-     * @param locations
-     * @param x
-     * @return
+     * @param locations 途径地点名称数组
+     * @param x         起点名称
+     * @return 从 x 出发途径若干地点最后返回 x 的最短路径
      */
     public KList<Location> pathPassingLocations(String[] locations, String x) {
         // check input
@@ -82,21 +105,12 @@ public class MapData {
         for (String location : locations)
             if (!this.isValidLocation(location))
                 throw new IllegalArgumentException();
-
         final KMap<String, Integer> unvisited = new KMap<>();
         Arrays.stream(locations)
                 .forEach((e) -> unvisited.put(e, 0));
         final KList<Location> res = new KList<>(Location.class);
         String currentLocation = x;
         while (unvisited.size() != 0) {
-            // System.out.println("start+++++++++++++++++++++++++++");
-            // System.out.println("unvisited: ");
-            // System.out.print("\t");
-            // Arrays.stream(unvisited.getKeyArray(String.class))
-            // .forEach(e -> System.out.print(e + " "));
-            // System.out.println();
-            // System.out.println("currentNode: " + currentLocation);
-            // System.out.println("start+++++++++++++++++++++++++++");
             res.add(this.nodes.get(currentLocation).getLocation());
             int minDistence = Integer.MAX_VALUE;
             String nearestLocation = null;
@@ -108,7 +122,6 @@ public class MapData {
                     nearestLocation = location;
                 }
             }
-            // add path to nearestLocation in res
             KList<Location> path = null;
             try {
                 path = this.pathFromXtoY(currentLocation, nearestLocation);
@@ -126,14 +139,6 @@ public class MapData {
             }
             currentLocation = nearestLocation;
             unvisited.remove(nearestLocation);
-            // System.out.println("end============================");
-            // System.out.println("unvisited: ");
-            // System.out.print("\t");
-            // Arrays.stream(unvisited.getKeyArray(String.class))
-            // .forEach(e -> System.out.print(e + " "));
-            // System.out.println();
-            // System.out.println("currentNode: " + currentLocation);
-            // System.out.println("end============================");
         }
         KList<Location> path = null;
         try {
@@ -151,6 +156,13 @@ public class MapData {
         return res;
     }
 
+    /**
+     * 从 x 到 y 的最短路径
+     * 
+     * @param x 起点
+     * @param y 终点
+     * @return 从 x 到 y 的最短路径
+     */
     public KList<Location> pathFromXtoY(String x, String y) {
         KMap<String, Integer> distence = this.distence(x);
         KList<Location> res = new KList<>(Location.class);
@@ -159,26 +171,17 @@ public class MapData {
         int temp = 0;
         while (temp < 100) {
             AdjData filtered = null;
-            // System.out.println("\t" + currentNode.getLocation().getName());
             for (AdjData adj : currentNode.getAdj()) {
-                // System.out.println("\t\t" + adj.name());
                 MapNode adjNode = this.nodes.get(adj.name());
                 int adjDistence = distence.get(adjNode.getLocation().getName());
-                // System.out.println("\t\t\tadjDistence: " + adjDistence);
                 int adjWeight = 0;
                 for (AdjData i : adjNode.getAdj()) {
                     if (i.name().equals(currentNode.getLocation().getName())) {
                         adjWeight = i.weight();
                     }
                 }
-                // System.out.println("\t\t\tadjWeight: " + adjWeight);
-                // System.out.println("\t\t\tadjDistence + adjWeight: " + (adjDistence +
-                // adjWeight));
-                // System.out.println("\t\t\tcurrentDistence: " +
-                // distence.get(currentNode.getLocation().getName()));
                 if (adjDistence + adjWeight == distence.get(currentNode.getLocation().getName())) {
                     filtered = adj;
-                    // System.out.println("\t\t\t" + adj.name() + " is filtered");
                     break;
                 }
             }
@@ -193,17 +196,32 @@ public class MapData {
         return res;
     }
 
+    /**
+     * 添加节点
+     * 
+     * @param node 节点
+     */
     @Deprecated
     private void add(MapNode node) {
         this.nodes.put(node.getLocation().getName(), node);
     }
 
+    /**
+     * 获得所有节点
+     * 
+     * @return 所有节点
+     */
     public MapNode[] getNodes() {
         return Arrays.stream(nodes.getKeyArray(String.class))
                 .map(k -> nodes.get(k))
                 .toArray(size -> new MapNode[size]);
     }
 
+    /**
+     * 从文件读取所有节点
+     * 
+     * @return 所有节点
+     */
     private MapNode[] readMap() {
         MapNode[] readMap = null;
         try {
@@ -215,6 +233,12 @@ public class MapData {
         return readMap;
     }
 
+    /**
+     * 将所有节点写入文件
+     * 
+     * @param nodes 所有节点
+     * @return 是否成功写入文件
+     */
     @Deprecated
     private boolean writeMap(MapNode[] nodes) {
         File file = new File(path);
