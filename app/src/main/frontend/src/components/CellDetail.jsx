@@ -4,6 +4,7 @@ import Popover from 'react-bootstrap/Popover';
 import Overlay from 'react-bootstrap/Overlay';
 import Modal from 'react-bootstrap/Modal';
 import axios from "axios";
+import "./CellDetail.css";
 
 const CellDetail = ({ course, refresh, setRefresh, isAdmin, studentName }) => {
     const [showOverlay, setShowOverlay] = useState(false);
@@ -147,6 +148,7 @@ const CellDetail = ({ course, refresh, setRefresh, isAdmin, studentName }) => {
                         color: "brown",
                     } : {}
                 }
+                id="courseLocation"
             >{course.location}</p>
             {renderButton()}
         </>
