@@ -42,19 +42,7 @@ public class Activity {
      * @return 活动是否在该时间发生
      */
     public boolean takesPlaceAt(int index) {
-        int week = ClassTime.weekOfIndex(index);
-        int day = ClassTime.dayOfIndex(index);
-        int timeInt = ClassTime.timeOfIndex(index);
-        if (!(week >= startWeek && week <= endWeek)) {
-            return false;
-        }
-        if (!(day == time.getDay())) {
-            return false;
-        }
-        if (!(timeInt >= time.getTime() && timeInt <= time.getTime() + time.getDuration())) {
-            return false;
-        }
-        return true;
+        return getOccupiedTime().get(index);
     }
 
     /**
@@ -62,12 +50,10 @@ public class Activity {
      */
     public BitMap getOccupiedTime() {
         BitMap occupiedTime = new BitMap(ClassTime.getMaxIndex());
+        int day = this.time.getDay();
+        int time = this.time.getTime();
         for (int week = startWeek; week <= endWeek; week++) {
-            int day = this.time.getDay();
-            int time = this.time.getTime();
-            for (int j = 0; j < this.time.getDuration(); j++) {
-                occupiedTime.set(ClassTime.realTimeToIndex(week, day, time + j));
-            }
+            occupiedTime.set(ClassTime.realTimeToIndex(week, day, time));
         }
         return occupiedTime;
     }
