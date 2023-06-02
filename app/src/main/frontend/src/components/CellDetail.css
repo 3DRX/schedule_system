@@ -1,0 +1,18 @@
+#courseLocation {
+    max-width: 8vw;
+    flex-wrap: wrap;
+    overflow: auto;
+}
+::-webkit-scrollbar {
+    height: 0.8vh;
+
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 2vh;
+    background: skyblue;
+    border: solid 1.5px black;
+}
+::-webkit-scrollbar-track {
+    background: #999999;
+    border-radius: 2.5px;
+}
