@@ -58,6 +58,7 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
     const modalOnShow = () => {
         setCheckedState(new Array(studentList.length).fill(false));
         setSelectAllStudents(false);
+        setClassDuration(1);
     };
 
     const data = React.useMemo(
@@ -201,7 +202,6 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
                             {headerGroup.headers.map(column => (
                                 <th id="headBlocks"
                                     {...column.getHeaderProps()}
-
                                 >
                                     {column.render('Header')}
                                 </th>
@@ -246,7 +246,6 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
             >
                 <Modal.Header id="header" closeButton>
                     <Modal.Title>添加课程</Modal.Title>
-                    {/* `周${addClassInfo.day}，${addClassInfo.startTime}-${addClassInfo.startTime + 1}：`*/}
                 </Modal.Header>
                 <Form id="formContent" onSubmit={handleSubmit}>
                     <Modal.Body>
@@ -267,7 +266,6 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
                                     <NumberPicker defaultValue={week} step={1} max={20} min={1} onChange={(value) => {
                                         if (value !== null && value >= 1 && value <= 20) {
                                             setStartWeek(value);
-                                            // console.log(`开始周：${value}`);
                                         }
                                     }}
                                         style={{
@@ -281,7 +279,6 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
                                         onChange={(value) => {
                                             if (value !== null && value >= 1 && value <= 20) {
                                                 setEndWeek(value);
-                                                // console.log(`结束周：${value}`);
                                             }
                                         }}
                                         style={{
@@ -295,7 +292,6 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
                                         onChange={(value) => {
                                             if (value !== null && value >= 1 && value <= 20) {
                                                 setTestWeek(value);
-                                                // console.log(`考试周：${value}`);
                                             }
                                         }}
                                         style={{
@@ -305,7 +301,6 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
                                 </div>
                             </p>
                         </p>
-
                         <p id="courseTime">
                             <p>
                                 上课时间
@@ -318,7 +313,6 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
                                     <NumberPicker defaultValue={addClassInfo.day} step={1} max={5} min={1} onChange={(value) => {
                                         if (value !== null && value >= 1 && value <= 5) {
                                             setClassDay(value);
-                                            // console.log(`星期：${value}`);
                                         }
                                     }}
                                         style={{
@@ -330,7 +324,6 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
                                     <NumberPicker defaultValue={addClassInfo.startTime} step={1} max={20} min={8} onChange={(value) => {
                                         if (value !== null && value >= 8 && value <= 20) {
                                             setClassTime(value);
-                                            // console.log(`${value}点`);
                                         }
                                     }}
                                         style={{
@@ -412,12 +405,6 @@ export default function ClassTable({ isAdmin, week, refresh, setRefresh, setShow
                     </Modal.Footer>
                 </Form>
             </Modal>
-
-
-
-
-
-
         </div >
-    )
-}
+    );
+};
