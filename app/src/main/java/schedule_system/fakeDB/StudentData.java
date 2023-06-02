@@ -38,6 +38,8 @@ public class StudentData {
     CourseData courseData;
     @Autowired
     ActivityData activityData;
+    @Autowired
+    EventData eventData;
 
     /**
      * 从文件读取学生的时间安排信息，并分别为每个学生建立时间安排的 {@link BitMap} 对象
@@ -290,6 +292,7 @@ public class StudentData {
      */
     public boolean deleteEventFromStudent(String eventName, String studentName) {
         this.students.get(studentName).deleteEvent(eventName);
+        eventData.deleteEvent(eventName + "," + studentName);
         return writeStudentThings(this.getStudentsArray());
     }
 
