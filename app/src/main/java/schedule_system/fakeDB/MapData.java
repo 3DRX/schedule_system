@@ -168,8 +168,7 @@ public class MapData {
         KList<Location> res = new KList<>(Location.class);
         MapNode currentNode = this.nodes.get(y);
         res.add(currentNode.getLocation());
-        int temp = 0;
-        while (temp < 100) {
+        while (true) {
             AdjData filtered = null;
             for (AdjData adj : currentNode.getAdj()) {
                 MapNode adjNode = this.nodes.get(adj.name());
@@ -186,7 +185,6 @@ public class MapData {
                 }
             }
             String theNode = filtered.name();
-            temp++;
             res.add(0, this.nodes.get(theNode).getLocation());
             if (theNode.equals(x)) {
                 break;
