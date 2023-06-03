@@ -149,7 +149,20 @@ function StudentPage() {
                             <InputNumber
                                 id="weekInput-time"
                                 value={week}
-                                onChange={setWeek}
+                                onChange={(value) => {
+                                    if (value === "") {
+                                        setWeek("");
+                                    }
+                                    else if (value > 20) {
+                                        setWeek(20);
+                                    }
+                                    else if (value < 1) {
+                                        setWeek(1);
+                                    }
+                                    else {
+                                        setWeek(parseInt(value));
+                                    }
+                                }}
                                 step={1}
                                 max={20}
                                 min={1}
@@ -163,7 +176,20 @@ function StudentPage() {
                             <InputNumber
                                 id="dayInput"
                                 value={day}
-                                onChange={setDay}
+                                onChange={(value) => {
+                                    if (value === "") {
+                                        setWeek("");
+                                    }
+                                    else if (value > 7) {
+                                        setDay(7);
+                                    }
+                                    else if (value < 1) {
+                                        setDay(1);
+                                    }
+                                    else {
+                                        setDay(parseInt(value));
+                                    }
+                                }}
                                 step={1}
                                 max={7}
                                 min={1}
@@ -173,7 +199,20 @@ function StudentPage() {
                             <InputNumber
                                 id="timeInput"
                                 value={time}
-                                onChange={setTime}
+                                onChange={(value) => {
+                                    if (value === "") {
+                                        setWeek("");
+                                    }
+                                    else if (value > 22) {
+                                        setTime(22);
+                                    }
+                                    else if (value < 6) {
+                                        setTime(6);
+                                    }
+                                    else {
+                                        setTime(parseInt(value));
+                                    }
+                                }}
                                 step={1}
                                 max={22}
                                 min={6}

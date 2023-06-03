@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "name": "买水",
+    "time": {
+      "week": 1,
+      "day": 1,
+      "time": 10
+    },
+    "location": "物美超市",
+    "person": "康京旸"
+  },
+  {
+    "name": "取外卖",
+    "time": {
+      "week": 1,
+      "day": 1,
+      "time": 10
+    },
+    "location": "北门",
+    "person": "康京旸"
+  }
+]

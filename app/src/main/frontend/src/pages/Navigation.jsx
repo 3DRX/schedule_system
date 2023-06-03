@@ -110,9 +110,6 @@ const Navigation = () => {
         if (isCourse === "true") {
             return (
                 <>
-                    <div className="bg"></div>
-                    <div className="bg bg2"></div>
-                    <div className="bg bg3"></div>
                     <div id="destination">
                         <div className="format">前往</div>
                         <div> {courseName} </div>
@@ -137,7 +134,10 @@ const Navigation = () => {
     return (
         <div id="navigationContent">
             <NavBar isAdmin="false" userName={userName} enabled={true} />
-            <div id="titleBox"><div id="navigationTitle" className="card primary"><img id="logo" src={logo} alt=""/></div></div>
+            <div className="bg"></div>
+            <div className="bg bg2"></div>
+            <div className="bg bg3"></div>
+            <div id="titleBox"><div id="navigationTitle" className="card primary"><img id="logo" src={logo} alt="" /></div></div>
             {renderHeader()}
             <div className="center">
                 <div id="start" >
