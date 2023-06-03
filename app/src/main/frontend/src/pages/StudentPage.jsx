@@ -178,7 +178,7 @@ function StudentPage() {
                                 value={day}
                                 onChange={(value) => {
                                     if (value === "") {
-                                        setWeek("");
+                                        setDay("");
                                     }
                                     else if (value > 7) {
                                         setDay(7);
@@ -201,7 +201,7 @@ function StudentPage() {
                                 value={time}
                                 onChange={(value) => {
                                     if (value === "") {
-                                        setWeek("");
+                                        setTime("");
                                     }
                                     else if (value > 22) {
                                         setTime(22);
