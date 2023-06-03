@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "name": "测试",
+    "participants": [
+      "张烨",
+      "康京旸"
+    ],
+    "startWeek": 1,
+    "endWeek": 10,
+    "time": {
+      "day": 2,
+      "time": 8,
+      "duration": 1
+    },
+    "location": "东门"
+  }
+]

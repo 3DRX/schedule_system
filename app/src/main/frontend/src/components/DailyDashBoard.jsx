@@ -6,6 +6,9 @@ const DailyDashBoard = ({ studentName, week, day, refresh }) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
+        if (week === "" || day === "") {
+            return;
+        }
         axios.get("http://"
             + window.location.hostname
             + ":8888/getDashBoard"

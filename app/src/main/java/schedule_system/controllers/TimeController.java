@@ -136,7 +136,7 @@ public class TimeController {
                         activityName,
                         theLocation.getName(),
                         index++,
-                        false);
+                        true);
             }
         }
         return new ResponseRecord("", "", index++, true);
