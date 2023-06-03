@@ -1,6 +1,142 @@
 [
   {
     "startWeek": 1,
+    "endWeek": 15,
+    "testWeek": 16,
+    "classTime": {
+      "day": 4,
+      "time": 15,
+      "duration": 2
+    },
+    "examTime": {
+      "day": 4,
+      "time": 15,
+      "duration": 2
+    },
+    "name": "数字逻辑与数字电路课程设计",
+    "location": "主楼"
+  },
+  {
+    "startWeek": 1,
+    "endWeek": 16,
+    "testWeek": 17,
+    "classTime": {
+      "day": 5,
+      "time": 13,
+      "duration": 2
+    },
+    "examTime": {
+      "day": 5,
+      "time": 13,
+      "duration": 2
+    },
+    "name": "毛泽东思想与中国特色社会主义理论体系概论",
+    "location": "教四楼"
+  },
+  {
+    "startWeek": 1,
+    "endWeek": 16,
+    "testWeek": 17,
+    "classTime": {
+      "day": 4,
+      "time": 13,
+      "duration": 2
+    },
+    "examTime": {
+      "day": 4,
+      "time": 13,
+      "duration": 2
+    },
+    "name": "计算机组成原理实验",
+    "location": "主楼"
+  },
+  {
+    "startWeek": 1,
+    "endWeek": 15,
+    "testWeek": 16,
+    "classTime": {
+      "day": 5,
+      "time": 16,
+      "duration": 1
+    },
+    "examTime": {
+      "day": 5,
+      "time": 16,
+      "duration": 1
+    },
+    "name": "走近故宫",
+    "location": "https://www.zhihuishu.com/"
+  },
+  {
+    "startWeek": 1,
+    "endWeek": 16,
+    "testWeek": 17,
+    "classTime": {
+      "day": 1,
+      "time": 16,
+      "duration": 3
+    },
+    "examTime": {
+      "day": 1,
+      "time": 16,
+      "duration": 3
+    },
+    "name": "Java程序设计",
+    "location": "教三楼"
+  },
+  {
+    "startWeek": 1,
+    "endWeek": 16,
+    "testWeek": 17,
+    "classTime": {
+      "day": 3,
+      "time": 9,
+      "duration": 2
+    },
+    "examTime": {
+      "day": 3,
+      "time": 9,
+      "duration": 2
+    },
+    "name": "健美",
+    "location": "体育馆"
+  },
+  {
+    "startWeek": 1,
+    "endWeek": 16,
+    "testWeek": 17,
+    "classTime": {
+      "day": 4,
+      "time": 18,
+      "duration": 2
+    },
+    "examTime": {
+      "day": 4,
+      "time": 18,
+      "duration": 2
+    },
+    "name": "软件工程",
+    "location": "教三楼"
+  },
+  {
+    "startWeek": 1,
+    "endWeek": 16,
+    "testWeek": 17,
+    "classTime": {
+      "day": 5,
+      "time": 8,
+      "duration": 2
+    },
+    "examTime": {
+      "day": 5,
+      "time": 8,
+      "duration": 2
+    },
+    "name": "形式语言与自动机",
+    "location": "教三楼"
+  },
+  {
+    "startWeek": 1,
     "endWeek": 10,
     "testWeek": 11,
     "classTime": {
@@ -15,5 +151,107 @@
     },
     "name": "数据结构",
     "location": "教三楼"
+  },
+  {
+    "startWeek": 1,
+    "endWeek": 16,
+    "testWeek": 17,
+    "classTime": {
+      "day": 4,
+      "time": 8,
+      "duration": 2
+    },
+    "examTime": {
+      "day": 4,
+      "time": 8,
+      "duration": 2
+    },
+    "name": "计算机网络",
+    "location": "教三楼"
+  },
+  {
+    "startWeek": 5,
+    "endWeek": 13,
+    "testWeek": 14,
+    "classTime": {
+      "day": 3,
+      "time": 14,
+      "duration": 3
+    },
+    "examTime": {
+      "day": 3,
+      "time": 14,
+      "duration": 3
+    },
+    "name": "军训",
+    "location": "篮球场"
+  },
+  {
+    "startWeek": 1,
+    "endWeek": 16,
+    "testWeek": 17,
+    "classTime": {
+      "day": 2,
+      "time": 8,
+      "duration": 2
+    },
+    "examTime": {
+      "day": 2,
+      "time": 8,
+      "duration": 2
+    },
+    "name": "操作系统",
+    "location": "教三楼"
+  },
+  {
+    "startWeek": 1,
+    "endWeek": 16,
+    "testWeek": 17,
+    "classTime": {
+      "day": 3,
+      "time": 19,
+      "duration": 1
+    },
+    "examTime": {
+      "day": 3,
+      "time": 19,
+      "duration": 1
+    },
+    "name": "创新创业实践",
+    "location": "https://ucloud.bupt.edu.cn"
+  },
+  {
+    "startWeek": 1,
+    "endWeek": 16,
+    "testWeek": 17,
+    "classTime": {
+      "day": 1,
+      "time": 13,
+      "duration": 2
+    },
+    "examTime": {
+      "day": 1,
+      "time": 13,
+      "duration": 2
+    },
+    "name": "商务英语",
+    "location": "教一楼"
+  },
+  {
+    "startWeek": 1,
+    "endWeek": 16,
+    "testWeek": 17,
+    "classTime": {
+      "day": 2,
+      "time": 19,
+      "duration": 1
+    },
+    "examTime": {
+      "day": 2,
+      "time": 19,
+      "duration": 1
+    },
+    "name": "心理学与生活",
+    "location": "学生发展中心"
   }
 ]

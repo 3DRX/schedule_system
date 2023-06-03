@@ -42,7 +42,17 @@ public class NavigateController {
             return null;
         }
         logger.info("导航开始，起点: " + input.start() + " 终点: " + input.end());
-        return mapData.pathFromXtoY(input.start(), input.end()).toArray();
+        try {
+            try {
+                return mapData.pathFromXtoY(input.start(), input.end()).toArray();
+            } catch (Exception e) {
+                return mapData.pathFromXtoY(input.end(), input.start()).reverse().toArray();
+            }
+        } catch (Exception e) {
+            logger.warn("导航失败：无法到达");
+            e.printStackTrace();
+            return new Location[0];
+        }
     }
 
     @PostMapping("/navigateToEvents")
